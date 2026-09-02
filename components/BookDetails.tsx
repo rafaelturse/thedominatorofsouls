@@ -47,7 +47,7 @@ export default function BookDetails({ book }: { book: Book }) {
   }[];
 
   return (
-    <div className="mt-6 flex flex-wrap items-start justify-center gap-x-10 gap-y-4 border-y border-line py-5 sm:justify-start">
+    <div className="mt-6 flex flex-wrap items-start justify-center gap-x-10 gap-y-4 border-t border-line py-5 sm:justify-start">
       {items.map((item) => {
         const Icon = item.icon;
         const content = (
