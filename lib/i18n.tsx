@@ -19,6 +19,7 @@ const UI = {
   publishedOn: { "pt-br": "Publicado em", en: "Published on" },
   aboutAuthor: { "pt-br": "Sobre o Autor", en: "About the author" },
   more: { "pt-br": "Mais", en: "More" },
+  viewImage: { "pt-br": "Ver imagem", en: "View image" },
 } satisfies Record<string, LocalizedString>;
 
 type LanguageContextValue = {

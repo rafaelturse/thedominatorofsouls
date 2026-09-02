@@ -49,7 +49,7 @@ export default function LanguageSwitcher() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-1.5 font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors hover:text-gold-soft"
+        className="flex items-center gap-1.5 font-body text-xs uppercase tracking-[0.15em] text-red-soft transition-colors hover:text-gold-soft"
       >
         <GlobeIcon />
         {current.label}
@@ -78,7 +78,7 @@ export default function LanguageSwitcher() {
                 setLocale(lang.code);
                 setOpen(false);
               }}
-              className="block w-full whitespace-nowrap px-4 py-2 text-left font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors hover:bg-surface hover:text-gold-soft"
+              className="block w-full whitespace-nowrap px-4 py-2 text-left font-body text-xs uppercase tracking-[0.15em] text-red-soft transition-colors hover:bg-surface hover:text-gold-soft"
             >
               {lang.label}
             </button>
