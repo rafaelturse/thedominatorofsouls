@@ -24,8 +24,8 @@ const indieFlower = Indie_Flower({
 });
 
 export const metadata: Metadata = {
-  title: "O Dominador de Almas",
-  description: "Um Universo de Aventuras Épicas — por Rafael Turse. An Epic Fantasy Universe by Rafael Turse.",
+  title: "O Dominador de Almas | The Dominator of Souls",
+  description: "Um Universo de Aventuras Épicas — por Rafael Turse | An Epic Fantasy Universe by Rafael Turse.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
