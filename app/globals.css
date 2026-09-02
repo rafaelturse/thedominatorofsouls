@@ -72,7 +72,9 @@
 }
 
 .bg-grain {
-  position: relative;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0) 1px, transparent 1px);
+  background-size: 3px 3px;
+  background-attachment: fixed;
 }
 
 .bg-grain::before {
