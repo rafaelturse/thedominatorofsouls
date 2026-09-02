@@ -5,7 +5,7 @@ export default function Footer() {
     return (
         <div>
             <HomeLink />
-            
+
             <footer className="border-t border-line">
                 <div className="mx-auto max-w-5xl px-5 py-8">
                     <div className="flex justify-center">

@@ -21,9 +21,9 @@ const FacebookIcon = ({ size }: IconProps) => (
 );
 
 const AuthorIcon = ({ size }: IconProps) => (
-  <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor">
-    <path d="M15 1c-1.5 0-4.5.5-6.5 2.5C6.5 5.5 5 8.5 4.5 11c-.3 1.5-1 2.5-2 3.5l-.5.5.7.7.5-.5c1-1 2-1.7 3.5-2 2.5-.5 5.5-2 7.5-4C16.5 6.5 17 3.5 17 2l-.5-.5C16 1.2 15.5 1 15 1zM5.7 11.9c.4-1.9 1.6-4.3 3.3-6 1.5-1.5 3.6-2.1 5-2.3-.2 1.4-.8 3.5-2.3 5-1.7 1.7-4.1 2.9-6 3.3z" />
-  </svg>
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor">
+        <path d="M15 1c-1.5 0-4.5.5-6.5 2.5C6.5 5.5 5 8.5 4.5 11c-.3 1.5-1 2.5-2 3.5l-.5.5.7.7.5-.5c1-1 2-1.7 3.5-2 2.5-.5 5.5-2 7.5-4C16.5 6.5 17 3.5 17 2l-.5-.5C16 1.2 15.5 1 15 1zM5.7 11.9c.4-1.9 1.6-4.3 3.3-6 1.5-1.5 3.6-2.1 5-2.3-.2 1.4-.8 3.5-2.3 5-1.7 1.7-4.1 2.9-6 3.3z" />
+    </svg>
 );
 
 const ICONS: Record<string, (props: IconProps) => React.JSX.Element> = {

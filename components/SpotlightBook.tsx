@@ -16,7 +16,7 @@ export default function SpotlightBook({ book }: { book: Book }) {
       <h1 className="font-display uppercase text-lg text-ink">{t(ui.featuredTitle)}</h1>
 
       <div
-        className="mt-4 rounded-3xl p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:p-10"
+        className="mt-6 rounded-3xl p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:p-10"
         style={{ backgroundColor: "#111" }}
       >
         <div className="flex flex-col items-center gap-10 sm:flex-row sm:items-start">

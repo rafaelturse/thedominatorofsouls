@@ -112,11 +112,10 @@ export default function ContactForm() {
       </form>
 
       <div
-        className={`mt-6 text-center font-body text-sm transition-opacity duration-500 ${
-          status === "sent" || status === "error"
+        className={`mt-6 text-center font-body text-sm transition-opacity duration-500 ${status === "sent" || status === "error"
             ? "opacity-100"
             : "pointer-events-none opacity-0"
-        } ${status === "error" ? "text-red-400" : "text-gold-soft"}`}
+          } ${status === "error" ? "text-red-400" : "text-gold-soft"}`}
         aria-live="polite"
       >
         {status === "error"

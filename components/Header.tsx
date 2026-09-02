@@ -36,9 +36,8 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`font-body text-xs uppercase tracking-[0.15em] transition-colors hover:text-gold-soft ${
-                  pathname === item.href ? "text-gold-soft" : "text-muted"
-                }`}
+                className={`font-body text-xs uppercase tracking-[0.15em] transition-colors hover:text-gold-soft ${pathname === item.href ? "text-gold-soft" : "text-muted"
+                  }`}
               >
                 {t(item.label)}
               </Link>

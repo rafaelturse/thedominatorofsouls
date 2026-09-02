@@ -15,11 +15,32 @@ const UI = {
   featuredTitle: { "pt-br": "Em Destaque na Loja", en: "Featured in Store" },
   newBadge: { "pt-br": "Novo", en: "New" },
   buyOnAmazon: { "pt-br": "Comprar na Amazon", en: "Buy on Amazon" },
-  pagesSuffix: { "pt-br": "Páginas", en: "Pages" },
+  pagesSuffix: { "pt-br": "páginas", en: "pages" },
   publishedOn: { "pt-br": "Publicado em", en: "Published on" },
-  aboutAuthor: { "pt-br": "Sobre o Autor", en: "About the author" },
+  aboutAuthor: { "pt-br": "Sobre o autor", en: "About the author" },
   more: { "pt-br": "Mais", en: "More" },
   viewImage: { "pt-br": "Ver imagem", en: "View image" },
+  exploreTitle: { "pt-br": "Veja Mais", en: "See More" },
+  exploreStore: { "pt-br": "Loja", en: "Store" },
+  exploreStoreDesc: {
+    "pt-br": "A lendária estante de livros do Dominador de Almas",
+    en: "The legendary Dominator of Souls' bookshelf",
+  },
+  exploreUniverse: { "pt-br": "Universo", en: "Universe" },
+  exploreUniverseDesc: {
+    "pt-br": "Mais sobre personagens, locais e mitologia",
+    en: "More about characters, places, and mythology",
+  },
+  exploreAuthor: { "pt-br": "Autor", en: "Author" },
+  exploreAuthorDesc: {
+    "pt-br": "Conheça quem dá vida ao Dominador de Almas",
+    en: "Meet the person behind the Dominator of Souls",
+  },
+  exploreAbout: { "pt-br": "Sobre", en: "About" },
+  exploreAboutDesc: {
+    "pt-br": "Uma pequeno vislumbre da obra",
+    en: "A small glimpse into the work",
+  },
 } satisfies Record<string, LocalizedString>;
 
 type LanguageContextValue = {

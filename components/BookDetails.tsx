@@ -38,12 +38,12 @@ export default function BookDetails({ book }: { book: Book }) {
   const items = [
     book.pageCount
       ? {
-          icon: PagesIcon,
-          label: `${book.pageCount} ${t(ui.pagesSuffix)}`,
-          href: undefined,
-          external: false,
-          linksAway: false,
-        }
+        icon: PagesIcon,
+        label: `${book.pageCount} ${t(ui.pagesSuffix)}`,
+        href: undefined,
+        external: false,
+        linksAway: false,
+      }
       : null,
     {
       icon: CalendarIcon,
@@ -80,9 +80,8 @@ export default function BookDetails({ book }: { book: Book }) {
         const Icon = item.icon;
         const content = (
           <div
-            className={`flex flex-col items-center gap-2 text-muted transition-all duration-300 ${
-              item.linksAway ? "hover:scale-105 hover:text-red-soft" : "hover:text-gold-soft"
-            }`}
+            className={`flex flex-col items-center gap-2 text-muted transition-all duration-300 ${item.linksAway ? "hover:scale-105 hover:text-red-soft" : "hover:text-gold-soft"
+              }`}
           >
             <Icon />
             <span className="font-body text-xs uppercase tracking-[0.1em]">{item.label}</span>

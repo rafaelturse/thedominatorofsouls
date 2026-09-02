@@ -8,12 +8,12 @@ export type NavItem = { label: LocalizedString; href: string; comingSoon?: boole
 
 export const NAV_ITEMS: NavItem[] = [
   { label: { "pt-br": "Home", en: "Home" }, href: "/" },
-  { label: { "pt-br": "Universo", en: "Universe" }, href: "/universo", comingSoon: true },
-  { label: { "pt-br": "Jogo", en: "Game" }, href: "/jogo", comingSoon: true },
+  { label: { "pt-br": "Universo", en: "Universe" }, href: "/universe", comingSoon: true },
+  { label: { "pt-br": "Jogo", en: "Game" }, href: "/game", comingSoon: true },
   { label: { "pt-br": "Store", en: "Store" }, href: "/store", comingSoon: true },
-  { label: { "pt-br": "Galerias", en: "Gallery" }, href: "/galerias", comingSoon: true },
-  { label: { "pt-br": "Contato", en: "Contact" }, href: "/contato", comingSoon: true },
-  { label: { "pt-br": "Sobre", en: "About" }, href: "/sobre", comingSoon: true },
+  { label: { "pt-br": "Galerias", en: "Gallery" }, href: "/gallery", comingSoon: true },
+  { label: { "pt-br": "Contato", en: "Contact" }, href: "/contact", comingSoon: false },
+  { label: { "pt-br": "Sobre", en: "About" }, href: "/about", comingSoon: false },
 ];
 
 /* ################# */
@@ -44,6 +44,19 @@ export const SITE = {
   } as LocalizedString,
   symbol: "/symbols/the-dominator-of-souls-separator-symbol.svg",
 };
+
+/* ############## */
+/* ### FOOTER ### */
+/* ############## */
+
+export type Contact = { label: string; href: string };
+
+export const contacts: Contact[] = [
+  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=100075906499422" },
+  { label: "Instagram", href: "https://www.instagram.com/thedominatorofsouls" },
+  { label: "X", href: "https://x.com/dominatorofsoul" },
+  { label: "Author", href: "https://www.rafaelturse.com" },
+];
 
 /* ############## */
 /* ### GENRE ### */
@@ -224,14 +237,33 @@ export const books: Book[] = [
 ];
 
 /* ############## */
-/* ### FOOTER ### */
+/* ### ABOUT ### */
 /* ############## */
 
-export type Contact = { label: string; href: string };
 
-export const contacts: Contact[] = [
-  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=100075906499422" },
-  { label: "Instagram", href: "https://www.instagram.com/thedominatorofsouls" },
-  { label: "X", href: "https://x.com/dominatorofsoul" },
-  { label: "Author", href: "https://www.rafaelturse.com" },
-];
+export const ABOUT = {
+  title: { "pt-br": "Sobre", en: "About" } as LocalizedString,
+  heading: { "pt-br": "Nota do Autor", en: "Author's Note" } as LocalizedString,
+  subtitle: {
+    "pt-br": "Um pequeno vislumbre sobre a obra",
+    en: "A small glimpse into the work",
+  } as LocalizedString,
+  paragraphs: [
+    {
+      "pt-br":
+        "O Dominador de Almas não é somente um livro, mas sim um grande universo fundamentado sobre pilares da inovação, que por sua vez, não teriam outro sustento senão na solidez da tradição.",
+      en: "The Dominator of Souls is not just a book, but a vast universe built on pillars of innovation — pillars that could stand on nothing but the solidity of tradition.",
+    },
+    {
+      "pt-br":
+        "Os diversos livros que irão compor esta obra, expandirão seus horizontes através do compromisso em criar histórias de enredos robustos e personagens icônicos que, atravessando aventuras épicas, certamente deixarão suas marcas por onde passarem, inclusive nos próprios leitores.",
+      en: "The many books that will make up this work will expand its horizons through a commitment to crafting stories with robust plots and iconic characters — characters who, through epic adventures, will surely leave their mark wherever they go, including on the readers themselves.",
+    },
+    {
+      "pt-br":
+        "Tudo está sendo moldado para causar um grande impacto em quem se arriscar a se aventurar por essas páginas, que em repouso, anseiam por serem descobertas, a densidade do que está escondido nelas só pode ser consumida verdadeiramente por quem realmente tem ávido espírito de luta! E a estes, desejo que a chama de suas almas queime ainda mais poderosamente, para que assim, possam voar sempre mais alto.",
+      en: "Everything is being shaped to leave a lasting impact on whoever dares to venture through these pages — pages that, at rest, long to be discovered. The depth of what lies hidden within them can only truly be grasped by those with an eager fighting spirit! To them, I wish that the flame of their souls burns ever more powerfully, so that they may always fly higher.",
+    },
+  ] as LocalizedString[],
+  signature: { "pt-br": "— O Autor", en: "— The Author" } as LocalizedString,
+};

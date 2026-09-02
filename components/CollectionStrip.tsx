@@ -17,14 +17,14 @@ export default function CollectionStrip({ books }: { books: Book[] }) {
           <div
             key={book.slug}
             className={`group flex flex-col items-center gap-3 p-2 transition-all duration-300 ${book.status === "published"
-                ? "hover:-translate-y-1.5 hover:shadow-[0_25px_50px_-15px_rgba(0,0,0,0.7)]"
-                : "opacity-60"
+              ? "hover:-translate-y-1.5 hover:shadow-[0_25px_50px_-15px_rgba(0,0,0,0.7)]"
+              : "opacity-60"
               }`}
           >
             <div
               className={`aspect-[2/3] w-full overflow-hidden border transition-colors duration-300 ${book.status === "published"
-                  ? "border-transparent group-hover:border-gold-soft"
-                  : "border-transparent"
+                ? "border-transparent group-hover:border-gold-soft"
+                : "border-transparent"
                 }`}
             >
               {book.cover ? (
