@@ -80,7 +80,7 @@ export const books: Book[] = [
     release: "Set-2026",
     pageCount: 137,
     synopsis:
-      "Enquanto todos vivem suas vidas conforme lhes cabe, grupos secretos agem nas sombras disputando poder e controle dentro de um jogo cuja presença na superfície, do que é então conhecido, serve justamente para encobrir aquilo que deve permanecer oculto.",
+      "Enquanto todos vivem suas vidas conforme lhes cabe, grupos secretos agem nas sombras disputando poder e controle dentro de um jogo cuja presença na superfície, do que é então conhecido, serve justamente para encobrir aquilo que deve permanecer oculto... ",
     cover: "/books/the-memories-of-berdox-vol1-fragmented-cover-pt.jpg",
     stores: [
       { label: "Brasil", href: "https://www.amazon.com.br/dp/B0HHFJ496J" },
