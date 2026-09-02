@@ -80,7 +80,7 @@ export default function BookDetails({ book }: { book: Book }) {
         const Icon = item.icon;
         const content = (
           <div
-            className={`flex flex-col items-center gap-2 text-muted transition-all duration-300 ${item.linksAway ? "hover:scale-105 hover:text-red-soft" : "hover:text-gold-soft"
+            className={`flex flex-col items-center gap-2 text-muted transition-all duration-300 ${item.linksAway ? "hover:scale-105 hover:text-gold-soft" : "hover:text-gold-soft"
               }`}
           >
             <Icon />
