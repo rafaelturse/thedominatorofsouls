@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Book } from "@/lib/data";
+import { useLanguage } from "@/lib/i18n";
 
 type IconProps = { size?: number };
 
@@ -32,18 +33,45 @@ const MoreIcon = ({ size = 18 }: IconProps) => (
 );
 
 export default function BookDetails({ book }: { book: Book }) {
+  const { t, ui } = useLanguage();
+
   const items = [
     book.pageCount
-      ? { icon: PagesIcon, label: `${book.pageCount} páginas`, href: undefined, external: false }
+      ? {
+          icon: PagesIcon,
+          label: `${book.pageCount} ${t(ui.pagesSuffix)}`,
+          href: undefined,
+          external: false,
+          linksAway: false,
+        }
       : null,
-    { icon: CalendarIcon, label: `Publicado em ${book.release}`, href: undefined, external: false },
-    { icon: AuthorIcon, label: "Sobre o autor", href: "https://rafaelturse.com", external: true },
-    { icon: MoreIcon, label: "Mais", href: `/livros/${book.slug}`, external: false },
+    {
+      icon: CalendarIcon,
+      label: `${t(ui.publishedOn)} ${t(book.release)}`,
+      href: undefined,
+      external: false,
+      linksAway: false,
+    },
+    {
+      icon: AuthorIcon,
+      label: t(ui.aboutAuthor),
+      href: "https://rafaelturse.com",
+      external: true,
+      linksAway: true,
+    },
+    {
+      icon: MoreIcon,
+      label: t(ui.more),
+      href: `/livros/${book.slug}`,
+      external: false,
+      linksAway: true,
+    },
   ].filter(Boolean) as {
     icon: typeof PagesIcon;
     label: string;
     href?: string;
     external: boolean;
+    linksAway: boolean;
   }[];
 
   return (
@@ -51,11 +79,13 @@ export default function BookDetails({ book }: { book: Book }) {
       {items.map((item) => {
         const Icon = item.icon;
         const content = (
-          <div className="flex flex-col items-center gap-2 text-muted transition-colors hover:text-gold-soft">
+          <div
+            className={`flex flex-col items-center gap-2 text-muted transition-all duration-300 ${
+              item.linksAway ? "hover:scale-105 hover:text-red-soft" : "hover:text-gold-soft"
+            }`}
+          >
             <Icon />
-            <span className="font-body text-xs uppercase tracking-[0.1em]">
-              {item.label}
-            </span>
+            <span className="font-body text-xs uppercase tracking-[0.1em]">{item.label}</span>
           </div>
         );
 

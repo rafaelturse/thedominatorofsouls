@@ -1,4 +1,7 @@
+"use client";
+
 import { genres } from "@/lib/data";
+import { useLanguage } from "@/lib/i18n";
 
 type IconProps = { size: number };
 
@@ -41,14 +44,17 @@ const ICONS: Record<string, (props: IconProps) => React.JSX.Element> = {
 };
 
 export default function GenreStrip() {
+  const { t } = useLanguage();
+
   return (
     <div className="relative z-10 mx-auto mt-20 max-w-6xl px-5">
       <div className="grid grid-cols-1 rounded-3xl bg-black shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:grid-cols-4">
         {genres.map((genre, i) => {
-          const Icon = ICONS[genre.label];
+          const key = genre.label["pt-br"];
+          const Icon = ICONS[key];
           return (
             <div
-              key={genre.label}
+              key={key}
               className="group relative flex flex-col items-center gap-4 px-8 py-10 text-center transition-transform duration-300 ease-out hover:z-10 hover:scale-105"
             >
               {i > 0 && (
@@ -63,10 +69,10 @@ export default function GenreStrip() {
                 </span>
               )}
               <p className="font-display text-base uppercase tracking-[0.2em] text-ink transition-colors duration-300 ease-out group-hover:text-gold-soft">
-                {genre.label}
+                {t(genre.label)}
               </p>
               <p className="font-body text-sm leading-relaxed text-muted">
-                {genre.description}
+                {t(genre.description)}
               </p>
             </div>
           );

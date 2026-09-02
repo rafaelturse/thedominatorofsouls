@@ -1,18 +1,19 @@
+import type { LocalizedString } from "./i18n";
+
 /* ############ */
 /* ### NAV #### */
 /* ############ */
 
-export type NavItem = { label: string; href: string; comingSoon?: boolean };
+export type NavItem = { label: LocalizedString; href: string; comingSoon?: boolean };
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: "Home", href: "/" },
-  { label: "Universo", href: "/universe", comingSoon: true },
-  { label: "Jogo", href: "/game", comingSoon: true },
-  { label: "Loja", href: "/store", comingSoon: true },
-  { label: "Galeria", href: "/gallery", comingSoon: true },
-  { label: "Autor", href: "/author", comingSoon: true },
-  { label: "Contato", href: "/contact", comingSoon: false },
-  { label: "Sobre", href: "/about", comingSoon: true },
+  { label: { "pt-br": "Home", en: "Home" }, href: "/" },
+  { label: { "pt-br": "Universo", en: "Universe" }, href: "/universo", comingSoon: true },
+  { label: { "pt-br": "Jogo", en: "Game" }, href: "/jogo", comingSoon: true },
+  { label: { "pt-br": "Store", en: "Store" }, href: "/store", comingSoon: true },
+  { label: { "pt-br": "Galerias", en: "Gallery" }, href: "/galerias", comingSoon: true },
+  { label: { "pt-br": "Contato", en: "Contact" }, href: "/contato", comingSoon: true },
+  { label: { "pt-br": "Sobre", en: "About" }, href: "/sobre", comingSoon: true },
 ];
 
 /* ################# */
@@ -22,10 +23,8 @@ export const NAV_ITEMS: NavItem[] = [
 export type Language = { code: string; label: string };
 
 export const LANGUAGES: Language[] = [
-  { code: "pt-br", label: "PT-BR" },
-  { code: "en", label: "EN" },
-  { code: "fr", label: "FR" },
-  { code: "es", label: "ES" },
+  { code: "en", label: "English" },
+  { code: "pt-br", label: "Português" },
 ];
 
 /* ############## */
@@ -34,8 +33,15 @@ export const LANGUAGES: Language[] = [
 
 export const SITE = {
   name: "O Dominador de Almas",
-  nameEn: "Um universo de aventuras épicas",
-  tagline: "Um imenso universo forjado por aventuras épicas",
+  nameEn: "The Dominator of Souls",
+  title: {
+    "pt-br": "O Dominador de Almas",
+    en: "The Dominator of Souls",
+  } as LocalizedString,
+  tagline: {
+    "pt-br": "Um universo de aventuras épicas",
+    en: "A universe of epic adventures",
+  } as LocalizedString,
   symbol: "/symbols/the-dominator-of-souls-separator-symbol.svg",
 };
 
@@ -43,13 +49,37 @@ export const SITE = {
 /* ### GENRE ### */
 /* ############## */
 
-export type Genre = { label: string; description: string };
+export type Genre = { label: LocalizedString; description: LocalizedString };
 
 export const genres: Genre[] = [
-  { label: "Aventura", description: "Jornadas que te farão conhecer novos lugares, até mesmo dentro de você" },
-  { label: "RPG", description: "Classes, progressões, decisões e sistemas complexos aplicados sobre enredos densos" },
-  { label: "Romance", description: "Vínculos eternos que criam laços capazes de atravessar qualquer limite" },
-  { label: "Guerra", description: "Conflitos pessoais, políticos e religiosos que impulsionam a roda da história" },
+  {
+    label: { "pt-br": "Aventura", en: "Adventure" },
+    description: {
+      "pt-br": "Jornadas que te farão conhecer novos lugares, até mesmo dentro de você",
+      en: "Journeys that will lead you to discover new places, even within yourself",
+    },
+  },
+  {
+    label: { "pt-br": "RPG", en: "RPG" },
+    description: {
+      "pt-br": "Classes, progressões, decisões e sistemas complexos aplicados sobre densos enredos",
+      en: "Classes, progressions, decisions, and complex systems applied to dense storylines",
+    },
+  },
+  {
+    label: { "pt-br": "Romance", en: "Romance" },
+    description: {
+      "pt-br": "Vínculos eternos que criam laços capazes de atravessar qualquer limite imposto",
+      en: "Eternal bonds that create ties capable of crossing any imposed limit",
+    },
+  },
+  {
+    label: { "pt-br": "Guerra", en: "War" },
+    description: {
+      "pt-br": "Conflitos pessoais, políticos e religiosos que impulsionam a roda da história",
+      en: "Personal, political, and religious conflicts that drive the wheel of history",
+    },
+  },
 ];
 
 /* ############## */
@@ -57,110 +87,139 @@ export const genres: Genre[] = [
 /* ############## */
 
 export type BookStatus = "published" | "upcoming";
-export type Store = { label: string; href: string };
+export type Store = { label: LocalizedString; href: string };
 
 export type Book = {
   slug: string;
-  title: string;
-  series: string;
+  title: LocalizedString;
+  volumeLabel: LocalizedString;
+  series: LocalizedString;
   status: BookStatus;
-  release: string;
+  release: LocalizedString;
   pageCount?: number;
-  synopsis: string;
-  cover?: string;
+  synopsis: LocalizedString;
+  cover?: LocalizedString;
   stores?: Store[];
 };
+const SERIES: LocalizedString = {
+  "pt-br": "O Dominador de Almas",
+  en: "The Dominator of Souls",
+};
+
+const UPCOMING_SYNOPSIS: LocalizedString = {
+  "pt-br": "Detalhes serão anunciados perto do lançamento.",
+  en: "Details will be announced closer to release.",
+};
+
+const TBA: LocalizedString = { "pt-br": "A definir", en: "TBA" };
 
 export const books: Book[] = [
   {
     slug: "fragmentados",
-    title: "As Memórias de Berdox — Volume 1 — Fragmentados",
-    series: "O Dominador de Almas",
+    title: {
+      "pt-br": "As Memórias de Berdox — Volume 1 — Fragmentados",
+      en: "The Memories of Berdox — Volume 1 — Fragmented",
+    },
+    volumeLabel: { "pt-br": "Volume 1", en: "Volume 1" },
+    series: SERIES,
     status: "published",
-    release: "Set-2026",
+    release: { "pt-br": "Set-2026", en: "Sep-2026" },
     pageCount: 137,
-    synopsis:
-      "Enquanto todos vivem suas vidas conforme lhes cabe, grupos secretos agem nas sombras disputando poder e controle dentro de um jogo cuja presença na superfície, do que é então conhecido, serve justamente para encobrir aquilo que deve permanecer oculto... ",
-    cover: "/books/the-memories-of-berdox-vol1-fragmented-cover-pt.jpg",
+    synopsis: {
+      "pt-br":
+        "Enquanto todos vivem suas vidas conforme lhes cabe, grupos secretos agem nas sombras disputando poder e controle dentro de um jogo cuja presença na superfície, do que é então conhecido, serve justamente para encobrir aquilo que deve permanecer oculto...",
+      en: "While everyone lives their lives as they see fit, secret groups act in the shadows, fighting for power and control within a game whose presence on the surface — in what is otherwise known — serves precisely to conceal what must remain hidden...",
+    },
+    cover: {
+      "pt-br": "/books/the-memories-of-berdox-vol1-fragmented-cover-pt.jpg",
+      en: "/books/the-memories-of-berdox-vol1-fragmented-cover-en.jpg",
+    },
     stores: [
-      { label: "Brasil", href: "https://www.amazon.com.br/dp/B0HHFJ496J" },
-      { label: "Estados Unidos", href: "https://www.amazon.com/dp/B0HHFJ496J" },
-      { label: "Canadá", href: "https://www.amazon.ca/dp/B0HHFJ496J" },
-      { label: "México", href: "https://www.amazon.com.mx/dp/B0HHFJ496J" },
-      { label: "Alemanha", href: "https://www.amazon.de/dp/B0HHFJ496J" },
-      { label: "Espanha", href: "https://www.amazon.es/dp/B0HHFJ496J" },
-      { label: "França", href: "https://www.amazon.fr/dp/B0HHFJ496J" },
-      { label: "Itália", href: "https://www.amazon.it/dp/B0HHFJ496J" },
-      { label: "Reino Unido", href: "https://www.amazon.co.uk/dp/B0HHFJ496J" },
-      { label: "Holanda", href: "https://www.amazon.nl/dp/B0HHFJ496J" },
-      { label: "Polônia", href: "https://www.amazon.pl/dp/B0HHFJ496J" },
-      { label: "Suécia", href: "https://www.amazon.se/dp/B0HHFJ496J" },
-      { label: "Bélgica", href: "https://www.amazon.com.be/dp/B0HHFJ496J" },
-      { label: "Turquia", href: "https://www.amazon.com.tr/dp/B0HHFJ496J" },
-      { label: "Japão", href: "https://www.amazon.co.jp/dp/B0HHFJ496J" },
-      { label: "Índia", href: "https://www.amazon.in/dp/B0HHFJ496J" },
-      { label: "Austrália", href: "https://www.amazon.com.au/dp/B0HHFJ496J" },
-      { label: "Singapura", href: "https://www.amazon.sg/dp/B0HHFJ496J" },
-      { label: "Emirados Árabes", href: "https://www.amazon.ae/dp/B0HHFJ496J" },
-      { label: "Arábia Saudita", href: "https://www.amazon.sa/dp/B0HHFJ496J" },
-      { label: "Egito", href: "https://www.amazon.eg/dp/B0HHFJ496J" },
+      { label: { "pt-br": "Brasil", en: "Brazil" }, href: "https://www.amazon.com.br/dp/B0HHFJ496J" },
+      { label: { "pt-br": "Estados Unidos", en: "United States" }, href: "https://www.amazon.com/dp/B0HHFJ496J" },
+      { label: { "pt-br": "Canadá", en: "Canada" }, href: "https://www.amazon.ca/dp/B0HHFJ496J" },
+      { label: { "pt-br": "México", en: "Mexico" }, href: "https://www.amazon.com.mx/dp/B0HHFJ496J" },
+      { label: { "pt-br": "Alemanha", en: "Germany" }, href: "https://www.amazon.de/dp/B0HHFJ496J" },
+      { label: { "pt-br": "Espanha", en: "Spain" }, href: "https://www.amazon.es/dp/B0HHFJ496J" },
+      { label: { "pt-br": "França", en: "France" }, href: "https://www.amazon.fr/dp/B0HHFJ496J" },
+      { label: { "pt-br": "Itália", en: "Italy" }, href: "https://www.amazon.it/dp/B0HHFJ496J" },
+      { label: { "pt-br": "Reino Unido", en: "United Kingdom" }, href: "https://www.amazon.co.uk/dp/B0HHFJ496J" },
+      { label: { "pt-br": "Holanda", en: "Netherlands" }, href: "https://www.amazon.nl/dp/B0HHFJ496J" },
+      { label: { "pt-br": "Polônia", en: "Poland" }, href: "https://www.amazon.pl/dp/B0HHFJ496J" },
+      { label: { "pt-br": "Suécia", en: "Sweden" }, href: "https://www.amazon.se/dp/B0HHFJ496J" },
+      { label: { "pt-br": "Bélgica", en: "Belgium" }, href: "https://www.amazon.com.be/dp/B0HHFJ496J" },
+      { label: { "pt-br": "Turquia", en: "Turkey" }, href: "https://www.amazon.com.tr/dp/B0HHFJ496J" },
+      { label: { "pt-br": "Japão", en: "Japan" }, href: "https://www.amazon.co.jp/dp/B0HHFJ496J" },
+      { label: { "pt-br": "Índia", en: "India" }, href: "https://www.amazon.in/dp/B0HHFJ496J" },
+      { label: { "pt-br": "Austrália", en: "Australia" }, href: "https://www.amazon.com.au/dp/B0HHFJ496J" },
+      { label: { "pt-br": "Singapura", en: "Singapore" }, href: "https://www.amazon.sg/dp/B0HHFJ496J" },
+      { label: { "pt-br": "Emirados Árabes", en: "United Arab Emirates" }, href: "https://www.amazon.ae/dp/B0HHFJ496J" },
+      { label: { "pt-br": "Arábia Saudita", en: "Saudi Arabia" }, href: "https://www.amazon.sa/dp/B0HHFJ496J" },
+      { label: { "pt-br": "Egito", en: "Egypt" }, href: "https://www.amazon.eg/dp/B0HHFJ496J" },
     ],
   },
   {
     slug: "volume-2",
-    title: "As Memórias de Berdox — Volume 2",
-    series: "O Dominador de Almas",
+    title: { "pt-br": "As Memórias de Berdox — Volume 2", en: "The Memories of Berdox — Volume 2" },
+    volumeLabel: { "pt-br": "Volume 2", en: "Volume 2" },
+    series: SERIES,
     status: "upcoming",
-    release: "Dez-2026",
-    synopsis: "Detalhes serão anunciados perto do lançamento.",
+    release: { "pt-br": "Dez-2026", en: "Dec-2026" },
+    synopsis: UPCOMING_SYNOPSIS,
   },
   {
     slug: "volume-3",
-    title: "As Memórias de Berdox — Volume 3",
-    series: "O Dominador de Almas",
+    title: { "pt-br": "As Memórias de Berdox — Volume 3", en: "The Memories of Berdox — Volume 3" },
+    volumeLabel: { "pt-br": "Volume 3", en: "Volume 3" },
+    series: SERIES,
     status: "upcoming",
-    release: "A definir",
-    synopsis: "Detalhes serão anunciados perto do lançamento.",
+    release: TBA,
+    synopsis: UPCOMING_SYNOPSIS,
   },
   {
     slug: "volume-4",
-    title: "As Memórias de Berdox — Volume 4",
-    series: "O Dominador de Almas",
+    title: { "pt-br": "As Memórias de Berdox — Volume 4", en: "The Memories of Berdox — Volume 4" },
+    volumeLabel: { "pt-br": "Volume 4", en: "Volume 4" },
+    series: SERIES,
     status: "upcoming",
-    release: "A definir",
-    synopsis: "Detalhes serão anunciados perto do lançamento.",
+    release: TBA,
+    synopsis: UPCOMING_SYNOPSIS,
   },
   {
     slug: "volume-5",
-    title: "As Memórias de Berdox — Volume 5",
-    series: "O Dominador de Almas",
+    title: { "pt-br": "As Memórias de Berdox — Volume 5", en: "The Memories of Berdox — Volume 5" },
+    volumeLabel: { "pt-br": "Volume 5", en: "Volume 5" },
+    series: SERIES,
     status: "upcoming",
-    release: "A definir",
-    synopsis: "Detalhes serão anunciados perto do lançamento.",
+    release: TBA,
+    synopsis: UPCOMING_SYNOPSIS,
   },
   {
     slug: "volume-6",
-    title: "As Memórias de Berdox — Volume 6",
-    series: "O Dominador de Almas",
+    title: { "pt-br": "As Memórias de Berdox — Volume 6", en: "The Memories of Berdox — Volume 6" },
+    volumeLabel: { "pt-br": "Volume 6", en: "Volume 6" },
+    series: SERIES,
     status: "upcoming",
-    release: "A definir",
-    synopsis: "Detalhes serão anunciados perto do lançamento.",
+    release: TBA,
+    synopsis: UPCOMING_SYNOPSIS,
   },
   {
     slug: "volume-7",
-    title: "As Memórias de Berdox — Volume 7",
-    series: "O Dominador de Almas",
+    title: { "pt-br": "As Memórias de Berdox — Volume 7", en: "The Memories of Berdox — Volume 7" },
+    volumeLabel: { "pt-br": "Volume 7", en: "Volume 7" },
+    series: SERIES,
     status: "upcoming",
-    release: "A definir",
-    synopsis: "Detalhes serão anunciados perto do lançamento.",
+    release: TBA,
+    synopsis: UPCOMING_SYNOPSIS,
   },
   {
     slug: "volume-8",
-    title: "As Memórias de Berdox — Volume 8",
-    series: "O Dominador de Almas",
+    title: { "pt-br": "As Memórias de Berdox — Volume 8", en: "The Memories of Berdox — Volume 8" },
+    volumeLabel: { "pt-br": "Volume 8", en: "Volume 8" },
+    series: SERIES,
     status: "upcoming",
-    release: "A definir",
-    synopsis: "Detalhes serão anunciados perto do lançamento.",
+    release: TBA,
+    synopsis: UPCOMING_SYNOPSIS,
   },
 ];
 

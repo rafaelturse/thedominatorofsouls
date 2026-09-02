@@ -4,10 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { NAV_ITEMS, SITE } from "@/lib/data";
+import { useLanguage } from "@/lib/i18n";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Header() {
   const pathname = usePathname();
+  const { t, ui } = useLanguage();
   const [open, setOpen] = useState(false);
 
   return (
@@ -18,7 +20,7 @@ export default function Header() {
           onClick={() => setOpen((v) => !v)}
           className="border border-line px-3 py-1 font-body text-xs uppercase tracking-[0.2em] text-muted transition-colors hover:border-gold-soft hover:text-gold-soft md:hidden"
         >
-          {open ? "Fechar" : "Menu"}
+          {open ? t(ui.close) : t(ui.menu)}
         </button>
 
         <nav className="hidden items-center gap-6 md:flex">
@@ -28,7 +30,7 @@ export default function Header() {
                 key={item.href}
                 className="font-body text-xs uppercase tracking-[0.15em] text-line"
               >
-                {item.label}
+                {t(item.label)}
               </span>
             ) : (
               <Link
@@ -38,7 +40,7 @@ export default function Header() {
                   pathname === item.href ? "text-gold-soft" : "text-muted"
                 }`}
               >
-                {item.label}
+                {t(item.label)}
               </Link>
             )
           )}
@@ -54,7 +56,7 @@ export default function Header() {
                 key={item.href}
                 className="border-b border-line py-3 font-body text-xs uppercase tracking-[0.15em] text-line last:border-none"
               >
-                {item.label}
+                {t(item.label)}
               </span>
             ) : (
               <Link
@@ -63,7 +65,7 @@ export default function Header() {
                 onClick={() => setOpen(false)}
                 className="border-b border-line py-3 font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors hover:text-gold-soft last:border-none"
               >
-                {item.label}
+                {t(item.label)}
               </Link>
             )
           )}

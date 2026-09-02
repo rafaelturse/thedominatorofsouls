@@ -1,8 +1,8 @@
 import { EB_Garamond, Inter, Indie_Flower } from "next/font/google";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
+import { LanguageProvider } from "@/lib/i18n";
 import "./globals.css";
-import SiteFooter from "@/components/SiteFooter";
 
 const garamond = EB_Garamond({
   subsets: ["latin"],
@@ -23,8 +23,9 @@ const indieFlower = Indie_Flower({
 });
 
 export const metadata: Metadata = {
-  title: "O Dominador de Almas",
-  description: "The Dominator of Souls — a série de fantasia de Rafael Turse.",
+  title: "O Dominador de Almas | The Dominator of Souls",
+  description:
+    "Um Universo de Aventuras Épicas — por Rafael Turse. An Epic Fantasy Universe by Rafael Turse.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -33,10 +34,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="pt-BR"
       className={`${garamond.variable} ${inter.variable} ${indieFlower.variable} h-full`}
     >
-      <body className="flex min-h-full flex-col bg-bg font-body font-normal text-ink antialiased">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <SiteFooter />
+      <body className="bg-bg bg-grain flex min-h-full flex-col font-body font-normal text-ink antialiased">
+        <LanguageProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+        </LanguageProvider>
       </body>
     </html>
   );
