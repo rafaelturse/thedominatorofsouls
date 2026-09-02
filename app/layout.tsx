@@ -24,17 +24,17 @@ const indieFlower = Indie_Flower({
 });
 
 export const metadata: Metadata = {
-  title: "O Dominador de Almas | The Dominator of Souls",
-  description: "Um Universo de Aventuras Épicas — por Rafael Turse | An Epic Fantasy Universe by Rafael Turse.",
+  title: "O Dominador de Almas",
+  description: "Um Universo de Aventuras Épicas — por Rafael Turse. An Epic Fantasy Universe by Rafael Turse.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-BR"
-      className={`${garamond.variable} ${inter.variable} ${indieFlower.variable} h-full`}
+      className={`${garamond.variable} ${inter.variable} ${indieFlower.variable}`}
     >
-      <body className="bg-bg bg-grain flex min-h-full flex-col font-body font-normal text-ink antialiased">
+      <body className="bg-bg bg-grain flex min-h-screen flex-col font-body font-normal text-ink antialiased">
         <LanguageProvider>
           <Header />
           <main className="flex-1">{children}</main>
