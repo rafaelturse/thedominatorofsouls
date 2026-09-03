@@ -47,7 +47,7 @@ export default function GenreStrip() {
   const { t } = useLanguage();
 
   return (
-    <div className="relative z-10 mx-auto mt-20 max-w-6xl px-5">
+    <div className="relative z-10 mx-auto -mt-32 max-w-6xl px-5">
       <div className="grid grid-cols-1 rounded-3xl bg-black shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:grid-cols-4">
         {genres.map((genre, i) => {
           const key = genre.label["pt-br"];

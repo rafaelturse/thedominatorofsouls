@@ -7,18 +7,21 @@ export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <div className="relative">
+    <div
+      className="relative overflow-hidden pb-30"
+      style={{
+        background: "linear-gradient(180deg, #111 0%, #0c0c0c 60%, #030303 100%)",
+      }}
+    >
       <div
+        aria-hidden
         className="absolute inset-0"
-        style={{ backgroundColor: "#111" }}
-        aria-hidden
-      />
-      <div
-        aria-hidden
-        className="absolute inset-x-0 top-full h-70"
         style={{
-          background:
-            "linear-gradient(to bottom, #111 0%, #111 0%, transparent 100%)",
+          backgroundImage:
+            "linear-gradient(rgba(50, 50, 50, 0.20) 1px, transparent 1px), linear-gradient(90deg, rgba(50, 50, 50, 0.40) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+          WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 60%, transparent 100%)",
+          maskImage: "linear-gradient(to bottom, transparent 0%, black 60%, transparent 100%)",
         }}
       />
 
