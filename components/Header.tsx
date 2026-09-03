@@ -14,13 +14,22 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-bg/90 backdrop-blur">
-      <div className="mx-auto flex max-w-5xl items-center justify-center px-5 py-4">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4 md:justify-center">
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="border border-line px-3 py-1 font-body text-xs uppercase tracking-[0.2em] text-muted transition-colors hover:border-gold-soft hover:text-gold-soft md:hidden"
+          className="text-gold-soft transition-colors hover:text-red-soft md:hidden"
+          aria-label={open ? t(ui.close) : t(ui.menu)}
         >
-          {open ? t(ui.close) : t(ui.menu)}
+          {open ? (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
         </button>
 
         <nav className="hidden items-center gap-6 md:flex">

@@ -55,7 +55,7 @@ const ALL_LINKS: Record<ExploreLinkId, LinkInfo> = {
 export default function ExploreLinks({ ids }: { ids: ExploreLinkId[] }) {
   const { t, ui } = useLanguage();
 
-  const gridCols = ids.length >= 4 ? "grid-cols-4" : "sm:grid-cols-3";
+  const gridCols = ids.length >= 4 ? "sm:grid-cols-4" : "sm:grid-cols-3";
 
   return (
     <div className="mt-20">
