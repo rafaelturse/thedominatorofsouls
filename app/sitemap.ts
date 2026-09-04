@@ -3,6 +3,8 @@ import { books } from "@/lib/data";
 
 const BASE_URL = "https://thedominatorofsouls.com";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     {
