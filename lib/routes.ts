@@ -5,7 +5,7 @@ export const ROUTES = {
   store: "/store",
   gallery: "/gallery",
   about: "/about",
-  bookDetail: (slug: string) => `/books/${slug}`,
+  bookDetail: (slug: string) => `/books/${slug}#book-details`,
 } as const;
 
 export const EXTERNAL_LINKS = {

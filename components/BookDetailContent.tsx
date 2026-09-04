@@ -20,7 +20,7 @@ export default function BookDetailContent({ book }: { book: Book }) {
       <GenreStrip />
 
       <div className="relative z-10 mx-auto max-w-5xl mt-30 px-5 pb-20 pt-6 sm:pb-28 sm:pt-8">
-        <div className="flex items-center gap-2">
+        <div id="book-details" className="flex items-center gap-2 scroll-mt-24">
           <span className="text-gold-soft">
             <BookIcon />
           </span>
