@@ -15,7 +15,8 @@ type ReaderProps = {
 
 const GESTURE_COOLDOWN_MS = 10;
 const WHEEL_ACCUM_THRESHOLD = 20;
-const TOUCH_THRESHOLD = 10;
+const TOUCH_THRESHOLD = 40;
+const SLIDE_DURATION_MS = 200;
 
 export default function Reader({ book, onClose }: ReaderProps) {
   const pages = SAMPLE_LOREM_PAGES;
@@ -23,8 +24,12 @@ export default function Reader({ book, onClose }: ReaderProps) {
   const [spread, setSpread] = useState(0);
   const [isTurning, setIsTurning] = useState(false);
 
+  const [dragX, setDragX] = useState(0);
+  const [dragAnimated, setDragAnimated] = useState(false);
+  const isDragging = useRef(false);
   const touchStartX = useRef<number | null>(null);
-  const touchStartY = useRef<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const lastGestureAt = useRef(0);
   const wheelAccum = useRef(0);
   const wheelResetTimer = useRef<number | null>(null);
@@ -106,27 +111,54 @@ export default function Reader({ book, onClose }: ReaderProps) {
 
   function handleTouchStart(e: React.TouchEvent) {
     touchStartX.current = e.touches[0].clientX;
-    touchStartY.current = e.touches[0].clientY;
+    isDragging.current = true;
+    setDragAnimated(false);
   }
 
-  function handleTouchEnd(e: React.TouchEvent) {
-    if (touchStartX.current === null || touchStartY.current === null) return;
-    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
-    const deltaY = e.changedTouches[0].clientY - touchStartY.current;
+  function handleTouchMove(e: React.TouchEvent) {
+    if (!isDragging.current || touchStartX.current === null) return;
+    const delta = e.touches[0].clientX - touchStartX.current;
+    setDragX(delta);
+  }
 
-    const horizontal = Math.abs(deltaX) > Math.abs(deltaY);
-    const delta = horizontal ? deltaX : deltaY;
+  function handleTouchEnd() {
+    if (touchStartX.current === null) return;
+    isDragging.current = false;
 
-    if (Math.abs(delta) > TOUCH_THRESHOLD) {
-      if (delta > 0) {
-        goPrev();
-      } else {
-        goNext();
-      }
+    const width = containerRef.current?.offsetWidth ?? 320;
+    const canGoNext = dragX < -TOUCH_THRESHOLD && spread < totalSpreads - 1;
+    const canGoPrev = dragX > TOUCH_THRESHOLD && spread > 0;
+
+    if (canGoNext) {
+      setDragAnimated(true);
+      setDragX(-width);
+      window.setTimeout(() => {
+        setSpread((s) => Math.min(totalSpreads - 1, s + 1));
+        setDragAnimated(false);
+        setDragX(width);
+        requestAnimationFrame(() => {
+          setDragAnimated(true);
+          setDragX(0);
+        });
+      }, SLIDE_DURATION_MS);
+    } else if (canGoPrev) {
+      setDragAnimated(true);
+      setDragX(width);
+      window.setTimeout(() => {
+        setSpread((s) => Math.max(0, s - 1));
+        setDragAnimated(false);
+        setDragX(-width);
+        requestAnimationFrame(() => {
+          setDragAnimated(true);
+          setDragX(0);
+        });
+      }, SLIDE_DURATION_MS);
+    } else {
+      setDragAnimated(true);
+      setDragX(0);
     }
 
     touchStartX.current = null;
-    touchStartY.current = null;
   }
 
   return (
@@ -142,17 +174,20 @@ export default function Reader({ book, onClose }: ReaderProps) {
         <ReaderHeader title={book.title} onClose={onClose} />
 
         <div
+          ref={containerRef}
           className="relative flex flex-1 items-center overflow-hidden overscroll-none touch-none"
           onWheel={handleWheel}
           onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
           <ReaderNavButton direction="prev" onClick={goPrev} disabled={spread === 0} />
 
           <div
-            className={`mx-auto grid w-full max-w-5xl grid-cols-1 gap-10 px-12 py-10 transition-opacity duration-200 ease-out sm:px-16 lg:grid-cols-2 ${
+            className={`mx-auto grid w-full max-w-5xl grid-cols-1 gap-10 px-12 py-10 sm:px-16 lg:grid-cols-2 ${
               isTurning ? "opacity-0" : "opacity-100"
-            }`}
+            } ${dragAnimated ? "transition-transform duration-200 ease-out" : ""}`}
+            style={{ transform: `translateX(${dragX}px)` }}
           >
             <ReaderPage paragraphs={leftPage} />
             {rightPage && <ReaderPage paragraphs={rightPage} hiddenOnMobile />}
