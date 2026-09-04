@@ -27,7 +27,7 @@ export default function Reader({ book, onClose }: ReaderProps) {
   const touchStartY = useRef<number | null>(null);
   const lastGestureAt = useRef(0);
   const wheelAccum = useRef(0);
-  const wheelResetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const wheelResetTimer = useRef<number | null>(null);
 
   const leftPage = pages[spread * 2];
   const rightPage = pages[spread * 2 + 1];
@@ -150,8 +150,9 @@ export default function Reader({ book, onClose }: ReaderProps) {
           <ReaderNavButton direction="prev" onClick={goPrev} disabled={spread === 0} />
 
           <div
-            className={`mx-auto grid w-full max-w-5xl grid-cols-1 gap-10 px-12 py-10 transition-opacity duration-200 ease-out sm:px-16 lg:grid-cols-2 ${isTurning ? "opacity-0" : "opacity-100"
-              }`}
+            className={`mx-auto grid w-full max-w-5xl grid-cols-1 gap-10 px-12 py-10 transition-opacity duration-200 ease-out sm:px-16 lg:grid-cols-2 ${
+              isTurning ? "opacity-0" : "opacity-100"
+            }`}
           >
             <ReaderPage paragraphs={leftPage} />
             {rightPage && <ReaderPage paragraphs={rightPage} hiddenOnMobile />}
