@@ -1,6 +1,5 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { books, type Book } from "@/lib/data";
+import { books } from "@/lib/data";
 import BookDetailContent from "@/components/BookDetailContent";
 
 export function generateStaticParams() {
@@ -19,5 +18,42 @@ export default async function BookDetailPage({
     notFound();
   }
 
-  return <BookDetailContent book={book} />;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    name: book.title.en,
+    description: (book.fullSynopsis?.[0]?.en ?? book.synopsis.en),
+    inLanguage: "en",
+    author: {
+      "@type": "Person",
+      name: "Rafael Turse",
+      url: "https://rafaelturse.com",
+    },
+    isPartOf: {
+      "@type": "BookSeries",
+      name: book.series.en,
+    },
+    ...(book.pageCount ? { numberOfPages: book.pageCount } : {}),
+    ...(book.status === "published"
+      ? {
+        datePublished: book.release.en,
+        image: `https://thedominatorofsouls.com${book.cover?.en ?? ""}`,
+        offers: (book.stores ?? []).map((store) => ({
+          "@type": "Offer",
+          seller: { "@type": "Organization", name: "Amazon" },
+          url: store.href,
+        })),
+      }
+      : {}),
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <BookDetailContent book={book} />
+    </>
+  );
 }
