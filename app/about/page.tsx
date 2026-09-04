@@ -20,7 +20,7 @@ export default function AboutPage() {
           <h1 className="mt-5 font-display text-5xl tracking-[0.05em] text-ink sm:text-6xl">
             {t(ABOUT.heading)}
           </h1>
-          <p className="mx-auto mt-6 max-w-md font-body text-sm leading-relaxed text-muted">
+          <p className="mx-auto mt-6 max-w-md uppercase font-body text-sm leading-relaxed text-red-soft">
             {t(ABOUT.subtitle)}
           </p>
         </header>

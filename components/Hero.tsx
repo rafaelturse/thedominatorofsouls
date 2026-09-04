@@ -20,7 +20,7 @@ export default function Hero() {
           backgroundImage:
             "linear-gradient(rgba(50, 50, 50, 0.20) 1px, transparent 1px), linear-gradient(90deg, rgba(50, 50, 50, 0.40) 1px, transparent 1px)",
           backgroundSize: "40px 40px",
-          WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 60%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 50%, transparent 100%)",
           maskImage: "linear-gradient(to bottom, transparent 0%, black 60%, transparent 100%)",
         }}
       />

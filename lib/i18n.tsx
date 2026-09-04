@@ -41,6 +41,10 @@ const UI = {
     "pt-br": "Uma pequeno vislumbre da obra",
     en: "A small glimpse into the work",
   },
+  backToBook: { "pt-br": "Voltar", en: "Back" },
+  bookDetailsTitle: { "pt-br": "Detalhes do Livro", en: "Book Details" },
+  openingChapterLabel: { "pt-br": "Capítulo Inicial", en: "Opening Chapter" },
+  synopsisLabel: { "pt-br": "Sinopse", en: "Synopsis" },
 } satisfies Record<string, LocalizedString>;
 
 type LanguageContextValue = {

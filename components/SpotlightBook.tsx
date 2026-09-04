@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import type { Book } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
+import { MedalIcon, BookmarkIcon, QuoteIcon, SearchIcon } from "@/lib/icons";
 import BookDetails from "./BookDetails";
 
 export default function SpotlightBook({ book }: { book: Book }) {
@@ -13,7 +14,12 @@ export default function SpotlightBook({ book }: { book: Book }) {
 
   return (
     <div className="mt-16">
-      <h1 className="font-display uppercase text-lg text-ink">{t(ui.featuredTitle)}</h1>
+      <div className="flex items-center justify-center gap-2 sm:justify-start">
+        <span className="text-gold-soft">
+          <MedalIcon />
+        </span>
+        <h1 className="font-display uppercase text-lg text-ink">{t(ui.featuredTitle)}</h1>
+      </div>
 
       <div
         className="mt-6 rounded-3xl p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:p-10"
@@ -39,11 +45,7 @@ export default function SpotlightBook({ book }: { book: Book }) {
 
             {book.cover && (
               <span className="flex items-center gap-1.5 font-body text-xs uppercase tracking-[0.15em] text-red-soft opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="11" cy="11" r="7" />
-                  <path d="M21 21l-4.35-4.35" />
-                  <path d="M11 8v6M8 11h6" />
-                </svg>
+                <SearchIcon />
                 {t(ui.viewImage)}
               </span>
             )}
@@ -51,9 +53,14 @@ export default function SpotlightBook({ book }: { book: Book }) {
 
           <div className="w-full text-center sm:text-left">
             <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-start">
-              <p className="font-body text-xs uppercase tracking-[0.3em] text-gold-soft">
-                {t(book.series)}
-              </p>
+              <div className="flex items-center gap-2">
+                <span className="text-gold-soft">
+                  <BookmarkIcon />
+                </span>
+                <p className="font-body text-xs uppercase tracking-[0.3em] text-gold-soft">
+                  {t(book.series)}
+                </p>
+              </div>
               {book.status === "published" && (
                 <span className="inline-block cursor-default border border-red-soft px-2 py-0.5 font-body text-[10px] uppercase tracking-[0.2em] text-red-soft transition-shadow duration-300 hover:shadow-[0_0_12px_rgba(177,69,60,0.7)]">
                   {t(ui.newBadge)}
@@ -64,9 +71,20 @@ export default function SpotlightBook({ book }: { book: Book }) {
             <h1 className="mt-3 font-display text-4xl leading-tight text-ink sm:text-5xl">
               {t(book.title)}
             </h1>
-            <p className="mt-5 font-body text-sm leading-relaxed text-muted">
-              {t(book.synopsis)}
-            </p>
+
+            <div className="mt-15">
+              <div className="flex items-center justify-center gap-2 sm:justify-start">
+                <span className="text-gold-soft">
+                  <QuoteIcon />
+                </span>
+                <p className="font-body text-xs uppercase tracking-[0.3em] text-gold-soft">
+                  {t(ui.synopsisLabel)}
+                </p>
+              </div>
+              <p className="mt-3 font-body text-sm leading-relaxed text-muted">
+                {t(book.synopsis)}
+              </p>
+            </div>
 
             <BookDetails book={book} />
 

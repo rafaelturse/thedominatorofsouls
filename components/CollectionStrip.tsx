@@ -2,13 +2,18 @@
 
 import type { Book } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
+import { ArchiveIcon } from "@/lib/icons";
 
 export default function CollectionStrip({ books }: { books: Book[] }) {
   const { t, ui } = useLanguage();
 
+
   return (
     <div>
-      <div className="flex items-baseline justify-between">
+      <div className="flex items-center gap-2">
+        <span className="text-gold-soft">
+          <ArchiveIcon />
+        </span>
         <h1 className="font-display uppercase text-lg text-ink">{t(ui.collectionTitle)}</h1>
       </div>
 
