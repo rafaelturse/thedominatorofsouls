@@ -13,9 +13,9 @@ type ReaderProps = {
   onClose: () => void;
 };
 
-const GESTURE_COOLDOWN_MS = 100;
-const WHEEL_ACCUM_THRESHOLD = 60;
-const TOUCH_THRESHOLD = 50;
+const GESTURE_COOLDOWN_MS = 10;
+const WHEEL_ACCUM_THRESHOLD = 20;
+const TOUCH_THRESHOLD = 10;
 
 export default function Reader({ book, onClose }: ReaderProps) {
   const pages = SAMPLE_LOREM_PAGES;
