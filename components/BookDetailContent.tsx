@@ -8,11 +8,13 @@ import { BookmarkIcon, QuoteIcon, SearchIcon, BookIcon } from "@/lib/icons";
 import Hero from "@/components/Hero";
 import GenreStrip from "@/components/GenreStrip";
 import BookDetails from "@/components/BookDetails";
+import Reader from "@/components/reader/Reader";
 
 export default function BookDetailContent({ book }: { book: Book }) {
   const { t, ui } = useLanguage();
   const [zoomOpen, setZoomOpen] = useState(false);
   const [storesOpen, setStoresOpen] = useState(false);
+  const [sampleOpen, setSampleOpen] = useState(false);
 
   return (
     <div>
@@ -32,24 +34,36 @@ export default function BookDetailContent({ book }: { book: Book }) {
           style={{ backgroundColor: "#111" }}
         >
           <div className="flex flex-col items-center gap-10 sm:flex-row sm:items-start">
-            <div className="group flex shrink-0 flex-col items-center gap-3 sm:w-56">
-              {book.cover ? (
-                <button
-                  type="button"
-                  onClick={() => setZoomOpen(true)}
-                  className="aspect-[2/3] w-48 cursor-pointer overflow-hidden border border-transparent transition-colors duration-300 hover:border-gold-soft sm:w-56"
-                >
-                  <img src={t(book.cover)} alt={t(book.title)} className="h-full w-full object-contain" />
-                </button>
-              ) : (
-                <div className="aspect-[2/3] w-48 sm:w-56" />
-              )}
+            <div className="flex shrink-0 flex-col items-center gap-3 sm:w-56">
+              <div className="group flex flex-col items-center gap-3">
+                {book.cover ? (
+                  <button
+                    type="button"
+                    onClick={() => setZoomOpen(true)}
+                    className="aspect-[2/3] w-48 cursor-pointer overflow-hidden border border-transparent transition-colors duration-300 hover:border-gold-soft sm:w-56"
+                  >
+                    <img src={t(book.cover)} alt={t(book.title)} className="h-full w-full object-contain" />
+                  </button>
+                ) : (
+                  <div className="aspect-[2/3] w-48 sm:w-56" />
+                )}
+
+                {book.cover && (
+                  <span className="flex items-center gap-1.5 font-body text-xs uppercase tracking-[0.15em] text-red-soft opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <SearchIcon />
+                    {t(ui.viewImage)}
+                  </span>
+                )}
+              </div>
 
               {book.cover && (
-                <span className="flex items-center gap-1.5 font-body text-xs uppercase tracking-[0.15em] text-red-soft opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <SearchIcon />
-                  {t(ui.viewImage)}
-                </span>
+                <button
+                  type="button"
+                  onClick={() => setSampleOpen(true)}
+                  className="mt-2 w-full border border-red-soft bg-red-soft px-4 py-2 text-center font-body text-xs uppercase tracking-[0.2em] text-ink transition-colors hover:bg-transparent hover:text-red-soft"
+                >
+                  {t(ui.readSample)}
+                </button>
               )}
             </div>
 
@@ -121,30 +135,6 @@ export default function BookDetailContent({ book }: { book: Book }) {
             </div>
           </div>
         </div>
-
-        {book.openingChapter && book.openingChapter.length > 0 && (
-          <div className="mt-16">
-            <h2 className="font-display uppercase text-lg text-ink">{t(ui.openingChapterLabel)}</h2>
-
-            <div
-              className="mt-4 rounded-3xl p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:p-12"
-              style={{ backgroundColor: "#111" }}
-            >
-              {book.openingChapterTitle && (
-                <h3 className="mb-6 text-center font-display text-2xl text-gold-soft">
-                  {t(book.openingChapterTitle)}
-                </h3>
-              )}
-              <div className="mx-auto flex max-w-2xl flex-col gap-5">
-                {book.openingChapter.map((p, i) => (
-                  <p key={i} className="font-body text-sm leading-relaxed text-muted sm:text-base">
-                    {t(p)}
-                  </p>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
       </div>
 
       {zoomOpen && book.cover && (
@@ -166,6 +156,10 @@ export default function BookDetailContent({ book }: { book: Book }) {
             onClick={(e) => e.stopPropagation()}
           />
         </div>
+      )}
+
+      {sampleOpen && (
+        <Reader book={book} onClose={() => setSampleOpen(false)} />
       )}
     </div>
   );

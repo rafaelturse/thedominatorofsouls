@@ -45,6 +45,8 @@ const UI = {
   bookDetailsTitle: { "pt-br": "Detalhes do Livro", en: "Book Details" },
   openingChapterLabel: { "pt-br": "Capítulo Inicial", en: "Opening Chapter" },
   synopsisLabel: { "pt-br": "Sinopse", en: "Synopsis" },
+  readSample: { "pt-br": "Ler Amostra", en: "Read Sample" },
+  sampleBadge: { "pt-br": "Amostra", en: "Sample" },
 } satisfies Record<string, LocalizedString>;
 
 type LanguageContextValue = {
