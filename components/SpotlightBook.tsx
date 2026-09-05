@@ -26,7 +26,7 @@ export default function SpotlightBook({ book }: { book: Book }) {
         className="mt-6 rounded-3xl p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:p-10"
         style={{ backgroundColor: "#111" }}
       >
-        <div className="flex flex-col items-center gap-10 sm:flex-row sm:items-center">
+        <div className="flex flex-col items-center gap-10 sm:flex-row sm:items-start">
           <BookCover book={book} />
 
           <div className="w-full text-center sm:text-left">
@@ -50,7 +50,7 @@ export default function SpotlightBook({ book }: { book: Book }) {
               {t(book.title)}
             </h1>
 
-            <Synopsis book={book} maxHeightClass="max-h-56" />
+            <Synopsis book={book} maxHeightClass="max-h-36" />
 
             <BookDetails book={book} />
 
