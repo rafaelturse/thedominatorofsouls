@@ -21,12 +21,12 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
   const items = [
     book.pageCount
       ? {
-        icon: PagesIcon,
-        label: `${book.pageCount} ${t(ui.pagesSuffix)}`,
-        href: undefined,
-        external: false,
-        linksAway: false,
-      }
+          icon: PagesIcon,
+          label: `${book.pageCount} ${t(ui.pagesSuffix)}`,
+          href: undefined,
+          external: false,
+          linksAway: false,
+        }
       : null,
     {
       icon: CalendarIcon,
@@ -45,12 +45,12 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
     hideMore
       ? null
       : {
-        icon: MoreIcon,
-        label: t(ui.more),
-        href: ROUTES.bookDetail(book.slug),
-        external: false,
-        linksAway: true,
-      },
+          icon: MoreIcon,
+          label: t(ui.more),
+          href: ROUTES.bookDetail(book.slug),
+          external: false,
+          linksAway: true,
+        },
   ].filter(Boolean) as {
     icon: typeof PagesIcon;
     label: string;
@@ -83,30 +83,33 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
   }
 
   return (
-    <div className="relative mt-6 border-t border-line py-5">
-      {canScrollLeft && (
-        <button
-          type="button"
-          onClick={() => scrollByAmount(-160)}
-          className="absolute left-0 top-1/2 z-10 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full border border-red-soft bg-red-soft text-gold-soft transition-colors hover:border-gold-soft hover:bg-gold-soft hover:text-red-soft"
-          aria-label="Scroll left"
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M15 6l-6 6 6 6" />
-          </svg>
-        </button>
-      )}
+    <div className="mt-6 flex items-center gap-2 border-t border-line py-5">
+      <div className="flex w-6 shrink-0 justify-center">
+        {canScrollLeft && (
+          <button
+            type="button"
+            onClick={() => scrollByAmount(-160)}
+            className="flex h-6 w-6 items-center justify-center text-gold-soft transition-colors hover:text-red-soft"
+            aria-label="Scroll left"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M15 6l-6 6 6 6" />
+            </svg>
+          </button>
+        )}
+      </div>
 
       <div
         ref={scrollRef}
-        className="no-scrollbar flex items-start gap-10 overflow-x-auto scroll-smooth px-1"
+        className="no-scrollbar flex flex-1 items-start gap-10 overflow-x-auto scroll-smooth px-1"
       >
         {items.map((item) => {
           const Icon = item.icon;
           const content = (
             <div
-              className={`flex shrink-0 flex-col items-center gap-2 text-muted transition-all duration-300 ${item.linksAway ? "hover:scale-105 hover:text-gold-soft" : "hover:text-gold-soft"
-                }`}
+              className={`flex shrink-0 flex-col items-center gap-2 text-muted transition-all duration-300 ${
+                item.linksAway ? "hover:scale-105 hover:text-gold-soft" : "hover:text-gold-soft"
+              }`}
             >
               <Icon />
               <span className="whitespace-nowrap font-body text-xs uppercase tracking-[0.1em]">
@@ -131,18 +134,20 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
         })}
       </div>
 
-      {canScrollRight && (
-        <button
-          type="button"
-          onClick={() => scrollByAmount(160)}
-          className="absolute right-0 top-1/2 z-10 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full border border-red-soft bg-red-soft text-gold-soft transition-colors hover:border-gold-soft hover:bg-gold-soft hover:text-red-soft"
-          aria-label="Scroll right"
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M9 6l6 6-6 6" />
-          </svg>
-        </button>
-      )}
+      <div className="flex w-6 shrink-0 justify-center">
+        {canScrollRight && (
+          <button
+            type="button"
+            onClick={() => scrollByAmount(160)}
+            className="flex h-6 w-6 items-center justify-center text-gold-soft transition-colors hover:text-red-soft"
+            aria-label="Scroll right"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M9 6l6 6-6 6" />
+            </svg>
+          </button>
+        )}
+      </div>
     </div>
   );
 }
