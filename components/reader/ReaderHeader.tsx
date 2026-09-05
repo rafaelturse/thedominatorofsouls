@@ -14,7 +14,7 @@ export default function ReaderHeader({ title, onClose }: ReaderHeaderProps) {
   return (
     <div className="flex items-center justify-between border-b border-line px-6 py-4 sm:px-10">
       <div className="flex items-center gap-3">
-        <span className="cursor-default border border-gold-soft px-2 py-0.5 font-body text-[10px] uppercase tracking-[0.2em] text-gold-soft transition-shadow duration-300 hover:shadow-[0_0_12px_rgba(217,192,127,0.5)]">
+        <span className="cursor-default border border-gold-soft px-2 py-0.5 font-body text-[10px] uppercase tracking-[0.2em] text-gold-soft">
           {t(ui.sampleBadge)}
         </span>
         <p className="font-display text-sm uppercase tracking-[0.2em] text-ink">

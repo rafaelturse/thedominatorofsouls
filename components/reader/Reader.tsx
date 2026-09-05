@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { SAMPLE_LOREM_PAGES } from "@/lib/sample-content";
+import { SAMPLE_PARAGRAPHS, SAMPLE_CHAPTER_TITLE } from "@/lib/sample-content";
 import type { Book } from "@/lib/data";
 import ReaderHeader from "./ReaderHeader";
 import ReaderNavButton from "./ReaderNavButton";
-import ReaderPage from "./ReaderPage";
+import ReaderFlow from "./ReaderFlow";
+import ReaderCover from "./ReaderCover";
+import ReaderTitlePage from "./ReaderTitlePage";
 import ReaderProgress from "./ReaderProgress";
 
 type ReaderProps = {
@@ -17,10 +19,12 @@ const GESTURE_COOLDOWN_MS = 10;
 const WHEEL_ACCUM_THRESHOLD = 20;
 const TOUCH_THRESHOLD = 40;
 const SLIDE_DURATION_MS = 200;
+const FRONT_MATTER_COUNT = 2;
 
 export default function Reader({ book, onClose }: ReaderProps) {
-  const pages = SAMPLE_LOREM_PAGES;
-  const totalSpreads = Math.ceil(pages.length / 2);
+  const [flowPageCount, setFlowPageCount] = useState(1);
+  const totalSpreads = FRONT_MATTER_COUNT + flowPageCount;
+
   const [spread, setSpread] = useState(0);
   const [isTurning, setIsTurning] = useState(false);
 
@@ -34,8 +38,14 @@ export default function Reader({ book, onClose }: ReaderProps) {
   const wheelAccum = useRef(0);
   const wheelResetTimer = useRef<number | null>(null);
 
-  const leftPage = pages[spread * 2];
-  const rightPage = pages[spread * 2 + 1];
+  const isCover = spread === 0;
+  const isTitlePage = spread === 1;
+  const isTextPage = spread >= FRONT_MATTER_COUNT;
+  const flowPageIndex = Math.min(spread - FRONT_MATTER_COUNT, flowPageCount - 1);
+
+  function clampSpread(s: number) {
+    return Math.max(0, Math.min(totalSpreads - 1, s));
+  }
 
   function turnTo(next: number) {
     setIsTurning(true);
@@ -44,18 +54,21 @@ export default function Reader({ book, onClose }: ReaderProps) {
   }
 
   function goPrev() {
-    setSpread((s) => {
-      const next = Math.max(0, s - 1);
-      if (next !== s) turnTo(next);
-      return s;
-    });
+    setSpread((s) => clampSpread(s - 1));
   }
   function goNext() {
-    setSpread((s) => {
-      const next = Math.min(totalSpreads - 1, s + 1);
-      if (next !== s) turnTo(next);
-      return s;
-    });
+    setSpread((s) => clampSpread(s + 1));
+  }
+
+  useEffect(() => {
+    setIsTurning(true);
+    const id = window.setTimeout(() => setIsTurning(false), 10);
+    return () => clearTimeout(id);
+  }, [spread]);
+
+  function handleFlowPageCountChange(count: number) {
+    setFlowPageCount(count);
+    setSpread((s) => clampSpread(s));
   }
 
   function canGesture() {
@@ -133,7 +146,7 @@ export default function Reader({ book, onClose }: ReaderProps) {
       setDragAnimated(true);
       setDragX(-width);
       window.setTimeout(() => {
-        setSpread((s) => Math.min(totalSpreads - 1, s + 1));
+        setSpread((s) => clampSpread(s + 1));
         setDragAnimated(false);
         setDragX(width);
         requestAnimationFrame(() => {
@@ -145,7 +158,7 @@ export default function Reader({ book, onClose }: ReaderProps) {
       setDragAnimated(true);
       setDragX(width);
       window.setTimeout(() => {
-        setSpread((s) => Math.max(0, s - 1));
+        setSpread((s) => clampSpread(s - 1));
         setDragAnimated(false);
         setDragX(-width);
         requestAnimationFrame(() => {
@@ -175,7 +188,7 @@ export default function Reader({ book, onClose }: ReaderProps) {
 
         <div
           ref={containerRef}
-          className="relative flex flex-1 items-center overflow-hidden overscroll-none touch-none"
+          className="relative flex flex-1 overflow-hidden overscroll-none touch-none"
           onWheel={handleWheel}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
@@ -184,13 +197,34 @@ export default function Reader({ book, onClose }: ReaderProps) {
           <ReaderNavButton direction="prev" onClick={goPrev} disabled={spread === 0} />
 
           <div
-            className={`mx-auto grid w-full max-w-5xl grid-cols-1 gap-10 px-12 py-10 sm:px-16 lg:grid-cols-2 ${
-              isTurning ? "opacity-0" : "opacity-100"
-            } ${dragAnimated ? "transition-transform duration-200 ease-out" : ""}`}
+            className={`h-full w-full min-h-0 ${isTurning ? "opacity-0" : "opacity-100"} ${dragAnimated ? "transition-transform duration-200 ease-out" : ""
+              }`}
             style={{ transform: `translateX(${dragX}px)` }}
           >
-            <ReaderPage paragraphs={leftPage} />
-            {rightPage && <ReaderPage paragraphs={rightPage} hiddenOnMobile />}
+            <div className="relative h-full w-full">
+              <div
+                className="absolute inset-0"
+                style={{ visibility: isCover ? "visible" : "hidden" }}
+              >
+                <ReaderCover book={book} />
+              </div>
+              <div
+                className="absolute inset-0"
+                style={{ visibility: isTitlePage ? "visible" : "hidden" }}
+              >
+                <ReaderTitlePage book={book} chapterTitle={SAMPLE_CHAPTER_TITLE} />
+              </div>
+              <div
+                className="absolute inset-0 px-12 pb-10 pt-14 sm:px-16 sm:pt-20"
+                style={{ visibility: isTextPage ? "visible" : "hidden" }}
+              >
+                <ReaderFlow
+                  paragraphs={SAMPLE_PARAGRAPHS}
+                  pageIndex={flowPageIndex}
+                  onPageCountChange={handleFlowPageCountChange}
+                />
+              </div>
+            </div>
           </div>
 
           <ReaderNavButton direction="next" onClick={goNext} disabled={spread === totalSpreads - 1} />
@@ -199,8 +233,6 @@ export default function Reader({ book, onClose }: ReaderProps) {
         <ReaderProgress
           spread={spread}
           totalSpreads={totalSpreads}
-          totalPages={pages.length}
-          hasRightPage={!!rightPage}
           onChange={setSpread}
         />
       </div>
