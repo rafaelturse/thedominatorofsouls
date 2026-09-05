@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n";
 import { ROUTES, EXTERNAL_LINKS } from "@/lib/routes";
-import { StoreIcon, UniverseIcon, AuthorFilledIcon, AboutIcon, CaretCircleIcon, type IconProps } from "@/lib/icons";
+import { StoreIcon, UniverseIcon, AuthorFilledIcon, AboutIcon, GridIcon, type IconProps } from "@/lib/icons";
 
 export type ExploreLinkId = "store" | "universe" | "author" | "about";
 
@@ -34,7 +34,7 @@ export default function ExploreLinks({ ids }: { ids: ExploreLinkId[] }) {
     <div className="mt-20">
       <div className="flex items-center gap-2">
         <span className="text-gold-soft">
-          <CaretCircleIcon />
+          <GridIcon />
         </span>
         <h1 className="font-display uppercase text-lg text-ink">{t(ui.exploreTitle)}</h1>
       </div>
