@@ -25,8 +25,8 @@ export default function ContactIcons({ size = 20, className = "" }: Props) {
                         rel="noopener noreferrer"
                         aria-label={c.label}
                         className={`transition-colors ${isAuthor
-                                ? "text-red-soft hover:text-gold-soft"
-                                : "text-current hover:text-gold-soft"
+                            ? "text-red-soft hover:text-gold-soft"
+                            : "text-current hover:text-gold-soft"
                             }`}
                     >
                         <Icon size={size} />

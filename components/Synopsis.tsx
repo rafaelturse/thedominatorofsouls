@@ -61,9 +61,8 @@ export default function Synopsis({ book, maxHeightClass = "max-h-36" }: Synopsis
         type="button"
         onClick={scrollUp}
         disabled={!canScrollUp}
-        className={`mt-1 flex w-full justify-center text-gold-soft transition-colors hover:text-red-soft ${
-          canScrollUp ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
+        className={`mt-1 flex w-full justify-center text-gold-soft transition-colors hover:text-red-soft ${canScrollUp ? "opacity-100" : "pointer-events-none opacity-0"
+          }`}
         aria-label="Scroll up"
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -86,9 +85,8 @@ export default function Synopsis({ book, maxHeightClass = "max-h-36" }: Synopsis
         type="button"
         onClick={scrollDown}
         disabled={!canScrollDown}
-        className={`mt-2 flex w-full justify-center text-gold-soft transition-colors hover:text-red-soft ${
-          canScrollDown ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
+        className={`mt-2 flex w-full justify-center text-gold-soft transition-colors hover:text-red-soft ${canScrollDown ? "opacity-100" : "pointer-events-none opacity-0"
+          }`}
         aria-label="Scroll down"
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">

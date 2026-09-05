@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import ExploreLinks from "@/components/ExploreLinks";
 import { ABOUT } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
+import AuthorSignature from "@/components/AuthorSignature";
 
 export default function AboutPage() {
   const { t } = useLanguage();
@@ -35,9 +36,7 @@ export default function AboutPage() {
                 {t(p)}
               </p>
             ))}
-            <p className="mt-2 cursor-default self-end font-accent text-2xl text-gold-soft transition-colors duration-300 hover:text-red-soft">
-              {t(ABOUT.signature)}
-            </p>
+            <AuthorSignature align="end" />
           </div>
         </div>
 

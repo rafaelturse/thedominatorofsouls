@@ -108,10 +108,10 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
           const content = (
             <div
               className={`flex shrink-0 flex-col items-center gap-2 transition-all duration-300 ${item.href === ROUTES.bookDetail(book.slug)
-                  ? "text-red-soft hover:scale-105 hover:text-gold-soft"
-                  : item.linksAway
-                    ? "text-muted hover:scale-105 hover:text-gold-soft"
-                    : "text-muted hover:text-gold-soft"
+                ? "text-red-soft hover:scale-105 hover:text-gold-soft"
+                : item.linksAway
+                  ? "text-muted hover:scale-105 hover:text-gold-soft"
+                  : "text-muted hover:text-gold-soft"
                 }`}
             >
               <Icon />

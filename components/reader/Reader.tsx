@@ -8,6 +8,7 @@ import ReaderNavButton from "./ReaderNavButton";
 import ReaderFlow from "./ReaderFlow";
 import ReaderCover from "./ReaderCover";
 import ReaderTitlePage from "./ReaderTitlePage";
+import ReaderEndPage from "./ReaderEndPage";
 import ReaderProgress from "./ReaderProgress";
 
 type ReaderProps = {
@@ -19,11 +20,12 @@ const GESTURE_COOLDOWN_MS = 10;
 const WHEEL_ACCUM_THRESHOLD = 20;
 const TOUCH_THRESHOLD = 40;
 const SLIDE_DURATION_MS = 200;
-const FRONT_MATTER_COUNT = 2;
+const FRONT_MATTER_COUNT = 2; // 0 = capa, 1 = página de título
+const END_MATTER_COUNT = 1; // última = página de encerramento
 
 export default function Reader({ book, onClose }: ReaderProps) {
   const [flowPageCount, setFlowPageCount] = useState(1);
-  const totalSpreads = FRONT_MATTER_COUNT + flowPageCount;
+  const totalSpreads = FRONT_MATTER_COUNT + flowPageCount + END_MATTER_COUNT;
 
   const [spread, setSpread] = useState(0);
   const [isTurning, setIsTurning] = useState(false);
@@ -40,24 +42,12 @@ export default function Reader({ book, onClose }: ReaderProps) {
 
   const isCover = spread === 0;
   const isTitlePage = spread === 1;
-  const isTextPage = spread >= FRONT_MATTER_COUNT;
+  const isEndPage = spread === totalSpreads - 1;
+  const isTextPage = spread >= FRONT_MATTER_COUNT && !isEndPage;
   const flowPageIndex = Math.min(spread - FRONT_MATTER_COUNT, flowPageCount - 1);
 
   function clampSpread(s: number) {
     return Math.max(0, Math.min(totalSpreads - 1, s));
-  }
-
-  function turnTo(next: number) {
-    setIsTurning(true);
-    setSpread(next);
-    window.setTimeout(() => setIsTurning(false), 10);
-  }
-
-  function goPrev() {
-    setSpread((s) => clampSpread(s - 1));
-  }
-  function goNext() {
-    setSpread((s) => clampSpread(s + 1));
   }
 
   useEffect(() => {
@@ -65,6 +55,13 @@ export default function Reader({ book, onClose }: ReaderProps) {
     const id = window.setTimeout(() => setIsTurning(false), 10);
     return () => clearTimeout(id);
   }, [spread]);
+
+  function goPrev() {
+    setSpread((s) => clampSpread(s - 1));
+  }
+  function goNext() {
+    setSpread((s) => clampSpread(s + 1));
+  }
 
   function handleFlowPageCountChange(count: number) {
     setFlowPageCount(count);
@@ -202,16 +199,10 @@ export default function Reader({ book, onClose }: ReaderProps) {
             style={{ transform: `translateX(${dragX}px)` }}
           >
             <div className="relative h-full w-full">
-              <div
-                className="absolute inset-0"
-                style={{ visibility: isCover ? "visible" : "hidden" }}
-              >
+              <div className="absolute inset-0" style={{ visibility: isCover ? "visible" : "hidden" }}>
                 <ReaderCover book={book} />
               </div>
-              <div
-                className="absolute inset-0"
-                style={{ visibility: isTitlePage ? "visible" : "hidden" }}
-              >
+              <div className="absolute inset-0" style={{ visibility: isTitlePage ? "visible" : "hidden" }}>
                 <ReaderTitlePage book={book} chapterTitle={SAMPLE_CHAPTER_TITLE} />
               </div>
               <div
@@ -224,17 +215,16 @@ export default function Reader({ book, onClose }: ReaderProps) {
                   onPageCountChange={handleFlowPageCountChange}
                 />
               </div>
+              <div className="absolute inset-0" style={{ visibility: isEndPage ? "visible" : "hidden" }}>
+                <ReaderEndPage book={book} />
+              </div>
             </div>
           </div>
 
           <ReaderNavButton direction="next" onClick={goNext} disabled={spread === totalSpreads - 1} />
         </div>
 
-        <ReaderProgress
-          spread={spread}
-          totalSpreads={totalSpreads}
-          onChange={setSpread}
-        />
+        <ReaderProgress spread={spread} totalSpreads={totalSpreads} onChange={setSpread} />
       </div>
     </div>
   );

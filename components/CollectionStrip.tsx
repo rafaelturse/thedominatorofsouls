@@ -22,18 +22,16 @@ export default function CollectionStrip({ books }: { books: Book[] }) {
         {books.map((book) => {
           const card = (
             <div
-              className={`group flex flex-col items-center gap-3 p-2 transition-all duration-300 ${
-                book.status === "published"
+              className={`group flex flex-col items-center gap-3 p-2 transition-all duration-300 ${book.status === "published"
                   ? "hover:-translate-y-1.5 hover:shadow-[0_25px_50px_-15px_rgba(0,0,0,0.7)]"
                   : "opacity-60"
-              }`}
+                }`}
             >
               <div
-                className={`aspect-[2/3] w-full overflow-hidden border transition-colors duration-300 ${
-                  book.status === "published"
+                className={`aspect-[2/3] w-full overflow-hidden border transition-colors duration-300 ${book.status === "published"
                     ? "border-transparent group-hover:border-gold-soft"
                     : "border-transparent"
-                }`}
+                  }`}
               >
                 {book.cover ? (
                   <img src={t(book.cover)} alt={t(book.title)} className="h-full w-full object-contain" />
