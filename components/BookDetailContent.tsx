@@ -9,6 +9,7 @@ import Hero from "@/components/Hero";
 import GenreStrip from "@/components/GenreStrip";
 import BookDetails from "@/components/BookDetails";
 import Reader from "@/components/reader/Reader";
+import ExploreLinks from "./ExploreLinks";
 
 export default function BookDetailContent({ book }: { book: Book }) {
   const { t, ui } = useLanguage();
@@ -85,7 +86,7 @@ export default function BookDetailContent({ book }: { book: Book }) {
                     </span>
                     <p className="font-body text-xs uppercase tracking-[0.3em] text-gold-soft">{t(ui.synopsisLabel)}</p>
                   </div>
-                  <div className="mt-3 max-h-72 overflow-y-auto pr-2">
+                  <div className="gold-scrollbar mt-3 max-h-72 overflow-y-auto pr-2">
                     <p className="font-display text-lg text-red-soft">{t(book.fullSynopsisHeading)}</p>
                     <div className="mt-4 flex flex-col gap-4">
                       {book.fullSynopsis.map((p, i) => (
@@ -94,6 +95,11 @@ export default function BookDetailContent({ book }: { book: Book }) {
                         </p>
                       ))}
                     </div>
+                  </div>
+                  <div className="mt-2 flex justify-center text-muted opacity-60">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
                   </div>
                 </div>
               ) : (
@@ -135,6 +141,8 @@ export default function BookDetailContent({ book }: { book: Book }) {
             </div>
           </div>
         </div>
+
+        <ExploreLinks ids={["store", "universe", "author", "about"]} />
       </div>
 
       {zoomOpen && book.cover && (
