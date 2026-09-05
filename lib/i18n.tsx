@@ -47,11 +47,12 @@ const UI = {
   synopsisLabel: { "pt-br": "Sinopse", en: "Synopsis" },
   readSample: { "pt-br": "Ler Amostra", en: "Read Sample" },
   sampleBadge: { "pt-br": "Amostra", en: "Sample" },
-  thankYouPrologue: { "pt-br": "Obrigado por ler o prólogo,", en: "Thank you for reading the prologue," },
+  thankYouPrologue: { "pt-br": "Parabéns por ler o prólogo", en: "Congratulations on reading the prologue" },
   fullWorkAvailable: {
-    "pt-br": "A obra completa se encontra à venda na Amazon.",
-    en: "The full work is available for purchase on Amazon.",
+    "pt-br": "A obra completa se encontra à venda na Amazon",
+    en: "The full work is available for purchase on Amazon",
   },
+  thankYouWarrior: { "pt-br": "Muito obrigado, guerreiro!", en: "Thank you very much, warrior!" },
 } satisfies Record<string, LocalizedString>;
 
 type LanguageContextValue = {

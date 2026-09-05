@@ -3,6 +3,7 @@
 import { useLanguage } from "@/lib/i18n";
 import type { Book } from "@/lib/data";
 import StoreDropdown from "@/components/StoreDropdown";
+import AuthorSignature from "@/components/AuthorSignature";
 
 type ReaderEndPageProps = {
   book: Book;
@@ -38,6 +39,8 @@ export default function ReaderEndPage({ book }: ReaderEndPageProps) {
         <p className="font-body text-sm leading-relaxed text-muted">{t(ui.thankYouPrologue)}</p>
         <p className="mt-2 font-body text-sm leading-relaxed text-muted">{t(ui.fullWorkAvailable)}</p>
       </div>
+
+      <p className="font-display text-lg text-red-soft">{t(ui.thankYouWarrior)}</p>
 
       {book.stores && book.stores.length > 0 && (
         <StoreDropdown stores={book.stores} align="center" />
