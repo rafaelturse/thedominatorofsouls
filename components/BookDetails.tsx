@@ -21,12 +21,12 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
   const items = [
     book.pageCount
       ? {
-          icon: PagesIcon,
-          label: `${book.pageCount} ${t(ui.pagesSuffix)}`,
-          href: undefined,
-          external: false,
-          linksAway: false,
-        }
+        icon: PagesIcon,
+        label: `${book.pageCount} ${t(ui.pagesSuffix)}`,
+        href: undefined,
+        external: false,
+        linksAway: false,
+      }
       : null,
     {
       icon: CalendarIcon,
@@ -45,12 +45,12 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
     hideMore
       ? null
       : {
-          icon: MoreIcon,
-          label: t(ui.more),
-          href: ROUTES.bookDetail(book.slug),
-          external: false,
-          linksAway: true,
-        },
+        icon: MoreIcon,
+        label: t(ui.more),
+        href: ROUTES.bookDetail(book.slug),
+        external: false,
+        linksAway: true,
+      },
   ].filter(Boolean) as {
     icon: typeof PagesIcon;
     label: string;
@@ -107,9 +107,12 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
           const Icon = item.icon;
           const content = (
             <div
-              className={`flex shrink-0 flex-col items-center gap-2 text-muted transition-all duration-300 ${
-                item.linksAway ? "hover:scale-105 hover:text-gold-soft" : "hover:text-gold-soft"
-              }`}
+              className={`flex shrink-0 flex-col items-center gap-2 transition-all duration-300 ${item.href === ROUTES.bookDetail(book.slug)
+                  ? "text-red-soft hover:scale-105 hover:text-gold-soft"
+                  : item.linksAway
+                    ? "text-muted hover:scale-105 hover:text-gold-soft"
+                    : "text-muted hover:text-gold-soft"
+                }`}
             >
               <Icon />
               <span className="whitespace-nowrap font-body text-xs uppercase tracking-[0.1em]">

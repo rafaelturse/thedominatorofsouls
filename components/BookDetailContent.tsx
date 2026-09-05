@@ -4,10 +4,11 @@ import Link from "next/link";
 import { useState } from "react";
 import type { Book } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
-import { BookmarkIcon, QuoteIcon, SearchIcon, BookIcon } from "@/lib/icons";
+import { BookmarkIcon, SearchIcon, BookIcon } from "@/lib/icons";
 import Hero from "@/components/Hero";
 import GenreStrip from "@/components/GenreStrip";
 import BookDetails from "@/components/BookDetails";
+import Synopsis from "@/components/Synopsis";
 import Reader from "@/components/reader/Reader";
 import ExploreLinks from "./ExploreLinks";
 
@@ -78,33 +79,7 @@ export default function BookDetailContent({ book }: { book: Book }) {
 
               <h2 className="mt-3 font-display text-4xl leading-tight text-ink sm:text-5xl">{t(book.title)}</h2>
 
-              {book.fullSynopsisHeading && book.fullSynopsis ? (
-                <div className="mt-16 text-left">
-                  <div className="flex items-center gap-2">
-                    <span className="text-gold-soft">
-                      <QuoteIcon />
-                    </span>
-                    <p className="font-body text-xs uppercase tracking-[0.3em] text-gold-soft">{t(ui.synopsisLabel)}</p>
-                  </div>
-                  <div className="gold-scrollbar mt-3 max-h-72 overflow-y-auto pr-2">
-                    <p className="font-display text-lg text-red-soft">{t(book.fullSynopsisHeading)}</p>
-                    <div className="mt-4 flex flex-col gap-4">
-                      {book.fullSynopsis.map((p, i) => (
-                        <p key={i} className="font-body text-sm leading-relaxed text-muted sm:text-base">
-                          {t(p)}
-                        </p>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="mt-2 flex justify-center text-muted opacity-60">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M6 9l6 6 6-6" />
-                    </svg>
-                  </div>
-                </div>
-              ) : (
-                <p className="mt-5 font-body text-sm leading-relaxed text-muted">{t(book.synopsis)}</p>
-              )}
+              <Synopsis book={book} />
 
               <BookDetails book={book} hideMore />
 

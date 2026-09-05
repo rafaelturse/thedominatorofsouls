@@ -4,8 +4,9 @@ import Link from "next/link";
 import { useState } from "react";
 import type { Book } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
-import { MedalIcon, BookmarkIcon, QuoteIcon, SearchIcon } from "@/lib/icons";
+import { MedalIcon, BookmarkIcon, SearchIcon } from "@/lib/icons";
 import BookDetails from "./BookDetails";
+import Synopsis from "./Synopsis";
 
 export default function SpotlightBook({ book }: { book: Book }) {
   const [open, setOpen] = useState(false);
@@ -15,6 +16,7 @@ export default function SpotlightBook({ book }: { book: Book }) {
   return (
     <div className="mt-16">
       <div className="flex items-center justify-center gap-2 sm:justify-start">
+        
         <span className="text-gold-soft">
           <MedalIcon />
         </span>
@@ -72,19 +74,7 @@ export default function SpotlightBook({ book }: { book: Book }) {
               {t(book.title)}
             </h1>
 
-            <div className="mt-15">
-              <div className="flex items-center justify-center gap-2 sm:justify-start">
-                <span className="text-gold-soft">
-                  <QuoteIcon />
-                </span>
-                <p className="font-body text-xs uppercase tracking-[0.3em] text-gold-soft">
-                  {t(ui.synopsisLabel)}
-                </p>
-              </div>
-              <p className="mt-3 font-body text-sm leading-relaxed text-muted">
-                {t(book.synopsis)}
-              </p>
-            </div>
+            <Synopsis book={book} maxHeightClass="max-h-36" />
 
             <BookDetails book={book} />
 
