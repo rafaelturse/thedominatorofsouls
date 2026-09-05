@@ -4,20 +4,18 @@ import Link from "next/link";
 import { useState } from "react";
 import type { Book } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
-import { MedalIcon, BookmarkIcon, SearchIcon } from "@/lib/icons";
+import { MedalIcon, BookmarkIcon } from "@/lib/icons";
 import BookDetails from "./BookDetails";
 import Synopsis from "./Synopsis";
+import BookCover from "./BookCover";
 import StoreDropdown from "./StoreDropdown";
 
 export default function SpotlightBook({ book }: { book: Book }) {
-  const [open, setOpen] = useState(false);
-  const [zoomOpen, setZoomOpen] = useState(false);
   const { t, ui } = useLanguage();
 
   return (
     <div className="mt-16">
       <div className="flex items-center justify-center gap-2 sm:justify-start">
-
         <span className="text-gold-soft">
           <MedalIcon />
         </span>
@@ -28,31 +26,8 @@ export default function SpotlightBook({ book }: { book: Book }) {
         className="mt-6 rounded-3xl p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:p-10"
         style={{ backgroundColor: "#111" }}
       >
-        <div className="flex flex-col items-center gap-10 sm:flex-row sm:items-start">
-          <div className="group flex shrink-0 flex-col items-center gap-3 sm:w-56">
-            {book.cover ? (
-              <button
-                type="button"
-                onClick={() => setZoomOpen(true)}
-                className="aspect-[2/3] w-48 cursor-pointer overflow-hidden border border-transparent transition-colors duration-300 hover:border-gold-soft sm:w-56"
-              >
-                <img
-                  src={t(book.cover)}
-                  alt={t(book.title)}
-                  className="h-full w-full object-contain"
-                />
-              </button>
-            ) : (
-              <div className="aspect-[2/3] w-48 sm:w-56" />
-            )}
-
-            {book.cover && (
-              <span className="flex items-center gap-1.5 font-body text-xs uppercase tracking-[0.15em] text-red-soft opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <SearchIcon />
-                {t(ui.viewImage)}
-              </span>
-            )}
-          </div>
+        <div className="flex flex-col items-center gap-10 sm:flex-row sm:items-center">
+          <BookCover book={book} />
 
           <div className="w-full text-center sm:text-left">
             <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-start">
@@ -75,7 +50,7 @@ export default function SpotlightBook({ book }: { book: Book }) {
               {t(book.title)}
             </h1>
 
-            <Synopsis book={book} maxHeightClass="max-h-36" />
+            <Synopsis book={book} maxHeightClass="max-h-56" />
 
             <BookDetails book={book} />
 
@@ -85,27 +60,6 @@ export default function SpotlightBook({ book }: { book: Book }) {
           </div>
         </div>
       </div>
-
-      {zoomOpen && book.cover && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-6"
-          onClick={() => setZoomOpen(false)}
-        >
-          <button
-            type="button"
-            onClick={() => setZoomOpen(false)}
-            className="absolute right-6 top-6 font-body text-xs uppercase tracking-[0.2em] text-muted transition-colors hover:text-gold-soft"
-          >
-            {t(ui.close)}
-          </button>
-          <img
-            src={t(book.cover)}
-            alt={t(book.title)}
-            className="max-h-[85vh] max-w-[90vw] object-contain"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
     </div>
   );
 }

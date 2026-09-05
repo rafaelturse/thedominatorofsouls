@@ -1,22 +1,20 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 import type { Book } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
-import { BookmarkIcon, SearchIcon, BookIcon } from "@/lib/icons";
+import { BookmarkIcon, BookIcon } from "@/lib/icons";
 import Hero from "@/components/Hero";
 import GenreStrip from "@/components/GenreStrip";
 import BookDetails from "@/components/BookDetails";
 import Synopsis from "@/components/Synopsis";
+import BookCover from "@/components/BookCover";
+import StoreDropdown from "@/components/StoreDropdown";
 import Reader from "@/components/reader/Reader";
 import ExploreLinks from "./ExploreLinks";
-import StoreDropdown from "./StoreDropdown";
 
 export default function BookDetailContent({ book }: { book: Book }) {
   const { t, ui } = useLanguage();
-  const [zoomOpen, setZoomOpen] = useState(false);
-  const [storesOpen, setStoresOpen] = useState(false);
   const [sampleOpen, setSampleOpen] = useState(false);
 
   return (
@@ -37,38 +35,7 @@ export default function BookDetailContent({ book }: { book: Book }) {
           style={{ backgroundColor: "#111" }}
         >
           <div className="flex flex-col items-center gap-10 sm:flex-row sm:items-start">
-            <div className="flex shrink-0 flex-col items-center gap-3 sm:w-56">
-              <div className="group flex flex-col items-center gap-3">
-                {book.cover ? (
-                  <button
-                    type="button"
-                    onClick={() => setZoomOpen(true)}
-                    className="aspect-[2/3] w-48 cursor-pointer overflow-hidden border border-transparent transition-colors duration-300 hover:border-gold-soft sm:w-56"
-                  >
-                    <img src={t(book.cover)} alt={t(book.title)} className="h-full w-full object-contain" />
-                  </button>
-                ) : (
-                  <div className="aspect-[2/3] w-48 sm:w-56" />
-                )}
-
-                {book.cover && (
-                  <span className="flex items-center gap-1.5 font-body text-xs uppercase tracking-[0.15em] text-red-soft opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <SearchIcon />
-                    {t(ui.viewImage)}
-                  </span>
-                )}
-              </div>
-
-              {book.cover && (
-                <button
-                  type="button"
-                  onClick={() => setSampleOpen(true)}
-                  className="mt-2 w-full border border-red-soft bg-red-soft px-4 py-2 text-center font-body text-xs uppercase tracking-[0.2em] text-ink transition-colors hover:bg-transparent hover:text-red-soft"
-                >
-                  {t(ui.readSample)}
-                </button>
-              )}
-            </div>
+            <BookCover book={book} showSampleButton onReadSample={() => setSampleOpen(true)} />
 
             <div className="w-full text-center sm:text-left">
               <div className="flex items-center justify-center gap-2 sm:justify-start">
@@ -93,27 +60,6 @@ export default function BookDetailContent({ book }: { book: Book }) {
 
         <ExploreLinks ids={["store", "universe", "author", "about"]} />
       </div>
-
-      {zoomOpen && book.cover && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-6"
-          onClick={() => setZoomOpen(false)}
-        >
-          <button
-            type="button"
-            onClick={() => setZoomOpen(false)}
-            className="absolute right-6 top-6 font-body text-xs uppercase tracking-[0.2em] text-muted transition-colors hover:text-gold-soft"
-          >
-            {t(ui.close)}
-          </button>
-          <img
-            src={t(book.cover)}
-            alt={t(book.title)}
-            className="max-h-[85vh] max-w-[90vw] object-contain"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
 
       {sampleOpen && (
         <Reader book={book} onClose={() => setSampleOpen(false)} />
