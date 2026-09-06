@@ -43,7 +43,7 @@ export const books: Book[] = [
     series: SERIES,
     status: "published",
     release: { "pt-br": "Set-2026", en: "Sep-2026" },
-    pageCount: 139,
+    pageCount: 140,
     synopsis: {
       "pt-br":
         "Enquanto todos vivem suas vidas conforme lhes cabe, grupos secretos agem nas sombras disputando poder e controle dentro de um jogo cuja presença na superfície, do que é então conhecido, serve justamente para encobrir aquilo que deve permanecer oculto...",
