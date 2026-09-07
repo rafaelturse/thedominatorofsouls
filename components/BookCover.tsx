@@ -16,18 +16,18 @@ export default function BookCover({ book, showSampleButton = false, onReadSample
   const [zoomOpen, setZoomOpen] = useState(false);
 
   return (
-    <div className="flex shrink-0 flex-col items-center gap-3 sm:w-56">
+    <div className="flex w-full max-w-[224px] shrink-0 flex-col items-center gap-3 sm:w-56 sm:max-w-none">
       <div className="group flex flex-col items-center gap-3">
         {book.cover ? (
           <button
             type="button"
             onClick={() => setZoomOpen(true)}
-            className="aspect-[2/3] w-48 cursor-pointer overflow-hidden border border-transparent transition-colors duration-300 hover:border-gold-soft sm:w-56"
+            className="aspect-[2/3] w-full max-w-48 cursor-pointer overflow-hidden border border-transparent transition-colors duration-300 hover:border-gold-soft sm:w-56 sm:max-w-none"
           >
             <img src={t(book.cover)} alt={t(book.title)} className="h-full w-full object-contain" />
           </button>
         ) : (
-          <div className="aspect-[2/3] w-48 sm:w-56" />
+          <div className="aspect-[2/3] w-full max-w-48 sm:w-56 sm:max-w-none" />
         )}
 
         {book.cover && (

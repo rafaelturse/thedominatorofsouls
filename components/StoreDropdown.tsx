@@ -19,7 +19,7 @@ export default function StoreDropdown({ stores, align = "end" }: StoreDropdownPr
     const dropdownAlignClass = align === "start" ? "left-0" : "right-0";
 
     return (
-        <div className={`mt-6 flex ${justifyClass}`}>
+        <div className={`mt-6 flex w-full ${justifyClass}`}>
             <div className="relative inline-block" onMouseLeave={() => setOpen(false)}>
                 <button
                     type="button"
@@ -32,7 +32,7 @@ export default function StoreDropdown({ stores, align = "end" }: StoreDropdownPr
 
                 {open && (
                     <div
-                        className={`absolute top-full z-10 max-h-64 w-56 overflow-y-auto border border-line bg-bg shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6)] ${dropdownAlignClass}`}
+                        className={`absolute top-full z-10 mt-1 max-h-64 w-56 max-w-[90vw] overflow-y-auto border border-line bg-bg shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6)] ${dropdownAlignClass}`}
                     >
                         {stores.map((store) => (
                             <Link

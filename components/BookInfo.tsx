@@ -28,10 +28,10 @@ export default function BookInfo({
   const { t, ui } = useLanguage();
 
   return (
-    <div className="flex flex-col items-center gap-10 sm:flex-row sm:items-start">
+    <div className="flex w-full min-w-0 flex-col items-center gap-10 sm:flex-row sm:items-start">
       <BookCover book={book} showSampleButton={showSampleButton} onReadSample={onReadSample} />
 
-      <div className="w-full text-center sm:text-left">
+      <div className="w-full min-w-0 text-center sm:text-left">
         <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-start">
           <div className="flex items-center gap-2">
             <span className="text-gold-soft">
@@ -48,7 +48,7 @@ export default function BookInfo({
           )}
         </div>
 
-        <h2 className="mt-3 font-display text-4xl leading-tight text-ink sm:text-5xl">
+        <h2 className="mt-3 break-words font-display text-4xl leading-tight text-ink sm:text-5xl">
           {t(book.title)}
         </h2>
 
