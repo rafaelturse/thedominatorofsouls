@@ -31,7 +31,7 @@ export const COMMUNITY_PLATFORMS: CommunityPlatform[] = [
       en: "Follow chapters, behind-the-scenes content, and updates about the Berdox universe directly on the official Wattpad profile.",
     },
   },
-  {
+  /*{
     id: "royalroad",
     name: "Royal Road",
     image: "/logos/royalroad.svg",
@@ -40,7 +40,7 @@ export const COMMUNITY_PLATFORMS: CommunityPlatform[] = [
       "pt-br": "Em breve: acompanhe O Dominador de Almas também na Royal Road, plataforma dedicada a ficção original de fantasia e RPG.",
       en: "Coming soon: follow The Dominator of Souls on Royal Road as well, a platform dedicated to original fantasy and RPG fiction.",
     },
-  },
+  },*/
 ];
 
 export const COMMUNITY_PAGE = {
