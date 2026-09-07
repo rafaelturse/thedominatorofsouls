@@ -34,7 +34,7 @@ export default function BookDetailContent({ book }: { book: Book }) {
           <BookInfo book={book} showSampleButton onReadSample={() => setSampleOpen(true)} />
         </div>
 
-        <ExploreLinks ids={["store", "universe", "author", "about"]} />
+        <ExploreLinks ids={["community", "universe", "author", "about"]} />
       </div>
 
       {sampleOpen && (

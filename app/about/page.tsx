@@ -40,7 +40,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <ExploreLinks ids={["store", "universe", "author"]} />
+        <ExploreLinks ids={["community", "universe", "author"]} />
       </div>
     </div>
   );
