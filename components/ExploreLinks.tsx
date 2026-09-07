@@ -3,12 +3,25 @@
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n";
 import { ROUTES, EXTERNAL_LINKS } from "@/lib/routes";
-import { StoreIcon, CommunityIcon, UniverseIcon, AuthorFilledIcon, AboutIcon, GridIcon, type IconProps } from "@/lib/icons";
+import {
+  StoreIcon,
+  UniverseIcon,
+  AuthorFilledIcon,
+  AboutIcon,
+  CommunityIcon,
+  GridIcon,
+  type IconProps,
+} from "@/lib/icons";
 
-export type ExploreLinkId = "store" | "community" | "universe" | "author" | "about";
+export type ExploreLinkId = "store" | "universe" | "author" | "about" | "community";
 
-type LinkLabelKey = "exploreStore" | "exploreCommunity" | "exploreUniverse" | "exploreAuthor" | "exploreAbout";
-type LinkDescKey = "exploreStoreDesc" | "exploreCommunityDesc" | "exploreUniverseDesc" | "exploreAuthorDesc" | "exploreAboutDesc";
+type LinkLabelKey = "exploreStore" | "exploreUniverse" | "exploreAuthor" | "exploreAbout" | "exploreCommunity";
+type LinkDescKey =
+  | "exploreStoreDesc"
+  | "exploreUniverseDesc"
+  | "exploreAuthorDesc"
+  | "exploreAboutDesc"
+  | "exploreCommunityDesc";
 
 type LinkInfo = {
   icon: (props: IconProps) => React.JSX.Element;
@@ -20,10 +33,10 @@ type LinkInfo = {
 
 const ALL_LINKS: Record<ExploreLinkId, LinkInfo> = {
   store: { icon: StoreIcon, labelKey: "exploreStore", descKey: "exploreStoreDesc", href: ROUTES.store, external: false },
-  community: { icon: CommunityIcon, labelKey: "exploreCommunity", descKey: "exploreCommunityDesc", href: ROUTES.community, external: false },
   universe: { icon: UniverseIcon, labelKey: "exploreUniverse", descKey: "exploreUniverseDesc", href: ROUTES.universe, external: false },
   author: { icon: AuthorFilledIcon, labelKey: "exploreAuthor", descKey: "exploreAuthorDesc", href: EXTERNAL_LINKS.authorSite, external: true },
   about: { icon: AboutIcon, labelKey: "exploreAbout", descKey: "exploreAboutDesc", href: ROUTES.about, external: false },
+  community: { icon: CommunityIcon, labelKey: "exploreCommunity", descKey: "exploreCommunityDesc", href: ROUTES.community, external: false },
 };
 
 export default function ExploreLinks({ ids }: { ids: ExploreLinkId[] }) {
@@ -47,7 +60,7 @@ export default function ExploreLinks({ ids }: { ids: ExploreLinkId[] }) {
           const content = (
             <div className="group flex min-h-[260px] flex-col items-center justify-center gap-4 rounded-3xl bg-card p-10 text-center shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] transition-transform duration-300 ease-out hover:-translate-y-1">
               <span className="text-gold-soft transition-colors duration-300 ease-out group-hover:text-red-soft">
-                <Icon />
+                <Icon size={32} />
               </span>
               <p className="font-display text-base uppercase tracking-[0.2em] text-ink transition-colors duration-300 ease-out group-hover:text-gold-soft">
                 {t(ui[item.labelKey])}
