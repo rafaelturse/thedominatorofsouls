@@ -1,10 +1,11 @@
 import { contacts } from "@/lib/data";
-import { InstagramIcon, XIcon, FacebookIcon, AuthorQuillIcon, type IconProps } from "@/lib/icons";
+import { InstagramIcon, XIcon, FacebookIcon, WattpadIcon, AuthorQuillIcon, type IconProps } from "@/lib/icons";
 
 const ICONS: Record<string, (props: IconProps) => React.JSX.Element> = {
     Instagram: InstagramIcon,
     X: XIcon,
     Facebook: FacebookIcon,
+    Wattpad: WattpadIcon,
     Author: AuthorQuillIcon,
 };
 

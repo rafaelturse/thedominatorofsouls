@@ -14,4 +14,5 @@ export const EXTERNAL_LINKS = {
   facebook: "https://www.facebook.com/profile.php?id=100075906499422",
   instagram: "https://www.instagram.com/thedominatorofsouls",
   x: "https://x.com/dominatorofsoul",
+  wattpad: "https://www.wattpad.com/user/RafaelTurse",
 } as const;

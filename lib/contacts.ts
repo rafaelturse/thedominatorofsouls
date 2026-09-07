@@ -6,5 +6,6 @@ export const contacts: Contact[] = [
   { label: "Facebook", href: EXTERNAL_LINKS.facebook },
   { label: "Instagram", href: EXTERNAL_LINKS.instagram },
   { label: "X", href: EXTERNAL_LINKS.x },
+  { label: "Wattpad", href: EXTERNAL_LINKS.wattpad },
   { label: "Author", href: EXTERNAL_LINKS.authorSite },
 ];
