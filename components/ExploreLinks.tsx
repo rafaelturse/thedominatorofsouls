@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n";
 import { ROUTES, EXTERNAL_LINKS } from "@/lib/routes";
-import { StoreIcon, UniverseIcon, AuthorFilledIcon, AboutIcon, GridIcon, type IconProps } from "@/lib/icons";
+import { StoreIcon, CommunityIcon, UniverseIcon, AuthorFilledIcon, AboutIcon, GridIcon, type IconProps } from "@/lib/icons";
 
-export type ExploreLinkId = "store" | "universe" | "author" | "about";
+export type ExploreLinkId = "store" | "community" | "universe" | "author" | "about";
 
-type LinkLabelKey = "exploreStore" | "exploreUniverse" | "exploreAuthor" | "exploreAbout";
-type LinkDescKey = "exploreStoreDesc" | "exploreUniverseDesc" | "exploreAuthorDesc" | "exploreAboutDesc";
+type LinkLabelKey = "exploreStore" | "exploreCommunity" | "exploreUniverse" | "exploreAuthor" | "exploreAbout";
+type LinkDescKey = "exploreStoreDesc" | "exploreCommunityDesc" | "exploreUniverseDesc" | "exploreAuthorDesc" | "exploreAboutDesc";
 
 type LinkInfo = {
   icon: (props: IconProps) => React.JSX.Element;
@@ -20,6 +20,7 @@ type LinkInfo = {
 
 const ALL_LINKS: Record<ExploreLinkId, LinkInfo> = {
   store: { icon: StoreIcon, labelKey: "exploreStore", descKey: "exploreStoreDesc", href: ROUTES.store, external: false },
+  community: { icon: CommunityIcon, labelKey: "exploreCommunity", descKey: "exploreCommunityDesc", href: ROUTES.community, external: false },
   universe: { icon: UniverseIcon, labelKey: "exploreUniverse", descKey: "exploreUniverseDesc", href: ROUTES.universe, external: false },
   author: { icon: AuthorFilledIcon, labelKey: "exploreAuthor", descKey: "exploreAuthorDesc", href: EXTERNAL_LINKS.authorSite, external: true },
   about: { icon: AboutIcon, labelKey: "exploreAbout", descKey: "exploreAboutDesc", href: ROUTES.about, external: false },

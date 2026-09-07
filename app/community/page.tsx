@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import CommunityLinks from "@/components/CommunityLinks";
 import { COMMUNITY_PAGE } from "@/lib/community";
 import { useLanguage } from "@/lib/i18n";
+import ExploreLinks from "@/components/ExploreLinks";
 
 export default function CommunityPage() {
   const { t } = useLanguage();
@@ -25,6 +26,8 @@ export default function CommunityPage() {
         </header>
 
         <CommunityLinks />
+
+        <ExploreLinks ids={["store", "universe", "author", "about"]} />
       </div>
     </div>
   );

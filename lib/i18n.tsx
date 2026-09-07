@@ -26,6 +26,11 @@ const UI = {
     "pt-br": "A lendária estante de livros do Dominador de Almas",
     en: "The legendary Dominator of Souls' bookshelf",
   },
+  exploreCommunity: { "pt-br": "Comunidade", en: "Community" },
+  exploreCommunityDesc: {
+    "pt-br": "Junte-se aos guerreiros do Dominador de Almas",
+    en: "Join the Dominator of Souls' warriors",
+  },
   exploreUniverse: { "pt-br": "Universo", en: "Universe" },
   exploreUniverseDesc: {
     "pt-br": "Mais sobre personagens, locais e mitologia",
