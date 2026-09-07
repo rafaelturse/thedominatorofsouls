@@ -56,7 +56,7 @@ export const books: Book[] = [
     fullSynopsis: [
       {
         "pt-br":
-          "O Dominador de Almas não é somente um livro, mas sim um imenso universo fundamentado sobre pilares da inovação, que por sua vez, não teriam outro sustento senão a própria solidez da tradição.",
+          "O Dominador de Almas não é somente um livro, mas sim um imenso universo fundamentado sobre pilares de inovação, que por sua vez, não teriam outro sustento senão a própria solidez da tradição.",
         en: "The Dominator of Souls is not just a book, but an immense universe built on pillars of innovation — pillars that could have no other foundation than the very solidity of tradition.",
       },
       {

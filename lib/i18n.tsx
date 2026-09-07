@@ -53,6 +53,8 @@ const UI = {
     en: "The full work is available for purchase on Amazon",
   },
   thankYouWarrior: { "pt-br": "Muito obrigado, guerreiro!", en: "Thank you very much, warrior!" },
+  communityTitle: { "pt-br": "Comunidade", en: "Community" },
+  visitSite: { "pt-br": "Visitar site", en: "Visit site" },
 } satisfies Record<string, LocalizedString>;
 
 type LanguageContextValue = {
