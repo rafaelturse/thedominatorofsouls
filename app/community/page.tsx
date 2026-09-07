@@ -12,7 +12,7 @@ export default function CommunityPage() {
   return (
     <div>
       <Hero />
-      <div className="relative z-10 mx-auto max-w-6xl px-5 pb-20 pt-16 sm:pb-28 sm:pt-20">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 pb-16 pt-6 sm:pb-20 sm:pt-8">
         <header className="text-center">
           <p className="font-body text-xs uppercase tracking-[0.4em] text-gold-soft">
             {t(COMMUNITY_PAGE.title)}
