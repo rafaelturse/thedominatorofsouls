@@ -6,7 +6,7 @@ import { BookmarkIcon } from "@/lib/icons";
 import BookCover from "@/components/book/BookCover";
 import Synopsis from "@/components/book/Synopsis";
 import BookDetails from "@/components/book/BookDetails";
-import BookFormatBadges from "@/components/book/BookFormatBadges";
+import BookGenreBadges from "@/components/book/BookGenreBadges";
 import StoreDropdown from "@/components/StoreDropdown";
 
 type BookInfoProps = {
@@ -32,7 +32,7 @@ export default function BookInfo({
     <div className="flex flex-col items-center gap-10 sm:flex-row sm:items-start">
       <BookCover book={book} showSampleButton={showSampleButton} onReadSample={onReadSample} />
 
-      <div className="w-full text-center sm:text-left">
+      <div className="w-full min-w-0 text-center sm:text-left">
         <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-start">
           <div className="flex items-center gap-2">
             <span className="text-gold-soft">
@@ -53,7 +53,7 @@ export default function BookInfo({
           {t(book.title)}
         </h2>
 
-        <BookFormatBadges book={book} />
+        <BookGenreBadges book={book} />
 
         <Synopsis book={book} maxHeightClass={synopsisMaxHeightClass} />
 

@@ -13,6 +13,7 @@ export type Book = {
   release: LocalizedString;
   pageCount?: number;
   formats?: BookFormat[];
+  genres?: LocalizedString[];
   synopsis: LocalizedString;
   fullSynopsisHeading?: LocalizedString;
   fullSynopsis?: LocalizedString[];
@@ -47,6 +48,11 @@ export const books: Book[] = [
     release: { "pt-br": "Set-2026", en: "Sep-2026" },
     pageCount: 140,
     formats: ["ebook", "paperback", "hardcover", "audiobook"],
+    genres: [
+      { "pt-br": "Fantasia Épica", en: "Epic Fantasy" },
+      { "pt-br": "Ficção Fantástica", en: "Fantasy Fiction" },
+      { "pt-br": "Aventura", en: "Adventure" }
+    ],
     synopsis: {
       "pt-br":
         "Enquanto todos vivem suas vidas conforme lhes cabe, grupos secretos agem nas sombras disputando poder e controle dentro de um jogo cuja presença na superfície, do que é então conhecido, serve justamente para encobrir aquilo que deve permanecer oculto...",

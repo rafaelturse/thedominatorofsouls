@@ -2,14 +2,36 @@
 
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
-import type { Book } from "@/lib/data";
+import type { Book, BookFormat } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
-import { PagesIcon, CalendarIcon, AuthorIcon, MoreIcon } from "@/lib/icons";
+import { PagesIcon, CalendarIcon, AuthorIcon, MoreIcon, BookOutlineIcon, DeviceTabletIcon, HeadphonesIcon } from "@/lib/icons";
 import { EXTERNAL_LINKS, ROUTES } from "@/lib/routes";
 
 type BookDetailsProps = {
   book: Book;
   hideMore?: boolean;
+};
+
+type Item = {
+  icon: (props: { size?: number }) => React.JSX.Element;
+  label: string;
+  href?: string;
+  external: boolean;
+  linksAway: boolean;
+};
+
+const FORMAT_ICONS: Record<BookFormat, (props: { size?: number }) => React.JSX.Element> = {
+  hardcover: BookOutlineIcon,
+  paperback: PagesIcon,
+  ebook: DeviceTabletIcon,
+  audiobook: HeadphonesIcon,
+};
+
+const FORMAT_LABEL_KEYS: Record<BookFormat, "formatHardcover" | "formatPaperback" | "formatEbook" | "formatAudiobook"> = {
+  hardcover: "formatHardcover",
+  paperback: "formatPaperback",
+  ebook: "formatEbook",
+  audiobook: "formatAudiobook",
 };
 
 export default function BookDetails({ book, hideMore = false }: BookDetailsProps) {
@@ -18,7 +40,7 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
 
-  const items = [
+  const baseItems: Item[] = [
     book.pageCount
       ? {
         icon: PagesIcon,
@@ -51,13 +73,17 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
         external: false,
         linksAway: true,
       },
-  ].filter(Boolean) as {
-    icon: typeof PagesIcon;
-    label: string;
-    href?: string;
-    external: boolean;
-    linksAway: boolean;
-  }[];
+  ].filter(Boolean) as Item[];
+
+  const formatItems: Item[] = (book.formats ?? []).map((format) => ({
+    icon: FORMAT_ICONS[format],
+    label: t(ui[FORMAT_LABEL_KEYS[format]]),
+    href: undefined,
+    external: false,
+    linksAway: false,
+  }));
+
+  const items: Item[] = [...formatItems, ...baseItems];
 
   function updateScrollState() {
     const el = scrollRef.current;
@@ -82,6 +108,39 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
     scrollRef.current?.scrollBy({ left: amount, behavior: "smooth" });
   }
 
+  function renderItem(item: Item) {
+    const Icon = item.icon;
+    const content = (
+      <div
+        className={`flex shrink-0 flex-col items-center gap-2 transition-all duration-300 ${item.href === ROUTES.bookDetail(book.slug)
+          ? "text-red-soft hover:scale-105 hover:text-gold-soft"
+          : item.linksAway
+            ? "text-muted hover:scale-105 hover:text-gold-soft"
+            : "text-muted hover:text-gold-soft"
+          }`}
+      >
+        <Icon />
+        <span className="whitespace-nowrap font-body text-xs uppercase tracking-[0.1em]">
+          {item.label}
+        </span>
+      </div>
+    );
+
+    if (!item.href) {
+      return <div key={item.label}>{content}</div>;
+    }
+
+    return item.external ? (
+      <Link key={item.label} href={item.href} target="_blank" rel="noopener noreferrer">
+        {content}
+      </Link>
+    ) : (
+      <Link key={item.label} href={item.href}>
+        {content}
+      </Link>
+    );
+  }
+
   return (
     <div className="mt-6 flex items-center gap-2 border-t border-line py-5">
       <div className="flex w-6 shrink-0 justify-center">
@@ -103,38 +162,13 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
         ref={scrollRef}
         className="no-scrollbar flex flex-1 items-start gap-10 overflow-x-auto scroll-smooth px-1"
       >
-        {items.map((item) => {
-          const Icon = item.icon;
-          const content = (
-            <div
-              className={`flex shrink-0 flex-col items-center gap-2 transition-all duration-300 ${item.href === ROUTES.bookDetail(book.slug)
-                ? "text-red-soft hover:scale-105 hover:text-gold-soft"
-                : item.linksAway
-                  ? "text-muted hover:scale-105 hover:text-gold-soft"
-                  : "text-muted hover:text-gold-soft"
-                }`}
-            >
-              <Icon />
-              <span className="whitespace-nowrap font-body text-xs uppercase tracking-[0.1em]">
-                {item.label}
-              </span>
-            </div>
-          );
+        {formatItems.map(renderItem)}
 
-          if (!item.href) {
-            return <div key={item.label}>{content}</div>;
-          }
+        {formatItems.length > 0 && baseItems.length > 0 && (
+          <div className="my-1 h-10 w-px shrink-0 bg-line" aria-hidden />
+        )}
 
-          return item.external ? (
-            <Link key={item.label} href={item.href} target="_blank" rel="noopener noreferrer">
-              {content}
-            </Link>
-          ) : (
-            <Link key={item.label} href={item.href}>
-              {content}
-            </Link>
-          );
-        })}
+        {baseItems.map(renderItem)}
       </div>
 
       <div className="flex w-6 shrink-0 justify-center">
