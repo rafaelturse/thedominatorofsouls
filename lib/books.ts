@@ -1,5 +1,6 @@
 import type { LocalizedString } from "./i18n";
 
+export type BookFormat = "hardcover" | "paperback" | "ebook" | "audiobook";
 export type BookStatus = "published" | "upcoming";
 export type Store = { label: LocalizedString; href: string };
 
@@ -11,6 +12,7 @@ export type Book = {
   status: BookStatus;
   release: LocalizedString;
   pageCount?: number;
+  formats?: BookFormat[];
   synopsis: LocalizedString;
   fullSynopsisHeading?: LocalizedString;
   fullSynopsis?: LocalizedString[];
@@ -44,6 +46,7 @@ export const books: Book[] = [
     status: "published",
     release: { "pt-br": "Set-2026", en: "Sep-2026" },
     pageCount: 140,
+    formats: ["ebook", "paperback", "hardcover", "audiobook"],
     synopsis: {
       "pt-br":
         "Enquanto todos vivem suas vidas conforme lhes cabe, grupos secretos agem nas sombras disputando poder e controle dentro de um jogo cuja presença na superfície, do que é então conhecido, serve justamente para encobrir aquilo que deve permanecer oculto...",

@@ -61,6 +61,11 @@ const UI = {
   communityTitle: { "pt-br": "Comunidade", en: "Community" },
   visitSite: { "pt-br": "Visitar site", en: "Visit site" },
   byAuthorLabel: { "pt-br": "por", en: "by" },
+  formatsLabel: { "pt-br": "Formatos Disponíveis", en: "Available Formats" },
+  formatHardcover: { "pt-br": "Capa Dura", en: "Hardcover" },
+  formatPaperback: { "pt-br": "Capa Mole", en: "Paperback" },
+  formatEbook: { "pt-br": "eBook", en: "eBook" },
+  formatAudiobook: { "pt-br": "Audiolivro", en: "Audiobook" },
 } satisfies Record<string, LocalizedString>;
 
 type LanguageContextValue = {
