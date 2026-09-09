@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { books } from "@/lib/data";
-import BookDetailContent from "@/components/BookDetailContent";
+import BookDetailContent from "@/components/book/BookDetailContent";
 
 export function generateStaticParams() {
   return books.map((book) => ({ slug: book.slug }));

@@ -3,9 +3,9 @@
 import type { Book } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
 import { BookmarkIcon } from "@/lib/icons";
-import BookCover from "@/components/BookCover";
-import Synopsis from "@/components/Synopsis";
-import BookDetails from "@/components/BookDetails";
+import BookCover from "@/components/book/BookCover";
+import Synopsis from "@/components/book/Synopsis";
+import BookDetails from "@/components/book/BookDetails";
 import StoreDropdown from "@/components/StoreDropdown";
 
 type BookInfoProps = {

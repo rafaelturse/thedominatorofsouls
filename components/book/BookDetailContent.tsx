@@ -6,8 +6,8 @@ import { useLanguage } from "@/lib/i18n";
 import { BookIcon } from "@/lib/icons";
 import Hero from "@/components/Hero";
 import GenreStrip from "@/components/GenreStrip";
-import BookInfo from "@/components/BookInfo";
-import ExploreLinks from "./ExploreLinks";
+import BookInfo from "@/components/book/BookInfo";
+import ExploreLinks from "@/components/ExploreLinks";
 import Reader from "@/components/reader/Reader";
 
 export default function BookDetailContent({ book }: { book: Book }) {

@@ -3,7 +3,7 @@
 import { useLanguage } from "@/lib/i18n";
 import type { Book } from "@/lib/data";
 import { MedalIcon } from "@/lib/icons";
-import BookInfo from "./BookInfo";
+import BookInfoCompact from "@/components/book/BookInfoCompact";
 
 export default function SpotlightBook({ book }: { book: Book }) {
   const { t, ui } = useLanguage();
@@ -21,7 +21,7 @@ export default function SpotlightBook({ book }: { book: Book }) {
         className="mt-6 rounded-3xl p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:p-10"
         style={{ backgroundColor: "#111" }}
       >
-        <BookInfo book={book} showNewBadge showMoreLink synopsisMaxHeightClass="max-h-36" />
+        <BookInfoCompact book={book} showNewBadge />
       </div>
     </div>
   );
