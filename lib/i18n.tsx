@@ -60,6 +60,7 @@ const UI = {
   thankYouWarrior: { "pt-br": "Muito obrigado, guerreiro!", en: "Thank you very much, warrior!" },
   communityTitle: { "pt-br": "Comunidade", en: "Community" },
   visitSite: { "pt-br": "Visitar site", en: "Visit site" },
+  byAuthorLabel: { "pt-br": "por", en: "by" },
 } satisfies Record<string, LocalizedString>;
 
 type LanguageContextValue = {
