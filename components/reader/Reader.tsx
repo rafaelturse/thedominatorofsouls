@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { SAMPLE_PARAGRAPHS, SAMPLE_CHAPTER_TITLE } from "@/lib/sample-content";
+import { SAMPLE_PARAGRAPHS, SAMPLE_CHAPTER_TITLE } from "@/lib/book-content/memories-berdox-vol1-sample-content";
 import type { Book } from "@/lib/data";
 import ReaderHeader from "./ReaderHeader";
 import ReaderNavButton from "./ReaderNavButton";
