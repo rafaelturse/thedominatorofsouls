@@ -29,11 +29,10 @@ export default function CommunityLinks() {
               key={platform.id}
               type="button"
               onClick={() => setSelected(isActive ? null : platform.id)}
-              className={`flex min-h-[220px] flex-col items-center justify-center gap-4 rounded-3xl bg-card p-10 text-center shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] transition-all duration-300 ease-out hover:-translate-y-1 ${
-                isActive ? "ring-2 ring-gold-soft" : ""
-              }`}
+              className={`flex min-h-[80px] flex-col items-center justify-center gap-2 rounded-3xl bg-card p-6 text-center shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] transition-all duration-300 ease-out hover:-translate-y-1 ${isActive ? "ring-2 ring-gold-soft" : ""
+                }`}
             >
-              <img src={platform.image} alt={platform.name} className="h-42 w-auto object-contain" />
+              <img src={platform.image} alt={platform.name} className="h-8 w-auto object-contain" />
             </button>
           );
         })}
@@ -44,11 +43,7 @@ export default function CommunityLinks() {
           className="mt-6 rounded-3xl p-8 text-center shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:p-10"
           style={{ backgroundColor: "#111" }}
         >
-          <img
-            src={selectedPlatform.image}
-            alt={selectedPlatform.name}
-            className="mx-auto h-20 w-auto object-contain"
-          />
+          <img src={selectedPlatform.image} alt={selectedPlatform.name} className="mx-auto h-20 w-auto object-contain" />
           <p className="mx-auto mt-8 max-w-xl font-body text-sm leading-relaxed text-muted sm:text-base">
             {t(selectedPlatform.description)}
           </p>
