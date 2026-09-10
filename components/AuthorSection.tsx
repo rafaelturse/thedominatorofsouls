@@ -39,7 +39,7 @@ export default function AuthorSection() {
             </div>
 
             <div className="mt-6 flex flex-col items-center justify-between gap-4 sm:flex-row">
-              <div className="flex items-center gap-1.5 text-muted">
+              <div className="group flex items-center gap-1.5 text-gold-soft transition-colors hover:text-red-soft">
                 <MapPinIcon />
                 <span className="font-body text-xs uppercase tracking-[0.15em]">
                   {t(AUTHOR_SECTION.location)}
