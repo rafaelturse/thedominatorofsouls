@@ -27,6 +27,15 @@ export const AuthorIcon = ({ size = 18 }: IconProps) => (
   </svg>
 );
 
+export const FeatherIcon = ({ size = 18 }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M8 9.585v6.415h6.414l-2.707 2.707a1 1 0 0 1 -.112 .097l-.11 .071l-.114 .054l-.105 .035l-.149 .03l-.117 .006h-4.586l-1.707 1.707a1 1 0 1 1 -1.414 -1.414l1.707 -1.709v-4.584l.003 -.075l.017 -.126l.03 -.111l.044 -.111l.052 -.098l.067 -.096l.08 -.09z" />
+    <path d="M19.414 11l-3 3h-4.914l2.914 -3z" />
+    <path d="M13 4.586v4.998l-3 3v-4.999z" />
+    <path d="M16.482 3a4.515 4.515 0 0 1 4.518 4.514a4.7 4.7 0 0 1 -.239 1.487l-5.761 -.001v-5.76c.469 -.158 .968 -.24 1.482 -.24" />
+  </svg>
+);
+
 export const AuthorFilledIcon = ({ size = 32 }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
     <path d="M12 2a5 5 0 1 1 -5 5l.005 -.217a5 5 0 0 1 4.995 -4.783z" />
@@ -89,6 +98,12 @@ export const SearchIcon = ({ size = 14 }: IconProps) => (
     <circle cx="11" cy="11" r="7" />
     <path d="M21 21l-4.35-4.35" />
     <path d="M11 8v6M8 11h6" />
+  </svg>
+);
+
+export const MapPinIcon = ({ size = 16 }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" />
   </svg>
 );
 

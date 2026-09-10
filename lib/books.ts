@@ -90,8 +90,8 @@ export const books: Book[] = [
       },
     ],
     cover: {
-      "pt-br": "/books/the-memories-of-berdox-vol1-fragmented-cover-pt.jpg",
-      en: "/books/the-memories-of-berdox-vol1-fragmented-cover-en.jpg",
+      "pt-br": "/img/books/the-memories-of-berdox-vol1-fragmented-cover-pt.jpg",
+      en: "/img/books/the-memories-of-berdox-vol1-fragmented-cover-en.jpg",
     },
     stores: [
       { label: { "pt-br": "Brasil", en: "Brazil" }, href: "https://www.amazon.com.br/dp/B0HHFJ496J" },

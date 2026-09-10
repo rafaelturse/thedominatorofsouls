@@ -11,5 +11,5 @@ export const SITE = {
     "pt-br": "Um universo de aventuras épicas",
     en: "A universe of epic adventures",
   } as LocalizedString,
-  symbol: "/symbols/the-dominator-of-souls-separator-symbol.svg",
+  symbol: "/img/symbols/the-dominator-of-souls-separator-symbol.svg",
 };

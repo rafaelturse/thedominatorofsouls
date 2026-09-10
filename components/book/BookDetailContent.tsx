@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import type { Book } from "@/lib/data";
+import { books } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
 import { BookIcon } from "@/lib/icons";
 import Hero from "@/components/Hero";
 import GenreStrip from "@/components/GenreStrip";
 import BookInfo from "@/components/book/BookInfo";
+import CollectionStrip from "@/components/CollectionStrip";
 import ExploreLinks from "@/components/ExploreLinks";
 import Reader from "@/components/reader/Reader";
 
@@ -32,6 +34,10 @@ export default function BookDetailContent({ book }: { book: Book }) {
           style={{ backgroundColor: "#111" }}
         >
           <BookInfo book={book} showSampleButton onReadSample={() => setSampleOpen(true)} />
+        </div>
+
+        <div className="mt-22">
+          <CollectionStrip books={books} />
         </div>
 
         <ExploreLinks ids={["community", "universe", "author", "about"]} />

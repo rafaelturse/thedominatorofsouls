@@ -14,7 +14,7 @@ export const COMMUNITY_PLATFORMS: CommunityPlatform[] = [
   {
     id: "amazon",
     name: "Amazon",
-    image: "/logos/amazon.svg",
+    image: "/img/logos/amazon.svg",
     href: "https://www.amazon.com.br/dp/B0HHFJ496J",
     description: {
       "pt-br": "Compre a edição oficial de As Memórias de Berdox — Volume 1 — Fragmentados, disponível em formato digital e físico em várias lojas Amazon ao redor do mundo.",
@@ -24,7 +24,7 @@ export const COMMUNITY_PLATFORMS: CommunityPlatform[] = [
   {
     id: "wattpad",
     name: "Wattpad",
-    image: "/logos/wattpad.svg",
+    image: "/img/logos/wattpad.svg",
     href: "https://www.wattpad.com/user/RafaelTurse",
     description: {
       "pt-br": "Acompanhe capítulos, bastidores e novidades sobre o universo de Berdox diretamente no perfil oficial no Wattpad.",
@@ -34,7 +34,7 @@ export const COMMUNITY_PLATFORMS: CommunityPlatform[] = [
   /*{
     id: "royalroad",
     name: "Royal Road",
-    image: "/logos/royalroad.svg",
+    image: "/img/logos/royalroad.svg",
     href: "https://www.royalroad.com/",
     description: {
       "pt-br": "Em breve: acompanhe O Dominador de Almas também na Royal Road, plataforma dedicada a ficção original de fantasia e RPG.",

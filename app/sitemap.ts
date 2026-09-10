@@ -28,7 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const bookRoutes: MetadataRoute.Sitemap = books.map((book) => ({
-    url: `${BASE_URL}/books/${book.slug}`,
+    url: `${BASE_URL}/img/books/${book.slug}`,
     lastModified: new Date(),
     changeFrequency: book.status === "upcoming" ? "monthly" : "yearly",
     priority: book.status === "published" ? 0.9 : 0.5,
