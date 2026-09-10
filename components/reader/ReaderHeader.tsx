@@ -12,8 +12,8 @@ export default function ReaderHeader({ title, onClose }: ReaderHeaderProps) {
   const { t, ui } = useLanguage();
 
   return (
-    <div className="flex items-center justify-between border-b border-line px-6 py-4 sm:px-10">
-      <div className="flex items-center gap-3">
+    <div className="flex flex-col items-center gap-3 border-b border-line px-6 py-4 sm:flex-row sm:justify-between sm:px-10">
+      <div className="flex flex-col items-center gap-2 px-4 text-center sm:flex-row sm:gap-3 sm:px-0 sm:text-left">
         <span className="cursor-default border border-gold-soft px-2 py-0.5 font-body text-[10px] uppercase tracking-[0.2em] text-gold-soft">
           {t(ui.sampleBadge)}
         </span>
