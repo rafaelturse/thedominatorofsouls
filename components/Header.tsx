@@ -54,6 +54,10 @@ export default function Header() {
           )}
           <LanguageSwitcher />
         </nav>
+
+        <div className="md:hidden">
+          <LanguageSwitcher />
+        </div>
       </div>
 
       {open && (
@@ -77,9 +81,6 @@ export default function Header() {
               </Link>
             )
           )}
-          <div className="pt-3">
-            <LanguageSwitcher />
-          </div>
         </nav>
       )}
     </header>
