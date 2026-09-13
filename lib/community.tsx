@@ -15,7 +15,7 @@ export const COMMUNITY_PLATFORMS: CommunityPlatform[] = [
     id: "amazon",
     name: "Amazon",
     image: "/img/logos/amazon.svg",
-    href: "https://www.amazon.com.br/dp/B0HHFJ496J",
+    href: "https://www.amazon.com.br/stores/Rafael-Turse/author/B0HHFVRC7S",
     description: {
       "pt-br": "Compre a edição oficial de As Memórias de Berdox — Volume 1 — Fragmentados, disponível em formato digital e físico em várias lojas Amazon ao redor do mundo.",
       en: "Buy the official edition of The Memories of Berdox — Volume 1 — Fragmented, available in digital and physical formats across Amazon stores worldwide.",
