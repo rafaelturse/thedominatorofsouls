@@ -1,20 +1,30 @@
 import type { LocalizedString } from "./i18n";
+import { EXTERNAL_LINKS } from "./routes";
+import { InstagramIcon, FacebookIcon, XIcon, WhatsAppIcon, type IconProps } from "./icons";
 
-export type CommunityPlatformId = "amazon" | "wattpad" | "royalroad";
+export type CommunityPlatformId =
+  | "amazon"
+  | "wattpad"
+  | "instagram"
+  | "facebook"
+  | "x"
+  | "whatsapp";
 
 export type CommunityPlatform = {
   id: CommunityPlatformId;
   name: string;
-  image: string;
-  href: string;
+  href: string | LocalizedString;
   description: LocalizedString;
+  image?: string;
+  icon?: (props: IconProps) => React.JSX.Element;
+  iconColor?: string;
 };
 
 export const COMMUNITY_PLATFORMS: CommunityPlatform[] = [
   {
     id: "amazon",
     name: "Amazon",
-    image: "/img/logos/amazon.svg",
+    image: "/img/logos/amazon.png",
     href: "https://www.amazon.com.br/stores/Rafael-Turse/author/B0HHFVRC7S",
     description: {
       "pt-br": "Compre a edição oficial de As Memórias de Berdox — Volume 1 — Fragmentados, disponível em formato digital e físico em várias lojas Amazon ao redor do mundo.",
@@ -31,16 +41,50 @@ export const COMMUNITY_PLATFORMS: CommunityPlatform[] = [
       en: "Follow chapters, behind-the-scenes content, and updates about the Berdox universe directly on the official Wattpad profile.",
     },
   },
-  /*{
-    id: "royalroad",
-    name: "Royal Road",
-    image: "/img/logos/royalroad.svg",
-    href: "https://www.royalroad.com/",
+  {
+    id: "instagram",
+    name: "Instagram",
+    icon: InstagramIcon,
+    iconColor: "#E4405F",
+    href: EXTERNAL_LINKS.instagram,
     description: {
-      "pt-br": "Em breve: acompanhe O Dominador de Almas também na Royal Road, plataforma dedicada a ficção original de fantasia e RPG.",
-      en: "Coming soon: follow The Dominator of Souls on Royal Road as well, a platform dedicated to original fantasy and RPG fiction.",
+      "pt-br": "Fotos, bastidores e novidades do universo de O Dominador de Almas, publicados diretamente no Instagram oficial.",
+      en: "Photos, behind-the-scenes content, and updates from the Dominator of Souls universe, posted directly on the official Instagram.",
     },
-  },*/
+  },
+  {
+    id: "facebook",
+    name: "Facebook",
+    icon: FacebookIcon,
+    iconColor: "#1877F2",
+    href: EXTERNAL_LINKS.facebook,
+    description: {
+      "pt-br": "Acompanhe anúncios, eventos e novidades da série na página oficial do Facebook.",
+      en: "Follow announcements, events, and series updates on the official Facebook page.",
+    },
+  },
+  {
+    id: "x",
+    name: "X",
+    icon: XIcon,
+    iconColor: "#ffffff",
+    href: EXTERNAL_LINKS.x,
+    description: {
+      "pt-br": "Atualizações rápidas, curiosidades e bastidores da série no perfil oficial do X (antigo Twitter).",
+      en: "Quick updates, trivia, and behind-the-scenes content from the series on the official X (formerly Twitter) profile.",
+    },
+  },
+  {
+    id: "whatsapp",
+    name: "WhatsApp",
+    icon: WhatsAppIcon,
+    iconColor: "#25D366",
+    href: EXTERNAL_LINKS.whatsapp,
+    description: {
+      "pt-br": "Entre no canal oficial do WhatsApp para receber novidades e avisos de lançamento em primeira mão.",
+      en: "Join the official WhatsApp channel to get news and launch announcements first.",
+    },
+  },
 ];
 
 export const COMMUNITY_PAGE = {
