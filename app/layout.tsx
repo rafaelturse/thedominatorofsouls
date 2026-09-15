@@ -2,10 +2,10 @@ import { EB_Garamond, Inter, Indie_Flower } from "next/font/google";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import SiteFooter from "@/components/SiteFooter";
+import CookieBanner from "@/components/Analytics/CookieBanner";
+import GoogleAnalyticsConsent from "@/components/Analytics/GoogleAnalyticsConsent";
 import { LanguageProvider } from "@/lib/i18n";
 import "./globals.css";
-import { GoogleAnalytics } from "@next/third-parties/google";
-import CookieBanner from "@/components/CookieBanner";
 
 const garamond = EB_Garamond({
   subsets: ["latin"],
@@ -43,7 +43,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <SiteFooter />
           <CookieBanner />
         </LanguageProvider>
-        <GoogleAnalytics gaId="G-QQ5MPFLHBX" />
+        <GoogleAnalyticsConsent />
       </body>
     </html>
   );

@@ -9,19 +9,21 @@ import {
   AuthorFilledIcon,
   AboutIcon,
   CommunityIcon,
+  ShieldIcon,
   GridIcon,
   type IconProps,
 } from "@/lib/icons";
 
-export type ExploreLinkId = "store" | "universe" | "author" | "about" | "community";
+export type ExploreLinkId = "store" | "universe" | "author" | "about" | "community" | "privacy";
 
-type LinkLabelKey = "exploreStore" | "exploreUniverse" | "exploreAuthor" | "exploreAbout" | "exploreCommunity";
+type LinkLabelKey = "exploreStore" | "exploreUniverse" | "exploreAuthor" | "exploreAbout" | "exploreCommunity" | "explorePrivacy";
 type LinkDescKey =
   | "exploreStoreDesc"
   | "exploreUniverseDesc"
   | "exploreAuthorDesc"
   | "exploreAboutDesc"
-  | "exploreCommunityDesc";
+  | "exploreCommunityDesc"
+  | "explorePrivacyDesc";
 
 type LinkInfo = {
   icon: (props: IconProps) => React.JSX.Element;
@@ -37,6 +39,7 @@ const ALL_LINKS: Record<ExploreLinkId, LinkInfo> = {
   author: { icon: AuthorFilledIcon, labelKey: "exploreAuthor", descKey: "exploreAuthorDesc", href: EXTERNAL_LINKS.authorSite, external: true },
   about: { icon: AboutIcon, labelKey: "exploreAbout", descKey: "exploreAboutDesc", href: ROUTES.about, external: false },
   community: { icon: CommunityIcon, labelKey: "exploreCommunity", descKey: "exploreCommunityDesc", href: ROUTES.community, external: false },
+  privacy: { icon: ShieldIcon, labelKey: "explorePrivacy", descKey: "explorePrivacyDesc", href: ROUTES.privacy, external: false },
 };
 
 export default function ExploreLinks({ ids }: { ids: ExploreLinkId[] }) {

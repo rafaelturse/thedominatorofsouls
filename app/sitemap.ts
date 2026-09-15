@@ -25,10 +25,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.4,
     },
+    {
+      url: `${BASE_URL}/store`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/community`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
+      url: `${BASE_URL}/privacy`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.2,
+    },
   ];
 
   const bookRoutes: MetadataRoute.Sitemap = books.map((book) => ({
-    url: `${BASE_URL}/img/books/${book.slug}`,
+    url: `${BASE_URL}/books/${book.slug}`,
     lastModified: new Date(),
     changeFrequency: book.status === "upcoming" ? "monthly" : "yearly",
     priority: book.status === "published" ? 0.9 : 0.5,

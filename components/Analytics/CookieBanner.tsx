@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useLanguage } from "@/lib/i18n";
 import { COOKIE_BANNER } from "@/lib/cookies";
+import { ROUTES } from "@/lib/routes";
 
 export default function CookieBanner() {
   const { t } = useLanguage();
@@ -17,11 +19,13 @@ export default function CookieBanner() {
 
   function handleAccept() {
     window.localStorage.setItem("cookie-consent", "accepted");
+    window.dispatchEvent(new Event("cookie-consent-changed"));
     setVisible(false);
   }
 
   function handleDecline() {
     window.localStorage.setItem("cookie-consent", "declined");
+    window.dispatchEvent(new Event("cookie-consent-changed"));
     setVisible(false);
   }
 
@@ -31,7 +35,10 @@ export default function CookieBanner() {
     <div className="fixed inset-x-0 bottom-0 z-[60] border-t border-line bg-bg/95 backdrop-blur">
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-4 px-5 py-5 sm:flex-row sm:justify-between">
         <p className="text-center font-body text-xs leading-relaxed text-muted sm:text-left">
-          {t(COOKIE_BANNER.message)}
+          {t(COOKIE_BANNER.message)}{" "}
+          <Link href={ROUTES.privacy} className="underline transition-colors hover:text-gold-soft">
+            {t(COOKIE_BANNER.learnMore)}
+          </Link>
         </p>
 
         <div className="flex shrink-0 items-center gap-3">

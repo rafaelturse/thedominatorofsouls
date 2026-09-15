@@ -66,6 +66,11 @@ const UI = {
   formatPaperback: { "pt-br": "Capa Mole", en: "Paperback" },
   formatEbook: { "pt-br": "eBook", en: "eBook" },
   formatAudiobook: { "pt-br": "Audiolivro", en: "Audiobook" },
+  explorePrivacy: { "pt-br": "Privacidade", en: "Privacy" },
+  explorePrivacyDesc: {
+    "pt-br": "Como cuidamos dos seus dados neste site",
+    en: "How we handle your data on this site",
+  },
 } satisfies Record<string, LocalizedString>;
 
 type LanguageContextValue = {

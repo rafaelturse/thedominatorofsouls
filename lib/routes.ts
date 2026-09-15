@@ -6,6 +6,7 @@ export const ROUTES = {
   store: "/store",
   gallery: "/gallery",
   about: "/about",
+  privacy: "/privacy",
   bookDetail: (slug: string) => `/books/${slug}#book-details`,
 } as const;
 
