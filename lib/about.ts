@@ -10,13 +10,8 @@ export const ABOUT = {
   paragraphs: [
     {
       "pt-br":
-        "O Dominador de Almas não é somente um livro, mas sim um imenso universo fundamentado sobre pilares de inovação, que por sua vez, não teriam outro sustento senão a própria solidez da tradição.",
-      en: "The Dominator of Souls is not just a book, but an immense universe built on pillars of innovation — pillars that could have no other foundation than the very solidity of tradition.",
-    },
-    {
-      "pt-br":
-        "Os diversos livros que irão compor esta obra, expandirão seus horizontes através do compromisso em criar histórias de enredos robustos e personagens icônicos que, atravessando aventuras épicas, certamente deixarão suas marcas por onde passarem, inclusive nos próprios leitores.",
-      en: "The many books that will make up this work will expand its horizons through a commitment to crafting stories with robust plots and iconic characters — characters who, through epic adventures, will surely leave their mark wherever they go, including on the readers themselves.",
+        "O Dominador de Almas não é somente um livro, mas sim um imenso universo fundamentado sobre pilares de inovação, que por sua vez, não teriam outro sustento senão a própria solidez da tradição. Os diversos livros que irão compor esta obra, expandirão seus horizontes através do compromisso em criar histórias de enredos robustos e personagens icônicos que, atravessando aventuras épicas, certamente deixarão suas marcas por onde passarem, inclusive nos próprios leitores.",
+      en: "The Dominator of Souls is not just a book, but an immense universe built on pillars of innovation — pillars that could have no other foundation than the very solidity of tradition. The many books that will make up this work will expand its horizons through a commitment to crafting stories with robust plots and iconic characters — characters who, through epic adventures, will surely leave their mark wherever they go, including on the readers themselves.",
     },
     {
       "pt-br":
