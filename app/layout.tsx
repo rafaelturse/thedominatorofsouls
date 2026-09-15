@@ -4,6 +4,8 @@ import Header from "@/components/Header";
 import SiteFooter from "@/components/SiteFooter";
 import { LanguageProvider } from "@/lib/i18n";
 import "./globals.css";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import CookieBanner from "@/components/CookieBanner";
 
 const garamond = EB_Garamond({
   subsets: ["latin"],
@@ -39,7 +41,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Header />
           <main className="flex-1">{children}</main>
           <SiteFooter />
+          <CookieBanner />
         </LanguageProvider>
+        <GoogleAnalytics gaId="G-QQ5MPFLHBX" />
       </body>
     </html>
   );
