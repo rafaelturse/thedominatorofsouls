@@ -13,6 +13,7 @@ export type Book = {
   release: LocalizedString;
   pageCount?: Record<Locale, number>;
   formats?: BookFormat[];
+  formatDetails?: Partial<Record<BookFormat, FormatDetails>>;
   genres?: LocalizedString[];
   synopsis: LocalizedString;
   fullSynopsisHeading?: LocalizedString;
@@ -21,6 +22,18 @@ export type Book = {
   stores?: Store[];
   openingChapterTitle?: LocalizedString;
   openingChapter?: LocalizedString[];
+};
+
+export type FormatDetails = {
+  asin: string;
+  publisher: string;
+  publicationDate: string;
+  language: string;
+  pageCount: string;
+  isbn13: string;
+  weight: string;
+  dimensions: string;
+  seriesLink: { label: string; href: string };
 };
 
 const SERIES: LocalizedString = {
@@ -48,6 +61,22 @@ export const books: Book[] = [
     release: { "pt-br": "Set-2026", en: "Sep-2026" },
     pageCount: { "pt-br": 145, en: 143 },
     formats: ["ebook", "paperback", "hardcover", "audiobook"],
+    formatDetails: {
+      paperback: {
+        asin: "B0HK5XZ27Q",
+        publisher: "Independently published",
+        publicationDate: "Sept. 17 2026",
+        language: "English",
+        pageCount: "140 pages",
+        isbn13: "979-8175144629",
+        weight: "209 g",
+        dimensions: "12.85 x 0.81 x 19.84 cm",
+        seriesLink: {
+          label: "The Dominator of Souls - The Memories of Berdox",
+          href: "https://www.amazon.ca/dp/B0HK4V1G24?binding=paperback&ref=dbs_dp_sirpi",
+        },
+      },
+    },
     genres: [
       { "pt-br": "Fantasia Épica", en: "Epic Fantasy" },
       { "pt-br": "Ficção Fantástica", en: "Fantasy Fiction" },

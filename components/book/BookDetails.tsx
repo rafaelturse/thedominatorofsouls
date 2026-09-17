@@ -6,6 +6,7 @@ import type { Book, BookFormat } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
 import { PagesIcon, CalendarIcon, AuthorIcon, MoreIcon, BookOutlineIcon, DeviceTabletIcon, HeadphonesIcon } from "@/lib/icons";
 import { EXTERNAL_LINKS, ROUTES } from "@/lib/routes";
+import FormatDetailsModal from "./FormatDetailsModal";
 
 type BookDetailsProps = {
   book: Book;
@@ -18,6 +19,7 @@ type Item = {
   href?: string;
   external: boolean;
   linksAway: boolean;
+  onClick?: () => void;
 };
 
 const FORMAT_ICONS: Record<BookFormat, (props: { size?: number }) => React.JSX.Element> = {
@@ -39,6 +41,7 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+  const [openFormat, setOpenFormat] = useState<BookFormat | null>(null);
 
   const baseItems: Item[] = [
     book.pageCount
@@ -75,13 +78,17 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
       },
   ].filter(Boolean) as Item[];
 
-  const formatItems: Item[] = (book.formats ?? []).map((format) => ({
-    icon: FORMAT_ICONS[format],
-    label: t(ui[FORMAT_LABEL_KEYS[format]]),
-    href: undefined,
-    external: false,
-    linksAway: false,
-  }));
+  const formatItems: Item[] = (book.formats ?? []).map((format) => {
+    const hasDetails = !!book.formatDetails?.[format];
+    return {
+      icon: FORMAT_ICONS[format],
+      label: t(ui[FORMAT_LABEL_KEYS[format]]),
+      href: undefined,
+      external: false,
+      linksAway: hasDetails,
+      onClick: hasDetails ? () => setOpenFormat(format) : undefined,
+    };
+  });
 
   const items: Item[] = [...formatItems, ...baseItems];
 
@@ -126,6 +133,14 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
       </div>
     );
 
+    if (item.onClick) {
+      return (
+        <button key={item.label} type="button" onClick={item.onClick}>
+          {content}
+        </button>
+      );
+    }
+
     if (!item.href) {
       return <div key={item.label}>{content}</div>;
     }
@@ -140,6 +155,10 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
       </Link>
     );
   }
+
+  const openDetails = openFormat ? book.formatDetails?.[openFormat] : undefined;
+  const openIcon = openFormat ? FORMAT_ICONS[openFormat] : undefined;
+  const openLabel = openFormat ? t(ui[FORMAT_LABEL_KEYS[openFormat]]) : "";
 
   return (
     <div className="mt-6 flex items-center gap-2 border-t border-line py-5">
@@ -185,6 +204,15 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
           </button>
         )}
       </div>
+
+      {openDetails && openIcon && (
+        <FormatDetailsModal
+          title={openLabel}
+          icon={openIcon}
+          details={openDetails}
+          onClose={() => setOpenFormat(null)}
+        />
+      )}
     </div>
   );
 }
