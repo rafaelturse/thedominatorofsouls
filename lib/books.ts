@@ -1,8 +1,8 @@
-import type { LocalizedString } from "./i18n";
+import type { LocalizedString, Locale } from "./i18n";
 
 export type BookFormat = "hardcover" | "paperback" | "ebook" | "audiobook";
 export type BookStatus = "published" | "upcoming";
-export type Store = { label: LocalizedString; href: string };
+export type Store = { label: LocalizedString; href: LocalizedString };
 
 export type Book = {
   slug: string;
@@ -11,7 +11,7 @@ export type Book = {
   series: LocalizedString;
   status: BookStatus;
   release: LocalizedString;
-  pageCount?: number;
+  pageCount?: Record<Locale, number>;
   formats?: BookFormat[];
   genres?: LocalizedString[];
   synopsis: LocalizedString;
@@ -46,7 +46,7 @@ export const books: Book[] = [
     series: SERIES,
     status: "published",
     release: { "pt-br": "Set-2026", en: "Sep-2026" },
-    pageCount: 140,
+    pageCount: { "pt-br": 145, en: 143 },
     formats: ["ebook", "paperback", "hardcover", "audiobook"],
     genres: [
       { "pt-br": "Fantasia Épica", en: "Epic Fantasy" },
@@ -93,27 +93,27 @@ export const books: Book[] = [
       en: "/img/books/the-memories-of-berdox-vol1-fragmented-cover-en.jpg",
     },
     stores: [
-      { label: { "pt-br": "Brasil", en: "Brazil" }, href: "https://www.amazon.com.br/dp/B0HHFJ496J" },
-      { label: { "pt-br": "Estados Unidos", en: "United States" }, href: "https://www.amazon.com/dp/B0HHFJ496J" },
-      { label: { "pt-br": "Canadá", en: "Canada" }, href: "https://www.amazon.ca/dp/B0HHFJ496J" },
-      { label: { "pt-br": "México", en: "Mexico" }, href: "https://www.amazon.com.mx/dp/B0HHFJ496J" },
-      { label: { "pt-br": "Alemanha", en: "Germany" }, href: "https://www.amazon.de/dp/B0HHFJ496J" },
-      { label: { "pt-br": "Espanha", en: "Spain" }, href: "https://www.amazon.es/dp/B0HHFJ496J" },
-      { label: { "pt-br": "França", en: "France" }, href: "https://www.amazon.fr/dp/B0HHFJ496J" },
-      { label: { "pt-br": "Itália", en: "Italy" }, href: "https://www.amazon.it/dp/B0HHFJ496J" },
-      { label: { "pt-br": "Reino Unido", en: "United Kingdom" }, href: "https://www.amazon.co.uk/dp/B0HHFJ496J" },
-      { label: { "pt-br": "Holanda", en: "Netherlands" }, href: "https://www.amazon.nl/dp/B0HHFJ496J" },
-      { label: { "pt-br": "Polônia", en: "Poland" }, href: "https://www.amazon.pl/dp/B0HHFJ496J" },
-      { label: { "pt-br": "Suécia", en: "Sweden" }, href: "https://www.amazon.se/dp/B0HHFJ496J" },
-      { label: { "pt-br": "Bélgica", en: "Belgium" }, href: "https://www.amazon.com.be/dp/B0HHFJ496J" },
-      { label: { "pt-br": "Turquia", en: "Turkey" }, href: "https://www.amazon.com.tr/dp/B0HHFJ496J" },
-      { label: { "pt-br": "Japão", en: "Japan" }, href: "https://www.amazon.co.jp/dp/B0HHFJ496J" },
-      { label: { "pt-br": "Índia", en: "India" }, href: "https://www.amazon.in/dp/B0HHFJ496J" },
-      { label: { "pt-br": "Austrália", en: "Australia" }, href: "https://www.amazon.com.au/dp/B0HHFJ496J" },
-      { label: { "pt-br": "Singapura", en: "Singapore" }, href: "https://www.amazon.sg/dp/B0HHFJ496J" },
-      { label: { "pt-br": "Emirados Árabes", en: "United Arab Emirates" }, href: "https://www.amazon.ae/dp/B0HHFJ496J" },
-      { label: { "pt-br": "Arábia Saudita", en: "Saudi Arabia" }, href: "https://www.amazon.sa/dp/B0HHFJ496J" },
-      { label: { "pt-br": "Egito", en: "Egypt" }, href: "https://www.amazon.eg/dp/B0HHFJ496J" },
+      { label: { "pt-br": "Brasil", en: "Brazil" }, href: { "pt-br": "https://www.amazon.com.br/dp/B0HHFJ496J", en: "https://www.amazon.com.br/dp/B0HK4RNHYR" } },
+      { label: { "pt-br": "Estados Unidos", en: "United States" }, href: { "pt-br": "https://www.amazon.com/dp/B0HHFJ496J", en: "https://www.amazon.com/dp/B0HK4RNHYR" } },
+      { label: { "pt-br": "Canadá", en: "Canada" }, href: { "pt-br": "https://www.amazon.ca/dp/B0HHFJ496J", en: "https://www.amazon.ca/dp/B0HK4RNHYR" } },
+      { label: { "pt-br": "México", en: "Mexico" }, href: { "pt-br": "https://www.amazon.com.mx/dp/B0HHFJ496J", en: "https://www.amazon.com.mx/dp/B0HK4RNHYR" } },
+      { label: { "pt-br": "Alemanha", en: "Germany" }, href: { "pt-br": "https://www.amazon.de/dp/B0HHFJ496J", en: "https://www.amazon.de/dp/B0HK4RNHYR" } },
+      { label: { "pt-br": "Espanha", en: "Spain" }, href: { "pt-br": "https://www.amazon.es/dp/B0HHFJ496J", en: "https://www.amazon.es/dp/B0HK4RNHYR" } },
+      { label: { "pt-br": "França", en: "France" }, href: { "pt-br": "https://www.amazon.fr/dp/B0HHFJ496J", en: "https://www.amazon.fr/dp/B0HK4RNHYR" } },
+      { label: { "pt-br": "Itália", en: "Italy" }, href: { "pt-br": "https://www.amazon.it/dp/B0HHFJ496J", en: "https://www.amazon.it/dp/B0HK4RNHYR" } },
+      { label: { "pt-br": "Reino Unido", en: "United Kingdom" }, href: { "pt-br": "https://www.amazon.co.uk/dp/B0HHFJ496J", en: "https://www.amazon.co.uk/dp/B0HK4RNHYR" } },
+      { label: { "pt-br": "Holanda", en: "Netherlands" }, href: { "pt-br": "https://www.amazon.nl/dp/B0HHFJ496J", en: "https://www.amazon.nl/dp/B0HK4RNHYR" } },
+      { label: { "pt-br": "Polônia", en: "Poland" }, href: { "pt-br": "https://www.amazon.pl/dp/B0HHFJ496J", en: "https://www.amazon.pl/dp/B0HK4RNHYR" } },
+      { label: { "pt-br": "Suécia", en: "Sweden" }, href: { "pt-br": "https://www.amazon.se/dp/B0HHFJ496J", en: "https://www.amazon.se/dp/B0HK4RNHYR" } },
+      { label: { "pt-br": "Bélgica", en: "Belgium" }, href: { "pt-br": "https://www.amazon.com.be/dp/B0HHFJ496J", en: "https://www.amazon.com.be/dp/B0HK4RNHYR" } },
+      { label: { "pt-br": "Turquia", en: "Turkey" }, href: { "pt-br": "https://www.amazon.com.tr/dp/B0HHFJ496J", en: "https://www.amazon.com.tr/dp/B0HK4RNHYR" } },
+      { label: { "pt-br": "Japão", en: "Japan" }, href: { "pt-br": "https://www.amazon.co.jp/dp/B0HHFJ496J", en: "https://www.amazon.co.jp/dp/B0HK4RNHYR" } },
+      { label: { "pt-br": "Índia", en: "India" }, href: { "pt-br": "https://www.amazon.in/dp/B0HHFJ496J", en: "https://www.amazon.in/dp/B0HK4RNHYR" } },
+      { label: { "pt-br": "Austrália", en: "Australia" }, href: { "pt-br": "https://www.amazon.com.au/dp/B0HHFJ496J", en: "https://www.amazon.com.au/dp/B0HK4RNHYR" } },
+      { label: { "pt-br": "Singapura", en: "Singapore" }, href: { "pt-br": "https://www.amazon.sg/dp/B0HHFJ496J", en: "https://www.amazon.sg/dp/B0HK4RNHYR" } },
+      { label: { "pt-br": "Emirados Árabes", en: "United Arab Emirates" }, href: { "pt-br": "https://www.amazon.ae/dp/B0HHFJ496J", en: "https://www.amazon.ae/dp/B0HK4RNHYR" } },
+      { label: { "pt-br": "Arábia Saudita", en: "Saudi Arabia" }, href: { "pt-br": "https://www.amazon.sa/dp/B0HHFJ496J", en: "https://www.amazon.sa/dp/B0HK4RNHYR" } },
+      { label: { "pt-br": "Egito", en: "Egypt" }, href: { "pt-br": "https://www.amazon.eg/dp/B0HHFJ496J", en: "https://www.amazon.eg/dp/B0HK4RNHYR" } },
     ],
   },
   {

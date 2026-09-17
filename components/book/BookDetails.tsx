@@ -35,7 +35,7 @@ const FORMAT_LABEL_KEYS: Record<BookFormat, "formatHardcover" | "formatPaperback
 };
 
 export default function BookDetails({ book, hideMore = false }: BookDetailsProps) {
-  const { t, ui } = useLanguage();
+  const { t, ui, locale } = useLanguage();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -44,7 +44,7 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
     book.pageCount
       ? {
         icon: PagesIcon,
-        label: `${book.pageCount} ${t(ui.pagesSuffix)}`,
+        label: `${book.pageCount[locale]} ${t(ui.pagesSuffix)}`,
         href: undefined,
         external: false,
         linksAway: false,
