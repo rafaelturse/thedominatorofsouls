@@ -55,38 +55,37 @@ export const books: Book[] = [
     ],
     synopsis: {
       "pt-br":
-        "Enquanto todos vivem suas vidas conforme lhes cabe, grupos secretos agem nas sombras disputando poder e controle dentro de um jogo cuja presença na superfície, do que é então conhecido, serve justamente para encobrir aquilo que deve permanecer oculto...",
-      en: "While everyone lives their lives as they see fit, secret groups act in the shadows, fighting for power and control within a game whose presence on the surface — in what is otherwise known — serves precisely to conceal what must remain hidden...",
+        "Em uma mansão isolada na costa inglesa, um garoto testemunha o pior pesadelo que uma criança pode viver — e sobrevive apenas para carregar, para sempre, a marca de uma promessa sussurrada por algo que não deveria existir...",
+      en: "In an isolated mansion on the English coast, a boy witnesses the worst nightmare a child can live through — and survives only to carry, forever, the mark of a promise whispered by something that should not exist...",
     },
     fullSynopsisHeading: {
-      "pt-br": "Um Pequeno Vislumbre Sobre a Obra",
-      en: "A Small Glimpse Into the Work",
+      "pt-br": "Uma noite tempestuosa que mudou tudo...",
+      en: "A stormy night that changed everything...",
     },
     fullSynopsis: [
       {
         "pt-br":
-          "O Dominador de Almas não é somente um livro, mas sim um imenso universo fundamentado sobre pilares de inovação, que por sua vez, não teriam outro sustento senão a própria solidez da tradição.",
-        en: "The Dominator of Souls is not just a book, but an immense universe built on pillars of innovation — pillars that could have no other foundation than the very solidity of tradition.",
+          "Em uma mansão isolada na costa inglesa, um garoto testemunha o pior pesadelo que uma criança pode viver — e sobrevive apenas para carregar, para sempre, a marca de uma promessa sussurrada por algo que não deveria existir. Uma luz que queima seus olhos, uma voz que jamais esquecerá e um único propósito que agora define cada batida do seu coração: vingança!",
+        en: "In an isolated mansion on the English coast, a boy witnesses the worst nightmare a child can live through — and survives only to carry, forever, the mark of a promise whispered by something that should not exist. A light that burns his eyes, a voice he will never forget, and a single purpose that now defines every beat of his heart: vengeance!",
       },
       {
         "pt-br":
-          "Os diversos livros que irão compor esta obra, expandirão seus horizontes através do compromisso em criar histórias de enredos robustos e personagens icônicos que, atravessando aventuras épicas, certamente deixarão suas marcas por onde passarem, inclusive nos próprios leitores.",
-        en: "The many books that will make up this work will expand its horizons through a commitment to crafting stories with robust plots and iconic characters — characters who, through epic adventures, will surely leave their mark wherever they go, including on the readers themselves.",
+          "O mundo ao seu redor, no entanto, não está pronto para acreditar na verdade que ele viu... Sozinho, ferido e cercado por quem deveria protegê-lo, Alfred Mainfield descobrirá que sobreviver à tragédia foi apenas o primeiro passo de uma jornada muito mais perigosa.",
+        en: "The world around him, however, is not ready to believe the truth he saw... Alone, wounded, and surrounded by those who should protect him, Alfred Mainfield will discover that surviving the tragedy was only the first step of a far more dangerous journey.",
       },
       {
         "pt-br":
-          "Tudo está sendo moldado para causar um grande impacto em quem se arriscar a se aventurar por essas páginas, que em repouso, anseiam por serem descobertas, assim, a densidade do que está escondido nelas só pode ser consumida verdadeiramente por quem realmente tem ávido espírito de luta! E a estes, desejo que a chama ardente de suas almas queime ainda mais poderosamente, para que então, possam voar sempre mais alto.",
-        en: "Everything is being shaped to leave a lasting impact on whoever dares to venture through these pages — pages that, at rest, long to be discovered. And so, the depth of what lies hidden within them can only truly be grasped by those with an eager fighting spirit! To them, I wish that the burning flame of their souls burns ever more powerfully, so that they may always fly higher.",
+          "Enquanto isso, longe dali, nas sombras de uma organização secreta que move os fios do destino sem que ninguém perceba, o lendário Dan enfrenta uma batalha muito mais íntima — algo que desperta dentro dele pode estar ligado, de formas que ele ainda não compreende, ao mesmo pesadelo que consumiu a vida de um garoto inocente.",
+        en: "Meanwhile, far from there, in the shadows of a secret organization that pulls the strings of fate without anyone noticing, the legendary Dan faces a far more intimate battle — something awakening within him may be connected, in ways he does not yet understand, to the very same nightmare that consumed the life of an innocent boy.",
+      },
+      {
+        "pt-br": "Duas jornadas. Um só destino entrelaçado pelas sombras!",
+        en: "Two journeys. One destiny, woven together by the shadows!",
       },
       {
         "pt-br":
-          "Prelúdio do Épico",
-        en: "Prelude to the Epic",
-      },
-      {
-        "pt-br":
-          "Enquanto todos vivem suas vidas conforme lhes cabe, grupos secretos agem nas sombras disputando poder e controle dentro de um jogo cuja presença na superfície, do que é então conhecido, serve justamente para encobrir aquilo que deve permanecer oculto. Suas ações, contudo, não podem mais ser simplesmente contidas como antigamente foram, à medida que os rancores aumentam, acordos estão sendo desfeitos e novas leis estão sendo escritas, os costumes já não são o suficiente... as novas gerações trazem consigo a iminência de mudanças que desafiam a ordem dos antigos e o equilíbrio vigente do mundo, entretanto, quando é que a civilização esteve realmente estável? Os livros escritos pela humanidade contam somente as histórias que convêm serem contadas, contudo, a pureza da verdade não tem nascente em nenhum deles, nenhuma de suas incontáveis páginas é realmente sincera ou lúcida sobre o que realmente aconteceu, e o que alguns mais seletos desejam conhecer, está registrado apenas nas Memórias de Berdox.",
-        en: "While everyone lives their lives as they see fit, secret groups act in the shadows, fighting for power and control within a game whose presence on the surface — in what is otherwise known — serves precisely to conceal what must remain hidden. Their actions, however, can no longer simply be contained as they once were. As grudges deepen, agreements are unraveling, and new laws are being written, old customs are no longer enough... the new generations carry with them the imminence of changes that challenge the order of the old and the prevailing balance of the world — and yet, when has civilization ever truly been stable? The books written by humanity tell only the stories that are convenient to tell, yet the purity of truth springs from none of them; not a single one of their countless pages is truly honest or lucid about what actually happened. And what only a select few wish to know is recorded solely in the Memories of Berdox.",
+          "As Memórias de Berdox – Volume 1: Fragmentados é o primeiro capítulo de uma saga de fantasia épica do universo de O Dominador de Almas, cuja trajetória contém todos os tipos de jornadas. Esta primeira aventura trata de perda, sobrevivência e o preço que se paga para transformar dor em propósito.",
+        en: "The Memories of Berdox – Volume 1: Fragmented is the first chapter of an epic fantasy saga set in the universe of The Dominator of Souls, a series whose path holds every kind of journey. This first adventure is about loss, survival, and the price paid to turn pain into purpose.",
       },
     ],
     cover: {
