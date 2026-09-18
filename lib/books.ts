@@ -24,17 +24,12 @@ export type Book = {
   openingChapter?: LocalizedString[];
 };
 
-export type FormatDetails = {
-  asin: string;
-  publisher: string;
-  publicationDate: string;
-  language: string;
-  pageCount: string;
-  isbn13: string;
-  weight: string;
-  dimensions: string;
-  seriesLink: { label: string; href: string };
+export type FormatDetailsData = {
+  rows: { label: string; value: string }[];
 };
+
+
+export type FormatDetails = Record<Locale, FormatDetailsData>;
 
 const SERIES: LocalizedString = {
   "pt-br": "O Dominador de Almas",
@@ -63,17 +58,59 @@ export const books: Book[] = [
     formats: ["ebook", "paperback", "hardcover", "audiobook"],
     formatDetails: {
       paperback: {
-        asin: "B0HK5XZ27Q",
-        publisher: "Independently published",
-        publicationDate: "Sept. 17 2026",
-        language: "English",
-        pageCount: "140 pages",
-        isbn13: "979-8175144629",
-        weight: "209 g",
-        dimensions: "12.85 x 0.81 x 19.84 cm",
-        seriesLink: {
-          label: "The Dominator of Souls - The Memories of Berdox",
-          href: "https://www.amazon.ca/dp/B0HK4V1G24?binding=paperback&ref=dbs_dp_sirpi",
+        "pt-br": {
+          rows: [
+            { label: "ASIN", value: "B0HK5XZ27Q" },
+            { label: "Editora", value: "Independently Published" },
+            { label: "Data da publicação", value: "17 setembro 2026" },
+            { label: "Idioma", value: "Inglês" },
+            { label: "Número de páginas", value: "142 páginas" },
+            { label: "ISBN-13", value: "979-8175144629" },
+            { label: "Peso do produto", value: "145 g" },
+            { label: "Dimensões", value: "12.85 x 0.81 x 19.84 cm" },
+          ],
+        },
+        en: {
+          rows: [
+            { label: "ASIN", value: "B0HK5XZ27Q" },
+            { label: "Publisher", value: "Independently published" },
+            { label: "Publication date", value: "Sept. 17 2026" },
+            { label: "Language", value: "English" },
+            { label: "Print length", value: "140 pages" },
+            { label: "ISBN-13", value: "979-8175144629" },
+            { label: "Item weight", value: "209 g" },
+            { label: "Dimensions", value: "12.85 x 0.81 x 19.84 cm" },
+          ],
+        },
+      },
+      ebook: {
+        "pt-br": {
+          rows: [
+            { label: "ASIN", value: "B0HK4RNHYR" },
+            { label: "Data da publicação", value: "17 setembro 2026" },
+            { label: "Idioma", value: "Inglês" },
+            { label: "Tamanho do arquivo", value: "2.2 MB" },
+            { label: "Leitor de tela", value: "Compatível" },
+            { label: "Tipografia avançada", value: "Ativado" },
+            { label: "X-Ray", value: "Ativado" },
+            { label: "Word Wise", value: "Ativado" },
+            { label: "Número de páginas", value: "142 páginas" },
+            { label: "Page Flip", value: "Ativado" },
+          ],
+        },
+        en: {
+          rows: [
+            { label: "ASIN", value: "B0HK4RNHYR" },
+            { label: "Publication date", value: "Sept. 17 2026" },
+            { label: "Language", value: "English" },
+            { label: "File size", value: "2.2 MB" },
+            { label: "Screen Reader", value: "Supported" },
+            { label: "Enhanced typesetting", value: "Enabled" },
+            { label: "X-Ray", value: "Enabled" },
+            { label: "Word Wise", value: "Enabled" },
+            { label: "Print length", value: "142 pages" },
+            { label: "Page Flip", value: "Enabled" },
+          ],
         },
       },
     },

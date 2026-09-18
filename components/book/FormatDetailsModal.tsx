@@ -1,30 +1,17 @@
 "use client";
 
-import Link from "next/link";
-import type { FormatDetails } from "@/lib/data";
+import type { FormatDetailsData } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
-import { ExternalLinkIcon } from "@/lib/icons";
 
 type FormatDetailsModalProps = {
   title: string;
   icon: (props: { size?: number }) => React.JSX.Element;
-  details: FormatDetails;
+  details: FormatDetailsData;
   onClose: () => void;
 };
 
 export default function FormatDetailsModal({ title, icon: Icon, details, onClose }: FormatDetailsModalProps) {
   const { t, ui } = useLanguage();
-
-  const rows: { label: string; value: string }[] = [
-    { label: t(ui.formatDetailsAsin), value: details.asin },
-    { label: t(ui.formatDetailsPublisher), value: details.publisher },
-    { label: t(ui.formatDetailsPublicationDate), value: details.publicationDate },
-    { label: t(ui.formatDetailsLanguage), value: details.language },
-    { label: t(ui.formatDetailsPageCount), value: details.pageCount },
-    { label: t(ui.formatDetailsIsbn), value: details.isbn13 },
-    { label: t(ui.formatDetailsWeight), value: details.weight },
-    { label: t(ui.formatDetailsDimensions), value: details.dimensions },
-  ];
 
   return (
     <div
@@ -50,28 +37,13 @@ export default function FormatDetailsModal({ title, icon: Icon, details, onClose
           </button>
         </div>
 
-        <div className="mt-6 flex flex-col gap-3">
-          {rows.map((row) => (
-            <div key={row.label} className="flex items-baseline justify-between gap-4 border-b border-line pb-2">
+        <div className="gold-scrollbar mt-6 flex max-h-96 flex-col gap-3 overflow-y-auto pr-4">
+          {details.rows.map((row) => (
+            <div key={row.label} className="flex items-baseline justify-between gap-4 border-b border-line pb-2 last:border-none last:pb-0">
               <span className="font-body text-xs uppercase tracking-[0.1em] text-muted">{row.label}</span>
               <span className="text-right font-body text-sm text-ink">{row.value}</span>
             </div>
           ))}
-        </div>
-
-        <div className="mt-5">
-          <span className="font-body text-xs uppercase tracking-[0.1em] text-muted">
-            {t(ui.formatDetailsSeriesLink)}
-          </span>
-          <Link
-            href={details.seriesLink.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-1 flex items-center gap-1.5 font-body text-sm text-gold-soft transition-colors hover:text-red-soft"
-          >
-            {details.seriesLink.label}
-            <ExternalLinkIcon size={14} />
-          </Link>
         </div>
       </div>
     </div>

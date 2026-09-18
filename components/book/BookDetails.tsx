@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 import type { Book, BookFormat } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
-import { PagesIcon, CalendarIcon, AuthorIcon, MoreIcon, BookOutlineIcon, DeviceTabletIcon, HeadphonesIcon } from "@/lib/icons";
+import { PagesIcon, CalendarIcon, AuthorIcon, MoreIcon, BookOutlineIcon, DeviceTabletIcon, HeadphonesIcon, ExternalLinkIcon } from "@/lib/icons";
 import { EXTERNAL_LINKS, ROUTES } from "@/lib/routes";
 import FormatDetailsModal from "./FormatDetailsModal";
 
@@ -27,6 +27,7 @@ const FORMAT_ICONS: Record<BookFormat, (props: { size?: number }) => React.JSX.E
   paperback: PagesIcon,
   ebook: DeviceTabletIcon,
   audiobook: HeadphonesIcon,
+
 };
 
 const FORMAT_LABEL_KEYS: Record<BookFormat, "formatHardcover" | "formatPaperback" | "formatEbook" | "formatAudiobook"> = {
@@ -127,15 +128,16 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
           }`}
       >
         <Icon />
-        <span className="whitespace-nowrap font-body text-xs uppercase tracking-[0.1em]">
+        <span className="flex items-center gap-1 whitespace-nowrap font-body text-xs uppercase tracking-[0.1em]">
           {item.label}
+          {item.linksAway && <ExternalLinkIcon size={11} />}
         </span>
       </div>
     );
 
     if (item.onClick) {
       return (
-        <button key={item.label} type="button" onClick={item.onClick}>
+        <button key={item.label} type="button" onClick={item.onClick} className="cursor-pointer">
           {content}
         </button>
       );
@@ -156,7 +158,7 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
     );
   }
 
-  const openDetails = openFormat ? book.formatDetails?.[openFormat] : undefined;
+  const openDetails = openFormat ? book.formatDetails?.[openFormat]?.[locale] : undefined;
   const openIcon = openFormat ? FORMAT_ICONS[openFormat] : undefined;
   const openLabel = openFormat ? t(ui[FORMAT_LABEL_KEYS[openFormat]]) : "";
 
