@@ -130,7 +130,7 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
         <Icon />
         <span className="flex items-center gap-1 whitespace-nowrap font-body text-xs uppercase tracking-[0.1em]">
           {item.label}
-          {item.linksAway && <ExternalLinkIcon size={11} />}
+          {item.linksAway && !item.onClick && <ExternalLinkIcon size={11} />}
         </span>
       </div>
     );
