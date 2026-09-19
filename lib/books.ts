@@ -24,8 +24,9 @@ export type Book = {
   openingChapter?: LocalizedString[];
 };
 
+
 export type FormatDetailsData = {
-  rows: { label: string; value: string }[];
+  rows: { label: string; value: string; href?: string }[];
 };
 
 
@@ -86,16 +87,15 @@ export const books: Book[] = [
       ebook: {
         "pt-br": {
           rows: [
-            { label: "ASIN", value: "B0HK4RNHYR" },
-            { label: "Data da publicação", value: "17 setembro 2026" },
-            { label: "Idioma", value: "Inglês" },
-            { label: "Tamanho do arquivo", value: "2.2 MB" },
+            { label: "ASIN", value: "B0HHFJ496J" },
+            { label: "Data da publicação", value: "7 setembro 2026" },
+            { label: "Idioma", value: "Português" },
+            { label: "Tamanho do arquivo", value: "2.7 MB" },
             { label: "Leitor de tela", value: "Compatível" },
-            { label: "Tipografia avançada", value: "Ativado" },
-            { label: "X-Ray", value: "Ativado" },
-            { label: "Word Wise", value: "Ativado" },
-            { label: "Número de páginas", value: "142 páginas" },
-            { label: "Page Flip", value: "Ativado" },
+            { label: "Configuração de fonte", value: "Habilitado" },
+            { label: "Dicas de vocabulário", value: "Não habilitado" },
+            { label: "Número de páginas", value: "145 páginas" },
+            { label: "Page Flip", value: "Habilitado" },
           ],
         },
         en: {
@@ -105,7 +105,7 @@ export const books: Book[] = [
             { label: "Language", value: "English" },
             { label: "File size", value: "2.2 MB" },
             { label: "Screen Reader", value: "Supported" },
-            { label: "Enhanced typesetting", value: "Enabled" },
+            { label: "Font customization", value: "Enabled" },
             { label: "X-Ray", value: "Enabled" },
             { label: "Word Wise", value: "Enabled" },
             { label: "Print length", value: "142 pages" },
