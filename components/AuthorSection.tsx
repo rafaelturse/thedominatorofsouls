@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useLanguage } from "@/lib/i18n";
 import { AUTHOR_SECTION } from "@/lib/author";
 import { EXTERNAL_LINKS } from "@/lib/routes";
-import { MapPinIcon, FeatherIcon } from "@/lib/icons";
+import { MapPinIcon, FeatherIcon, MoreIcon } from "@/lib/icons";
 
 export default function AuthorSection() {
   const { t, locale } = useLanguage();
@@ -50,8 +50,9 @@ export default function AuthorSection() {
                 href={EXTERNAL_LINKS.amazonAuthorPage[locale]}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block border border-red-soft bg-red-soft px-4 py-2 font-body text-xs uppercase tracking-[0.2em] text-ink transition-colors hover:bg-transparent hover:text-red-soft"
+                className="inline-flex items-center gap-2 border border-red-soft bg-red-soft px-4 py-2 font-body text-xs uppercase tracking-[0.2em] text-ink transition-colors hover:bg-transparent hover:text-red-soft"
               >
+                <MoreIcon size={14} />
                 {t(AUTHOR_SECTION.visitAmazon)}
               </Link>
             </div>

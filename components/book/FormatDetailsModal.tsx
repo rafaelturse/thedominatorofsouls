@@ -41,7 +41,18 @@ export default function FormatDetailsModal({ title, icon: Icon, details, onClose
           {details.rows.map((row) => (
             <div key={row.label} className="flex items-baseline justify-between gap-4 border-b border-line pb-2 last:border-none last:pb-0">
               <span className="font-body text-xs uppercase tracking-[0.1em] text-muted">{row.label}</span>
-              <span className="text-right font-body text-sm text-ink">{row.value}</span>
+              {row.href ? (
+                <a
+                  href={row.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-right font-body text-sm text-gold-soft underline transition-colors hover:text-red-soft"
+                >
+                  {row.value}
+                </a>
+              ) : (
+                <span className="text-right font-body text-sm text-ink">{row.value}</span>
+              )}
             </div>
           ))}
         </div>

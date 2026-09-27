@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useLanguage } from "@/lib/i18n";
 import { COMMUNITY_PLATFORMS, type CommunityPlatformId } from "@/lib/community";
-import { CommunityIcon } from "@/lib/icons";
+import { CommunityIcon, MoreIcon } from "@/lib/icons";
 import type { LocalizedString } from "@/lib/i18n";
 
 function resolveHref(href: string | LocalizedString, locale: "pt-br" | "en") {
@@ -35,9 +35,8 @@ export default function CommunityLinks() {
               key={platform.id}
               type="button"
               onClick={() => setSelected(isActive ? null : platform.id)}
-              className={`flex min-h-[80px] flex-col items-center justify-center gap-2 rounded-3xl bg-card p-4 text-center shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] transition-all duration-300 ease-out hover:-translate-y-1 ${
-                isActive ? "ring-2 ring-gold-soft" : ""
-              }`}
+              className={`flex min-h-[80px] flex-col items-center justify-center gap-2 rounded-3xl bg-card p-4 text-center shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] transition-all duration-300 ease-out hover:-translate-y-1 ${isActive ? "ring-2 ring-gold-soft" : ""
+                }`}
             >
               {Icon ? (
                 <span style={{ color: platform.iconColor }}>
@@ -75,8 +74,9 @@ export default function CommunityLinks() {
               href={resolveHref(selectedPlatform.href, locale)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block border border-gold-soft px-4 py-2 font-body text-xs uppercase tracking-[0.2em] text-gold-soft transition-colors hover:bg-gold-soft hover:text-bg"
+              className="inline-flex items-center gap-2 border border-red-soft bg-red-soft px-4 py-2 font-body text-xs uppercase tracking-[0.2em] text-ink transition-colors hover:bg-transparent hover:text-red-soft"
             >
+              <MoreIcon size={14} />
               {t(ui.visitSite)}
             </Link>
           </div>
