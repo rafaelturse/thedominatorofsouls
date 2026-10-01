@@ -225,3 +225,10 @@ export const BalloonIcon = ({ size = 18 }: IconProps): ReactElement => (
     <path d="M12 16a1 1 0 0 1 .993 .883l.007 .117v1a3 3 0 0 1 -2.824 2.995l-.176 .005h-3a1 1 0 0 0 -.993 .883l-.007 .117a1 1 0 0 1 -2 0a3 3 0 0 1 2.824 -2.995l.176 -.005h3a1 1 0 0 0 .993 -.883l.007 -.117v-1a1 1 0 0 1 1 -1z" />
   </svg>
 );
+
+export const ArrowUpIcon = ({ size = 20 }: IconProps): ReactElement => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 19V5" />
+    <path d="M5 12l7-7 7 7" />
+  </svg>
+);

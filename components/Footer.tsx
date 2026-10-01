@@ -1,10 +1,12 @@
 import ContactIcons from "@/components/ContactIcons";
-import HomeLink from "./HomeLink";
+import BackToTopButton from "./BackToTopButton";
 
 export default function Footer() {
     return (
         <div>
-            <HomeLink />
+            <div className="mx-auto flex max-w-5xl justify-center px-5 py-4">
+                <BackToTopButton />
+            </div>
 
             <footer className="border-t border-line">
                 <div className="mx-auto max-w-5xl px-5 py-8">
