@@ -17,7 +17,7 @@ export default function Timeline({ events }: { events: TimelineEvent[] }) {
 
     return (
         <div className="relative">
-            <div className="absolute left-4 top-4 bottom-4 w-1 bg-red-soft/40 sm:left-1/2 sm:-translate-x-1/2" />
+            <div className="absolute left-1/2 top-4 bottom-4 w-1 -translate-x-1/2 bg-red-soft/40" />
 
             <div className="flex flex-col">
                 {events.map((event, i) => {
@@ -37,7 +37,7 @@ export default function Timeline({ events }: { events: TimelineEvent[] }) {
                                         }`}
                                 >
                                     <div
-                                        className="rounded-3xl border border-transparent p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] transition-colors duration-300 group-hover:border-red-soft"
+                                        className="relative z-10 rounded-3xl border border-transparent p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] transition-colors duration-300 group-hover:border-red-soft"
                                         style={{
                                             backgroundColor: "#111",
                                             borderLeftColor: !isLeft ? "var(--color-red-soft)" : undefined,
