@@ -61,7 +61,7 @@ export default function Timeline({ events }: { events: TimelineEvent[] }) {
                                         <CircleArrowUpIcon size={24} />
                                     </span>
                                     <span className="z-10 rounded-full bg-gold-soft px-3 py-1 font-body text-[10px] uppercase tracking-[0.15em] text-bg transition-colors duration-300 group-hover:bg-red-soft">
-                                        {t(event.date)}
+                                        {t(events[i + 1].date)}
                                     </span>
                                 </button>
                             )}
