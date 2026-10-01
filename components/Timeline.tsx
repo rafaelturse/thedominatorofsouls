@@ -29,7 +29,7 @@ export default function Timeline({ events }: { events: TimelineEvent[] }) {
                         <div key={i}>
                             <div
                                 id={cardId}
-                                className={`relative flex items-start gap-6 sm:items-center ${isLeft ? "sm:flex-row" : "sm:flex-row-reverse"
+                                className={`group relative flex items-start gap-6 sm:items-center ${isLeft ? "sm:flex-row" : "sm:flex-row-reverse"
                                     }`}
                             >
                                 <div
@@ -37,8 +37,14 @@ export default function Timeline({ events }: { events: TimelineEvent[] }) {
                                         }`}
                                 >
                                     <div
-                                        className="rounded-3xl p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)]"
-                                        style={{ backgroundColor: "#111" }}
+                                        className="rounded-3xl border border-transparent p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] transition-colors duration-300 group-hover:border-red-soft"
+                                        style={{
+                                            backgroundColor: "#111",
+                                            borderLeftColor: !isLeft ? "var(--color-red-soft)" : undefined,
+                                            borderLeftWidth: !isLeft ? "3px" : undefined,
+                                            borderRightColor: isLeft ? "var(--color-red-soft)" : undefined,
+                                            borderRightWidth: isLeft ? "3px" : undefined,
+                                        }}
                                     >
                                         <p className="font-body text-xs uppercase tracking-[0.3em] text-gold-soft">
                                             {t(event.date)}
