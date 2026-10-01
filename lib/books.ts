@@ -51,7 +51,7 @@ export const books: Book[] = [
       "pt-br": "As Memórias de Berdox — Volume 1 — Fragmentados",
       en: "The Memories of Berdox — Volume 1 — Fragmented",
     },
-    volumeLabel: { "pt-br": "Volume 1", en: "Volume 1" },
+    volumeLabel: { "pt-br": "Volume 1 - Fragmentados", en: "Volume 1 - Fragmented" },
     series: SERIES,
     status: "published",
     release: { "pt-br": "Set-2026", en: "Sep-2026" },
@@ -185,11 +185,15 @@ export const books: Book[] = [
   {
     slug: "volume-2",
     title: { "pt-br": "As Memórias de Berdox — Volume 2", en: "The Memories of Berdox — Volume 2" },
-    volumeLabel: { "pt-br": "Volume 2", en: "Volume 2" },
+    volumeLabel: { "pt-br": "Volume 2 - A Caçada", en: "Volume 2 - The Hunt" },
     series: SERIES,
     status: "upcoming",
     release: { "pt-br": "Dez-2026", en: "Dec-2026" },
     synopsis: UPCOMING_SYNOPSIS,
+    cover: {
+      "pt-br": "/img/books/the-memories-of-berdox-vol2-the-hunt-cover-pt.jpg",
+      en: "/img/books/the-memories-of-berdox-vol2-the-hunt-cover-en.jpg",
+    },
   },
   {
     slug: "volume-3",

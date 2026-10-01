@@ -41,7 +41,7 @@ export default function CollectionStrip({ books }: { books: Book[] }) {
                   </div>
                 )}
               </div>
-              <span className="font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors duration-300 group-hover:text-gold-soft">
+              <span className="w-full text-center font-body text-xs uppercase leading-tight tracking-[0.15em] text-muted transition-colors duration-300 group-hover:text-gold-soft">
                 {t(book.volumeLabel)}
               </span>
             </div>
