@@ -16,7 +16,7 @@ export default function LastUpdatesSlider({ book }: { book: Book }) {
   const { t, ui, locale } = useLanguage();
   const [zoomOpen, setZoomOpen] = useState(false);
 
-  const timelineSlides = TIMELINE_EVENTS.slice(0, 2).map((event) => ({
+  const timelineSlides = TIMELINE_EVENTS.slice(1, 3).map((event) => ({
     date: t(event.date),
     title: t(event.title),
     body: event.description[locale],
@@ -43,7 +43,7 @@ export default function LastUpdatesSlider({ book }: { book: Book }) {
           className="cursor-grab select-none active:cursor-grabbing"
           {...dragHandlers}
         >
-          <div className="flex min-h-[260px] flex-col justify-center sm:min-h-[220px]">
+          <div className="flex min-h-[400px] flex-col justify-center sm:min-h-[340px]">
             {active === 0 ? (
               <div className="flex flex-col items-center gap-10 sm:flex-row-reverse sm:items-start">
                 {book.cover && (
@@ -51,7 +51,7 @@ export default function LastUpdatesSlider({ book }: { book: Book }) {
                     <button
                       type="button"
                       onClick={() => setZoomOpen(true)}
-                      className="w-24 cursor-pointer overflow-hidden border border-transparent transition-colors duration-300 hover:border-gold-soft sm:w-28"
+                      className="w-48 cursor-pointer overflow-hidden border border-transparent transition-colors duration-300 hover:border-gold-soft sm:w-56"
                     >
                       <img
                         src={t(book.cover)}
@@ -68,7 +68,10 @@ export default function LastUpdatesSlider({ book }: { book: Book }) {
                 )}
 
                 <div className="w-full text-center sm:text-left">
-                  <p className="font-body text-sm leading-relaxed text-muted sm:text-base">
+                  <p className="font-body text-xs uppercase tracking-[0.3em] text-gold-soft">
+                    {t(TIMELINE_EVENTS[0].date)}
+                  </p>
+                  <p className="mt-2 font-body text-sm leading-relaxed text-muted sm:text-base">
                     {t(ui.inTheWorksText)}
                   </p>
                 </div>

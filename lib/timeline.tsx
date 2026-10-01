@@ -13,7 +13,7 @@ export type TimelineEvent = {
 
 export const TIMELINE_EVENTS: TimelineEvent[] = [
   {
-    date: { "pt-br": "Em breve", en: "Coming Soon" },
+    date: { "pt-br": "Out-2026", en: "Oct-2026" },
     title: { "pt-br": "Volume 2: A Caçada", en: "Volume 2: The Hunt" },
     description: {
       "pt-br": (
