@@ -16,8 +16,20 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
     date: { "pt-br": "Em breve", en: "Coming Soon" },
     title: { "pt-br": "Volume 2: A Caçada", en: "Volume 2: The Hunt" },
     description: {
-      "pt-br": "A jornada continua — o próximo capítulo da saga está em produção.",
-      en: "The journey continues — the next chapter of the saga is in the works.",
+      "pt-br": (
+        <>
+          O próximo capítulo de As Memórias de Berdox já está em movimento — personagens ganhando
+          forma, conflitos sendo lapidados, e um novo pedaço do universo de O Dominador de Almas
+          tomando corpo nas sombras, pronto para ser revelado quando chegar a hora certa.
+        </>
+      ),
+      en: (
+        <>
+          The next chapter of The Memories of Berdox is already in motion — characters taking shape,
+          conflicts being sharpened, and a new piece of the Dominator of Souls universe coming
+          together in the shadows, ready to be revealed when the time is right.
+        </>
+      ),
     },
     icon: ShieldIcon,
   },

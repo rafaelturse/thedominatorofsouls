@@ -80,7 +80,7 @@ const UI = {
     "pt-br": "Como cuidamos dos seus dados neste site",
     en: "How we handle your data on this site",
   },
-  inTheWorksTitle: { "pt-br": "Nos Bastidores", en: "Behind the Scenes" },
+  inTheWorksTitle: { "pt-br": "Últimas Atualizações", en: "Last Updates" },
   historyLabel: { "pt-br": "História", en: "History" },
   welcomeTitle: { "pt-br": "Bem-vindo!", en: "Welcome!" },
   thankYouExclaim: { "pt-br": "Obrigado!", en: "Thank you!" },
