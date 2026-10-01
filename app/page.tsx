@@ -4,9 +4,11 @@ import GenreStrip from "@/components/GenreStrip";
 import SpotlightBook from "@/components/SpotlightBook";
 import CollectionStrip from "@/components/CollectionStrip";
 import ExploreLinks from "@/components/ExploreLinks";
+import InTheWorks from "@/components/InTheWorks";
 
 export default function HomePage() {
   const featured = books.find((b) => b.status === "published") ?? books[0];
+  const inTheWorks = books.find((b) => b.slug === "volume-2");
 
   return (
     <div>
@@ -14,11 +16,14 @@ export default function HomePage() {
       <GenreStrip />
 
       <div className="relative z-10 mx-auto max-w-6xl px-5 pb-20 pt-16 sm:pb-28 sm:pt-20">
+        
+        {inTheWorks && <InTheWorks book={inTheWorks} />}
+        
         <SpotlightBook book={featured} />
-        <div className="mt-20">
-          <CollectionStrip books={books} />
-        </div>
-        <ExploreLinks ids={["community", "store", "privacy", "about"]} />
+        
+        <div className="mt-20"><CollectionStrip books={books} /></div>
+        
+        <ExploreLinks ids={["community", "universe", "author", "about"]} />
       </div>
     </div>
   );

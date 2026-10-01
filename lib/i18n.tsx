@@ -80,6 +80,16 @@ const UI = {
     "pt-br": "Como cuidamos dos seus dados neste site",
     en: "How we handle your data on this site",
   },
+  inTheWorksTitle: { "pt-br": "Nos Bastidores", en: "Behind the Scenes" },
+  historyLabel: { "pt-br": "História", en: "History" },
+  welcomeTitle: { "pt-br": "Bem-vindo!", en: "Welcome!" },
+  thankYouExclaim: { "pt-br": "Obrigado!", en: "Thank you!" },
+  inTheWorksText: {
+    "pt-br":
+      "O próximo capítulo de As Memórias de Berdox já está em movimento — personagens ganhando forma, conflitos sendo lapidados, e um novo pedaço do universo de O Dominador de Almas tomando corpo nas sombras, pronto para ser revelado quando chegar a hora certa.",
+    en:
+      "The next chapter of The Memories of Berdox is already in motion — characters taking shape, conflicts being sharpened, and a new piece of the Dominator of Souls universe coming together in the shadows, ready to be revealed when the time is right.",
+  },
 } satisfies Record<string, LocalizedString>;
 
 type LanguageContextValue = {

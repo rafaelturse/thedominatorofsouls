@@ -9,5 +9,6 @@ export const NAV_ITEMS: NavItem[] = [
   { label: { "pt-br": "Galeria", en: "Gallery" }, href: ROUTES.gallery, comingSoon: true },
   { label: { "pt-br": "Loja", en: "Store" }, href: ROUTES.store, comingSoon: false },
   { label: { "pt-br": "Comunidade", en: "Community" }, href: ROUTES.community },
+  { label: { "pt-br": "Linha do Tempo", en: "Timeline" }, href: ROUTES.timeline, comingSoon: false },
   { label: { "pt-br": "Sobre", en: "About" }, href: ROUTES.about, comingSoon: false },
 ];

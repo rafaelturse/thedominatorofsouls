@@ -32,10 +32,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${garamond.variable} ${inter.variable} ${indieFlower.variable}`}
-    >
+    <html lang="en" data-scroll-behavior="smooth" className={`${garamond.variable} ${inter.variable} ${indieFlower.variable}`}>
       <body className="bg-bg bg-grain flex min-h-screen flex-col font-body font-normal text-ink antialiased">
         <LanguageProvider>
           <Header />
