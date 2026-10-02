@@ -42,6 +42,8 @@ const UI = {
     en: "Meet the person behind the Dominator of Souls",
   },
   exploreAbout: { "pt-br": "Sobre", en: "About" },
+  aboutLabel: { "pt-br": "Sobre", en: "About" },
+  privacyLabel: { "pt-br": "Privacidade", en: "Privacy" },
   exploreAboutDesc: {
     "pt-br": "Uma pequeno vislumbre da obra",
     en: "A small glimpse into the work",

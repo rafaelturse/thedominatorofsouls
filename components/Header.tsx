@@ -8,13 +8,14 @@ import { useLanguage } from "@/lib/i18n";
 import { ROUTES } from "@/lib/routes";
 import { HomeIcon } from "@/lib/icons";
 import LanguageSwitcher from "./LanguageSwitcher";
+import AboutMenu from "./AboutMenu";
 
 export default function Header() {
   const pathname = usePathname();
   const { t, ui } = useLanguage();
   const [open, setOpen] = useState(false);
 
-  const mobileNavItems = NAV_ITEMS.filter((item) => item.href !== ROUTES.home);
+  const mobileNavItems = NAV_ITEMS.filter((item) => item.href !== ROUTES.home && item.href !== ROUTES.about);
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-bg/90 backdrop-blur">
@@ -49,7 +50,9 @@ export default function Header() {
 
         <nav className="hidden items-center gap-6 md:flex">
           {NAV_ITEMS.map((item) =>
-            item.comingSoon ? (
+            item.href === ROUTES.about ? (
+              <AboutMenu key={item.href} />
+            ) : item.comingSoon ? (
               <span
                 key={item.href}
                 className="font-body text-xs uppercase tracking-[0.15em] text-line"
@@ -96,6 +99,20 @@ export default function Header() {
               </Link>
             )
           )}
+          <Link
+            href={ROUTES.about}
+            onClick={() => setOpen(false)}
+            className="border-b border-line py-3 font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors hover:text-gold-soft"
+          >
+            {t(ui.aboutLabel)}
+          </Link>
+          <Link
+            href={ROUTES.privacy}
+            onClick={() => setOpen(false)}
+            className="py-3 pl-4 font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors last:border-none hover:text-gold-soft"
+          >
+            — {t(ui.privacyLabel)}
+          </Link>
         </nav>
       )}
     </header>
