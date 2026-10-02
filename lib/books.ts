@@ -19,6 +19,7 @@ export type Book = {
   fullSynopsisHeading?: LocalizedString;
   fullSynopsis?: LocalizedString[];
   cover?: LocalizedString;
+  comingSoon?: boolean;
   stores?: Store[];
   openingChapterTitle?: LocalizedString;
   openingChapter?: LocalizedString[];
@@ -188,6 +189,7 @@ export const books: Book[] = [
     volumeLabel: { "pt-br": "Volume 2 - A Caçada", en: "Volume 2 - The Hunt" },
     series: SERIES,
     status: "upcoming",
+    comingSoon: true,
     release: { "pt-br": "Dez-2026", en: "Dec-2026" },
     synopsis: UPCOMING_SYNOPSIS,
     cover: {
