@@ -40,7 +40,7 @@ export default function BookDetailContent({ book }: { book: Book }) {
           <CollectionStrip books={books} />
         </div>
 
-        <ExploreLinks ids={["community", "universe", "author", "about"]} />
+        <ExploreLinks count={3} />
       </div>
 
       {sampleOpen && (
