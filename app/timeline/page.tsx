@@ -58,7 +58,7 @@ export default function TimelinePage() {
   return (
     <div>
       <Hero />
-      <div className="relative z-10 mx-auto max-w-6xl px-5 pb-20 pt-16 sm:pb-28 sm:pt-20">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 pb-16 pt-6 sm:pb-20 sm:pt-8">
         <PageHeader
           title={TIMELINE_PAGE.title}
           heading={TIMELINE_PAGE.heading}
