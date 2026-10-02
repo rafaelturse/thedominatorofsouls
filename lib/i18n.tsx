@@ -12,7 +12,7 @@ const UI = {
   close: { "pt-br": "Fechar", en: "Close" },
   collectionTitle: { "pt-br": "Coleção", en: "Collection" },
   comingSoon: { "pt-br": "Em breve", en: "Coming soon" },
-  featuredTitle: { "pt-br": "Em Destaque na Loja", en: "Featured in Store" },
+  featuredTitle: { "pt-br": "Em Destaque", en: "Featured" },
   newBadge: { "pt-br": "Novo", en: "New" },
   buyOnAmazon: { "pt-br": "Comprar na Amazon", en: "Buy on Amazon" },
   pagesSuffix: { "pt-br": "páginas", en: "pages" },
@@ -111,6 +111,7 @@ const UI = {
     "pt-br": "Bastidores, novidades e histórias por trás da série",
     en: "Behind the scenes, updates, and stories from the series",
   },
+  soonBadge: { "pt-br": "Em Breve", en: "Soon" },
 
 } satisfies Record<string, LocalizedString>;
 

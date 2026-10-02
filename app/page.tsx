@@ -1,7 +1,11 @@
+"use client";
+
+import { useState } from "react";
 import { books } from "@/lib/data";
+import type { Book } from "@/lib/data";
 import Hero from "@/components/Hero";
 import GenreStrip from "@/components/GenreStrip";
-import SpotlightBook from "@/components/SpotlightBook";
+import SpotlightCarousel from "@/components/SpotlightCarousel";
 import CollectionStrip from "@/components/CollectionStrip";
 import ExploreLinks from "@/components/ExploreLinks";
 import LastUpdatesSlider from "@/components/slide/LastUpdatesSlider";
@@ -9,6 +13,7 @@ import LastUpdatesSlider from "@/components/slide/LastUpdatesSlider";
 export default function HomePage() {
   const featured = books.find((b) => b.status === "published") ?? books[0];
   const inTheWorks = books.find((b) => b.slug === "volume-2");
+  const [secondary, setSecondary] = useState<Book | null>(null);
 
   return (
     <div>
@@ -16,12 +21,19 @@ export default function HomePage() {
       <GenreStrip />
 
       <div className="relative z-10 mx-auto max-w-6xl px-5 pb-20 pt-16 sm:pb-28 sm:pt-20">
-
         {inTheWorks && <LastUpdatesSlider book={inTheWorks} />}
 
-        <SpotlightBook book={featured} />
+        <div id="spotlight-top" className="scroll-mt-24">
+          <SpotlightCarousel featured={featured} secondary={secondary} />
+        </div>
 
-        <div className="mt-20"><CollectionStrip books={books} /></div>
+        <div className="mt-20">
+          <CollectionStrip
+            books={books}
+            featuredSlug={featured.slug}
+            onSelectSecondary={(book) => setSecondary(book)}
+          />
+        </div>
 
         <ExploreLinks count={4} />
       </div>

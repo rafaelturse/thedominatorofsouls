@@ -6,8 +6,33 @@ import { useLanguage } from "@/lib/i18n";
 import { ArchiveIcon } from "@/lib/icons";
 import { ROUTES } from "@/lib/routes";
 
-export default function CollectionStrip({ books }: { books: Book[] }) {
+type CollectionStripProps = {
+  books: Book[];
+  featuredSlug?: string;
+  onSelectSecondary?: (book: Book) => void;
+};
+
+export default function CollectionStrip({ books, featuredSlug, onSelectSecondary }: CollectionStripProps) {
   const { t, ui } = useLanguage();
+
+  function handleClick(e: React.MouseEvent, book: Book) {
+    if (!onSelectSecondary) return;
+
+    e.preventDefault();
+
+    if (book.slug === featuredSlug) {
+      onSelectSecondary(book);
+      document.getElementById("spotlight-top")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    if (!book.cover) {
+      return;
+    }
+
+    onSelectSecondary(book);
+    document.getElementById("spotlight-top")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 
   return (
     <div>
@@ -61,6 +86,18 @@ export default function CollectionStrip({ books }: { books: Book[] }) {
               </span>
             </div>
           );
+
+          if (onSelectSecondary) {
+            return (
+              <Link
+                key={book.slug}
+                href={ROUTES.bookDetail(book.slug)}
+                onClick={(e) => handleClick(e, book)}
+              >
+                {card}
+              </Link>
+            );
+          }
 
           return book.status === "published" ? (
             <Link key={book.slug} href={ROUTES.bookDetail(book.slug)}>

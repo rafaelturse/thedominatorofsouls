@@ -49,8 +49,8 @@ export const books: Book[] = [
   {
     slug: "fragmentados",
     title: {
-      "pt-br": "As Memórias de Berdox — Volume 1 — Fragmentados",
-      en: "The Memories of Berdox — Volume 1 — Fragmented",
+      "pt-br": "As Memórias de Berdox - Volume 1 - Fragmentados",
+      en: "The Memories of Berdox - Volume 1 - Fragmented",
     },
     volumeLabel: { "pt-br": "Volume 1 - Fragmentados", en: "Volume 1 - Fragmented" },
     series: SERIES,
@@ -185,13 +185,31 @@ export const books: Book[] = [
   },
   {
     slug: "volume-2",
-    title: { "pt-br": "As Memórias de Berdox — Volume 2", en: "The Memories of Berdox — Volume 2" },
+    title: { "pt-br": "As Memórias de Berdox - Volume 2 - A Caçada", en: "The Memories of Berdox - Volume 2 - The Hunt" },
     volumeLabel: { "pt-br": "Volume 2 - A Caçada", en: "Volume 2 - The Hunt" },
     series: SERIES,
     status: "upcoming",
     comingSoon: true,
     release: { "pt-br": "Dez-2026", en: "Dec-2026" },
     synopsis: UPCOMING_SYNOPSIS,
+    fullSynopsisHeading: {
+      "pt-br": "Lorem ipsum dolor sit amet",
+      en: "Lorem ipsum dolor sit amet",
+    },
+    fullSynopsis: [
+      {
+        "pt-br":
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        en:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      },
+      {
+        "pt-br":
+          "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
+        en:
+          "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
+      },
+    ],
     cover: {
       "pt-br": "/img/books/the-memories-of-berdox-vol2-the-hunt-cover-pt.jpg",
       en: "/img/books/the-memories-of-berdox-vol2-the-hunt-cover-en.jpg",

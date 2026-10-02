@@ -43,7 +43,7 @@ export default function LastUpdatesSlider({ book }: { book: Book }) {
           className="cursor-grab select-none active:cursor-grabbing"
           {...dragHandlers}
         >
-          <div className="flex min-h-[400px] flex-col justify-center sm:min-h-[340px]">
+          <div className="flex min-h-[380px] flex-col justify-center sm:min-h-[380px]">
             {active === 0 ? (
               <div className="flex flex-col items-center gap-10 sm:flex-row-reverse sm:items-start">
                 {book.cover && (

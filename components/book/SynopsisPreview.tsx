@@ -21,7 +21,7 @@ export default function SynopsisPreview({ book, maxChars = 500 }: SynopsisPrevie
     : fullText;
 
   return (
-    <div className="mt-10 text-left">
+    <div className="mt-10 flex min-h-[220px] flex-col text-left">
       <div className="flex items-center gap-2">
         <span className="text-gold-soft">
           <QuoteIcon />

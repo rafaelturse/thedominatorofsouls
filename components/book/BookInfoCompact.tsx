@@ -15,6 +15,7 @@ type BookInfoCompactProps = {
 
 export default function BookInfoCompact({ book, showNewBadge = false }: BookInfoCompactProps) {
   const { t, ui } = useLanguage();
+  const isComingSoon = book.comingSoon ?? !book.cover;
 
   return (
     <div className="flex flex-col items-center gap-10 sm:flex-row sm:items-start">
@@ -30,11 +31,15 @@ export default function BookInfoCompact({ book, showNewBadge = false }: BookInfo
               {t(book.series)}
             </p>
           </div>
-          {showNewBadge && book.status === "published" && (
+          {showNewBadge && book.status === "published" ? (
             <span className="inline-block cursor-default border border-red-soft px-2 py-0.5 font-body text-[10px] uppercase tracking-[0.2em] text-red-soft transition-shadow duration-300 hover:shadow-[0_0_12px_rgba(177,69,60,0.7)]">
               {t(ui.newBadge)}
             </span>
-          )}
+          ) : isComingSoon ? (
+            <span className="inline-block cursor-default border border-gold-soft px-2 py-0.5 font-body text-[10px] uppercase tracking-[0.2em] text-gold-soft">
+              {t(ui.soonBadge)}
+            </span>
+          ) : null}
         </div>
 
         <h2 className="mt-3 font-display text-4xl leading-tight text-ink sm:text-5xl">
@@ -43,7 +48,7 @@ export default function BookInfoCompact({ book, showNewBadge = false }: BookInfo
 
         <SynopsisPreview book={book} />
 
-        <div className="mt-6 flex items-center justify-end gap-4 border-t border-line py-5">
+        <div className="mt-6 flex items-center justify-end gap-4 border-t border-line pt-5">
           <Link
             href={ROUTES.bookDetail(book.slug)}
             className="flex items-center gap-2 border border-red-soft bg-red-soft px-4 py-2 text-ink transition-colors hover:bg-transparent hover:text-red-soft"

@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 
-export function useAutoSlide(totalSlides: number, intervalMs: number) {
-  const [active, setActive] = useState(0);
+export function useAutoSlide(totalSlides: number, intervalMs: number, initialActive = 0) {
+  const [active, setActive] = useState(initialActive);
   const [progress, setProgress] = useState(0);
   const rafRef = useRef<number | null>(null);
   const startTimeRef = useRef<number>(Date.now());
