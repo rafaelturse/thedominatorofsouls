@@ -31,17 +31,17 @@ export default function BlogPostCard({ post }: { post: BlogPost }) {
           </span>
         </div>
 
-        <h3 className="mt-3 font-display text-xl text-ink sm:text-2xl">{t(post.title)}</h3>
+        <h3 className="mt-5 font-display text-xl text-ink sm:text-2xl">{t(post.title)}</h3>
 
         <p className="mt-2 flex-1 font-body text-sm leading-relaxed text-muted sm:text-base">
           {t(post.excerpt)}
         </p>
 
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-6 flex flex-wrap gap-2">
           {post.tags.map((tag, i) => (
             <span
               key={i}
-              className="rounded-full border border-line px-2.5 py-0.5 font-body text-[10px] uppercase tracking-[0.1em] text-muted"
+              className="rounded-full bg-red-soft px-2.5 py-0.5 font-body text-[10px] uppercase tracking-[0.1em] text-ink"
             >
               {t(tag)}
             </span>

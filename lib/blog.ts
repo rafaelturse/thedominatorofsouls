@@ -14,7 +14,7 @@ export type BlogPost = {
 export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "novo-modelo-de-capas",
-    date: { "pt-br": "Out-2026", en: "Oct-2026" },
+    date: { "pt-br": "Out-01-2026", en: "Oct-01-2026" },
     category: { "pt-br": "Design", en: "Design" },
     title: { "pt-br": "Novo Modelo de Capas", en: "New Cover Design System" },
     excerpt: {
@@ -32,7 +32,7 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "o-prologo-chega-ao-publico",
-    date: { "pt-br": "Set-2026", en: "Sep-2026" },
+    date: { "pt-br": "Set-14-2026", en: "Sep-14-2026" },
     category: { "pt-br": "Lançamento", en: "Release" },
     title: { "pt-br": "O Prólogo Chega ao Público", en: "The Prologue Goes Public" },
     excerpt: {

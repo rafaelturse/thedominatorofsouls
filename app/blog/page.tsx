@@ -20,7 +20,7 @@ export default function BlogPage() {
           subtitle={ui.blogSubtitle}
         />
 
-        <div className="mt-16 flex flex-col gap-8">
+        <div className="mt-16 flex flex-col gap-16">
           {BLOG_POSTS.map((post) => (
             <BlogPostCard key={post.slug} post={post} />
           ))}
