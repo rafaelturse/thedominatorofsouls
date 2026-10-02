@@ -36,7 +36,7 @@ export default function BookInfoCompact({ book, showNewBadge = false }: BookInfo
               {t(ui.newBadge)}
             </span>
           ) : isComingSoon ? (
-            <span className="inline-block cursor-default border border-gold-soft px-2 py-0.5 font-body text-[10px] uppercase tracking-[0.2em] text-gold-soft">
+            <span className="inline-block cursor-default border border-red-soft px-2 py-0.5 font-body text-[10px] uppercase tracking-[0.2em] text-red-soft">
               {t(ui.soonBadge)}
             </span>
           ) : null}
@@ -49,13 +49,20 @@ export default function BookInfoCompact({ book, showNewBadge = false }: BookInfo
         <SynopsisPreview book={book} />
 
         <div className="mt-6 flex items-center justify-end gap-4 border-t border-line pt-5">
-          <Link
-            href={ROUTES.bookDetail(book.slug)}
-            className="flex items-center gap-2 border border-red-soft bg-red-soft px-4 py-2 text-ink transition-colors hover:bg-transparent hover:text-red-soft"
-          >
-            <MoreIcon />
-            <span className="font-body text-xs uppercase tracking-[0.2em]">{t(ui.more)}</span>
-          </Link>
+          {isComingSoon ? (
+            <span className="flex cursor-default items-center gap-2 border border-line px-4 py-2 text-muted opacity-60">
+              <MoreIcon />
+              <span className="font-body text-xs uppercase tracking-[0.2em]">{t(ui.more)}</span>
+            </span>
+          ) : (
+            <Link
+              href={ROUTES.bookDetail(book.slug)}
+              className="flex items-center gap-2 border border-red-soft bg-red-soft px-4 py-2 text-ink transition-colors hover:bg-transparent hover:text-red-soft"
+            >
+              <MoreIcon />
+              <span className="font-body text-xs uppercase tracking-[0.2em]">{t(ui.more)}</span>
+            </Link>
+          )}
         </div>
       </div>
     </div>
