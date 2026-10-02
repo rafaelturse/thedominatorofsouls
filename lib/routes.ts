@@ -1,5 +1,6 @@
 export const ROUTES = {
   home: "/",
+  blog: "/blog",
   community: "/community",
   universe: "/universe",
   game: "/game",
@@ -9,6 +10,7 @@ export const ROUTES = {
   privacy: "/privacy",
   timeline: "/timeline",
   bookDetail: (slug: string) => `/books/${slug}#book-details`,
+  blogPost: (slug: string) => `/blog/${slug}`,
 } as const;
 
 export const EXTERNAL_LINKS = {

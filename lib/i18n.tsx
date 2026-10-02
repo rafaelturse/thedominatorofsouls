@@ -92,6 +92,26 @@ const UI = {
     en:
       "The next chapter of The Memories of Berdox is already in motion — characters taking shape, conflicts being sharpened, and a new piece of the Dominator of Souls universe coming together in the shadows, ready to be revealed when the time is right.",
   },
+  blogLabel: { "pt-br": "Blog", en: "Blog" },
+  blogPageTitle: { "pt-br": "Blog", en: "Blog" },
+  blogHeading: { "pt-br": "Notas do Autor", en: "Author's Notes" },
+  blogSubtitle: {
+    "pt-br": "Bastidores, novidades e histórias por trás de O Dominador de Almas",
+    en: "Behind the scenes, updates, and stories from The Dominator of Souls",
+  },
+  blogReadMore: { "pt-br": "Ver mais", en: "Read more" },
+  blogReadingTime: { "pt-br": "min de leitura", en: "min read" },
+  exploreTimeline: { "pt-br": "Linha do Tempo", en: "Timeline" },
+  exploreTimelineDesc: {
+    "pt-br": "Os marcos da jornada, do livro ao site",
+    en: "The milestones of the journey, from the book to the site",
+  },
+  exploreBlog: { "pt-br": "Blog", en: "Blog" },
+  exploreBlogDesc: {
+    "pt-br": "Bastidores, novidades e histórias por trás da série",
+    en: "Behind the scenes, updates, and stories from the series",
+  },
+
 } satisfies Record<string, LocalizedString>;
 
 type LanguageContextValue = {

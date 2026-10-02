@@ -20,7 +20,7 @@ export default function CommunityPage() {
 
         <CommunityLinks />
 
-        <ExploreLinks ids={["store", "universe", "author", "about"]} />
+        <ExploreLinks count={4} />
       </div>
     </div>
   );

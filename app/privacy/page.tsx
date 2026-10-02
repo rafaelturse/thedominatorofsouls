@@ -40,7 +40,7 @@ export default function PrivacyPage() {
           </div>
         </div>
 
-        <ExploreLinks ids={["community", "author", "about"]} />
+        <ExploreLinks count={3} />
       </div>
     </div>
   );

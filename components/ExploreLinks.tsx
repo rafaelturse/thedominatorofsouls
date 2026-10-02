@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 import { useLanguage } from "@/lib/i18n";
 import { ROUTES, EXTERNAL_LINKS } from "@/lib/routes";
 import {
@@ -11,19 +13,31 @@ import {
   CommunityIcon,
   ShieldIcon,
   GridIcon,
+  ClipboardListIcon,
+  NewsIcon,
   type IconProps,
 } from "@/lib/icons";
 
-export type ExploreLinkId = "store" | "universe" | "author" | "about" | "community" | "privacy";
+export type ExploreLinkId = "store" | "universe" | "author" | "about" | "community" | "privacy" | "timeline" | "blog";
 
-type LinkLabelKey = "exploreStore" | "exploreUniverse" | "exploreAuthor" | "exploreAbout" | "exploreCommunity" | "explorePrivacy";
+type LinkLabelKey =
+  | "exploreStore"
+  | "exploreUniverse"
+  | "exploreAuthor"
+  | "exploreAbout"
+  | "exploreCommunity"
+  | "explorePrivacy"
+  | "exploreTimeline"
+  | "exploreBlog";
 type LinkDescKey =
   | "exploreStoreDesc"
   | "exploreUniverseDesc"
   | "exploreAuthorDesc"
   | "exploreAboutDesc"
   | "exploreCommunityDesc"
-  | "explorePrivacyDesc";
+  | "explorePrivacyDesc"
+  | "exploreTimelineDesc"
+  | "exploreBlogDesc";
 
 type LinkInfo = {
   icon: (props: IconProps) => React.JSX.Element;
@@ -40,10 +54,32 @@ const ALL_LINKS: Record<ExploreLinkId, LinkInfo> = {
   about: { icon: AboutIcon, labelKey: "exploreAbout", descKey: "exploreAboutDesc", href: ROUTES.about, external: false },
   community: { icon: CommunityIcon, labelKey: "exploreCommunity", descKey: "exploreCommunityDesc", href: ROUTES.community, external: false },
   privacy: { icon: ShieldIcon, labelKey: "explorePrivacy", descKey: "explorePrivacyDesc", href: ROUTES.privacy, external: false },
+  timeline: { icon: ClipboardListIcon, labelKey: "exploreTimeline", descKey: "exploreTimelineDesc", href: ROUTES.timeline, external: false },
+  blog: { icon: NewsIcon, labelKey: "exploreBlog", descKey: "exploreBlogDesc", href: ROUTES.blog, external: false },
 };
 
-export default function ExploreLinks({ ids }: { ids: ExploreLinkId[] }) {
+const ALL_IDS = Object.keys(ALL_LINKS) as ExploreLinkId[];
+
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+export default function ExploreLinks({ count }: { count: number }) {
   const { t, ui } = useLanguage();
+  const pathname = usePathname();
+  const [ids, setIds] = useState<ExploreLinkId[]>([]);
+
+  useEffect(() => {
+    const candidates = ALL_IDS.filter((id) => ALL_LINKS[id].href !== pathname);
+    setIds(shuffle(candidates).slice(0, count));
+  }, [pathname, count]);
+
+  if (ids.length === 0) return null;
 
   const gridCols = ids.length >= 4 ? "sm:grid-cols-4" : "sm:grid-cols-3";
 

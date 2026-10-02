@@ -31,7 +31,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <ExploreLinks ids={["community", "author", "privacy"]} />
+        <ExploreLinks count={3} />
       </div>
     </div>
   );

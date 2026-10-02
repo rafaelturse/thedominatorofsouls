@@ -27,7 +27,7 @@ export default function StorePage() {
           <CollectionStrip books={books} />
         </div>
 
-        <ExploreLinks ids={["community", "universe", "author", "about"]} />
+        <ExploreLinks count={4} />
       </div>
     </div>
   );

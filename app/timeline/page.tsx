@@ -3,6 +3,7 @@
 import Hero from "@/components/Hero";
 import PageHeader from "@/components/PageHeader";
 import Timeline from "@/components/Timeline";
+import ExploreLinks from "@/components/ExploreLinks";
 import { TIMELINE_EVENTS } from "@/lib/timeline";
 import { useLanguage } from "@/lib/i18n";
 import { BalloonIcon, MoreIcon } from "@/lib/icons";
@@ -57,7 +58,7 @@ export default function TimelinePage() {
   return (
     <div>
       <Hero />
-      <div className="relative z-10 mx-auto max-w-5xl px-5 pb-16 pt-6 sm:pb-20 sm:pt-8">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 pb-20 pt-16 sm:pb-28 sm:pt-20">
         <PageHeader
           title={TIMELINE_PAGE.title}
           heading={TIMELINE_PAGE.heading}
@@ -106,6 +107,8 @@ export default function TimelinePage() {
         </div>
 
         <Timeline events={TIMELINE_EVENTS} />
+
+        <ExploreLinks count={4} />
       </div>
     </div>
   );

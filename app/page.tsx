@@ -23,7 +23,7 @@ export default function HomePage() {
 
         <div className="mt-20"><CollectionStrip books={books} /></div>
 
-        <ExploreLinks ids={["community", "universe", "author", "about"]} />
+        <ExploreLinks count={4} />
       </div>
     </div>
   );

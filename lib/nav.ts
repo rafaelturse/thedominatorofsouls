@@ -5,6 +5,7 @@ export type NavItem = { label: LocalizedString; href: string; comingSoon?: boole
 
 export const NAV_ITEMS: NavItem[] = [
   { label: { "pt-br": "Home", en: "Home" }, href: ROUTES.home },
+  { label: { "pt-br": "Blog", en: "Blog" }, href: ROUTES.blog },
   { label: { "pt-br": "Universo", en: "Universe" }, href: ROUTES.universe, comingSoon: true },
   { label: { "pt-br": "Galeria", en: "Gallery" }, href: ROUTES.gallery, comingSoon: true },
   { label: { "pt-br": "Loja", en: "Store" }, href: ROUTES.store, comingSoon: false },
