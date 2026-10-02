@@ -29,15 +29,15 @@ export default function Timeline({ events }: { events: TimelineEvent[] }) {
                         <div key={i}>
                             <div
                                 id={cardId}
-                                className={`group relative flex items-start gap-6 sm:items-center ${isLeft ? "sm:flex-row" : "sm:flex-row-reverse"
+                                className={`relative flex items-start sm:items-center ${isLeft ? "sm:flex-row" : "sm:flex-row-reverse"
                                     }`}
                             >
                                 <div
-                                    className={`ml-14 flex-1 sm:ml-0 sm:w-[calc(50%-3rem)] ${isLeft ? "sm:text-right" : "sm:text-left"
+                                    className={`flex-1 sm:w-[calc(50%-3rem)] ${isLeft ? "sm:text-right" : "sm:text-left"
                                         }`}
                                 >
                                     <div
-                                        className="relative z-10 rounded-3xl border border-transparent p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] transition-colors duration-300 group-hover:border-red-soft"
+                                        className="group relative z-10 rounded-3xl border border-transparent p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] transition-colors duration-300 hover:border-red-soft"
                                         style={{
                                             backgroundColor: "#111",
                                             borderLeftColor: !isLeft ? "var(--color-red-soft)" : undefined,
