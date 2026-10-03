@@ -115,6 +115,7 @@ const UI = {
   universeExploreTitle: { "pt-br": "Explorar", en: "Explore" },
   universeSelectBook: { "pt-br": "Selecione um livro", en: "Select a book" },
   universeComingSoonOption: { "pt-br": "Em breve", en: "Coming soon" },
+  universeNoBookSelected: { "pt-br": "Selecione um livro", en: "Select a book" },
 } satisfies Record<string, LocalizedString>;
 
 type LanguageContextValue = {
