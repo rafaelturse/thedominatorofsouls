@@ -112,7 +112,9 @@ const UI = {
     en: "Behind the scenes, updates, and stories from the series",
   },
   soonBadge: { "pt-br": "Em Breve", en: "Soon" },
-
+  universeExploreTitle: { "pt-br": "Explorar", en: "Explore" },
+  universeSelectBook: { "pt-br": "Selecione um livro", en: "Select a book" },
+  universeComingSoonOption: { "pt-br": "Em breve", en: "Coming soon" },
 } satisfies Record<string, LocalizedString>;
 
 type LanguageContextValue = {

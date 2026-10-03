@@ -11,9 +11,10 @@ type CollectionStripProps = {
   featuredSlug?: string;
   currentSlug?: string;
   onSelectSecondary?: (book: Book) => void;
+  onSelectBook?: (book: Book) => void;
 };
 
-export default function CollectionStrip({ books, featuredSlug, currentSlug, onSelectSecondary }: CollectionStripProps) {
+export default function CollectionStrip({ books, featuredSlug, currentSlug, onSelectSecondary, onSelectBook }: CollectionStripProps) {
   const { t, ui } = useLanguage();
 
   function handleClick(e: React.MouseEvent, book: Book) {
@@ -35,6 +36,13 @@ export default function CollectionStrip({ books, featuredSlug, currentSlug, onSe
     document.getElementById("spotlight-top")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
+  function handleSelectBookClick(e: React.MouseEvent, book: Book) {
+    if (!onSelectBook) return;
+    e.preventDefault();
+    if (!book.cover) return;
+    onSelectBook(book);
+  }
+
   return (
     <div>
       <div className="flex items-center gap-2">
@@ -47,7 +55,7 @@ export default function CollectionStrip({ books, featuredSlug, currentSlug, onSe
       <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4 lg:grid-cols-6">
         {books.map((book) => {
           const isComingSoon = book.comingSoon ?? !book.cover;
-          const isCurrent = onSelectSecondary ? book.slug === currentSlug : false;
+          const isCurrent = (onSelectSecondary || onSelectBook) ? book.slug === currentSlug : false;
 
           const card = (
             <div
@@ -68,7 +76,7 @@ export default function CollectionStrip({ books, featuredSlug, currentSlug, onSe
                 {book.cover ? (
                   <>
                     <img src={t(book.cover)} alt={t(book.title)} className="h-full w-full object-contain" />
-                    {isComingSoon && (
+                    {isComingSoon && !onSelectBook && (
                       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
                         <div className="absolute inset-x-0 bottom-0 h-1 bg-red-soft/70 transition-all duration-500 ease-out group-hover:h-full" />
                         <span className="relative z-10 px-2 text-center font-body text-[10px] uppercase tracking-[0.15em] text-muted opacity-0 transition-all duration-300 group-hover:font-bold group-hover:text-gold-soft group-hover:opacity-100">
@@ -94,6 +102,21 @@ export default function CollectionStrip({ books, featuredSlug, currentSlug, onSe
               </span>
             </div>
           );
+
+          if (onSelectBook) {
+            if (!book.cover) {
+              return <div key={book.slug}>{card}</div>;
+            }
+            return (
+              <Link
+                key={book.slug}
+                href="#"
+                onClick={(e) => handleSelectBookClick(e, book)}
+              >
+                {card}
+              </Link>
+            );
+          }
 
           if (onSelectSecondary) {
             const isActionable = book.slug === featuredSlug || !!book.cover;
