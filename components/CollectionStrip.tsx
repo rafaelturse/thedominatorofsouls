@@ -49,13 +49,13 @@ export default function CollectionStrip({ books, featuredSlug, onSelectSecondary
 
           const card = (
             <div
-              className={`group flex flex-col items-center gap-3 p-2 transition-all duration-300 ${book.status === "published"
+              className={`group flex flex-col items-center gap-3 p-2 transition-all duration-300 ${!isComingSoon && book.cover
                 ? "hover:-translate-y-1.5 hover:shadow-[0_25px_50px_-15px_rgba(0,0,0,0.7)]"
                 : "opacity-60"
                 }`}
             >
               <div
-                className={`relative aspect-[2/3] w-full overflow-hidden border transition-colors duration-300 ${book.status === "published"
+                className={`relative aspect-[2/3] w-full overflow-hidden border transition-colors duration-300 ${!isComingSoon && book.cover
                   ? "border-transparent group-hover:border-gold-soft"
                   : "border-transparent"
                   }`}
@@ -88,6 +88,12 @@ export default function CollectionStrip({ books, featuredSlug, onSelectSecondary
           );
 
           if (onSelectSecondary) {
+            const isActionable = book.slug === featuredSlug || !!book.cover;
+
+            if (!isActionable) {
+              return <div key={book.slug}>{card}</div>;
+            }
+
             return (
               <Link
                 key={book.slug}
@@ -99,7 +105,9 @@ export default function CollectionStrip({ books, featuredSlug, onSelectSecondary
             );
           }
 
-          return book.status === "published" ? (
+          const isClickable = !isComingSoon && !!book.cover;
+
+          return isClickable ? (
             <Link key={book.slug} href={ROUTES.bookDetail(book.slug)}>
               {card}
             </Link>
