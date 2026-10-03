@@ -9,10 +9,11 @@ import { ROUTES } from "@/lib/routes";
 type CollectionStripProps = {
   books: Book[];
   featuredSlug?: string;
+  currentSlug?: string;
   onSelectSecondary?: (book: Book) => void;
 };
 
-export default function CollectionStrip({ books, featuredSlug, onSelectSecondary }: CollectionStripProps) {
+export default function CollectionStrip({ books, featuredSlug, currentSlug, onSelectSecondary }: CollectionStripProps) {
   const { t, ui } = useLanguage();
 
   function handleClick(e: React.MouseEvent, book: Book) {
@@ -46,18 +47,22 @@ export default function CollectionStrip({ books, featuredSlug, onSelectSecondary
       <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4 lg:grid-cols-6">
         {books.map((book) => {
           const isComingSoon = book.comingSoon ?? !book.cover;
+          const isCurrent = onSelectSecondary ? book.slug === currentSlug : false;
 
           const card = (
             <div
-              className={`group flex flex-col items-center gap-3 p-2 transition-all duration-300 ${!isComingSoon && book.cover
-                ? "hover:-translate-y-1.5 hover:shadow-[0_25px_50px_-15px_rgba(0,0,0,0.7)]"
-                : "opacity-60"
+              className={`group flex flex-col items-center gap-3 p-2 transition-all duration-300 ${isCurrent ? "-translate-y-2" : ""
+                } ${!isComingSoon && book.cover
+                  ? "hover:-translate-y-1.5 hover:shadow-[0_25px_50px_-15px_rgba(0,0,0,0.7)]"
+                  : "opacity-60"
                 }`}
             >
               <div
-                className={`relative aspect-[2/3] w-full overflow-hidden border transition-colors duration-300 ${!isComingSoon && book.cover
-                  ? "border-transparent group-hover:border-gold-soft"
-                  : "border-transparent"
+                className={`relative aspect-[2/3] w-full overflow-hidden border transition-colors duration-300 ${isCurrent
+                  ? "border-gold-soft"
+                  : !isComingSoon && book.cover
+                    ? "border-transparent group-hover:border-gold-soft"
+                    : "border-transparent"
                   }`}
               >
                 {book.cover ? (
@@ -81,7 +86,10 @@ export default function CollectionStrip({ books, featuredSlug, onSelectSecondary
                   </div>
                 )}
               </div>
-              <span className="w-full text-center font-body text-xs uppercase leading-tight tracking-[0.15em] text-muted transition-colors duration-300 group-hover:text-gold-soft">
+              <span
+                className={`w-full text-center font-body text-xs uppercase leading-tight tracking-[0.15em] transition-colors duration-300 group-hover:text-gold-soft ${isCurrent ? "text-gold-soft" : "text-muted"
+                  }`}
+              >
                 {t(book.volumeLabel)}
               </span>
             </div>

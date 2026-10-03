@@ -31,6 +31,7 @@ export default function HomePage() {
           <CollectionStrip
             books={books}
             featuredSlug={featured.slug}
+            currentSlug={secondary ? secondary.slug : featured.slug}
             onSelectSecondary={(book) => setSecondary(book)}
           />
         </div>
