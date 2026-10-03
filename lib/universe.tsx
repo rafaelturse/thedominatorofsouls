@@ -346,7 +346,6 @@ export const UNIVERSE_OPTIONS: UniverseOption[] = [
   { id: "glossary", label: { "pt-br": "Glossário", en: "Glossary" }, enabled: true },
   { id: "classes", label: { "pt-br": "Classes", en: "Classes" }, enabled: false },
   { id: "races", label: { "pt-br": "Raças", en: "Races" }, enabled: false },
-  { id: "species", label: { "pt-br": "Espécies", en: "Species" }, enabled: false },
 ];
 
 export const UNIVERSE_PAGE = {
