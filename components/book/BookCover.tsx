@@ -22,9 +22,13 @@ export default function BookCover({ book, showSampleButton = false, onReadSample
           <button
             type="button"
             onClick={() => setZoomOpen(true)}
-            className="aspect-[2/3] w-full max-w-48 cursor-pointer overflow-hidden border border-transparent transition-colors duration-300 hover:border-gold-soft sm:w-56 sm:max-w-none"
+            className="w-full max-w-48 cursor-pointer sm:w-56 sm:max-w-none"
           >
-            <img src={t(book.cover)} alt={t(book.title)} className="h-full w-full object-contain" />
+            <img
+              src={t(book.cover)}
+              alt={t(book.title)}
+              className="w-full border border-transparent transition-colors duration-300 group-hover:border-gold-soft"
+            />
           </button>
         ) : (
           <div className="aspect-[2/3] w-full max-w-48 sm:w-56 sm:max-w-none" />

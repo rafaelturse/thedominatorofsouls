@@ -65,19 +65,21 @@ export default function CollectionStrip({ books, featuredSlug, currentSlug, onSe
                   : "opacity-60"
                 }`}
             >
-              <div
-                className={`relative aspect-[2/3] w-full overflow-hidden border transition-colors duration-300 ${isCurrent
-                  ? "border-gold-soft"
-                  : !isComingSoon && book.cover
-                    ? "border-transparent group-hover:border-gold-soft"
-                    : "border-transparent"
-                  }`}
-              >
+              <div className="relative w-full">
                 {book.cover ? (
                   <>
-                    <img src={t(book.cover)} alt={t(book.title)} className="h-full w-full object-contain" />
+                    <img
+                      src={t(book.cover)}
+                      alt={t(book.title)}
+                      className={`w-full border transition-colors duration-300 ${isCurrent
+                        ? "border-gold-soft"
+                        : !isComingSoon
+                          ? "border-transparent group-hover:border-gold-soft"
+                          : "border-transparent"
+                        }`}
+                    />
                     {isComingSoon && !onSelectBook && (
-                      <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+                      <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
                         <div className="absolute inset-x-0 bottom-0 h-1 bg-red-soft/70 transition-all duration-500 ease-out group-hover:h-full" />
                         <span className="relative z-10 px-2 text-center font-body text-[10px] uppercase tracking-[0.15em] text-muted opacity-0 transition-all duration-300 group-hover:font-bold group-hover:text-gold-soft group-hover:opacity-100">
                           {t(ui.comingSoon)}
@@ -86,7 +88,7 @@ export default function CollectionStrip({ books, featuredSlug, currentSlug, onSe
                     )}
                   </>
                 ) : (
-                  <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-card px-2 text-center">
+                  <div className="relative flex aspect-[2/3] h-full w-full items-center justify-center overflow-hidden bg-card px-2 text-center">
                     <div className="absolute inset-x-0 bottom-0 h-1 bg-red-soft transition-all duration-500 ease-out group-hover:h-full" />
                     <span className="relative z-10 font-body text-[10px] uppercase tracking-[0.15em] text-muted transition-colors duration-300 group-hover:font-bold group-hover:text-gold-soft">
                       {t(ui.comingSoon)}
