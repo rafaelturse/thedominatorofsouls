@@ -88,7 +88,7 @@ export default function CollectionStrip({ books, featuredSlug, currentSlug, onSe
                     )}
                   </>
                 ) : (
-                  <div className="relative flex aspect-[2/3] h-full w-full items-center justify-center overflow-hidden bg-card px-2 text-center">
+                  <div className="relative flex aspect-[5/8] h-full w-full items-center justify-center overflow-hidden bg-card px-2 text-center">
                     <div className="absolute inset-x-0 bottom-0 h-1 bg-red-soft transition-all duration-500 ease-out group-hover:h-full" />
                     <span className="relative z-10 font-body text-[10px] uppercase tracking-[0.15em] text-muted transition-colors duration-300 group-hover:font-bold group-hover:text-gold-soft">
                       {t(ui.comingSoon)}
