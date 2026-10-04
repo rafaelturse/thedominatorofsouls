@@ -7,7 +7,7 @@ import { NAV_ITEMS, SITE } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
 import { ROUTES } from "@/lib/routes";
 import { HomeIcon } from "@/lib/icons";
-import LanguageSwitcher from "./LanguageSwitcher";
+import LanguageSwitcher from "../page/LanguageSwitcher";
 import AboutMenu from "./AboutMenu";
 
 export default function Header() {

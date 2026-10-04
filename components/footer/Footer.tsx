@@ -1,5 +1,5 @@
-import ContactIcons from "@/components/ContactIcons";
-import BackToTopButton from "./BackToTopButton";
+import ContactIcons from "@/components/sessions/ContactIcons";
+import BackToTopButton from "@/components/link/BackToTopButton";
 
 export default function Footer() {
     return (

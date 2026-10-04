@@ -1,10 +1,10 @@
 "use client";
 
-import Hero from "@/components/Hero";
-import CommunityLinks from "@/components/CommunityLinks";
-import PageHeader from "@/components/PageHeader";
+import Hero from "@/components/page/Hero";
+import CommunityLinks from "@/components/link/CommunityLinks";
+import PageHeader from "@/components/page/PageHeader";
 import { COMMUNITY_PAGE } from "@/lib/community";
-import ExploreLinks from "@/components/ExploreLinks";
+import ExploreLinks from "@/components/link/ExploreLinks";
 
 export default function CommunityPage() {
   return (

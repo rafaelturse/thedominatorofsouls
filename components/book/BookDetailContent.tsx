@@ -5,11 +5,11 @@ import type { Book } from "@/lib/data";
 import { books } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
 import { BookIcon } from "@/lib/icons";
-import Hero from "@/components/Hero";
-import GenreStrip from "@/components/GenreStrip";
+import Hero from "@/components/page/Hero";
+import GenreStrip from "@/components/sessions/GenreStrip";
 import BookInfo from "@/components/book/BookInfo";
-import CollectionStrip from "@/components/CollectionStrip";
-import ExploreLinks from "@/components/ExploreLinks";
+import CollectionStrip from "@/components/sessions/CollectionStrip";
+import ExploreLinks from "@/components/link/ExploreLinks";
 import Reader from "@/components/reader/Reader";
 
 export default function BookDetailContent({ book }: { book: Book }) {
@@ -40,7 +40,7 @@ export default function BookDetailContent({ book }: { book: Book }) {
           <CollectionStrip books={books} />
         </div>
 
-        <ExploreLinks count={3} />
+        <ExploreLinks count={4} />
       </div>
 
       {sampleOpen && (

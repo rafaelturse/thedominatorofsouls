@@ -1,9 +1,9 @@
 "use client";
 
-import Hero from "@/components/Hero";
-import PageHeader from "@/components/PageHeader";
-import Timeline from "@/components/Timeline";
-import ExploreLinks from "@/components/ExploreLinks";
+import Hero from "@/components/page/Hero";
+import PageHeader from "@/components/page/PageHeader";
+import Timeline from "@/components/sessions/Timeline";
+import ExploreLinks from "@/components/link/ExploreLinks";
 import { TIMELINE_EVENTS } from "@/lib/timeline";
 import { useLanguage } from "@/lib/i18n";
 import { BalloonIcon, MoreIcon } from "@/lib/icons";

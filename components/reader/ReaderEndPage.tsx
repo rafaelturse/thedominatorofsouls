@@ -3,7 +3,7 @@
 import { useLanguage } from "@/lib/i18n";
 import type { Book } from "@/lib/data";
 import BookIdentity from "./BookIdentity";
-import StoreDropdown from "@/components/StoreDropdown";
+import StoreDropdown from "@/components/page/StoreDropdown";
 
 type ReaderEndPageProps = {
   book: Book;

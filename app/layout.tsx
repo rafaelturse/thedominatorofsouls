@@ -1,7 +1,7 @@
 import { EB_Garamond, Inter, Indie_Flower } from "next/font/google";
 import type { Metadata } from "next";
-import Header from "@/components/Header";
-import SiteFooter from "@/components/SiteFooter";
+import Header from "@/components/link/Header";
+import SiteFooter from "@/components/footer/SiteFooter";
 import CookieBanner from "@/components/Analytics/CookieBanner";
 import GoogleAnalyticsConsent from "@/components/Analytics/GoogleAnalyticsConsent";
 import { LanguageProvider } from "@/lib/i18n";

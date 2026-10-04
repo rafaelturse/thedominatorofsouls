@@ -6,7 +6,7 @@ import { useLanguage } from "@/lib/i18n";
 import { GLOSSARY_BY_BOOK, GLOSSARY_WARNING_TITLE } from "@/lib/universe";
 import { QuoteIcon } from "@/lib/icons";
 import GlossaryWarning from "@/components/universe/GlossaryWarning";
-import CollectionStrip from "@/components/CollectionStrip";
+import CollectionStrip from "@/components/sessions/CollectionStrip";
 import CategoryTabs from "@/components/universe/CategoryTabs";
 
 export default function GlossarySection() {

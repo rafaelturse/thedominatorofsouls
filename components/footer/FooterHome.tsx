@@ -1,4 +1,4 @@
-import ContactIcons from "@/components/ContactIcons";
+import ContactIcons from "@/components/sessions/ContactIcons";
 
 export default function FooterHome() {
     return (

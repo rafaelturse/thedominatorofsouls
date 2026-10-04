@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import Hero from "@/components/Hero";
-import CollectionStrip from "@/components/CollectionStrip";
-import ExploreLinks from "@/components/ExploreLinks";
-import AuthorSection from "@/components/AuthorSection";
-import PageHeader from "@/components/PageHeader";
+import Hero from "@/components/page/Hero";
+import CollectionStrip from "@/components/sessions/CollectionStrip";
+import ExploreLinks from "@/components/link/ExploreLinks";
+import AuthorSection from "@/components/sessions/AuthorSection";
+import PageHeader from "@/components/page/PageHeader";
 import { STORE_PAGE } from "@/lib/store";
 import { books } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";

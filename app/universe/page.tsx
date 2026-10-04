@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Hero from "@/components/Hero";
-import PageHeader from "@/components/PageHeader";
-import ExploreLinks from "@/components/ExploreLinks";
+import Hero from "@/components/page/Hero";
+import PageHeader from "@/components/page/PageHeader";
+import ExploreLinks from "@/components/link/ExploreLinks";
 import UniverseTabs from "@/components/universe/UniverseTabs";
 import GlossarySection from "@/components/universe/GlossarySection";
 import { UNIVERSE_PAGE } from "@/lib/universe";

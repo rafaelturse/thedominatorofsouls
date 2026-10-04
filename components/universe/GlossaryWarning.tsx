@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/lib/i18n";
 import { GLOSSARY_WARNING, GLOSSARY_ATTENTION, GLOSSARY_PROCEED, GLOSSARY_GOOD_LUCK } from "@/lib/universe";
-import AuthorSignature from "@/components/AuthorSignature";
+import AuthorSignature from "@/components/page/AuthorSignature";
 
 export default function GlossaryWarning() {
     const { t, locale } = useLanguage();

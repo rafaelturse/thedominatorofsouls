@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { books } from "@/lib/data";
 import type { Book } from "@/lib/data";
-import Hero from "@/components/Hero";
-import GenreStrip from "@/components/GenreStrip";
-import SpotlightCarousel from "@/components/SpotlightCarousel";
-import CollectionStrip from "@/components/CollectionStrip";
-import ExploreLinks from "@/components/ExploreLinks";
+import Hero from "@/components/page/Hero";
+import GenreStrip from "@/components/sessions/GenreStrip";
+import SpotlightCarousel from "@/components/sessions/SpotlightCarousel";
+import CollectionStrip from "@/components/sessions/CollectionStrip";
+import ExploreLinks from "@/components/link/ExploreLinks";
 import LastUpdatesSlider from "@/components/slide/LastUpdatesSlider";
 
 export default function HomePage() {

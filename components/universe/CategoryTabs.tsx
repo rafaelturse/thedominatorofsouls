@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/lib/i18n";
 import type { GlossaryCategory } from "@/lib/universe";
-import ScrollableTabs from "@/components/ScrollableTabs";
+import ScrollableTabs from "@/components/page/ScrollableTabs";
 
 type CategoryTabsProps = {
     categories: GlossaryCategory[];

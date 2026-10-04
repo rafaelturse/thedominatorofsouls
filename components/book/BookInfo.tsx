@@ -7,7 +7,7 @@ import BookCover from "@/components/book/BookCover";
 import Synopsis from "@/components/book/Synopsis";
 import BookDetails from "@/components/book/BookDetails";
 import BookGenreBadges from "@/components/book/BookGenreBadges";
-import StoreDropdown from "@/components/StoreDropdown";
+import StoreDropdown from "@/components/page/StoreDropdown";
 
 type BookInfoProps = {
   book: Book;

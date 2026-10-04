@@ -1,11 +1,11 @@
 "use client";
 
-import Hero from "@/components/Hero";
-import ExploreLinks from "@/components/ExploreLinks";
+import Hero from "@/components/page/Hero";
+import ExploreLinks from "@/components/link/ExploreLinks";
 import { ABOUT } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
-import AuthorSignature from "@/components/AuthorSignature";
-import PageHeader from "@/components/PageHeader";
+import AuthorSignature from "@/components/page/AuthorSignature";
+import PageHeader from "@/components/page/PageHeader";
 
 export default function AboutPage() {
   const { t } = useLanguage();

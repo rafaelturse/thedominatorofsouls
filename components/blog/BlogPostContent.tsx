@@ -1,8 +1,8 @@
 "use client";
 
-import Hero from "@/components/Hero";
-import PageHeader from "@/components/PageHeader";
-import ExploreLinks from "@/components/ExploreLinks";
+import Hero from "@/components/page/Hero";
+import PageHeader from "@/components/page/PageHeader";
+import ExploreLinks from "@/components/link/ExploreLinks";
 import ShareIcons from "@/components/blog/ShareIcons";
 import { useLanguage } from "@/lib/i18n";
 import type { BlogPost } from "@/lib/blog";
@@ -68,7 +68,7 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
 
         <RelatedPosts currentSlug={post.slug} />
 
-        <ExploreLinks count={4} />
+        <ExploreLinks count={3} />
       </div>
     </div>
   );

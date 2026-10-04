@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/lib/i18n";
 import { UNIVERSE_OPTIONS, type UniverseOptionId } from "@/lib/universe";
-import ScrollableTabs from "@/components/ScrollableTabs";
+import ScrollableTabs from "@/components/page/ScrollableTabs";
 
 type UniverseTabsProps = {
     active: UniverseOptionId;

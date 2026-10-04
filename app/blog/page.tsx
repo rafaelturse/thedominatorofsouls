@@ -1,9 +1,9 @@
 "use client";
 
-import Hero from "@/components/Hero";
-import PageHeader from "@/components/PageHeader";
+import Hero from "@/components/page/Hero";
+import PageHeader from "@/components/page/PageHeader";
 import BlogPostCard from "@/components/blog/BlogPostCard";
-import ExploreLinks from "@/components/ExploreLinks";
+import ExploreLinks from "@/components/link/ExploreLinks";
 import { BLOG_POSTS } from "@/lib/blog";
 import { useLanguage } from "@/lib/i18n";
 

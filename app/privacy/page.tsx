@@ -1,8 +1,8 @@
 "use client";
 
-import Hero from "@/components/Hero";
-import PageHeader from "@/components/PageHeader";
-import ExploreLinks from "@/components/ExploreLinks";
+import Hero from "@/components/page/Hero";
+import PageHeader from "@/components/page/PageHeader";
+import ExploreLinks from "@/components/link/ExploreLinks";
 import { PRIVACY_PAGE } from "@/lib/privacy";
 import { useLanguage } from "@/lib/i18n";
 
