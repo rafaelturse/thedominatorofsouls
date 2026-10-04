@@ -6,6 +6,7 @@ export type BlogPost = {
   category: LocalizedString;
   title: LocalizedString;
   excerpt: LocalizedString;
+  content: LocalizedString[];
   cover: string;
   tags: LocalizedString[];
   readingTimeMinutes: number;
@@ -29,6 +30,20 @@ export const BLOG_POSTS: BlogPost[] = [
       { "pt-br": "Capas", en: "Covers" },
     ],
     readingTimeMinutes: 2,
+    content: [
+      {
+        "pt-br": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        en: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      },
+      {
+        "pt-br": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        en: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        "pt-br": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+        en: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+      },
+    ],
   },
   {
     slug: "o-prologo-chega-ao-publico",
@@ -47,6 +62,20 @@ export const BLOG_POSTS: BlogPost[] = [
       { "pt-br": "Wattpad", en: "Wattpad" },
     ],
     readingTimeMinutes: 3,
+    content: [
+      {
+        "pt-br": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        en: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      },
+      {
+        "pt-br": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        en: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        "pt-br": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+        en: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+      },
+    ],
   },
   {
     slug: "forjando-e-dando-vida",
@@ -65,5 +94,19 @@ export const BLOG_POSTS: BlogPost[] = [
       { "pt-br": "Processo Criativo", en: "Creative Process" },
     ],
     readingTimeMinutes: 6,
+    content: [
+      {
+        "pt-br": "Ao longo de sete anos de trabalho paralelo, foram desenvolvidas toneladas de linhas descrevendo todo o universo de The Dominator of Souls — seus mundos, cenários, fauna, flora, mecanismos de classes, tempo, energia, poderes, raças, espécies, mitologias, planetas, reinos, domínios, regiões, países, cidades, sociedades, povos, personagens, motivações, itens, armas e armaduras, jogos de tabuleiro, jogos de cartas e até mesmo este website!",
+        en: "Over seven years of parallel work, countless lines were written describing the entire universe of The Dominator of Souls — its worlds, settings, fauna, flora, class mechanics, time, energy, powers, races, species, mythologies, planets, kingdoms, domains, regions, countries, cities, societies, peoples, characters, motivations, items, weapons and armor, board games, card games, and even this very website!",
+      },
+      {
+        "pt-br": "O que deveria ser o universo de um único livro se tornou uma plataforma completíssima, pronta para receber todo tipo de história possível!",
+        en: "What was meant to be the universe of a single book became a full-fledged platform, ready to hold every kind of story imaginable!",
+      },
+      {
+        "pt-br": "Com a base preparada, a imaginação então tomou asas, e as primeiras histórias começaram a ser projetadas — tudo esquematizado para que houvesse conexões entre todas elas. Dessa forma, uma infinidade de conteúdo foi escrita e distribuída corretamente, até que tudo fizesse sentido! Com essa grande massa em mãos, comecei então um ciclo de aprimoramento e passei a confeccionar os livros, dando início à saga As Memórias de Berdox, que até então é uma série planejada para ser contada em 6 livros!",
+        en: "With the foundation in place, imagination took flight, and the first stories began to be shaped — everything mapped out so that connections would run between them all. In this way, an immense amount of content was written and carefully arranged until everything made sense! With that body of work in hand, I began a cycle of refinement and started crafting the books themselves, giving rise to the saga The Memories of Berdox, which is currently planned to span 6 books!",
+      },
+    ],
   },
 ];

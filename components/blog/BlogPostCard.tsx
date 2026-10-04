@@ -3,7 +3,6 @@ import { useLanguage } from "@/lib/i18n";
 import { ROUTES } from "@/lib/routes";
 import { MoreIcon } from "@/lib/icons";
 import type { BlogPost } from "@/lib/blog";
-import ExploreLinks from "../ExploreLinks";
 
 export default function BlogPostCard({ post }: { post: BlogPost }) {
   const { t, ui } = useLanguage();

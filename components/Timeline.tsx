@@ -1,11 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { useLanguage } from "@/lib/i18n";
-import { CircleArrowUpIcon } from "@/lib/icons";
+import { CircleArrowUpIcon, MoreIcon } from "@/lib/icons";
+import { ROUTES } from "@/lib/routes";
 import type { TimelineEvent } from "@/lib/timeline";
 
 export default function Timeline({ events }: { events: TimelineEvent[] }) {
-    const { t, locale } = useLanguage();
+    const { t, locale, ui } = useLanguage();
 
     function scrollToId(id: string) {
         const el = document.getElementById(id);
@@ -53,6 +55,18 @@ export default function Timeline({ events }: { events: TimelineEvent[] }) {
                                         <div className="mt-2 font-body text-sm leading-relaxed text-muted">
                                             {event.description[locale]}
                                         </div>
+
+                                        {event.blogSlug && (
+                                            <div className={`mt-4 flex ${isLeft ? "sm:justify-start" : "sm:justify-end"} justify-center border-t border-line pt-4`}>
+                                                <Link
+                                                    href={ROUTES.blogPost(event.blogSlug)}
+                                                    className="flex items-center gap-2 border border-red-soft bg-red-soft px-4 py-2 font-body text-xs uppercase tracking-[0.2em] text-ink transition-colors hover:bg-transparent hover:text-red-soft"
+                                                >
+                                                    <MoreIcon size={14} />
+                                                    {t(ui.more)}
+                                                </Link>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>

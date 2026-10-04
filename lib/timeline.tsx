@@ -9,6 +9,7 @@ export type TimelineEvent = {
   title: LocalizedString;
   description: { "pt-br": ReactNode; en: ReactNode };
   icon: (props: IconProps) => ReactElement;
+  blogSlug?: string;
 };
 
 export const TIMELINE_EVENTS: TimelineEvent[] = [
@@ -108,46 +109,19 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
     description: {
       "pt-br": (
         <>
-          Ao longo de sete anos de trabalho paralelo, foram desenvolvidas toneladas de linhas descrevendo todo o
-          universo de <strong>The Dominator of Souls</strong> — seus mundos, cenários, fauna, flora, mecanismos de
-          classes, tempo, energia, poderes, raças, espécies, mitologias, planetas, reinos, domínios, regiões, países,
-          cidades, sociedades, povos, personagens, motivações, itens, armas e armaduras, jogos de tabuleiro, jogos de
-          cartas e até mesmo este website!
-          <br />
-          <br />
-          O que deveria ser o universo de um único livro se tornou uma plataforma completíssima, pronta para receber
-          todo tipo de história possível!
-          <br />
-          <br />
-          Com a base preparada, a imaginação então tomou asas, e as primeiras histórias começaram a ser projetadas —
-          tudo esquematizado para que houvesse conexões entre todas elas. Dessa forma, uma infinidade de conteúdo foi
-          escrita e distribuída corretamente, até que tudo fizesse sentido! Com essa grande massa em mãos, comecei
-          então um ciclo de aprimoramento e passei a confeccionar os livros, dando início à saga{" "}
-          <strong>As Memórias de Berdox</strong>, que até então é uma série planejada para ser contada em 6 livros!
+          Sete anos de trabalho paralelo deram forma a um universo inteiro — mundos, raças,
+          mitologias, e o nascimento da saga <strong>As Memórias de Berdox</strong>.
         </>
       ),
       en: (
         <>
-          Over seven years of work carried out alongside everything else, countless lines were written describing the
-          entire universe of <strong>The Dominator of Souls</strong> — its worlds, settings, fauna, flora, class
-          mechanics, time, energy, powers, races, species, mythologies, planets, kingdoms, domains, regions, countries,
-          cities, societies, peoples, characters, motivations, items, weapons and armor, board games, card games, and
-          even this very website!
-          <br />
-          <br />
-          What was meant to be the universe of a single book became a full-fledged platform, ready to hold every kind
-          of story imaginable!
-          <br />
-          <br />
-          With the foundation in place, imagination took flight, and the first stories began to be shaped — everything
-          mapped out so that connections would run between them all. In this way, an immense amount of content was
-          written and carefully arranged until everything made sense! With that body of work in hand, I began a cycle
-          of refinement and started crafting the books themselves, giving rise to the saga{" "}
-          <strong>The Memories of Berdox</strong>, which is currently planned to span 6 books!
+          Seven years of parallel work gave shape to an entire universe — worlds, races,
+          mythologies, and the birth of the <strong>Memories of Berdox</strong> saga.
         </>
       ),
     },
     icon: BriefcaseIcon,
+    blogSlug: "forjando-e-dando-vida",
   },
   {
     date: { "pt-br": "Dez-2019", en: "Dec-2019" },

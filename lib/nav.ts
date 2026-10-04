@@ -5,11 +5,11 @@ export type NavItem = { label: LocalizedString; href: string; comingSoon?: boole
 
 export const NAV_ITEMS: NavItem[] = [
   { label: { "pt-br": "Home", en: "Home" }, href: ROUTES.home },
-  { label: { "pt-br": "Blog", en: "Blog" }, href: ROUTES.blog },
   { label: { "pt-br": "Universo", en: "Universe" }, href: ROUTES.universe, comingSoon: false },
   { label: { "pt-br": "Galeria", en: "Gallery" }, href: ROUTES.gallery, comingSoon: true },
   { label: { "pt-br": "Loja", en: "Store" }, href: ROUTES.store, comingSoon: false },
   { label: { "pt-br": "Comunidade", en: "Community" }, href: ROUTES.community },
+  { label: { "pt-br": "Blog", en: "Blog" }, href: ROUTES.blog },
   { label: { "pt-br": "Linha do Tempo", en: "Timeline" }, href: ROUTES.timeline, comingSoon: false },
   { label: { "pt-br": "Sobre", en: "About" }, href: ROUTES.about, comingSoon: false },
 ];
