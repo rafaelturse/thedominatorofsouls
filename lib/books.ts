@@ -150,8 +150,8 @@ export const books: Book[] = [
       en: "In an isolated mansion on the English coast, a boy witnesses the worst nightmare a child can live through — and survives only to carry, forever, the mark of a promise whispered by something that should not exist...",
     },
     audio: {
-      "pt-br": "/audio/the-memories-of-berdox-volume1-fragmented/sinopse.mp3",
-      en: "/audio/the-memories-of-berdox-volume1-fragmented/sinopse.mp3",
+      "pt-br": "/audio/the-memories-of-berdox-volume1-fragmented/br-sinopse.mp3",
+      en: "/audio/the-memories-of-berdox-volume1-fragmented/en-sinopse.mp3",
     },
     fullSynopsisHeading: {
       "pt-br": "Uma noite tempestuosa que mudou tudo...",
