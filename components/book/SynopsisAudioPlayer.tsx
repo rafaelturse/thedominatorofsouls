@@ -5,11 +5,14 @@ import { useLanguage } from "@/lib/i18n";
 import { PlayIcon, PauseIcon } from "@/lib/icons";
 
 const BAR_COUNT = 48;
+const EQ_MAX = 50;
 
 const BARS = Array.from({ length: BAR_COUNT }, (_, i) => {
   const v = Math.abs(Math.sin((i + 1) * 12.9898) * 43758.5453) % 1;
   return Math.round(25 + v * 75);
 });
+
+type AudioCtor = typeof AudioContext;
 
 function formatTime(seconds: number) {
   if (!Number.isFinite(seconds)) return "0:00";
@@ -21,6 +24,10 @@ function formatTime(seconds: number) {
 export default function SynopsisAudioPlayer({ src }: { src: string }) {
   const { t, ui } = useLanguage();
   const audioRef = useRef<HTMLAudioElement>(null);
+  const ctxRef = useRef<AudioContext | null>(null);
+  const analyserRef = useRef<AnalyserNode | null>(null);
+  const triedRef = useRef(false);
+  const eqRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const [playing, setPlaying] = useState(false);
   const [current, setCurrent] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -31,6 +38,36 @@ export default function SynopsisAudioPlayer({ src }: { src: string }) {
     setCurrent(el.currentTime);
     if (Number.isFinite(el.duration)) setDuration(el.duration);
   }
+
+  function ensureAnalyser() {
+    const el = audioRef.current;
+    if (!el || triedRef.current) return;
+    triedRef.current = true;
+    try {
+      const w = window as unknown as { AudioContext?: AudioCtor; webkitAudioContext?: AudioCtor };
+      const Ctor = w.AudioContext ?? w.webkitAudioContext;
+      if (!Ctor) return;
+      const ctx = new Ctor();
+      const source = ctx.createMediaElementSource(el);
+      const analyser = ctx.createAnalyser();
+      analyser.fftSize = 256;
+      analyser.smoothingTimeConstant = 0.8;
+      source.connect(analyser);
+      analyser.connect(ctx.destination);
+      ctxRef.current = ctx;
+      analyserRef.current = analyser;
+    } catch {
+      analyserRef.current = null;
+    }
+  }
+
+  useEffect(() => {
+    return () => {
+      ctxRef.current?.close();
+      ctxRef.current = null;
+      analyserRef.current = null;
+    };
+  }, []);
 
   useEffect(() => {
     if (!playing) return;
@@ -43,10 +80,59 @@ export default function SynopsisAudioPlayer({ src }: { src: string }) {
     return () => cancelAnimationFrame(frame);
   }, [playing]);
 
+  useEffect(() => {
+    const bars = eqRefs.current;
+
+    if (!playing) {
+      bars.forEach((bar) => {
+        if (bar) bar.style.height = "0%";
+      });
+      return;
+    }
+
+    const analyser = analyserRef.current;
+    const data = analyser ? new Uint8Array(analyser.frequencyBinCount) : null;
+    let frame = 0;
+
+    function tick(time: number) {
+      const el = audioRef.current;
+      const total = el && Number.isFinite(el.duration) ? el.duration : 0;
+      const playedRatio = el && total ? el.currentTime / total : 0;
+
+      if (analyser && data) analyser.getByteFrequencyData(data);
+
+      for (let i = 0; i < BAR_COUNT; i++) {
+        const bar = bars[i];
+        if (!bar) continue;
+
+        if (i / BAR_COUNT >= playedRatio) {
+          bar.style.height = "0%";
+          continue;
+        }
+
+        let level: number;
+        if (analyser && data) {
+          const tilt = 1 + (i / BAR_COUNT) * 0.9;
+          level = Math.min((data[i + 1] / 255) * tilt, 1);
+        } else {
+          level = 0.35 + 0.65 * Math.abs(Math.sin(time / 260 + i * 0.7) * Math.sin(time / 530 + i * 1.3));
+        }
+        bar.style.height = `${level * EQ_MAX}%`;
+      }
+
+      frame = requestAnimationFrame(tick);
+    }
+
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [playing]);
+
   function toggle() {
     const el = audioRef.current;
     if (!el) return;
     if (el.paused) {
+      ensureAnalyser();
+      ctxRef.current?.resume();
       el.play().catch(() => setPlaying(false));
     } else {
       el.pause();
@@ -109,11 +195,17 @@ export default function SynopsisAudioPlayer({ src }: { src: string }) {
             return (
               <span key={i} className="group flex h-full flex-1 items-center">
                 <span
-                  className={`w-full rounded-full transition-all duration-200 group-hover:bg-red-soft ${
-                    played ? "bg-gold-soft" : "bg-muted/40"
-                  }`}
+                  className={`relative w-full overflow-hidden rounded-full transition-all duration-200 group-hover:bg-red-soft ${played ? "bg-gold-soft" : "bg-muted/40"
+                    }`}
                   style={{ height: `${h}%`, transform: `scaleY(${scale})` }}
-                />
+                >
+                  <span
+                    ref={(el) => {
+                      eqRefs.current[i] = el;
+                    }}
+                    className="absolute inset-x-0 bottom-0 h-0 bg-red-soft transition-[height] duration-75 ease-out"
+                  />
+                </span>
               </span>
             );
           })}
