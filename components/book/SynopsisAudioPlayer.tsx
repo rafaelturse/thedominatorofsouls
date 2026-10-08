@@ -4,6 +4,13 @@ import { useRef, useState } from "react";
 import { useLanguage } from "@/lib/i18n";
 import { PlayIcon, PauseIcon } from "@/lib/icons";
 
+const BAR_COUNT = 48;
+
+const BARS = Array.from({ length: BAR_COUNT }, (_, i) => {
+  const v = Math.abs(Math.sin((i + 1) * 12.9898) * 43758.5453) % 1;
+  return Math.round(25 + v * 75);
+});
+
 function formatTime(seconds: number) {
   if (!Number.isFinite(seconds)) return "0:00";
   const m = Math.floor(seconds / 60);
@@ -36,7 +43,18 @@ export default function SynopsisAudioPlayer({ src }: { src: string }) {
     el.currentTime = ratio * duration;
   }
 
-  const pct = duration ? (current / duration) * 100 : 0;
+  function handleKey(e: React.KeyboardEvent<HTMLDivElement>) {
+    const el = audioRef.current;
+    if (!el || !duration) return;
+    if (e.key === "ArrowRight") {
+      el.currentTime = Math.min(el.currentTime + 5, duration);
+    } else if (e.key === "ArrowLeft") {
+      el.currentTime = Math.max(el.currentTime - 5, 0);
+    }
+  }
+
+  const ratio = duration ? current / duration : 0;
+  const activeIndex = Math.min(Math.floor(ratio * BAR_COUNT), BAR_COUNT - 1);
 
   return (
     <div className="mt-8 flex items-center gap-4">
@@ -50,9 +68,35 @@ export default function SynopsisAudioPlayer({ src }: { src: string }) {
       </button>
 
       <div className="flex min-w-0 flex-1 items-center gap-3">
-        <div onClick={seek} className="h-1 flex-1 cursor-pointer rounded-full bg-line">
-          <div className="h-full rounded-full bg-gold-soft" style={{ width: `${pct}%` }} />
+        <div
+          role="slider"
+          tabIndex={0}
+          aria-label={t(ui.listenSynopsis)}
+          aria-valuemin={0}
+          aria-valuemax={Math.round(duration)}
+          aria-valuenow={Math.round(current)}
+          onClick={seek}
+          onKeyDown={handleKey}
+          className="flex h-8 min-w-0 flex-1 cursor-pointer items-center gap-[2px] sm:h-10"
+        >
+          {BARS.map((h, i) => {
+            const played = i / BAR_COUNT < ratio;
+            const distance = Math.abs(i - activeIndex);
+            const scale = playing ? (distance === 0 ? 1.35 : distance === 1 ? 1.15 : 1) : 1;
+
+            return (
+              <span key={i} className="group flex h-full flex-1 items-center">
+                <span
+                  className={`w-full rounded-full transition-all duration-200 group-hover:bg-red-soft ${
+                    played ? "bg-gold-soft" : "bg-muted/40"
+                  }`}
+                  style={{ height: `${h}%`, transform: `scaleY(${scale})` }}
+                />
+              </span>
+            );
+          })}
         </div>
+
         <span className="shrink-0 font-body text-[10px] tabular-nums text-muted">
           {formatTime(current)} / {formatTime(duration)}
         </span>
