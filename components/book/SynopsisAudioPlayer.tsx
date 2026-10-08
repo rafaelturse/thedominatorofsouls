@@ -12,6 +12,7 @@ import ComboWave from "@/components/book/audio/ComboWave";
 import ClawsWave from "@/components/book/audio/ClawsWave";
 import GradientWave from "@/components/book/audio/GradientWave";
 import PeaksWave from "@/components/book/audio/PeaksWave";
+import ComboPeaksWave from "@/components/book/audio/ComboPeaksWave";
 
 const EFFECTS: ComponentType<WaveEffectProps>[] = [
   // PulseWave, //  jump current yellow only
@@ -21,6 +22,7 @@ const EFFECTS: ComponentType<WaveEffectProps>[] = [
   // ClawsWave, // spikes
   // GradientWave, // fix with gradient colors
   // PeaksWave, // jump top red
+  // ComboPeaksWave, // jump, balanced colors + red peaks above, yellow peaks below
 ];
 
 function formatTime(seconds: number) {
