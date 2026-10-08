@@ -118,6 +118,7 @@ const UI = {
   universeNoBookSelected: { "pt-br": "Selecione um livro", en: "Select a book" },
   blogRelatedTitle: { "pt-br": "Mais Posts", en: "More Posts" },
   blogShareLabel: { "pt-br": "Compartilhar", en: "Share" },
+  listenSynopsis: { "pt-br": "Ouvir sinopse", en: "Listen to synopsis" },
 } satisfies Record<string, LocalizedString>;
 
 type LanguageContextValue = {

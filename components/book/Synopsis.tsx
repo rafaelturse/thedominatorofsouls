@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import type { Book } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
 import { QuoteIcon } from "@/lib/icons";
+import SynopsisAudioPlayer from "@/components/book/SynopsisAudioPlayer";
 
 type SynopsisProps = {
   book: Book;
@@ -11,7 +12,8 @@ type SynopsisProps = {
 };
 
 export default function Synopsis({ book, maxHeightClass = "max-h-36" }: SynopsisProps) {
-  const { t, ui } = useLanguage();
+  const { t, ui, locale } = useLanguage();
+  const audioSrc = book.audio?.[locale];
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollUp, setCanScrollUp] = useState(false);
   const [canScrollDown, setCanScrollDown] = useState(true);
@@ -44,7 +46,10 @@ export default function Synopsis({ book, maxHeightClass = "max-h-36" }: Synopsis
 
   if (!book.fullSynopsisHeading || !book.fullSynopsis) {
     return (
-      <p className="mt-5 font-body text-sm leading-relaxed text-muted">{t(book.synopsis)}</p>
+      <>
+        {audioSrc && <SynopsisAudioPlayer src={audioSrc} />}
+        <p className="mt-5 font-body text-sm leading-relaxed text-muted">{t(book.synopsis)}</p>
+      </>
     );
   }
 
@@ -56,6 +61,8 @@ export default function Synopsis({ book, maxHeightClass = "max-h-36" }: Synopsis
         </span>
         <p className="font-body text-xs uppercase tracking-[0.3em] text-gold-soft">{t(ui.synopsisLabel)}</p>
       </div>
+
+      {audioSrc && <SynopsisAudioPlayer src={audioSrc} />}
 
       <button
         type="button"
