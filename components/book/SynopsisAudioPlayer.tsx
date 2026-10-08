@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/lib/i18n";
 import { PlayIcon, PauseIcon } from "@/lib/icons";
 
@@ -25,11 +25,29 @@ export default function SynopsisAudioPlayer({ src }: { src: string }) {
   const [current, setCurrent] = useState(0);
   const [duration, setDuration] = useState(0);
 
+  function sync() {
+    const el = audioRef.current;
+    if (!el) return;
+    setCurrent(el.currentTime);
+    if (Number.isFinite(el.duration)) setDuration(el.duration);
+  }
+
+  useEffect(() => {
+    if (!playing) return;
+    let frame = 0;
+    function tick() {
+      sync();
+      frame = requestAnimationFrame(tick);
+    }
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [playing]);
+
   function toggle() {
     const el = audioRef.current;
     if (!el) return;
     if (el.paused) {
-      el.play();
+      el.play().catch(() => setPlaying(false));
     } else {
       el.pause();
     }
@@ -40,7 +58,9 @@ export default function SynopsisAudioPlayer({ src }: { src: string }) {
     if (!el || !duration) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const ratio = Math.min(Math.max((e.clientX - rect.left) / rect.width, 0), 1);
-    el.currentTime = ratio * duration;
+    const time = ratio * duration;
+    el.currentTime = time;
+    setCurrent(time);
   }
 
   function handleKey(e: React.KeyboardEvent<HTMLDivElement>) {
@@ -48,8 +68,10 @@ export default function SynopsisAudioPlayer({ src }: { src: string }) {
     if (!el || !duration) return;
     if (e.key === "ArrowRight") {
       el.currentTime = Math.min(el.currentTime + 5, duration);
+      setCurrent(el.currentTime);
     } else if (e.key === "ArrowLeft") {
       el.currentTime = Math.max(el.currentTime - 5, 0);
+      setCurrent(el.currentTime);
     }
   }
 
@@ -105,12 +127,21 @@ export default function SynopsisAudioPlayer({ src }: { src: string }) {
       <audio
         ref={audioRef}
         src={src}
-        preload="metadata"
+        preload="auto"
         onPlay={() => setPlaying(true)}
+        onPlaying={() => {
+          setPlaying(true);
+          sync();
+        }}
         onPause={() => setPlaying(false)}
-        onEnded={() => setPlaying(false)}
-        onTimeUpdate={(e) => setCurrent(e.currentTarget.currentTime)}
-        onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
+        onEnded={() => {
+          setPlaying(false);
+          sync();
+        }}
+        onSeeked={sync}
+        onTimeUpdate={sync}
+        onLoadedMetadata={sync}
+        onDurationChange={sync}
       />
     </div>
   );
