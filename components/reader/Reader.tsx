@@ -1,175 +1,36 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { SAMPLE_PARAGRAPHS, SAMPLE_CHAPTER_TITLE } from "@/lib/book-content/memories-berdox-vol1-sample-content";
 import type { Book } from "@/lib/data";
+import { useLanguage } from "@/lib/i18n";
 import ReaderHeader from "./ReaderHeader";
+import ReaderAudioBar from "./ReaderAudioBar";
 import ReaderNavButton from "./ReaderNavButton";
-import ReaderFlow from "./ReaderFlow";
-import ReaderCover from "./ReaderCover";
-import ReaderTitlePage from "./ReaderTitlePage";
-import ReaderEndPage from "./ReaderEndPage";
+import ReaderPages from "./ReaderPages";
 import ReaderProgress from "./ReaderProgress";
+import { useReaderNavigation } from "./useReaderNavigation";
+import { useReaderKeyboard } from "./useReaderKeyboard";
+import { useReaderGestures } from "./useReaderGestures";
+import { useBodyScrollLock } from "./useBodyScrollLock";
 
 type ReaderProps = {
   book: Book;
   onClose: () => void;
 };
 
-const GESTURE_COOLDOWN_MS = 10;
-const WHEEL_ACCUM_THRESHOLD = 20;
-const TOUCH_THRESHOLD = 40;
-const SLIDE_DURATION_MS = 200;
-const FRONT_MATTER_COUNT = 2; // 0 = capa, 1 = página de título
-const END_MATTER_COUNT = 1; // última = página de encerramento
-
 export default function Reader({ book, onClose }: ReaderProps) {
-  const [flowPageCount, setFlowPageCount] = useState(1);
-  const totalSpreads = FRONT_MATTER_COUNT + flowPageCount + END_MATTER_COUNT;
+  const { locale } = useLanguage();
+  const audioSrc = book.openingChapterAudio?.[locale];
 
-  const [spread, setSpread] = useState(0);
-  const [isTurning, setIsTurning] = useState(false);
+  const nav = useReaderNavigation();
+  const gestures = useReaderGestures({
+    spread: nav.spread,
+    totalSpreads: nav.totalSpreads,
+    goPrev: nav.goPrev,
+    goNext: nav.goNext,
+  });
 
-  const [dragX, setDragX] = useState(0);
-  const [dragAnimated, setDragAnimated] = useState(false);
-  const isDragging = useRef(false);
-  const touchStartX = useRef<number | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const lastGestureAt = useRef(0);
-  const wheelAccum = useRef(0);
-  const wheelResetTimer = useRef<number | null>(null);
-
-  const isCover = spread === 0;
-  const isTitlePage = spread === 1;
-  const isEndPage = spread === totalSpreads - 1;
-  const isTextPage = spread >= FRONT_MATTER_COUNT && !isEndPage;
-  const flowPageIndex = Math.min(spread - FRONT_MATTER_COUNT, flowPageCount - 1);
-
-  function clampSpread(s: number) {
-    return Math.max(0, Math.min(totalSpreads - 1, s));
-  }
-
-  useEffect(() => {
-    setIsTurning(true);
-    const id = window.setTimeout(() => setIsTurning(false), 10);
-    return () => clearTimeout(id);
-  }, [spread]);
-
-  function goPrev() {
-    setSpread((s) => clampSpread(s - 1));
-  }
-  function goNext() {
-    setSpread((s) => clampSpread(s + 1));
-  }
-
-  function handleFlowPageCountChange(count: number) {
-    setFlowPageCount(count);
-    setSpread((s) => clampSpread(s));
-  }
-
-  function canGesture() {
-    const now = Date.now();
-    if (now - lastGestureAt.current < GESTURE_COOLDOWN_MS) return false;
-    lastGestureAt.current = now;
-    return true;
-  }
-
-  useEffect(() => {
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "ArrowLeft") {
-        goPrev();
-      } else if (e.key === "ArrowRight") {
-        goNext();
-      } else if (e.key === "Escape") {
-        onClose();
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [totalSpreads, onClose]);
-
-  useEffect(() => {
-    const original = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = original;
-    };
-  }, []);
-
-  function handleWheel(e: React.WheelEvent) {
-    e.preventDefault();
-
-    wheelAccum.current += e.deltaY;
-
-    if (wheelResetTimer.current) clearTimeout(wheelResetTimer.current);
-    wheelResetTimer.current = window.setTimeout(() => {
-      wheelAccum.current = 0;
-    }, 150);
-
-    if (!canGesture()) return;
-
-    if (wheelAccum.current > WHEEL_ACCUM_THRESHOLD) {
-      goNext();
-      wheelAccum.current = 0;
-    } else if (wheelAccum.current < -WHEEL_ACCUM_THRESHOLD) {
-      goPrev();
-      wheelAccum.current = 0;
-    }
-  }
-
-  function handleTouchStart(e: React.TouchEvent) {
-    touchStartX.current = e.touches[0].clientX;
-    isDragging.current = true;
-    setDragAnimated(false);
-  }
-
-  function handleTouchMove(e: React.TouchEvent) {
-    if (!isDragging.current || touchStartX.current === null) return;
-    const delta = e.touches[0].clientX - touchStartX.current;
-    setDragX(delta);
-  }
-
-  function handleTouchEnd() {
-    if (touchStartX.current === null) return;
-    isDragging.current = false;
-
-    const width = containerRef.current?.offsetWidth ?? 320;
-    const canGoNext = dragX < -TOUCH_THRESHOLD && spread < totalSpreads - 1;
-    const canGoPrev = dragX > TOUCH_THRESHOLD && spread > 0;
-
-    if (canGoNext) {
-      setDragAnimated(true);
-      setDragX(-width);
-      window.setTimeout(() => {
-        setSpread((s) => clampSpread(s + 1));
-        setDragAnimated(false);
-        setDragX(width);
-        requestAnimationFrame(() => {
-          setDragAnimated(true);
-          setDragX(0);
-        });
-      }, SLIDE_DURATION_MS);
-    } else if (canGoPrev) {
-      setDragAnimated(true);
-      setDragX(width);
-      window.setTimeout(() => {
-        setSpread((s) => clampSpread(s - 1));
-        setDragAnimated(false);
-        setDragX(-width);
-        requestAnimationFrame(() => {
-          setDragAnimated(true);
-          setDragX(0);
-        });
-      }, SLIDE_DURATION_MS);
-    } else {
-      setDragAnimated(true);
-      setDragX(0);
-    }
-
-    touchStartX.current = null;
-  }
+  useReaderKeyboard({ goPrev: nav.goPrev, goNext: nav.goNext, onClose });
+  useBodyScrollLock();
 
   return (
     <div
@@ -183,48 +44,40 @@ export default function Reader({ book, onClose }: ReaderProps) {
       >
         <ReaderHeader title={book.title} onClose={onClose} />
 
+        {audioSrc && <ReaderAudioBar src={audioSrc} />}
+
         <div
-          ref={containerRef}
+          ref={gestures.containerRef}
           className="relative flex flex-1 overflow-hidden overscroll-none touch-none"
-          onWheel={handleWheel}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
+          {...gestures.handlers}
         >
-          <ReaderNavButton direction="prev" onClick={goPrev} disabled={spread === 0} />
+          <ReaderNavButton direction="prev" onClick={nav.goPrev} disabled={nav.spread === 0} />
 
-          <div
-            className={`h-full w-full min-h-0 ${isTurning ? "opacity-0" : "opacity-100"} ${dragAnimated ? "transition-transform duration-200 ease-out" : ""
-              }`}
-            style={{ transform: `translateX(${dragX}px)` }}
-          >
-            <div className="relative h-full w-full">
-              <div className="absolute inset-0" style={{ visibility: isCover ? "visible" : "hidden" }}>
-                <ReaderCover book={book} />
-              </div>
-              <div className="absolute inset-0" style={{ visibility: isTitlePage ? "visible" : "hidden" }}>
-                <ReaderTitlePage book={book} chapterTitle={SAMPLE_CHAPTER_TITLE} />
-              </div>
-              <div
-                className="absolute inset-0 px-12 pb-10 pt-14 sm:px-16 sm:pt-20"
-                style={{ visibility: isTextPage ? "visible" : "hidden" }}
-              >
-                <ReaderFlow
-                  paragraphs={SAMPLE_PARAGRAPHS}
-                  pageIndex={flowPageIndex}
-                  onPageCountChange={handleFlowPageCountChange}
-                />
-              </div>
-              <div className="absolute inset-0" style={{ visibility: isEndPage ? "visible" : "hidden" }}>
-                <ReaderEndPage book={book} />
-              </div>
-            </div>
-          </div>
+          <ReaderPages
+            book={book}
+            isCover={nav.isCover}
+            isTitlePage={nav.isTitlePage}
+            isTextPage={nav.isTextPage}
+            isEndPage={nav.isEndPage}
+            flowPageIndex={nav.flowPageIndex}
+            onPageCountChange={nav.handleFlowPageCountChange}
+            isTurning={nav.isTurning}
+            dragX={gestures.dragX}
+            dragAnimated={gestures.dragAnimated}
+          />
 
-          <ReaderNavButton direction="next" onClick={goNext} disabled={spread === totalSpreads - 1} />
+          <ReaderNavButton
+            direction="next"
+            onClick={nav.goNext}
+            disabled={nav.spread === nav.totalSpreads - 1}
+          />
         </div>
 
-        <ReaderProgress spread={spread} totalSpreads={totalSpreads} onChange={setSpread} />
+        <ReaderProgress
+          spread={nav.spread}
+          totalSpreads={nav.totalSpreads}
+          onChange={nav.setSpread}
+        />
       </div>
     </div>
   );

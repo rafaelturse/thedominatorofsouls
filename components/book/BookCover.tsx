@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { Book } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
 import { SearchIcon } from "@/lib/icons";
+import { pauseAllAudio } from "@/components/book/audio/audioEvents";
 
 type BookCoverProps = {
   book: Book;
@@ -45,7 +46,10 @@ export default function BookCover({ book, showSampleButton = false, onReadSample
       {showSampleButton && book.cover && (
         <button
           type="button"
-          onClick={onReadSample}
+          onClick={() => {
+            pauseAllAudio();
+            onReadSample?.();
+          }}
           className="mt-2 w-full border border-red-soft bg-red-soft px-4 py-2 text-center font-body text-xs uppercase tracking-[0.2em] text-ink transition-colors hover:bg-transparent hover:text-red-soft"
         >
           {t(ui.readSample)}

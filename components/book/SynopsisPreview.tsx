@@ -3,7 +3,7 @@
 import type { Book } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
 import { QuoteIcon } from "@/lib/icons";
-import SynopsisAudioPlayer from "@/components/book/SynopsisAudioPlayer";
+import AudioPlayer from "@/components/book/audio/AudioPlayer";
 
 type SynopsisPreviewProps = {
   book: Book;
@@ -12,7 +12,7 @@ type SynopsisPreviewProps = {
 
 export default function SynopsisPreview({ book, maxChars = 500 }: SynopsisPreviewProps) {
   const { t, ui, locale } = useLanguage();
-  const audioSrc = book.audio?.[locale];
+  const audioSrc = book.audioSinopse?.[locale];
 
   const fullText = book.fullSynopsisHeading && book.fullSynopsis
     ? book.fullSynopsis.map((p) => t(p)).join(" ")
@@ -33,7 +33,7 @@ export default function SynopsisPreview({ book, maxChars = 500 }: SynopsisPrevie
         </p>
       </div>
 
-      {audioSrc && <SynopsisAudioPlayer src={audioSrc} />}
+      {audioSrc && <AudioPlayer src={audioSrc} label={t(ui.listenSynopsis)} />}
 
       {book.fullSynopsisHeading && (
         <p className="mt-5 font-display text-lg text-red-soft">{t(book.fullSynopsisHeading)}</p>

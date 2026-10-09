@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { onPauseAll, pauseAllAudio } from "./audioEvents";
 
 type AudioCtor = typeof AudioContext;
 
@@ -51,6 +52,13 @@ export function useAudioPlayer() {
   }, []);
 
   useEffect(() => {
+    return onPauseAll((except) => {
+      const el = audioRef.current;
+      if (el && el !== except) el.pause();
+    });
+  }, []);
+
+  useEffect(() => {
     if (!playing) return;
     let frame = 0;
     function tick() {
@@ -65,6 +73,7 @@ export function useAudioPlayer() {
     const el = audioRef.current;
     if (!el) return;
     if (el.paused) {
+      pauseAllAudio(el);
       ensureAnalyser();
       ctxRef.current?.resume();
       el.play().catch(() => setPlaying(false));

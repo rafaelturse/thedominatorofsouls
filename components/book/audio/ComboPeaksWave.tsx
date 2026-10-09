@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { BARS, BAR_COUNT, getLevel, useAudioFrame, type WaveEffectProps } from "./shared";
+import { BAR_HEIGHTS, getLevel, useAudioFrame, type WaveEffectProps } from "./shared";
 
 const EQ_MAX = 50;
 const EQ_GAIN = 1.8;
@@ -10,13 +10,13 @@ const RED_FALL_PER_MS = 0.035;
 const GOLD_FALL_PER_MS = 0.02;
 const CAP_LIMIT = 96;
 
-export default function ComboPeaksWave({ ratio, playing, audioRef, analyserRef }: WaveEffectProps) {
+export default function ComboPeaksWave({ ratio, playing, audioRef, analyserRef, barCount }: WaveEffectProps) {
   const barRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const eqRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const redCapRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const goldCapRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  const redPeaksRef = useRef<number[]>(BARS.map((h) => h));
-  const goldPeaksRef = useRef<number[]>(BARS.map((h) => h));
+  const redPeaksRef = useRef<number[]>(BAR_HEIGHTS.map((h) => h));
+  const goldPeaksRef = useRef<number[]>(BAR_HEIGHTS.map((h) => h));
   const lastTimeRef = useRef(0);
 
   useAudioFrame(
@@ -27,25 +27,25 @@ export default function ComboPeaksWave({ ratio, playing, audioRef, analyserRef }
       const redPeaks = redPeaksRef.current;
       const goldPeaks = goldPeaksRef.current;
 
-      for (let i = 0; i < BAR_COUNT; i++) {
+      for (let i = 0; i < barCount; i++) {
         const bar = barRefs.current[i];
         const eq = eqRefs.current[i];
         const redCap = redCapRefs.current[i];
         const goldCap = goldCapRefs.current[i];
         if (!bar || !eq || !redCap || !goldCap) continue;
 
-        if (i / BAR_COUNT >= playedRatio) {
-          bar.style.height = `${BARS[i]}%`;
+        if (i / barCount >= playedRatio) {
+          bar.style.height = `${BAR_HEIGHTS[i]}%`;
           eq.style.height = "0%";
           redCap.style.opacity = "0";
           goldCap.style.opacity = "0";
-          redPeaks[i] = BARS[i];
-          goldPeaks[i] = BARS[i];
+          redPeaks[i] = BAR_HEIGHTS[i];
+          goldPeaks[i] = BAR_HEIGHTS[i];
           continue;
         }
 
-        const level = getLevel(i, time, data);
-        const h = Math.min(100, BARS[i] * (0.45 + level * 0.9));
+        const level = getLevel(i, time, data, barCount);
+        const h = Math.min(100, BAR_HEIGHTS[i] * (0.45 + level * 0.9));
         const eqLevel = Math.min(1, Math.pow(level, EQ_CURVE) * EQ_GAIN);
 
         bar.style.height = `${h}%`;
@@ -62,14 +62,14 @@ export default function ComboPeaksWave({ ratio, playing, audioRef, analyserRef }
     },
     () => {
       lastTimeRef.current = 0;
-      for (let i = 0; i < BAR_COUNT; i++) {
+      for (let i = 0; i < barCount; i++) {
         const bar = barRefs.current[i];
         const eq = eqRefs.current[i];
         const redCap = redCapRefs.current[i];
         const goldCap = goldCapRefs.current[i];
-        redPeaksRef.current[i] = BARS[i];
-        goldPeaksRef.current[i] = BARS[i];
-        if (bar) bar.style.height = `${BARS[i]}%`;
+        redPeaksRef.current[i] = BAR_HEIGHTS[i];
+        goldPeaksRef.current[i] = BAR_HEIGHTS[i];
+        if (bar) bar.style.height = `${BAR_HEIGHTS[i]}%`;
         if (eq) eq.style.height = "0%";
         if (redCap) redCap.style.opacity = "0";
         if (goldCap) goldCap.style.opacity = "0";
@@ -79,8 +79,9 @@ export default function ComboPeaksWave({ ratio, playing, audioRef, analyserRef }
 
   return (
     <>
-      {BARS.map((h, i) => {
-        const played = i / BAR_COUNT < ratio;
+      {Array.from({ length: barCount }, (_, i) => {
+        const h = BAR_HEIGHTS[i];
+        const played = i / barCount < ratio;
 
         return (
           <span key={i} className="group relative flex h-full flex-1 items-center">
@@ -88,9 +89,8 @@ export default function ComboPeaksWave({ ratio, playing, audioRef, analyserRef }
               ref={(el) => {
                 barRefs.current[i] = el;
               }}
-              className={`relative w-full overflow-hidden rounded-full transition-colors duration-200 group-hover:bg-red-soft ${
-                played ? "bg-gold-soft" : "bg-muted/40"
-              }`}
+              className={`relative w-full overflow-hidden rounded-full transition-colors duration-200 group-hover:bg-red-soft ${played ? "bg-gold-soft" : "bg-muted/40"
+                }`}
               style={{ height: `${h}%` }}
             >
               <span

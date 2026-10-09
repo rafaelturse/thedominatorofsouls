@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { BARS, BAR_COUNT, getLevel, useAudioFrame, type WaveEffectProps } from "./shared";
+import { BAR_HEIGHTS, getLevel, useAudioFrame, type WaveEffectProps } from "./shared";
 
 const EQ_MAX = 50;
 
@@ -17,6 +17,7 @@ export default function SpectrumWave({
   playing,
   audioRef,
   analyserRef,
+  barCount,
   grow,
   eq,
   eqGain = 1,
@@ -28,20 +29,20 @@ export default function SpectrumWave({
   useAudioFrame(
     { playing, audioRef, analyserRef },
     ({ time, playedRatio, data }) => {
-      for (let i = 0; i < BAR_COUNT; i++) {
+      for (let i = 0; i < barCount; i++) {
         const bar = barRefs.current[i];
         const eqBar = eqRefs.current[i];
 
-        if (i / BAR_COUNT >= playedRatio) {
-          if (bar) bar.style.height = `${BARS[i]}%`;
+        if (i / barCount >= playedRatio) {
+          if (bar) bar.style.height = `${BAR_HEIGHTS[i]}%`;
           if (eqBar) eqBar.style.height = "0%";
           continue;
         }
 
-        const level = getLevel(i, time, data);
+        const level = getLevel(i, time, data, barCount);
 
         if (bar && grow) {
-          bar.style.height = `${Math.min(100, BARS[i] * (0.45 + level * 0.9))}%`;
+          bar.style.height = `${Math.min(100, BAR_HEIGHTS[i] * (0.45 + level * 0.9))}%`;
         }
         if (eqBar && eq) {
           const eqLevel = Math.min(1, Math.pow(level, eqCurve) * eqGain);
@@ -50,10 +51,10 @@ export default function SpectrumWave({
       }
     },
     () => {
-      for (let i = 0; i < BAR_COUNT; i++) {
+      for (let i = 0; i < barCount; i++) {
         const bar = barRefs.current[i];
         const eqBar = eqRefs.current[i];
-        if (bar) bar.style.height = `${BARS[i]}%`;
+        if (bar) bar.style.height = `${BAR_HEIGHTS[i]}%`;
         if (eqBar) eqBar.style.height = "0%";
       }
     },
@@ -61,8 +62,8 @@ export default function SpectrumWave({
 
   return (
     <>
-      {BARS.map((h, i) => {
-        const played = i / BAR_COUNT < ratio;
+      {Array.from({ length: barCount }, (_, i) => {
+        const played = i / barCount < ratio;
 
         return (
           <span key={i} className="group flex h-full flex-1 items-center">
@@ -72,7 +73,7 @@ export default function SpectrumWave({
               }}
               className={`relative w-full overflow-hidden rounded-full transition-colors duration-200 group-hover:bg-red-soft ${played ? "bg-gold-soft" : "bg-muted/40"
                 }`}
-              style={{ height: `${h}%` }}
+              style={{ height: `${BAR_HEIGHTS[i]}%` }}
             >
               {eq && (
                 <span

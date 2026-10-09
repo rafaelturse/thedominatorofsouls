@@ -119,6 +119,7 @@ const UI = {
   blogRelatedTitle: { "pt-br": "Mais Posts", en: "More Posts" },
   blogShareLabel: { "pt-br": "Compartilhar", en: "Share" },
   listenSynopsis: { "pt-br": "Ouvir sinopse", en: "Listen to synopsis" },
+  listenPrologue: { "pt-br": "Ouvir prólogo", en: "Listen to prologue" },
 } satisfies Record<string, LocalizedString>;
 
 type LanguageContextValue = {

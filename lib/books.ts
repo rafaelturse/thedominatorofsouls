@@ -23,7 +23,8 @@ export type Book = {
   stores?: Store[];
   openingChapterTitle?: LocalizedString;
   openingChapter?: LocalizedString[];
-  audio?: Partial<Record<Locale, string>>;
+  audioSinopse?: Partial<Record<Locale, string>>;
+  openingChapterAudio?: Partial<Record<Locale, string>>;
 };
 
 
@@ -149,9 +150,13 @@ export const books: Book[] = [
         "Em uma mansão isolada na costa inglesa, um garoto testemunha o pior pesadelo que uma criança pode viver — e sobrevive apenas para carregar, para sempre, a marca de uma promessa sussurrada por algo que não deveria existir...",
       en: "In an isolated mansion on the English coast, a boy witnesses the worst nightmare a child can live through — and survives only to carry, forever, the mark of a promise whispered by something that should not exist...",
     },
-    audio: {
+    audioSinopse: {
       "pt-br": "/audio/the-memories-of-berdox-volume1-fragmented/br-sinopse.mp3",
       en: "/audio/the-memories-of-berdox-volume1-fragmented/en-sinopse.mp3",
+    },
+    openingChapterAudio: {
+      "pt-br": "/audio/the-memories-of-berdox-volume1-fragmented/en-prologue.mp3",
+      en: "/audio/the-memories-of-berdox-volume1-fragmented/en-prologue.mp3",
     },
     fullSynopsisHeading: {
       "pt-br": "Uma noite tempestuosa que mudou tudo...",

@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import type { Book } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
 import { QuoteIcon } from "@/lib/icons";
-import SynopsisAudioPlayer from "@/components/book/SynopsisAudioPlayer";
+import AudioPlayer from "@/components/book/audio/AudioPlayer";
 
 type SynopsisProps = {
   book: Book;
@@ -13,7 +13,7 @@ type SynopsisProps = {
 
 export default function Synopsis({ book, maxHeightClass = "max-h-36" }: SynopsisProps) {
   const { t, ui, locale } = useLanguage();
-  const audioSrc = book.audio?.[locale];
+  const audioSrc = book.audioSinopse?.[locale];
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollUp, setCanScrollUp] = useState(false);
   const [canScrollDown, setCanScrollDown] = useState(true);
@@ -47,7 +47,7 @@ export default function Synopsis({ book, maxHeightClass = "max-h-36" }: Synopsis
   if (!book.fullSynopsisHeading || !book.fullSynopsis) {
     return (
       <>
-        {audioSrc && <SynopsisAudioPlayer src={audioSrc} />}
+        {audioSrc && <AudioPlayer src={audioSrc} label={t(ui.listenSynopsis)} />}
         <p className="mt-5 font-body text-sm leading-relaxed text-muted">{t(book.synopsis)}</p>
       </>
     );
@@ -62,7 +62,7 @@ export default function Synopsis({ book, maxHeightClass = "max-h-36" }: Synopsis
         <p className="font-body text-xs uppercase tracking-[0.3em] text-gold-soft">{t(ui.synopsisLabel)}</p>
       </div>
 
-      {audioSrc && <SynopsisAudioPlayer src={audioSrc} />}
+      {audioSrc && <AudioPlayer src={audioSrc} label={t(ui.listenSynopsis)} />}
 
       <button
         type="button"
