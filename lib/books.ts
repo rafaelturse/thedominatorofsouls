@@ -155,7 +155,7 @@ export const books: Book[] = [
       en: "/audio/the-memories-of-berdox-volume1-fragmented/en-sinopse.mp3",
     },
     openingChapterAudio: {
-      "pt-br": "/audio/the-memories-of-berdox-volume1-fragmented/en-prologue.mp3",
+      "pt-br": "/audio/the-memories-of-berdox-volume1-fragmented/br-prologo.mp3",
       en: "/audio/the-memories-of-berdox-volume1-fragmented/en-prologue.mp3",
     },
     fullSynopsisHeading: {
