@@ -19,6 +19,7 @@ type AudioPlayerProps = {
   label: string;
   className?: string;
   spotifyHref?: string;
+  showSpotify?: boolean;
 };
 
 export default function AudioPlayer({
@@ -26,6 +27,7 @@ export default function AudioPlayer({
   label,
   className = "mt-8",
   spotifyHref = EXTERNAL_LINKS.spotify,
+  showSpotify = true,
 }: AudioPlayerProps) {
   const { t, ui } = useLanguage();
   const player = useAudioPlayer();
@@ -52,7 +54,7 @@ export default function AudioPlayer({
         onSkip={player.skip}
       />
 
-      <SpotifyButton caption={t(ui.listenOnSpotify)} href={spotifyHref} />
+      {showSpotify && <SpotifyButton caption={t(ui.listenOnSpotify)} href={spotifyHref} />}
 
       <audio ref={player.audioRef} src={src} {...player.audioProps} />
     </div>

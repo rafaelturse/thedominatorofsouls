@@ -47,7 +47,7 @@ export default function Synopsis({ book, maxHeightClass = "max-h-36" }: Synopsis
   if (!book.fullSynopsisHeading || !book.fullSynopsis) {
     return (
       <>
-        {audioSrc && <AudioPlayer src={audioSrc} label={t(ui.listenSynopsis)} />}
+        {audioSrc && <AudioPlayer src={audioSrc} label={t(ui.listenSynopsis)} showSpotify={false} />}
         <p className="mt-5 font-body text-sm leading-relaxed text-muted">{t(book.synopsis)}</p>
       </>
     );
@@ -62,7 +62,7 @@ export default function Synopsis({ book, maxHeightClass = "max-h-36" }: Synopsis
         <p className="font-body text-xs uppercase tracking-[0.3em] text-gold-soft">{t(ui.synopsisLabel)}</p>
       </div>
 
-      {audioSrc && <AudioPlayer src={audioSrc} label={t(ui.listenSynopsis)} />}
+      {audioSrc && <AudioPlayer src={audioSrc} label={t(ui.listenSynopsis)} showSpotify={false} />}
 
       <button
         type="button"
