@@ -14,6 +14,7 @@ type PlatformLinksProps = {
     spotifyHref?: string;
     align?: "end" | "center";
     size?: "md" | "lg";
+    linkTo?: "author" | "book";
 };
 
 const AMAZON_LOGO = COMMUNITY_PLATFORMS.find((p) => p.id === "amazon")?.image;
@@ -41,6 +42,7 @@ export default function PlatformLinks({
     spotifyHref = EXTERNAL_LINKS.spotify,
     align = "end",
     size = "md",
+    linkTo = "author",
 }: PlatformLinksProps) {
     const { t, ui, locale } = useLanguage();
     const [open, setOpen] = useState(false);
@@ -48,6 +50,10 @@ export default function PlatformLinks({
     const s = SIZES[size];
 
     const buttonClass = `flex ${s.button} cursor-pointer items-center gap-2 transition-transform duration-300 ease-out hover:-translate-y-1`;
+
+    function storeUrl(store: Store) {
+        return linkTo === "book" ? store.href[locale] : authorPageUrl(store, locale);
+    }
 
     useEffect(() => {
         function handleClickOutside(e: MouseEvent) {
@@ -100,7 +106,7 @@ export default function PlatformLinks({
                         {stores.map((store, i) => (
                             <Link
                                 key={i}
-                                href={authorPageUrl(store, locale)}
+                                href={storeUrl(store)}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 role="menuitem"

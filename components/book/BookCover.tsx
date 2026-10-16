@@ -65,7 +65,7 @@ export default function BookCover({
 
       {showPlatformLinks && (
         <div className="flex w-full justify-center pt-2">
-          <PlatformLinks stores={book.stores ?? []} align="center" size="lg" />
+          <PlatformLinks stores={book.stores ?? []} align="center" size="lg" linkTo="book" />
         </div>
       )}
 
