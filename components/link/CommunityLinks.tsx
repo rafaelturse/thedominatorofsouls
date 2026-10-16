@@ -26,7 +26,7 @@ export default function CommunityLinks() {
         <h1 className="font-display uppercase text-lg text-ink">{t(ui.communityTitle)}</h1>
       </div>
 
-      <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-6">
+      <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4 md:grid-cols-7">
         {COMMUNITY_PLATFORMS.map((platform) => {
           const isActive = selected === platform.id;
           const Icon = platform.icon;

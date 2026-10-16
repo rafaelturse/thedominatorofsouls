@@ -1,10 +1,11 @@
 import type { LocalizedString } from "./i18n";
 import { EXTERNAL_LINKS } from "./routes";
-import { InstagramIcon, FacebookIcon, XIcon, WhatsAppIcon, type IconProps } from "./icons";
+import { InstagramIcon, FacebookIcon, XIcon, WhatsAppIcon, SpotifyIcon, type IconProps } from "./icons";
 
 export type CommunityPlatformId =
   | "amazon"
   | "wattpad"
+  | "spotify"
   | "instagram"
   | "facebook"
   | "x"
@@ -39,6 +40,17 @@ export const COMMUNITY_PLATFORMS: CommunityPlatform[] = [
     description: {
       "pt-br": "Acompanhe capítulos, bastidores e novidades sobre o universo de Berdox diretamente no perfil oficial no Wattpad.",
       en: "Follow chapters, behind-the-scenes content, and updates about the Berdox universe directly on the official Wattpad profile.",
+    },
+  },
+  {
+    id: "spotify",
+    name: "Spotify",
+    icon: SpotifyIcon,
+    iconColor: "#1DB954",
+    href: "https://open.spotify.com/show/4mzKe1KH4pWEYKHRk3rBaz",
+    description: {
+      "pt-br": "Ouça os áudios de O Dominador de Almas no Spotify.",
+      en: "Listen to The Dominator of Souls audio on Spotify.",
     },
   },
   {

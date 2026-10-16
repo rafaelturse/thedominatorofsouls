@@ -36,4 +36,5 @@ export const EXTERNAL_LINKS = {
     en: "https://whatsapp.com/channel/0029VbD4VjbA2pLG5qaf233a",
   },
   wattpad: "https://www.wattpad.com/user/RafaelTurse",
+  spotify: "https://open.spotify.com/show/4mzKe1KH4pWEYKHRk3rBaz",
 } as const;

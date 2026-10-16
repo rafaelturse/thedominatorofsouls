@@ -1,5 +1,6 @@
 import { contacts } from "@/lib/data";
-import { InstagramIcon, XIcon, FacebookIcon, WattpadIcon, WhatsAppIcon, AuthorQuillIcon, type IconProps } from "@/lib/icons";
+import { COMMUNITY_PLATFORMS } from "@/lib/community";
+import { InstagramIcon, XIcon, FacebookIcon, WattpadIcon, WhatsAppIcon, SpotifyIcon, AuthorQuillIcon, type IconProps } from "@/lib/icons";
 import { useLanguage } from "@/lib/i18n";
 import type { LocalizedString } from "@/lib/i18n";
 
@@ -9,8 +10,11 @@ const ICONS: Record<string, (props: IconProps) => React.JSX.Element> = {
     Facebook: FacebookIcon,
     WhatsApp: WhatsAppIcon,
     Wattpad: WattpadIcon,
+    Spotify: SpotifyIcon,
     Author: AuthorQuillIcon,
 };
+
+const AMAZON_LOGO = COMMUNITY_PLATFORMS.find((p) => p.id === "amazon")?.image;
 
 type Props = { size?: number; className?: string };
 
@@ -25,7 +29,8 @@ export default function ContactIcons({ size = 20, className = "" }: Props) {
         <div className={`flex items-center gap-4 ${className}`}>
             {contacts.map((c) => {
                 const Icon = ICONS[c.label];
-                if (!Icon) return null;
+                const image = c.label === "Amazon" ? AMAZON_LOGO : undefined;
+                if (!Icon && !image) return null;
                 const isAuthor = c.label === "Author";
                 const href = isLocalized(c.href) ? c.href[locale] : c.href;
                 return (
@@ -40,7 +45,32 @@ export default function ContactIcons({ size = 20, className = "" }: Props) {
                             : "text-current hover:text-gold-soft"
                             }`}
                     >
-                        <Icon size={size} />
+                        {Icon ? (
+                            <Icon size={size} />
+                        ) : (
+                            <span className="relative block">
+                                <img
+                                    src={image}
+                                    alt=""
+                                    style={{ height: size }}
+                                    className="invisible w-auto"
+                                />
+                                <span
+                                    aria-hidden
+                                    className="absolute inset-0 bg-current"
+                                    style={{
+                                        WebkitMaskImage: `url(${image})`,
+                                        maskImage: `url(${image})`,
+                                        WebkitMaskRepeat: "no-repeat",
+                                        maskRepeat: "no-repeat",
+                                        WebkitMaskSize: "contain",
+                                        maskSize: "contain",
+                                        WebkitMaskPosition: "center",
+                                        maskPosition: "center",
+                                    }}
+                                />
+                            </span>
+                        )}
                     </a>
                 );
             })}
