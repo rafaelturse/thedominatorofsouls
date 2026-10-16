@@ -61,7 +61,7 @@ const UI = {
   },
   thankYouWarrior: { "pt-br": "Muito obrigado, guerreiro!", en: "Thank you very much, warrior!" },
   communityTitle: { "pt-br": "Comunidade", en: "Community" },
-  visitSite: { "pt-br": "Visitar site", en: "Visit site" },
+  visitSite: { "pt-br": "Visite", en: "Visit" },
   byAuthorLabel: { "pt-br": "por", en: "by" },
   formatsLabel: { "pt-br": "Formatos Disponíveis", en: "Available Formats" },
   formatHardcover: { "pt-br": "Capa Dura", en: "Hardcover" },
