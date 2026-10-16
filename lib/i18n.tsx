@@ -120,7 +120,7 @@ const UI = {
   blogShareLabel: { "pt-br": "Compartilhar", en: "Share" },
   listenSynopsis: { "pt-br": "Ouvir sinopse", en: "Listen to synopsis" },
   listenPrologue: { "pt-br": "Ouvir prólogo", en: "Listen to prologue" },
-  listenOnSpotify: { "pt-br": "Ouça no Spotify!", en: "Listen on Spotify!" },
+  listenOnSpotify: { "pt-br": "Spotify", en: "Spotify" },
 } satisfies Record<string, LocalizedString>;
 
 type LanguageContextValue = {

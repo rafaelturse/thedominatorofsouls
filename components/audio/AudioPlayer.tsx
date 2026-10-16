@@ -34,7 +34,9 @@ export default function AudioPlayer({
   const remaining = Math.max(player.duration - player.current, 0);
 
   return (
-    <div className={`${className} flex items-center gap-4 pb-4`}>
+    <div className={`${className} flex items-center gap-6 pb-4`}>
+      {showSpotify && <SpotifyButton caption={t(ui.listenOnSpotify)} href={spotifyHref} />}
+
       <PlayButton
         playing={player.playing}
         onToggle={player.toggle}
@@ -53,8 +55,6 @@ export default function AudioPlayer({
         onSeek={player.seekToRatio}
         onSkip={player.skip}
       />
-
-      {showSpotify && <SpotifyButton caption={t(ui.listenOnSpotify)} href={spotifyHref} />}
 
       <audio ref={player.audioRef} src={src} {...player.audioProps} />
     </div>
