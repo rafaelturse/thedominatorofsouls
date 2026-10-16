@@ -12,12 +12,19 @@ import type { Locale } from "@/lib/i18n";
 type PlatformLinksProps = {
     stores: Store[];
     spotifyHref?: string;
+    align?: "end" | "center";
+    size?: "md" | "lg";
 };
 
 const AMAZON_LOGO = COMMUNITY_PLATFORMS.find((p) => p.id === "amazon")?.image;
 
 const AUTHOR_SLUG = "Rafael-Turse";
 const AUTHOR_ID = "B0HHFVRC7S";
+
+const SIZES = {
+    md: { button: "h-11 px-4", logo: "h-5", spotify: 22 },
+    lg: { button: "h-14 px-5", logo: "h-8", spotify: 34 },
+};
 
 function authorPageUrl(store: Store, locale: Locale) {
     const bookUrl = store.href[locale];
@@ -29,16 +36,18 @@ function authorPageUrl(store: Store, locale: Locale) {
     }
 }
 
-const buttonClass =
-    "flex h-11 cursor-pointer items-center gap-2 px-4 transition-transform duration-300 ease-out hover:-translate-y-1";
-
 export default function PlatformLinks({
     stores,
     spotifyHref = EXTERNAL_LINKS.spotify,
+    align = "end",
+    size = "md",
 }: PlatformLinksProps) {
     const { t, ui, locale } = useLanguage();
     const [open, setOpen] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
+    const s = SIZES[size];
+
+    const buttonClass = `flex ${s.button} cursor-pointer items-center gap-2 transition-transform duration-300 ease-out hover:-translate-y-1`;
 
     useEffect(() => {
         function handleClickOutside(e: MouseEvent) {
@@ -60,6 +69,11 @@ export default function PlatformLinks({
     const itemClass =
         "block cursor-pointer border-b border-line px-4 py-2.5 text-left font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors last:border-none hover:bg-surface hover:text-gold-soft";
 
+    const menuPosition =
+        align === "center"
+            ? "left-1/2 w-56 -translate-x-1/2"
+            : "left-1/2 w-64 -translate-x-1/2 sm:left-auto sm:right-0 sm:translate-x-0";
+
     return (
         <div className="flex items-center gap-0">
             <div ref={ref} className="relative">
@@ -72,7 +86,7 @@ export default function PlatformLinks({
                     className={`${buttonClass} ${open ? "-translate-y-1" : ""}`}
                 >
                     {AMAZON_LOGO ? (
-                        <img src={AMAZON_LOGO} alt="" className="h-5 w-auto object-contain" />
+                        <img src={AMAZON_LOGO} alt="" className={`${s.logo} w-auto object-contain`} />
                     ) : (
                         <span className="font-body text-xs uppercase tracking-[0.15em] text-ink">Amazon</span>
                     )}
@@ -81,7 +95,7 @@ export default function PlatformLinks({
                 {open && (
                     <div
                         role="menu"
-                        className="gold-scrollbar absolute left-1/2 top-full z-20 mt-2 max-h-72 w-64 -translate-x-1/2 overflow-y-auto border border-line bg-bg shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6)] sm:left-auto sm:right-0 sm:translate-x-0"
+                        className={`gold-scrollbar absolute top-full z-20 mt-2 max-h-72 overflow-y-auto border border-line bg-bg shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6)] ${menuPosition}`}
                     >
                         {stores.map((store, i) => (
                             <Link
@@ -108,7 +122,7 @@ export default function PlatformLinks({
                 title={t(ui.listenOnSpotify)}
                 className={`${buttonClass} text-spotify`}
             >
-                <SpotifyIcon size={22} />
+                <SpotifyIcon size={s.spotify} />
             </Link>
         </div>
     );

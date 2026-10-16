@@ -163,7 +163,7 @@ export default function BookDetails({ book, hideMore = false }: BookDetailsProps
   const openLabel = openFormat ? t(ui[FORMAT_LABEL_KEYS[openFormat]]) : "";
 
   return (
-    <div className="mt-6 flex items-center gap-2 border-t border-line py-5">
+    <div className="mt-6 flex items-center gap-2 border-t border-line pt-5">
       <div className="flex w-6 shrink-0 justify-center">
         {canScrollLeft && (
           <button

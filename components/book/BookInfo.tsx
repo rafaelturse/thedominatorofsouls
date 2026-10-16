@@ -58,10 +58,6 @@ export default function BookInfo({
         <Synopsis book={book} maxHeightClass={synopsisMaxHeightClass} />
 
         <BookDetails book={book} hideMore={!showMoreLink} />
-
-        {book.stores && book.stores.length > 0 && (
-          <StoreDropdown stores={book.stores} align="end" />
-        )}
       </div>
     </div>
   );

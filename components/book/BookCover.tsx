@@ -5,14 +5,21 @@ import type { Book } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
 import { SearchIcon } from "@/lib/icons";
 import { pauseAllAudio } from "@/components/book/audio/audioEvents";
+import PlatformLinks from "@/components/page/PlatformLinks";
 
 type BookCoverProps = {
   book: Book;
   showSampleButton?: boolean;
+  showPlatformLinks?: boolean;
   onReadSample?: () => void;
 };
 
-export default function BookCover({ book, showSampleButton = false, onReadSample }: BookCoverProps) {
+export default function BookCover({
+  book,
+  showSampleButton = false,
+  showPlatformLinks = showSampleButton,
+  onReadSample,
+}: BookCoverProps) {
   const { t, ui } = useLanguage();
   const [zoomOpen, setZoomOpen] = useState(false);
 
@@ -54,6 +61,12 @@ export default function BookCover({ book, showSampleButton = false, onReadSample
         >
           {t(ui.readSample)}
         </button>
+      )}
+
+      {showPlatformLinks && (
+        <div className="flex w-full justify-center pt-2">
+          <PlatformLinks stores={book.stores ?? []} align="center" size="lg" />
+        </div>
       )}
 
       {zoomOpen && book.cover && (
