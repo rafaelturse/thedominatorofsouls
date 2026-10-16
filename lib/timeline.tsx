@@ -1,6 +1,6 @@
 import type { LocalizedString } from "./i18n";
 import type { IconProps } from "./icons";
-import { BookIcon, CommunityIcon, FeatherIcon, GridIcon, ShieldIcon } from "./icons";
+import { BookIcon, CommunityIcon, FeatherIcon, GridIcon, ShieldIcon, PlayIcon, SpotifyIcon } from "./icons";
 import type { JSXElementConstructor, ReactElement } from "react";
 import type { ReactNode } from "react";
 
@@ -13,6 +13,46 @@ export type TimelineEvent = {
 };
 
 export const TIMELINE_EVENTS: TimelineEvent[] = [
+  {
+    date: { "pt-br": "Out-15-2026", en: "Oct-15-2026" },
+    title: { "pt-br": "O Audiobook Chega ao Spotify", en: "The Audiobook Arrives on Spotify" },
+    description: {
+      "pt-br": (
+        <>
+          O audiobook de <strong>As Memórias de Berdox</strong> chegou ao Spotify. Agora dá pra
+          levar a história pra qualquer lugar e ouvir no seu ritmo, direto do seu app favorito.
+        </>
+      ),
+      en: (
+        <>
+          The <strong>Memories of Berdox</strong> audiobook has arrived on Spotify. Now you can take
+          the story anywhere and listen at your own pace, right from your favorite app.
+        </>
+      ),
+    },
+    icon: SpotifyIcon,
+  },
+  {
+    date: { "pt-br": "Out-11-2026", en: "Oct-11-2026" },
+    title: { "pt-br": "A Voz da História", en: "The Voice of the Story" },
+    description: {
+      "pt-br": (
+        <>
+          O site ganhou players de áudio: a sinopse e o prólogo de <strong>Fragmentados</strong>{" "}
+          agora podem ser ouvidos, com uma onda sonora que reage à voz da narração. É o primeiro
+          passo da chegada dos audiobooks.
+        </>
+      ),
+      en: (
+        <>
+          The site now has audio players: the synopsis and prologue of <strong>Fragmented</strong>{" "}
+          can be listened to, with a sound wave that reacts to the narration. It is the first step
+          toward the arrival of the audiobooks.
+        </>
+      ),
+    },
+    icon: PlayIcon,
+  },
   {
     date: { "pt-br": "Out-2026", en: "Oct-2026" },
     title: { "pt-br": "Volume 2: A Caçada", en: "Volume 2: The Hunt" },
