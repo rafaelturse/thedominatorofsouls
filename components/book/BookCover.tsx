@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { Book } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
 import { SearchIcon } from "@/lib/icons";
-import { pauseAllAudio } from "@/components/book/audio/audioEvents";
+import { pauseAllAudio } from "@/components/audio/audioEvents";
 import PlatformLinks from "@/components/page/PlatformLinks";
 
 type BookCoverProps = {

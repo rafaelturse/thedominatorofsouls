@@ -1,7 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/lib/i18n";
-import AudioPlayer from "@/components/book/audio/AudioPlayer";
+import AudioPlayer from "@/components/audio/AudioPlayer";
 
 export default function ReaderAudioBar({ src }: { src: string }) {
   const { t, ui } = useLanguage();

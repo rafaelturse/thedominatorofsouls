@@ -3,7 +3,7 @@
 import type { Book } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
 import { QuoteIcon } from "@/lib/icons";
-import AudioPlayer from "@/components/book/audio/AudioPlayer";
+import AudioPlayer from "@/components/audio/AudioPlayer";
 
 type SynopsisPreviewProps = {
   book: Book;

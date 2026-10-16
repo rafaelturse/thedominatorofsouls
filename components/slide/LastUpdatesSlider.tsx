@@ -4,27 +4,59 @@ import Link from "next/link";
 import { useState } from "react";
 import type { Book } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
-import { SettingsIcon, MoreIcon, SearchIcon } from "@/lib/icons";
+import { SettingsIcon, MoreIcon } from "@/lib/icons";
 import { ROUTES } from "@/lib/routes";
 import { TIMELINE_EVENTS } from "@/lib/timeline";
+import { BLOG_POSTS } from "@/lib/blog";
 import { useAutoSlide } from "./useAutoSlide";
 import SlideProgressDot from "./SlideProgressDot";
+import BookSlide from "./slides/BookSlide";
+import PostSlide from "./slides/PostSlide";
+import CoverZoomModal from "./slides/CoverZoomModal";
+import { SLIDE_MIN_HEIGHT } from "./slides/slideLayout";
+import type { SlideItem } from "./slides/types";
 
 const SLIDE_INTERVAL_MS = 10000;
+const POST_SLUGS = ["o-prologo-chega-ao-publico", "novo-modelo-de-capas"];
 
 export default function LastUpdatesSlider({ book }: { book: Book }) {
-  const { t, ui, locale } = useLanguage();
+  const { t, ui } = useLanguage();
   const [zoomOpen, setZoomOpen] = useState(false);
 
-  const timelineSlides = TIMELINE_EVENTS.slice(1, 3).map((event) => ({
-    date: t(event.date),
-    title: t(event.title),
-    body: event.description[locale],
-    anchor: `${ROUTES.timeline}#timeline-event-${TIMELINE_EVENTS.indexOf(event)}`,
-  }));
+  const bookEvent = TIMELINE_EVENTS[0];
 
-  const totalSlides = 1 + timelineSlides.length;
-  const { active, progress, select, dragHandlers } = useAutoSlide(totalSlides, SLIDE_INTERVAL_MS);
+  const postItems: SlideItem[] = POST_SLUGS.flatMap((slug) => {
+    const post = BLOG_POSTS.find((p) => p.slug === slug);
+    if (!post) return [];
+    return [
+      {
+        key: `post-${slug}`,
+        href: ROUTES.blogPost(slug),
+        cta: t(ui.blogReadMore),
+        content: <PostSlide post={post} />,
+      },
+    ];
+  });
+
+  const items: SlideItem[] = [
+    {
+      key: "book",
+      href: `${ROUTES.timeline}#timeline-top`,
+      cta: t(ui.more),
+      content: (
+        <BookSlide
+          book={book}
+          date={t(bookEvent.date)}
+          title={t(bookEvent.title)}
+          onZoom={() => setZoomOpen(true)}
+        />
+      ),
+    },
+    ...postItems,
+  ];
+
+  const { active, progress, select, dragHandlers } = useAutoSlide(items.length, SLIDE_INTERVAL_MS);
+  const current = items[active] ?? items[0];
 
   return (
     <div className="mt-16">
@@ -43,60 +75,16 @@ export default function LastUpdatesSlider({ book }: { book: Book }) {
           className="cursor-grab select-none active:cursor-grabbing"
           {...dragHandlers}
         >
-          <div className="flex min-h-[380px] flex-col justify-center sm:min-h-[380px]">
-            {active === 0 ? (
-              <div className="flex flex-col items-center gap-10 sm:flex-row-reverse sm:items-start">
-                {book.cover && (
-                  <div className="group flex shrink-0 flex-col items-center gap-2">
-                    <button
-                      type="button"
-                      onClick={() => setZoomOpen(true)}
-                      className="w-48 cursor-pointer overflow-hidden border border-transparent transition-colors duration-300 hover:border-gold-soft sm:w-56"
-                    >
-                      <img
-                        src={t(book.cover)}
-                        alt={t(book.title)}
-                        className="aspect-[2/3] w-full object-contain"
-                        draggable={false}
-                      />
-                    </button>
-                    <span className="flex items-center gap-1.5 font-body text-[10px] uppercase tracking-[0.15em] text-red-soft opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                      <SearchIcon size={12} />
-                      {t(ui.viewImage)}
-                    </span>
-                  </div>
-                )}
-
-                <div className="w-full text-center sm:text-left">
-                  <p className="font-body text-xs uppercase tracking-[0.3em] text-gold-soft">
-                    {t(TIMELINE_EVENTS[0].date)}
-                  </p>
-                  <p className="mt-2 font-body text-sm leading-relaxed text-muted sm:text-base">
-                    {t(ui.inTheWorksText)}
-                  </p>
-                </div>
-              </div>
-            ) : (
-              <div>
-                <p className="font-body text-xs uppercase tracking-[0.3em] text-gold-soft">
-                  {timelineSlides[active - 1].date}
-                </p>
-                <h3 className="mt-2 font-display text-2xl text-ink">
-                  {timelineSlides[active - 1].title}
-                </h3>
-                <div className="mt-2 font-body text-sm leading-relaxed text-muted sm:text-base">
-                  {timelineSlides[active - 1].body}
-                </div>
-              </div>
-            )}
+          <div className={`flex ${SLIDE_MIN_HEIGHT} flex-col justify-center`}>
+            {current.content}
           </div>
         </div>
 
         <div className="mt-6 flex items-center justify-between border-t border-line pt-5">
           <div className="flex items-center gap-3">
-            {Array.from({ length: totalSlides }).map((_, i) => (
+            {items.map((item, i) => (
               <SlideProgressDot
-                key={i}
+                key={item.key}
                 isActive={i === active}
                 progress={i === active ? progress : 0}
                 onClick={() => select(i)}
@@ -105,34 +93,21 @@ export default function LastUpdatesSlider({ book }: { book: Book }) {
           </div>
 
           <Link
-            href={active === 0 ? `${ROUTES.timeline}#timeline-top` : timelineSlides[active - 1].anchor}
+            href={current.href}
             className="flex items-center gap-2 border border-red-soft bg-red-soft px-4 py-2 font-body text-xs uppercase tracking-[0.2em] text-ink transition-colors hover:bg-transparent hover:text-red-soft"
           >
             <MoreIcon size={14} />
-            {t(ui.more)}
+            {current.cta}
           </Link>
         </div>
       </div>
 
       {zoomOpen && book.cover && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-6"
-          onClick={() => setZoomOpen(false)}
-        >
-          <button
-            type="button"
-            onClick={() => setZoomOpen(false)}
-            className="absolute right-6 top-6 font-body text-xs uppercase tracking-[0.2em] text-muted transition-colors hover:text-gold-soft"
-          >
-            {t(ui.close)}
-          </button>
-          <img
-            src={t(book.cover)}
-            alt={t(book.title)}
-            className="max-h-[85vh] max-w-[90vw] object-contain"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
+        <CoverZoomModal
+          src={t(book.cover)}
+          alt={t(book.title)}
+          onClose={() => setZoomOpen(false)}
+        />
       )}
     </div>
   );
