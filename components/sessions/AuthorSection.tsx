@@ -1,13 +1,15 @@
 "use client";
 
-import Link from "next/link";
 import { useLanguage } from "@/lib/i18n";
 import { AUTHOR_SECTION } from "@/lib/author";
 import { EXTERNAL_LINKS } from "@/lib/routes";
-import { MapPinIcon, FeatherIcon, MoreIcon } from "@/lib/icons";
+import { books } from "@/lib/data";
+import { MapPinIcon, FeatherIcon } from "@/lib/icons";
+import PlatformLinks from "@/components/page/PlatformLinks";
 
 export default function AuthorSection() {
   const { t, locale } = useLanguage();
+  const publishedBook = books.find((b) => b.status === "published");
 
   return (
     <div className="mt-20">
@@ -46,15 +48,7 @@ export default function AuthorSection() {
                 </span>
               </div>
 
-              <Link
-                href={EXTERNAL_LINKS.amazonAuthorPage[locale]}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 border border-red-soft bg-red-soft px-4 py-2 font-body text-xs uppercase tracking-[0.2em] text-ink transition-colors hover:bg-transparent hover:text-red-soft"
-              >
-                <MoreIcon size={14} />
-                {t(AUTHOR_SECTION.visitAmazon)}
-              </Link>
+              <PlatformLinks stores={publishedBook?.stores ?? []} />
             </div>
           </div>
         </div>
