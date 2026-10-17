@@ -5,7 +5,7 @@ import type { Book } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
 import { SearchIcon } from "@/lib/icons";
 import { pauseAllAudio } from "@/components/audio/audioEvents";
-import PlatformLinks from "@/components/page/PlatformLinks";
+import PlatformCallout from "@/components/page/PlatformCallout";
 
 type BookCoverProps = {
   book: Book;
@@ -63,11 +63,7 @@ export default function BookCover({
         </button>
       )}
 
-      {showPlatformLinks && (
-        <div className="flex w-full justify-center pt-2">
-          <PlatformLinks stores={book.stores ?? []} align="center" size="lg" linkTo="book" />
-        </div>
-      )}
+      {showPlatformLinks && <PlatformCallout book={book} />}
 
       {zoomOpen && book.cover && (
         <div

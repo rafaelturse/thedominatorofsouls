@@ -3,7 +3,7 @@
 import { useLanguage } from "@/lib/i18n";
 import type { Book } from "@/lib/data";
 import BookIdentity from "./BookIdentity";
-import StoreDropdown from "@/components/page/StoreDropdown";
+import PlatformCallout from "@/components/page/PlatformCallout";
 
 type ReaderEndPageProps = {
   book: Book;
@@ -24,7 +24,7 @@ export default function ReaderEndPage({ book }: ReaderEndPageProps) {
       <p className="font-display text-lg text-red-soft">{t(ui.thankYouWarrior)}</p>
 
       {book.stores && book.stores.length > 0 && (
-        <StoreDropdown stores={book.stores} align="center" />
+        <PlatformCallout book={book} openUp />
       )}
     </div>
   );

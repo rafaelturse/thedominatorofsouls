@@ -15,6 +15,8 @@ type PlatformLinksProps = {
     align?: "end" | "center";
     size?: "md" | "lg";
     linkTo?: "author" | "book";
+    showCaptions?: boolean;
+    openUp?: boolean;
 };
 
 const AMAZON_LOGO = COMMUNITY_PLATFORMS.find((p) => p.id === "amazon")?.image;
@@ -43,13 +45,19 @@ export default function PlatformLinks({
     align = "end",
     size = "md",
     linkTo = "author",
+    showCaptions = false,
+    openUp = false,
 }: PlatformLinksProps) {
     const { t, ui, locale } = useLanguage();
     const [open, setOpen] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
     const s = SIZES[size];
 
-    const buttonClass = `flex ${s.button} cursor-pointer items-center gap-2 transition-transform duration-300 ease-out hover:-translate-y-1`;
+    const layout = showCaptions ? "flex-col gap-1.5 px-4 py-2" : `${s.button} gap-2`;
+    const buttonClass = `group flex ${layout} cursor-pointer items-center transition-transform duration-300 ease-out hover:-translate-y-1`;
+    const iconBox = showCaptions ? "flex h-9 items-center justify-center" : "flex items-center";
+    const captionClass =
+        "font-body text-[10px] text-muted transition-colors duration-300 group-hover:text-gold-soft";
 
     function storeUrl(store: Store) {
         return linkTo === "book" ? store.href[locale] : authorPageUrl(store, locale);
@@ -75,13 +83,15 @@ export default function PlatformLinks({
     const itemClass =
         "block cursor-pointer border-b border-line px-4 py-2.5 text-left font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors last:border-none hover:bg-surface hover:text-gold-soft";
 
-    const menuPosition =
+    const menuHorizontal =
         align === "center"
             ? "left-1/2 w-56 -translate-x-1/2"
             : "left-1/2 w-64 -translate-x-1/2 sm:left-auto sm:right-0 sm:translate-x-0";
 
+    const menuVertical = openUp ? "bottom-full mb-2" : "top-full mt-2";
+
     return (
-        <div className="flex items-center gap-0">
+        <div className="flex items-start gap-0">
             <div ref={ref} className="relative">
                 <button
                     type="button"
@@ -91,17 +101,24 @@ export default function PlatformLinks({
                     aria-label="Amazon"
                     className={`${buttonClass} ${open ? "-translate-y-1" : ""}`}
                 >
-                    {AMAZON_LOGO ? (
-                        <img src={AMAZON_LOGO} alt="" className={`${s.logo} w-auto object-contain`} />
-                    ) : (
-                        <span className="font-body text-xs uppercase tracking-[0.15em] text-ink">Amazon</span>
-                    )}
+                    <span className={iconBox}>
+                        {AMAZON_LOGO ? (
+                            <img src={AMAZON_LOGO} alt="" className={`${s.logo} w-auto object-contain`} />
+                        ) : (
+                            <span className="font-body text-xs uppercase tracking-[0.15em] text-ink">Amazon</span>
+                        )}
+                    </span>
+                    {showCaptions && <span className={captionClass}>Amazon</span>}
                 </button>
 
                 {open && (
                     <div
                         role="menu"
-                        className={`gold-scrollbar absolute top-full z-20 mt-2 max-h-72 overflow-y-auto border border-line bg-bg shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6)] ${menuPosition}`}
+                        onWheel={(e) => e.stopPropagation()}
+                        onTouchStart={(e) => e.stopPropagation()}
+                        onTouchMove={(e) => e.stopPropagation()}
+                        onTouchEnd={(e) => e.stopPropagation()}
+                        className={`gold-scrollbar absolute z-20 max-h-72 overflow-y-auto border border-line bg-bg shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6)] ${menuVertical} ${menuHorizontal}`}
                     >
                         {stores.map((store, i) => (
                             <Link
@@ -128,7 +145,10 @@ export default function PlatformLinks({
                 title={t(ui.listenOnSpotify)}
                 className={`${buttonClass} text-spotify`}
             >
-                <SpotifyIcon size={s.spotify} />
+                <span className={iconBox}>
+                    <SpotifyIcon size={s.spotify} />
+                </span>
+                {showCaptions && <span className={captionClass}>{t(ui.listenOnSpotify)}</span>}
             </Link>
         </div>
     );
