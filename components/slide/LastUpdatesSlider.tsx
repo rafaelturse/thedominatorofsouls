@@ -18,12 +18,14 @@ import type { SlideItem } from "./slides/types";
 
 const SLIDE_INTERVAL_MS = 10000;
 const POST_SLUGS = ["o-prologo-chega-ao-publico", "novo-modelo-de-capas"];
+const BOOK_EVENT_TITLE_EN = "Volume 2: The Hunt";
 
 export default function LastUpdatesSlider({ book }: { book: Book }) {
-  const { t, ui } = useLanguage();
+  const { t, ui, locale } = useLanguage();
   const [zoomOpen, setZoomOpen] = useState(false);
 
-  const bookEvent = TIMELINE_EVENTS[0];
+  const bookEvent =
+    TIMELINE_EVENTS.find((e) => e.title.en === BOOK_EVENT_TITLE_EN) ?? TIMELINE_EVENTS[0];
 
   const postItems: SlideItem[] = POST_SLUGS.flatMap((slug) => {
     const post = BLOG_POSTS.find((p) => p.slug === slug);
@@ -41,13 +43,14 @@ export default function LastUpdatesSlider({ book }: { book: Book }) {
   const items: SlideItem[] = [
     {
       key: "book",
-      href: `${ROUTES.timeline}#timeline-top`,
-      cta: t(ui.more),
+      cta: t(ui.blogReadMore),
+      disabled: true,
       content: (
         <BookSlide
           book={book}
           date={t(bookEvent.date)}
           title={t(bookEvent.title)}
+          description={bookEvent.description[locale]}
           onZoom={() => setZoomOpen(true)}
         />
       ),
@@ -92,13 +95,23 @@ export default function LastUpdatesSlider({ book }: { book: Book }) {
             ))}
           </div>
 
-          <Link
-            href={current.href}
-            className="flex items-center gap-2 border border-red-soft bg-red-soft px-4 py-2 font-body text-xs uppercase tracking-[0.2em] text-ink transition-colors hover:bg-transparent hover:text-red-soft"
-          >
-            <MoreIcon size={14} />
-            {current.cta}
-          </Link>
+          {current.disabled || !current.href ? (
+            <span
+              aria-disabled="true"
+              className="flex cursor-not-allowed items-center gap-2 border border-line px-4 py-2 font-body text-xs uppercase tracking-[0.2em] text-muted opacity-50"
+            >
+              <MoreIcon size={14} />
+              {current.cta}
+            </span>
+          ) : (
+            <Link
+              href={current.href}
+              className="flex items-center gap-2 border border-red-soft bg-red-soft px-4 py-2 font-body text-xs uppercase tracking-[0.2em] text-ink transition-colors hover:bg-transparent hover:text-red-soft"
+            >
+              <MoreIcon size={14} />
+              {current.cta}
+            </Link>
+          )}
         </div>
       </div>
 

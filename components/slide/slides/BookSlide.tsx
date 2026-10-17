@@ -1,19 +1,20 @@
 "use client";
 
+import type { ReactNode } from "react";
 import type { Book } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
 import { SearchIcon } from "@/lib/icons";
 import { SLIDE_IMAGE_HEIGHT } from "./slideLayout";
-import SlideTags from "./SlideTags";
 
 type BookSlideProps = {
     book: Book;
     date: string;
     title: string;
+    description: ReactNode;
     onZoom: () => void;
 };
 
-export default function BookSlide({ book, date, title, onZoom }: BookSlideProps) {
+export default function BookSlide({ book, date, title, description, onZoom }: BookSlideProps) {
     const { t, ui } = useLanguage();
 
     return (
@@ -40,22 +41,9 @@ export default function BookSlide({ book, date, title, onZoom }: BookSlideProps)
             )}
 
             <div className="flex flex-1 flex-col">
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                    <span className="font-body text-xs uppercase tracking-[0.3em] text-gold-soft">{date}</span>
-                    {book.comingSoon && (
-                        <span className="font-body text-xs uppercase tracking-[0.2em] text-red-soft">
-                            {t(ui.soonBadge)}
-                        </span>
-                    )}
-                </div>
-
-                <h3 className="mt-3 font-display text-xl text-ink sm:text-2xl">{title}</h3>
-
-                <p className="mt-2 font-body text-sm leading-relaxed text-muted sm:text-base">
-                    {t(ui.inTheWorksText)}
-                </p>
-
-                <SlideTags tags={(book.genres ?? []).map((g) => t(g))} />
+                <p className="font-body text-xs uppercase tracking-[0.3em] text-gold-soft">{date}</p>
+                <h3 className="mt-2 font-display text-xl text-ink">{title}</h3>
+                <div className="mt-2 font-body text-sm leading-relaxed text-muted">{description}</div>
             </div>
         </div>
     );
