@@ -13,9 +13,10 @@ function resolveHref(href: string | LocalizedString, locale: "pt-br" | "en") {
 
 export default function CommunityLinks() {
   const { t, ui, locale } = useLanguage();
-  const [selected, setSelected] = useState<CommunityPlatformId | null>("amazon");
+  const [selected, setSelected] = useState<CommunityPlatformId>("amazon");
 
-  const selectedPlatform = COMMUNITY_PLATFORMS.find((p) => p.id === selected);
+  const selectedPlatform =
+    COMMUNITY_PLATFORMS.find((p) => p.id === selected) ?? COMMUNITY_PLATFORMS[0];
 
   return (
     <div className="mt-20">
@@ -34,8 +35,9 @@ export default function CommunityLinks() {
             <button
               key={platform.id}
               type="button"
-              onClick={() => setSelected(isActive ? null : platform.id)}
-              className={`flex min-h-[80px] flex-col items-center justify-center gap-2 rounded-3xl bg-card p-4 text-center shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] transition-all duration-300 ease-out hover:-translate-y-1 ${isActive ? "ring-2 ring-gold-soft" : ""
+              onClick={() => setSelected(platform.id)}
+              aria-pressed={isActive}
+              className={`flex min-h-[80px] cursor-pointer flex-col items-center justify-center gap-2 rounded-3xl bg-card p-4 text-center shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] transition-all duration-300 ease-out hover:-translate-y-1 ${isActive ? "ring-2 ring-gold-soft" : ""
                 }`}
             >
               {Icon ? (
@@ -50,38 +52,36 @@ export default function CommunityLinks() {
         })}
       </div>
 
-      {selectedPlatform && (
-        <div
-          className="mt-6 rounded-3xl p-8 text-center shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:p-10"
-          style={{ backgroundColor: "#111" }}
-        >
-          {selectedPlatform.icon ? (
-            <span className="inline-block" style={{ color: selectedPlatform.iconColor }}>
-              <selectedPlatform.icon size={48} />
-            </span>
-          ) : (
-            <img
-              src={selectedPlatform.image}
-              alt={selectedPlatform.name}
-              className="mx-auto h-20 w-auto object-contain"
-            />
-          )}
-          <p className="mx-auto mt-8 max-w-xl font-body text-sm leading-relaxed text-muted sm:text-base">
-            {t(selectedPlatform.description)}
-          </p>
-          <div className="mt-6 flex justify-end">
-            <Link
-              href={resolveHref(selectedPlatform.href, locale)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-red-soft bg-red-soft px-4 py-2 font-body text-xs uppercase tracking-[0.2em] text-ink transition-colors hover:bg-transparent hover:text-red-soft"
-            >
-              <MoreIcon size={14} />
-              {t(ui.visitSite)}
-            </Link>
-          </div>
+      <div
+        className="mt-6 rounded-3xl p-8 text-center shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:p-10"
+        style={{ backgroundColor: "#111" }}
+      >
+        {selectedPlatform.icon ? (
+          <span className="inline-block" style={{ color: selectedPlatform.iconColor }}>
+            <selectedPlatform.icon size={48} />
+          </span>
+        ) : (
+          <img
+            src={selectedPlatform.image}
+            alt={selectedPlatform.name}
+            className="mx-auto h-20 w-auto object-contain"
+          />
+        )}
+        <p className="mx-auto mt-8 max-w-xl font-body text-sm leading-relaxed text-muted sm:text-base">
+          {t(selectedPlatform.description)}
+        </p>
+        <div className="mt-6 flex justify-end">
+          <Link
+            href={resolveHref(selectedPlatform.href, locale)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 border border-red-soft bg-red-soft px-4 py-2 font-body text-xs uppercase tracking-[0.2em] text-ink transition-colors hover:bg-transparent hover:text-red-soft"
+          >
+            <MoreIcon size={14} />
+            {t(ui.visitSite)}
+          </Link>
         </div>
-      )}
+      </div>
     </div>
   );
 }
