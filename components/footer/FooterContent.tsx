@@ -33,7 +33,7 @@ const SOCIAL_LABELS: Record<string, LocalizedString> = {
 
 const STORE_CONTACTS = ["Amazon", "Spotify"];
 
-const legalLinkClass = "transition-colors hover:text-gold-soft";
+const legalLinkClass = "text-red-soft transition-colors hover:text-gold-soft";
 const highlightClass = "text-muted-light transition-colors hover:text-gold-soft";
 
 function resolveHref(href: string | LocalizedString, locale: "pt-br" | "en") {
@@ -106,16 +106,18 @@ export default function FooterContent() {
                         </span>
                     </div>
 
-                    <div className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center font-accent text-sm tracking-wide text-muted">
+                    <div className="mt-3 flex justify-center text-center font-accent text-sm tracking-wide text-muted">
                         <span>
                             © {year} <span className={highlightClass}>{t(COPYRIGHT.name)}</span>.{" "}
                             {t(COPYRIGHT.rights)}
                         </span>
-                        <span aria-hidden className="text-gold-soft">|</span>
+                    </div>
+
+                    <div className="mt-2 flex items-center justify-center gap-3 text-center font-accent text-sm tracking-wide">
                         <Link href={ROUTES.about} className={`${legalLinkClass} lowercase`}>
                             {t(ui.aboutLabel)}
                         </Link>
-                        <span aria-hidden className="text-gold-soft">|</span>
+                        <span aria-hidden>|</span>
                         <Link href={ROUTES.privacy} className={`${legalLinkClass} lowercase`}>
                             {t(ui.privacyLabel)}
                         </Link>
