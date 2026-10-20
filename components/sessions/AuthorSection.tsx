@@ -2,14 +2,10 @@
 
 import { useLanguage } from "@/lib/i18n";
 import { AUTHOR_SECTION } from "@/lib/author";
-import { EXTERNAL_LINKS } from "@/lib/routes";
-import { books } from "@/lib/data";
 import { MapPinIcon, FeatherIcon } from "@/lib/icons";
-import PlatformLinks from "@/components/page/PlatformLinks";
 
 export default function AuthorSection() {
-  const { t, locale } = useLanguage();
-  const publishedBook = books.find((b) => b.status === "published");
+  const { t } = useLanguage();
 
   return (
     <div className="mt-20">
@@ -40,15 +36,13 @@ export default function AuthorSection() {
               ))}
             </div>
 
-            <div className="mt-6 flex flex-col items-center justify-between gap-4 sm:flex-row">
+            <div className="mt-6 flex justify-center sm:justify-start">
               <div className="group flex items-center gap-1.5 text-gold-soft transition-colors hover:text-red-soft">
                 <MapPinIcon />
                 <span className="font-body text-xs uppercase tracking-[0.15em]">
                   {t(AUTHOR_SECTION.location)}
                 </span>
               </div>
-
-              <PlatformLinks stores={publishedBook?.stores ?? []} />
             </div>
           </div>
         </div>

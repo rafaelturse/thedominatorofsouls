@@ -9,7 +9,7 @@ import PageHeader from "@/components/page/PageHeader";
 import { STORE_PAGE } from "@/lib/store";
 import { books } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
-import { EXTERNAL_LINKS } from "@/lib/routes";
+import StoreLinks from "@/components/link/StoreLinks";
 
 export default function StorePage() {
   const { t, locale } = useLanguage();
@@ -22,6 +22,8 @@ export default function StorePage() {
         <PageHeader title={STORE_PAGE.title} heading={STORE_PAGE.heading} subtitle={STORE_PAGE.subtitle} />
 
         <AuthorSection />
+
+        <StoreLinks />
 
         <div className="mt-20">
           <CollectionStrip books={books} />

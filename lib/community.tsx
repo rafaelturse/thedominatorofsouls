@@ -1,15 +1,8 @@
 import type { LocalizedString } from "./i18n";
 import { EXTERNAL_LINKS } from "./routes";
-import { InstagramIcon, FacebookIcon, XIcon, WhatsAppIcon, SpotifyIcon, type IconProps } from "./icons";
+import { GooglePlayIcon, InstagramIcon, FacebookIcon, XIcon, WhatsAppIcon, SpotifyIcon, type IconProps } from "./icons";
 
-export type CommunityPlatformId =
-  | "amazon"
-  | "wattpad"
-  | "spotify"
-  | "instagram"
-  | "facebook"
-  | "x"
-  | "whatsapp";
+export type CommunityPlatformId = "amazon" | "wattpad" | "instagram" | "facebook" | "x" | "whatsapp" | "spotify" | "googleplay";
 
 export type CommunityPlatform = {
   id: CommunityPlatformId;
@@ -52,6 +45,16 @@ export const COMMUNITY_PLATFORMS: CommunityPlatform[] = [
       "pt-br": "Ouça os áudios de O Dominador de Almas no Spotify.",
       en: "Listen to The Dominator of Souls audio on Spotify.",
     },
+  },
+  {
+    id: "googleplay",
+    name: "Google Play",
+    icon: GooglePlayIcon,
+    description: {
+      "pt-br": "O audiobook em inglês de Fragmentados, com mais de 4 horas de narração, na Google Play.",
+      en: "The English audiobook of Fragmented, with over 4 hours of narration, on Google Play.",
+    },
+    href: EXTERNAL_LINKS.googlePlay,
   },
   {
     id: "instagram",
