@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/lib/i18n";
-import { SpotifyIcon } from "@/lib/icons";
+import { SpotifyIcon, GooglePlayIcon } from "@/lib/icons";
 import { COMMUNITY_PLATFORMS } from "@/lib/community";
 import { EXTERNAL_LINKS } from "@/lib/routes";
 import type { Store } from "@/lib/books";
@@ -12,6 +12,7 @@ import type { Locale } from "@/lib/i18n";
 type PlatformLinksProps = {
     stores: Store[];
     spotifyHref?: string;
+    googlePlayHref?: string;
     align?: "end" | "center";
     size?: "md" | "lg";
     linkTo?: "author" | "book";
@@ -25,8 +26,8 @@ const AUTHOR_SLUG = "Rafael-Turse";
 const AUTHOR_ID = "B0HHFVRC7S";
 
 const SIZES = {
-    md: { button: "h-11 px-4", logo: "h-5", spotify: 22 },
-    lg: { button: "h-14 px-5", logo: "h-8", spotify: 34 },
+    md: { button: "h-11 px-4", logo: "h-5", spotify: 22, play: 20 },
+    lg: { button: "h-14 px-5", logo: "h-8", spotify: 34, play: 30 },
 };
 
 function authorPageUrl(store: Store, locale: Locale) {
@@ -42,6 +43,7 @@ function authorPageUrl(store: Store, locale: Locale) {
 export default function PlatformLinks({
     stores,
     spotifyHref = EXTERNAL_LINKS.spotify,
+    googlePlayHref = EXTERNAL_LINKS.googlePlay,
     align = "end",
     size = "md",
     linkTo = "author",
@@ -53,7 +55,7 @@ export default function PlatformLinks({
     const ref = useRef<HTMLDivElement>(null);
     const s = SIZES[size];
 
-    const layout = showCaptions ? "flex-col gap-1.5 px-4 py-2" : `${s.button} gap-2`;
+    const layout = showCaptions ? "flex-col gap-1.5 px-3 py-2" : `${s.button} gap-2`;
     const buttonClass = `group flex ${layout} cursor-pointer items-center transition-transform duration-300 ease-out hover:-translate-y-1`;
     const iconBox = showCaptions ? "flex h-9 items-center justify-center" : "flex items-center";
     const captionClass =
@@ -136,6 +138,20 @@ export default function PlatformLinks({
                     </div>
                 )}
             </div>
+
+            <Link
+                href={googlePlayHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Google Play"
+                title="Google Play"
+                className={`${buttonClass} text-ink`}
+            >
+                <span className={iconBox}>
+                    <GooglePlayIcon size={s.play} />
+                </span>
+                {showCaptions && <span className={captionClass}>Google Play</span>}
+            </Link>
 
             <Link
                 href={spotifyHref}

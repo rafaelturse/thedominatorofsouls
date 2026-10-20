@@ -139,6 +139,70 @@ export const books: Book[] = [
           ],
         },
       },
+      audiobook: {
+        "pt-br": {
+          rows: [
+            {
+              label: "Biblioteca da Família",
+              value: "Elegível",
+              href: "https://support.google.com/googleplay?p=family_library_eligibility",
+            },
+            { label: "Idioma", value: "Inglês" },
+            { label: "Vendedor", value: "Google LLC" },
+            { label: "Autor", value: "Rafael Turse" },
+            { label: "Narrador", value: "Voz digital (elenco de várias vozes)" },
+            { label: "Editora", value: "Rafael Turse" },
+            { label: "Data da publicação", value: "12 outubro 2026" },
+            { label: "ISBN", value: "9798177538525" },
+            {
+              label: "Ideal para",
+              value: "Web, tablet, celular",
+              href: "https://support.google.com/googleplay/answer/179849?p=books_devices&hl=pt-BR",
+            },
+            { label: "Duração", value: "4h 1min 50s" },
+            {
+              label: "Opção de exportação",
+              value: "Disponível",
+              href: "https://support.google.com/googleplay/answer/7572879#export_audio",
+            },
+            {
+              label: "Gêneros",
+              value: "Ficção Juvenil / Fantasia / Fantasia Sombria • Ficção Juvenil / Fantasia / Épica • Ficção Juvenil / Fantasia / Geral",
+            },
+          ],
+        },
+        en: {
+          rows: [
+            {
+              label: "Eligible for Family Library",
+              value: "Learn more",
+              href: "https://support.google.com/googleplay?p=family_library_eligibility",
+            },
+            { label: "Language", value: "English" },
+            { label: "Seller", value: "Google LLC" },
+            { label: "Author", value: "Rafael Turse" },
+            { label: "Narrator", value: "Digital Voice (Multi-Voice Cast)" },
+            { label: "Publisher", value: "Rafael Turse" },
+            { label: "Published on", value: "Oct 12, 2026" },
+            { label: "ISBN", value: "9798177538525" },
+            {
+              label: "Best for",
+              value: "web, tablet, phone",
+              href: "https://support.google.com/googleplay/answer/179849?p=books_devices&hl=en",
+            },
+            { label: "Duration", value: "4h 1m 50s" },
+            {
+              label: "Export option",
+              value: "Available",
+              href: "https://support.google.com/googleplay/answer/7572879#export_audio",
+            },
+            {
+              label: "Genres",
+              value: "Young Adult Fiction / Fantasy / Dark Fantasy • Young Adult Fiction / Fantasy / Epic • Young Adult Fiction / Fantasy / General",
+            },
+          ],
+        },
+      },
     },
     genres: [
       { "pt-br": "Fantasia Épica", en: "Epic Fantasy" },

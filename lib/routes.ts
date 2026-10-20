@@ -37,4 +37,5 @@ export const EXTERNAL_LINKS = {
   },
   wattpad: "https://www.wattpad.com/user/RafaelTurse",
   spotify: "https://open.spotify.com/show/4mzKe1KH4pWEYKHRk3rBaz",
+  googlePlay: "https://play.google.com/store/audiobooks/details?id=AQAAAEBGwmCCNM",
 } as const;

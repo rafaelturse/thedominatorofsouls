@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { books } from "@/lib/data";
+import { BLOG_POSTS } from "@/lib/blog";
 
 const BASE_URL = "https://thedominatorofsouls.com";
 
@@ -38,6 +39,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     },
     {
+      url: `${BASE_URL}/blog`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    {
+      url: `${BASE_URL}/timeline`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.6,
+    },
+    {
+      url: `${BASE_URL}/universe`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
       url: `${BASE_URL}/privacy`,
       lastModified: new Date(),
       changeFrequency: "yearly",
@@ -52,5 +71,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: book.status === "published" ? 0.9 : 0.5,
   }));
 
-  return [...staticRoutes, ...bookRoutes];
+  const blogRoutes: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
+    url: `${BASE_URL}/blog/${post.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "yearly",
+    priority: 0.5,
+  }));
+
+  return [...staticRoutes, ...bookRoutes, ...blogRoutes];
 }
