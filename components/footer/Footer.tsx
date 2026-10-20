@@ -1,5 +1,5 @@
-import ContactIcons from "@/components/sessions/ContactIcons";
 import BackToTopButton from "@/components/link/BackToTopButton";
+import FooterContent from "./FooterContent";
 
 export default function Footer() {
     return (
@@ -8,20 +8,8 @@ export default function Footer() {
                 <BackToTopButton />
             </div>
 
-            <footer className="border-t border-line">
-                <div className="mx-auto max-w-5xl px-5 py-8">
-                    <div className="flex justify-center">
-                        <ContactIcons size={24} className="gap-5 text-muted" />
-                    </div>
-
-                    <div className="mt-6 flex justify-center">
-                        <span className="font-accent text-sm tracking-wide text-muted">
-                            developed by <span className="text-muted-light transition-colors hover:text-gold-soft">Rafael Turse</span> with{" "}
-                            <span className="text-muted-light transition-colors hover:text-gold-soft">Next.js</span> and{" "}
-                            <span className="text-muted-light transition-colors hover:text-gold-soft">Tailwind</span>
-                        </span>
-                    </div>
-                </div>
+            <footer className="bg-black">
+                <FooterContent />
             </footer>
         </div>
     );
