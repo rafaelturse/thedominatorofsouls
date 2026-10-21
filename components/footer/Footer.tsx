@@ -8,7 +8,7 @@ export default function Footer() {
                 <BackToTopButton />
             </div>
 
-            <footer className="bg-black">
+            <footer className="border-t border-line bg-black">
                 <FooterContent />
             </footer>
         </div>

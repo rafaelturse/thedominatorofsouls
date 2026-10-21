@@ -82,7 +82,7 @@ export default function FooterContent() {
 
     return (
         <>
-            <div className="mx-auto max-w-6xl px-5 pb-10 pt-10">
+            <div className="mb-12 mx-auto max-w-6xl px-5 pb-10 pt-10">
                 <HorizontalScroller>
                     <FooterColumn title={t(TITLES.histories)} href={ROUTES.store} links={historyLinks} />
                     <FooterColumn title={t(TITLES.blog)} href={ROUTES.blog} links={blogLinks} />
