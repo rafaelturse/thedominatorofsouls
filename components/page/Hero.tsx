@@ -10,7 +10,7 @@ export default function Hero() {
     <div
       className="relative overflow-hidden pb-30"
       style={{
-        background: "linear-gradient(180deg, #111 0%, #0c0c0c 60%, #030303 100%)",
+        background: "linear-gradient(180deg, #111 0%, #0c0c0c 60%, #050505 100%)",
       }}
     >
       <div
