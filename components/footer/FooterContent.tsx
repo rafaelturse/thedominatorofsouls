@@ -93,34 +93,32 @@ export default function FooterContent() {
             </div>
 
             <div className="border-t border-line">
-                <div className="mx-auto max-w-7xl px-5 pb-10 pt-8">
-                    <div className="flex justify-center">
-                        <ContactIcons size={24} className="gap-5 text-muted" exclude={STORE_CONTACTS} />
-                    </div>
+                <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-5 pb-10 pt-8 lg:flex-row lg:justify-between lg:py-6">
+                    <ContactIcons size={24} className="gap-5 text-muted" exclude={STORE_CONTACTS} />
 
-                    <div className="mt-6 flex justify-center text-center">
-                        <span className="font-accent text-sm tracking-wide text-muted">
+                    <div className="flex flex-col items-center gap-2 text-center font-accent text-sm tracking-wide text-muted lg:items-end lg:text-right">
+                        <span>
                             developed by <span className={highlightClass}>Rafael Turse</span> with{" "}
                             <span className={highlightClass}>Next.js</span> and{" "}
                             <span className={highlightClass}>Tailwind</span>.
                         </span>
-                    </div>
 
-                    <div className="mt-3 flex justify-center text-center font-accent text-sm tracking-wide text-muted">
-                        <span>
-                            © {year} <span className={highlightClass}>{t(COPYRIGHT.name)}</span>.{" "}
-                            {t(COPYRIGHT.rights)}
-                        </span>
-                    </div>
+                        <div className="flex flex-col items-center gap-2 lg:flex-row lg:gap-3">
+                            <span>
+                                © {year} <span className={highlightClass}>{t(COPYRIGHT.name)}</span>.{" "}
+                                {t(COPYRIGHT.rights)}
+                            </span>
 
-                    <div className="mt-2 flex items-center justify-center gap-3 text-center font-accent text-sm tracking-wide">
-                        <Link href={ROUTES.about} className={`${legalLinkClass} lowercase`}>
-                            {t(ui.aboutLabel)}
-                        </Link>
-                        <span aria-hidden>|</span>
-                        <Link href={ROUTES.privacy} className={`${legalLinkClass} lowercase`}>
-                            {t(ui.privacyLabel)}
-                        </Link>
+                            <div className="flex items-center justify-center gap-3">
+                                <Link href={ROUTES.about} className={`${legalLinkClass} lowercase`}>
+                                    {t(ui.aboutLabel)}
+                                </Link>
+                                <span aria-hidden>|</span>
+                                <Link href={ROUTES.privacy} className={`${legalLinkClass} lowercase`}>
+                                    {t(ui.privacyLabel)}
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
