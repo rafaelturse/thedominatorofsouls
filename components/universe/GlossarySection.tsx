@@ -55,8 +55,7 @@ export default function GlossarySection() {
 
                 <div
                     id="glossary-content"
-                    className="mt-6 scroll-mt-24 rounded-3xl p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:p-10"
-                    style={{ backgroundColor: "#111" }}
+                    className="mt-6 scroll-mt-24 rounded-3xl bg-card p-6 shadow-card sm:p-10"
                 >
                     {selectedSlug && categories.length > 0 ? (
                         <div>

@@ -69,7 +69,7 @@ export default function LanguageSwitcher() {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full z-10 mt-1 border border-line bg-bg">
+        <div className="absolute right-0 top-full z-10 mt-1 border border-line bg-header">
           {LANGUAGES.map((lang) => (
             <button
               key={lang.code}

@@ -37,7 +37,7 @@ export default function AboutMenu() {
       </button>
 
       {open && (
-        <div className="absolute left-1/2 top-full z-10 mt-2 w-40 -translate-x-1/2 border border-line bg-bg shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6)]">
+        <div className="absolute left-1/2 top-full z-10 mt-2 w-40 -translate-x-1/2 border border-line bg-header shadow-dropdown">
           <Link
             href={ROUTES.about}
             onClick={() => setOpen(false)}

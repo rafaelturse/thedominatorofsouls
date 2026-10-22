@@ -16,10 +16,7 @@ export default function AuthorSection() {
         <h1 className="font-display uppercase text-lg text-ink">{t(AUTHOR_SECTION.title)}</h1>
       </div>
 
-      <div
-        className="mt-6 rounded-3xl p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:p-10"
-        style={{ backgroundColor: "#111" }}
-      >
+      <div className="mt-6 rounded-3xl bg-card p-6 shadow-card sm:p-10">
         <div className="flex flex-col gap-10 sm:flex-row">
           <img
             src={AUTHOR_SECTION.photo}

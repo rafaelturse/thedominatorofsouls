@@ -8,10 +8,7 @@ export default function BlogPostCard({ post }: { post: BlogPost }) {
   const { t, ui } = useLanguage();
 
   return (
-    <div
-      className="flex flex-col overflow-hidden rounded-3xl shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:flex-row"
-      style={{ backgroundColor: "#111" }}
-    >
+    <div className="flex flex-col overflow-hidden rounded-3xl bg-card shadow-card sm:flex-row">
       <div className="aspect-[16/9] w-full shrink-0 overflow-hidden sm:aspect-auto sm:w-48">
         <img
           src={post.cover}

@@ -17,10 +17,7 @@ export default function AboutPage() {
       <div className="relative z-10 mx-auto max-w-3xl px-5 pb-16 pt-6 sm:pb-20 sm:pt-8">
         <PageHeader title={ABOUT.title} heading={ABOUT.heading} subtitle={ABOUT.subtitle} />
 
-        <div
-          className="mt-10 rounded-3xl p-8 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:p-12"
-          style={{ backgroundColor: "#111" }}
-        >
+        <div className="mt-10 rounded-3xl bg-card p-8 shadow-card sm:p-12">
           <div className="flex flex-col gap-6">
             {ABOUT.paragraphs.map((p, i) => (
               <p key={i} className="font-body text-sm leading-relaxed text-muted sm:text-base">

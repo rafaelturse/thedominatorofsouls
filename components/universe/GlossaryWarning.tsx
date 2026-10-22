@@ -9,10 +9,7 @@ export default function GlossaryWarning() {
 
     return (
         <div>
-            <div
-                className="rounded-3xl p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:p-10"
-                style={{ backgroundColor: "#111" }}
-            >
+            <div className="rounded-3xl bg-card p-6 shadow-card sm:p-10">
                 <p className="text-center font-display text-5xl text-red-soft sm:text-6xl">{t(GLOSSARY_ATTENTION)}</p>
 
                 <p className="mt-12 font-body text-sm leading-relaxed text-muted sm:text-base">

@@ -73,10 +73,7 @@ export default function TimelinePage() {
             <h1 className="font-display uppercase text-lg text-ink">{t(ui.welcomeTitle)}</h1>
           </div>
 
-          <div
-            className="mt-6 rounded-3xl p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:p-10"
-            style={{ backgroundColor: "#111" }}
-          >
+          <div className="mt-6 rounded-3xl bg-card p-6 shadow-card sm:p-10">
             <div className="text-center font-body text-sm leading-relaxed text-muted sm:text-left sm:text-base">
               {INTRO[locale]}
             </div>

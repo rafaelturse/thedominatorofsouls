@@ -97,7 +97,7 @@ export default function ExploreLinks({ count }: { count: number }) {
           const item = ALL_LINKS[id];
           const Icon = item.icon;
           const content = (
-            <div className="group flex min-h-[260px] flex-col items-center justify-center gap-4 rounded-3xl bg-card p-10 text-center shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] transition-transform duration-300 ease-out hover:-translate-y-1">
+            <div className="group flex min-h-[260px] flex-col items-center justify-center gap-4 rounded-3xl bg-card p-10 text-center shadow-card transition-transform duration-300 ease-out hover:-translate-y-1">
               <span className="text-gold-soft transition-colors duration-300 ease-out group-hover:text-red-soft">
                 <Icon size={32} />
               </span>

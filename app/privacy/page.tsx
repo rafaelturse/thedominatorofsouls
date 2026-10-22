@@ -20,10 +20,7 @@ export default function PrivacyPage() {
           subtitle={PRIVACY_PAGE.subtitle}
         />
 
-        <div
-          className="mt-10 rounded-3xl p-8 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:p-12"
-          style={{ backgroundColor: "#111" }}
-        >
+        <div className="mt-10 rounded-3xl bg-card p-8 shadow-card sm:p-12">
           <p className="text-center font-body text-xs uppercase tracking-[0.2em] text-muted">
             {t(PRIVACY_PAGE.lastUpdated)}
           </p>

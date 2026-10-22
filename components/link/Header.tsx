@@ -18,7 +18,7 @@ export default function Header() {
   const mobileNavItems = NAV_ITEMS.filter((item) => item.href !== ROUTES.home && item.href !== ROUTES.about);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-bg/90 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-line bg-header">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4 md:justify-center">
         <div className="flex items-center gap-4 md:hidden">
           <Link

@@ -1,0 +1,21 @@
+@layer base {
+    :root {
+        --hero-grid-size: 40px;
+    }
+}
+
+.hero-bg {
+    background: linear-gradient(180deg,
+            var(--color-hero-top) 0%,
+            var(--color-hero-mid) 60%,
+            var(--color-hero-bottom) 100%);
+}
+
+.hero-grid {
+    background-image:
+        linear-gradient(var(--color-hero-grid-h) 1px, transparent 1px),
+        linear-gradient(90deg, var(--color-hero-grid-v) 1px, transparent 1px);
+    background-size: var(--hero-grid-size) var(--hero-grid-size);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 60%, transparent 100%);
+}

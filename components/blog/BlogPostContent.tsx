@@ -31,10 +31,7 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
           </span>
         </div>
 
-        <div
-          className="mt-6 overflow-hidden rounded-3xl shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)]"
-          style={{ backgroundColor: "#111" }}
-        >
+        <div className="mt-6 overflow-hidden rounded-3xl bg-card shadow-card">
           <img src={post.cover} alt={t(post.title)} className="aspect-[16/9] w-full object-cover" />
 
           <div className="p-6 sm:p-10">

@@ -75,7 +75,7 @@ export default function PlatformShowcase({
                             type="button"
                             onClick={() => setSelected(platform.id)}
                             aria-pressed={isActive}
-                            className={`flex min-h-[80px] cursor-pointer flex-col items-center justify-center gap-2 rounded-3xl bg-card p-4 text-center shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] transition-all duration-300 ease-out hover:-translate-y-1 ${isActive ? "ring-2 ring-gold-soft" : ""
+                            className={`flex min-h-[80px] cursor-pointer flex-col items-center justify-center gap-2 rounded-3xl bg-card p-4 text-center shadow-card transition-all duration-300 ease-out hover:-translate-y-1 ${isActive ? "ring-2 ring-gold-soft" : ""
                                 }`}
                         >
                             <PlatformMark platform={platform} iconSize={28} imageClass="h-8 w-auto object-contain" />
@@ -84,10 +84,7 @@ export default function PlatformShowcase({
                 })}
             </div>
 
-            <div
-                className="mt-6 rounded-3xl p-8 text-center shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:p-10"
-                style={{ backgroundColor: "#111" }}
-            >
+            <div className="mt-6 rounded-3xl bg-card p-8 text-center shadow-card sm:p-10">
                 <PlatformMark platform={current} iconSize={48} imageClass="mx-auto h-20 w-auto object-contain" />
 
                 <p className="mx-auto mt-8 max-w-xl font-body text-sm leading-relaxed text-muted sm:text-base">

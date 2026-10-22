@@ -29,10 +29,7 @@ export default function BookDetailContent({ book }: { book: Book }) {
           <h1 className="font-display uppercase text-lg text-ink">{t(ui.bookDetailsTitle)}</h1>
         </div>
 
-        <div
-          className="mt-4 rounded-3xl p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:p-10"
-          style={{ backgroundColor: "#111" }}
-        >
+        <div className="mt-4 rounded-3xl bg-card p-6 shadow-card sm:p-10">
           <BookInfo book={book} showSampleButton onReadSample={() => setSampleOpen(true)} />
         </div>
 
