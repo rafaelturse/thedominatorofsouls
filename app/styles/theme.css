@@ -17,8 +17,8 @@
     --color-spotify: #1DB954;
     --color-spotify-dark: #178F3E;
 
-    --color-hero-top: #111;
-    --color-hero-mid: #090909;
+    --color-hero-top: #000;
+    --color-hero-mid: #111;
     --color-hero-bottom: var(--color-bg);
     --color-hero-grid-h: rgba(50, 50, 50, 0.2);
     --color-hero-grid-v: rgba(50, 50, 50, 0.4);
