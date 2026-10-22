@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { Book } from "@/lib/data";
-import { books } from "@/lib/data";
+import { COLLECTION_GROUPS } from "@/lib/collections";
 import { useLanguage } from "@/lib/i18n";
 import { BookIcon } from "@/lib/icons";
 import Hero from "@/components/page/Hero";
@@ -34,7 +34,7 @@ export default function BookDetailContent({ book }: { book: Book }) {
         </div>
 
         <div className="mt-22">
-          <CollectionStrip books={books} />
+          <CollectionStrip groups={COLLECTION_GROUPS} currentSlug={book.slug} />
         </div>
 
         <ExploreLinks count={4} />

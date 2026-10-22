@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { books } from "@/lib/data";
+import { COLLECTION_GROUPS } from "@/lib/collections";
 import { useLanguage } from "@/lib/i18n";
 import { GLOSSARY_BY_BOOK, GLOSSARY_WARNING_TITLE } from "@/lib/universe";
 import { QuoteIcon } from "@/lib/icons";
@@ -39,7 +40,7 @@ export default function GlossarySection() {
 
             <div id="glossary-collection" className="mt-16 scroll-mt-24">
                 <CollectionStrip
-                    books={books}
+                    groups={COLLECTION_GROUPS}
                     currentSlug={selectedSlug ?? undefined}
                     onSelectBook={(book) => handleSelectBook(book.slug)}
                 />

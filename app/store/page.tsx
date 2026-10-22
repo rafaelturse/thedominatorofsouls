@@ -7,7 +7,7 @@ import ExploreLinks from "@/components/link/ExploreLinks";
 import AuthorSection from "@/components/sessions/AuthorSection";
 import PageHeader from "@/components/page/PageHeader";
 import { STORE_PAGE } from "@/lib/store";
-import { books } from "@/lib/data";
+import { COLLECTION_GROUPS } from "@/lib/collections";
 import { useLanguage } from "@/lib/i18n";
 import StoreLinks from "@/components/link/StoreLinks";
 
@@ -26,7 +26,7 @@ export default function StorePage() {
         <StoreLinks />
 
         <div className="mt-20">
-          <CollectionStrip books={books} />
+          <CollectionStrip groups={COLLECTION_GROUPS} />
         </div>
 
         <ExploreLinks count={4} />

@@ -33,7 +33,7 @@ export default async function BookDetailPage({
       "@type": "BookSeries",
       name: book.series.en,
     },
-    ...(book.pageCount ? { numberOfPages: book.pageCount } : {}),
+    ...(book.pageCount ? { numberOfPages: book.pageCount.en } : {}),
     ...(book.status === "published"
       ? {
         datePublished: book.release.en,
@@ -41,7 +41,7 @@ export default async function BookDetailPage({
         offers: (book.stores ?? []).map((store) => ({
           "@type": "Offer",
           seller: { "@type": "Organization", name: "Amazon" },
-          url: store.href,
+          url: store.href.en,
         })),
       }
       : {}),

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { books } from "@/lib/data";
 import type { Book } from "@/lib/data";
+import { COLLECTION_GROUPS } from "@/lib/collections";
 import Hero from "@/components/page/Hero";
 import GenreStrip from "@/components/sessions/GenreStrip";
 import SpotlightCarousel from "@/components/sessions/SpotlightCarousel";
@@ -29,7 +30,8 @@ export default function HomePage() {
 
         <div className="mt-20">
           <CollectionStrip
-            books={books}
+            groups={COLLECTION_GROUPS}
+            collapsed
             featuredSlug={featured.slug}
             currentSlug={secondary ? secondary.slug : featured.slug}
             onSelectSecondary={(book) => setSecondary(book)}
