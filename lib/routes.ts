@@ -3,6 +3,7 @@ export const ROUTES = {
   blog: "/blog",
   community: "/community",
   universe: "/universe",
+  echoes: "/echoes",
   game: "/game",
   store: "/store",
   gallery: "/gallery",

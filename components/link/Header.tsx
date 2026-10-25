@@ -2,13 +2,16 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { NAV_ITEMS, SITE } from "@/lib/data";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, type LocalizedString } from "@/lib/i18n";
 import { ROUTES } from "@/lib/routes";
 import { HomeIcon } from "@/lib/icons";
 import LanguageSwitcher from "../page/LanguageSwitcher";
 import AboutMenu from "./AboutMenu";
+import UniverseMenu from "./UniverseMenu";
+
+const ECHOES_LABEL: LocalizedString = { "pt-br": "Ecos", en: "Echoes" };
 
 export default function Header() {
   const pathname = usePathname();
@@ -18,7 +21,7 @@ export default function Header() {
   const mobileNavItems = NAV_ITEMS.filter((item) => item.href !== ROUTES.home && item.href !== ROUTES.about);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-header">
+    <header className="sticky top-0 z-50 border-b border-line bg-bg/90 backdrop-blur">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4 md:justify-center">
         <div className="flex items-center gap-4 md:hidden">
           <Link
@@ -52,6 +55,8 @@ export default function Header() {
           {NAV_ITEMS.map((item) =>
             item.href === ROUTES.about ? (
               <AboutMenu key={item.href} />
+            ) : item.href === ROUTES.universe && !item.comingSoon ? (
+              <UniverseMenu key={item.href} />
             ) : item.comingSoon ? (
               <span
                 key={item.href}
@@ -89,14 +94,24 @@ export default function Header() {
                 {t(item.label)}
               </span>
             ) : (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="border-b border-line py-3 font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors hover:text-gold-soft last:border-none"
-              >
-                {t(item.label)}
-              </Link>
+              <Fragment key={item.href}>
+                <Link
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="border-b border-line py-3 font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors hover:text-gold-soft last:border-none"
+                >
+                  {t(item.label)}
+                </Link>
+                {item.href === ROUTES.universe && (
+                  <Link
+                    href={ROUTES.echoes}
+                    onClick={() => setOpen(false)}
+                    className="border-b border-line py-3 pl-4 font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors hover:text-gold-soft"
+                  >
+                    — {t(ECHOES_LABEL)}
+                  </Link>
+                )}
+              </Fragment>
             )
           )}
           <Link
