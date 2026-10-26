@@ -29,6 +29,7 @@ export default function HomePage() {
 
         <div className="mt-20">
           <Collection
+            collapsed
             featuredSlug={featured.slug}
             currentSlug={secondary ? secondary.slug : featured.slug}
             onSelectSecondary={(book) => setSecondary(book)}
