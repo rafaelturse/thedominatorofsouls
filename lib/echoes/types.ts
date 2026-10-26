@@ -2,6 +2,7 @@ import type { LocalizedString } from "../i18n";
 
 export type EchoCard = {
   id: string;
+  entryId: string;
   category: LocalizedString;
   title: LocalizedString;
   excerpt: LocalizedString;

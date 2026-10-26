@@ -42,6 +42,11 @@ function EchoesContent() {
     scrollToContent();
   }
 
+  function handleReadMore(entryId: string) {
+    const entry = ECHOES.entries.find((e) => e.id === entryId);
+    if (entry) handleSelect(entry);
+  }
+
   useEffect(() => {
     if (!echoParam) return;
     const entry = ECHOES.entries.find((e) => e.id === echoParam);
@@ -64,7 +69,7 @@ function EchoesContent() {
 
         <div className="mt-16 flex flex-col gap-6">
           {ECHOES.cards.map((card) => (
-            <EchoCardItem key={card.id} card={card} />
+            <EchoCardItem key={card.id} card={card} onReadMore={handleReadMore} />
           ))}
         </div>
 

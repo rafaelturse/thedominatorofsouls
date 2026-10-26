@@ -5,6 +5,7 @@ const COVER = "/img/echoes/cover-stanbrings-baw.jpg";
 export const stanBrings: EchoWork = {
   card: {
     id: "stanbrings",
+    entryId: "stan-brings",
     category: { "pt-br": "Os mistérios estão por todos os lados", en: "Mysteries are everywhere" },
     title: { "pt-br": "Olá, Sr. Stan Brings!", en: "Hello, Mr. Stan Brings!" },
     excerpt: {

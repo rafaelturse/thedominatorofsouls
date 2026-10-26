@@ -61,7 +61,7 @@ export default function CollectionCard({
         )}
       </div>
       <span
-        className={`w-full text-center font-body text-xs uppercase leading-tight tracking-[0.15em] transition-colors duration-300 group-hover:text-gold-soft ${isCurrent ? "text-gold-soft" : "text-muted"
+        className={`min-h-[2.5em] w-full text-center font-body text-xs uppercase leading-tight tracking-[0.15em] transition-colors duration-300 group-hover:text-gold-soft ${isCurrent ? "text-gold-soft" : "text-muted"
           }`}
       >
         {label}
