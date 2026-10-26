@@ -58,13 +58,16 @@ export default function GlossarySection() {
                 >
                     {selectedSlug && categories.length > 0 ? (
                         <div>
-                            {selectedBookCover && (
-                                <div className="mb-14 flex justify-center">
+                            {selectedBookCover && selectedBook && (
+                                <div className="mb-14 flex flex-col items-center gap-3">
                                     <img
                                         src={selectedBookCover}
-                                        alt=""
+                                        alt={t(selectedBook.title)}
                                         className="aspect-[2/3] w-32 object-contain"
                                     />
+                                    <span className="text-center font-body text-xs uppercase leading-tight tracking-[0.15em] text-gold-soft">
+                                        {t(selectedBook.volumeLabel)}
+                                    </span>
                                 </div>
                             )}
 

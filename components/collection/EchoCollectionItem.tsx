@@ -24,7 +24,7 @@ export default function EchoCollectionItem({
 
   const card = (
     <CollectionCard
-      src={entry.cover}
+      src={entry.cover ? t(entry.cover) : undefined}
       alt={t(entry.title)}
       label={t(entry.title)}
       isComingSoon={isComingSoon}

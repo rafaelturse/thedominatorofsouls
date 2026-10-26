@@ -1,6 +1,6 @@
 import type { EchoWork } from "./types";
 
-const COVER = "/img/echoes/stanbrings-baw.jpg";
+const COVER = "/img/echoes/cover-stanbrings-baw.jpg";
 
 export const stanBrings: EchoWork = {
   card: {
@@ -22,7 +22,7 @@ export const stanBrings: EchoWork = {
   entry: {
     id: "stan-brings",
     title: { "pt-br": "Sr. Stan Brings", en: "Mr. Stan Brings" },
-    cover: COVER,
+    cover: { "pt-br": COVER, en: COVER },
     parts: [
       {
         id: "stan-brings-part-1",

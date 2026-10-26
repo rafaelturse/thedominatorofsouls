@@ -87,12 +87,15 @@ function EchoesContent() {
             {selected && activePart ? (
               <div>
                 {selected.cover && (
-                  <div className="mb-14 flex justify-center">
+                  <div className="mb-14 flex flex-col items-center gap-3">
                     <img
-                      src={selected.cover}
+                      src={t(selected.cover)}
                       alt={t(selected.title)}
-                      className="h-auto w-full max-w-md"
+                      className="h-auto max-h-[420px] w-auto max-w-md object-contain"
                     />
+                    <span className="text-center font-body text-xs uppercase leading-tight tracking-[0.15em] text-gold-soft">
+                      {t(selected.title)}
+                    </span>
                   </div>
                 )}
 
@@ -102,11 +105,7 @@ function EchoesContent() {
                   onSelect={setActivePartId}
                 />
 
-                <p className="mt-8 font-body text-xs uppercase tracking-[0.2em] text-red-soft">
-                  {t(activePart.title)}
-                </p>
-
-                <div className="mt-6 flex flex-col gap-8">
+                <div className="mt-8 flex flex-col gap-8">
                   {activePart.paragraphs.map((paragraph, i) => (
                     <div key={i} className="flex gap-3">
                       <span className="mt-1 text-gold-soft">
@@ -116,6 +115,10 @@ function EchoesContent() {
                     </div>
                   ))}
                 </div>
+
+                <p className="mt-12 text-center font-body text-xs uppercase tracking-[0.2em] text-red-soft">
+                  {t(activePart.title)}
+                </p>
               </div>
             ) : (
               <div className="flex justify-center">

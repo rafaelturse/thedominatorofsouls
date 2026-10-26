@@ -18,6 +18,9 @@
     --color-spotify-dark: #178F3E;
     --color-book-soon: #111;
 
+    --color-selection-bg: var(--color-red-soft);
+    --color-selection-text: #fff;
+
     --color-hero-top: #000;
     --color-hero-mid: #111;
     --color-hero-bottom: var(--color-bg);
@@ -32,4 +35,14 @@
     --font-display: var(--font-garamond), serif;
     --font-body: var(--font-inter), sans-serif;
     --font-accent: var(--font-indie-flower), cursive;
+}
+
+::selection {
+    background-color: var(--color-selection-bg);
+    color: var(--color-selection-text);
+}
+
+::-moz-selection {
+    background-color: var(--color-selection-bg);
+    color: var(--color-selection-text);
 }
