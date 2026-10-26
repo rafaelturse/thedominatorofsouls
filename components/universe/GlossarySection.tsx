@@ -2,12 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { books } from "@/lib/data";
-import { COLLECTION_GROUPS } from "@/lib/collections";
 import { useLanguage } from "@/lib/i18n";
 import { GLOSSARY_BY_BOOK, GLOSSARY_WARNING_TITLE } from "@/lib/universe";
 import { QuoteIcon } from "@/lib/icons";
 import GlossaryWarning from "@/components/universe/GlossaryWarning";
-import CollectionStrip from "@/components/sessions/CollectionStrip";
+import Collection from "@/components/collection/Collection";
 import CategoryTabs from "@/components/universe/CategoryTabs";
 
 export default function GlossarySection() {
@@ -39,8 +38,7 @@ export default function GlossarySection() {
             <GlossaryWarning />
 
             <div id="glossary-collection" className="mt-16 scroll-mt-24">
-                <CollectionStrip
-                    groups={COLLECTION_GROUPS}
+                <Collection
                     currentSlug={selectedSlug ?? undefined}
                     onSelectBook={(book) => handleSelectBook(book.slug)}
                 />

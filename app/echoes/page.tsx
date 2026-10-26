@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Hero from "@/components/page/Hero";
 import PageHeader from "@/components/page/PageHeader";
 import ScrollableTabs from "@/components/page/ScrollableTabs";
@@ -18,18 +19,37 @@ function partLabel(index: number): LocalizedString {
   return { "pt-br": `Parte ${index + 1}`, en: `Part ${index + 1}` };
 }
 
-export default function EchoesPage() {
+function scrollToContent() {
+  document.getElementById("echoes-content")?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function EchoesContent() {
   const { t } = useLanguage();
+  const searchParams = useSearchParams();
+  const echoParam = searchParams.get("echo");
   const [selected, setSelected] = useState<EchoEntry | null>(null);
   const [activePartId, setActivePartId] = useState<string>("");
 
   const activePart = selected?.parts.find((p) => p.id === activePartId) ?? selected?.parts[0];
 
-  function handleSelect(entry: EchoEntry) {
+  function selectEntry(entry: EchoEntry) {
     setSelected(entry);
     setActivePartId(entry.parts[0]?.id ?? "");
-    document.getElementById("echoes-content")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
+
+  function handleSelect(entry: EchoEntry) {
+    selectEntry(entry);
+    scrollToContent();
+  }
+
+  useEffect(() => {
+    if (!echoParam) return;
+    const entry = ECHOES.entries.find((e) => e.id === echoParam);
+    if (!entry) return;
+    selectEntry(entry);
+    const timer = window.setTimeout(scrollToContent, 150);
+    return () => window.clearTimeout(timer);
+  }, [echoParam]);
 
   return (
     <div>
@@ -114,5 +134,13 @@ export default function EchoesPage() {
         <ExploreLinks count={4} />
       </div>
     </div>
+  );
+}
+
+export default function EchoesPage() {
+  return (
+    <Suspense fallback={null}>
+      <EchoesContent />
+    </Suspense>
   );
 }
