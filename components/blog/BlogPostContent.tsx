@@ -77,7 +77,7 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
           </div>
         </div>
 
-        <RelatedPosts currentSlug={post.slug} />
+        <RelatedPosts currentSlug={post.slug} onTagClick={handleTagClick} />
 
         <ExploreLinks count={3} />
       </div>

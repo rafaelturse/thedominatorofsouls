@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { BLOG_POSTS } from "@/lib/blog";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, type LocalizedString } from "@/lib/i18n";
 import { NewsIcon } from "@/lib/icons";
 import BlogPostCard from "@/components/blog/BlogPostCard";
 
 type RelatedPostsProps = {
   currentSlug: string;
   count?: number;
+  onTagClick?: (tag: LocalizedString) => void;
 };
 
 function shuffle<T>(arr: T[]): T[] {
@@ -20,7 +21,7 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-export default function RelatedPosts({ currentSlug, count = 2 }: RelatedPostsProps) {
+export default function RelatedPosts({ currentSlug, count = 2, onTagClick }: RelatedPostsProps) {
   const { t, ui } = useLanguage();
   const [posts, setPosts] = useState<typeof BLOG_POSTS>([]);
 
@@ -42,7 +43,7 @@ export default function RelatedPosts({ currentSlug, count = 2 }: RelatedPostsPro
 
       <div className="mt-6 flex flex-col gap-8">
         {posts.map((post) => (
-          <BlogPostCard key={post.slug} post={post} />
+          <BlogPostCard key={post.slug} post={post} onTagClick={onTagClick} />
         ))}
       </div>
     </div>

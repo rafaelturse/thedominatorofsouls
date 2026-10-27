@@ -85,7 +85,7 @@ export default function TagPanel({
                     type="button"
                     onClick={onClose}
                     aria-label={closeLabel}
-                    className="absolute right-4 top-4 z-10 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-line bg-black/60 text-muted transition-colors hover:border-red-soft hover:text-red-soft"
+                    className="absolute right-4 top-4 z-10 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-red-soft bg-black/60 text-red-soft transition-colors hover:border-gold-soft hover:text-gold-soft"
                 >
                     <svg
                         width="18"
