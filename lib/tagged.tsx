@@ -1,4 +1,5 @@
 import { BLOG_POSTS } from "./blog";
+import { books } from "./books";
 import { ECHOES } from "./echoes";
 import type { LocalizedString } from "./i18n";
 import { ROUTES } from "./routes";
@@ -16,6 +17,7 @@ export type TaggedItem = {
 
 type Translate = (value: LocalizedString) => string;
 
+const BOOK_LABEL: LocalizedString = { "pt-br": "Livro", en: "Book" };
 const TIMELINE_LABEL: LocalizedString = { "pt-br": "Linha do Tempo", en: "Timeline" };
 const ECHOES_LABEL: LocalizedString = { "pt-br": "Ecos", en: "Echoes" };
 
@@ -30,6 +32,18 @@ function sameTag(a: LocalizedString, b: LocalizedString) {
 }
 
 export function getTaggedItems(tag: LocalizedString, t: Translate): TaggedItem[] {
+  const bookItems: TaggedItem[] = books
+    .filter((book) => (book.genres ?? []).some((x) => sameTag(x, tag)))
+    .map((book) => ({
+      id: `book-${book.slug}`,
+      href: ROUTES.bookDetail(book.slug),
+      title: t(book.title),
+      excerpt: t(book.synopsis),
+      date: t(book.release),
+      cover: book.cover ? t(book.cover) : undefined,
+      category: t(BOOK_LABEL),
+    }));
+
   const posts: TaggedItem[] = BLOG_POSTS.filter((post) => post.tags.some((x) => sameTag(x, tag))).map(
     (post) => ({
       id: `post-${post.slug}`,
@@ -70,5 +84,5 @@ export function getTaggedItems(tag: LocalizedString, t: Translate): TaggedItem[]
       };
     });
 
-  return [...posts, ...events, ...echoEntries];
+  return [...bookItems, ...posts, ...events, ...echoEntries];
 }

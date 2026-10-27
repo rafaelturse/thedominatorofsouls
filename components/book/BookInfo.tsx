@@ -1,7 +1,7 @@
 "use client";
 
 import type { Book } from "@/lib/data";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, type LocalizedString } from "@/lib/i18n";
 import { BookmarkIcon } from "@/lib/icons";
 import BookCover from "@/components/book/BookCover";
 import Synopsis from "@/components/book/Synopsis";
@@ -15,6 +15,7 @@ type BookInfoProps = {
   showMoreLink?: boolean;
   showSampleButton?: boolean;
   onReadSample?: () => void;
+  onTagClick?: (tag: LocalizedString) => void;
   synopsisMaxHeightClass?: string;
 };
 
@@ -24,6 +25,7 @@ export default function BookInfo({
   showMoreLink = false,
   showSampleButton = false,
   onReadSample,
+  onTagClick,
   synopsisMaxHeightClass,
 }: BookInfoProps) {
   const { t, ui } = useLanguage();
@@ -53,7 +55,7 @@ export default function BookInfo({
           {t(book.title)}
         </h2>
 
-        <BookGenreBadges book={book} />
+        <BookGenreBadges book={book} onTagClick={onTagClick} />
 
         <Synopsis book={book} maxHeightClass={synopsisMaxHeightClass} />
 

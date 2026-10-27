@@ -7,45 +7,12 @@ import Timeline from "@/components/sessions/Timeline";
 import TagPanel from "@/components/tags/TagPanel";
 import ExploreLinks from "@/components/link/ExploreLinks";
 import { TIMELINE_EVENTS } from "@/lib/timeline";
+import { TIMELINE_PAGE } from "@/lib/timeline-page";
 import { useLanguage } from "@/lib/i18n";
-import { BalloonIcon, MoreIcon } from "@/lib/icons";
 import type { LocalizedString } from "@/lib/i18n";
+import { BalloonIcon, MoreIcon } from "@/lib/icons";
 import { SITE } from "@/lib/data";
 import { TAG_PANEL_LABELS, getTaggedItems } from "@/lib/tagged";
-
-const TIMELINE_PAGE = {
-  title: { "pt-br": "Timeline", en: "Timeline" } as LocalizedString,
-  heading: { "pt-br": "Linha do Tempo", en: "Timeline" } as LocalizedString,
-  subtitle: {
-    "pt-br": "Os marcos da jornada, do livro ao site",
-    en: "The milestones of the journey, from the book to the site",
-  } as LocalizedString,
-};
-
-const INTRO = {
-  "pt-br": (
-    <>
-      Seja bem-vindo à página de timeline! Aqui você encontrará todos os marcos da jornada de
-      desenvolvimento do universo de <strong>O Dominador de Almas</strong>.
-      <br />
-      <br />
-      Os assuntos mais recentes estão no topo - então, se deseja acompanhar a história toda desde
-      o início, você pode usar este atalho!
-    </>
-  ),
-  en: (
-    <>
-      Welcome to the timeline page! Here you&apos;ll find every milestone in the development
-      journey of the <strong>The Dominator of Souls</strong> universe.
-      <br />
-      <br />
-      The most recent entries are at the top — so if you&apos;d like to follow the whole story from
-      the very beginning, you can use this shortcut!
-    </>
-  ),
-};
-
-const SHORTCUT_LABEL = { "pt-br": "Ir ao primeiro evento", en: "Go to the first event" };
 
 export default function TimelinePage() {
   const { locale, t, ui } = useLanguage();
@@ -85,12 +52,9 @@ export default function TimelinePage() {
             <h1 className="font-display uppercase text-lg text-ink">{t(ui.welcomeTitle)}</h1>
           </div>
 
-          <div
-            className="mt-6 rounded-3xl p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:p-10"
-            style={{ backgroundColor: "#111" }}
-          >
+          <div className="mt-6 rounded-3xl bg-card p-6 shadow-card sm:p-10">
             <div className="text-center font-body text-sm leading-relaxed text-muted sm:text-left sm:text-base">
-              {INTRO[locale]}
+              {TIMELINE_PAGE.intro[locale]}
             </div>
 
             <div className="my-10 flex justify-center">
@@ -106,7 +70,7 @@ export default function TimelinePage() {
                 className="flex items-center gap-2 border border-red-soft bg-red-soft px-4 py-2 font-body text-xs uppercase tracking-[0.2em] text-ink transition-colors hover:bg-transparent hover:text-red-soft"
               >
                 <MoreIcon size={14} />
-                {t(SHORTCUT_LABEL)}
+                {t(TIMELINE_PAGE.shortcutLabel)}
               </button>
             </div>
           </div>

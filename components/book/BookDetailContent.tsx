@@ -1,19 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import type { Book } from "@/lib/data";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, type LocalizedString } from "@/lib/i18n";
 import { BookIcon } from "@/lib/icons";
+import { TAG_PANEL_LABELS, getTaggedItems } from "@/lib/tagged";
 import Hero from "@/components/page/Hero";
 import GenreStrip from "@/components/sessions/GenreStrip";
 import BookInfo from "@/components/book/BookInfo";
 import Collection from "@/components/collection/Collection";
 import ExploreLinks from "@/components/link/ExploreLinks";
 import Reader from "@/components/reader/Reader";
+import TagPanel from "@/components/tags/TagPanel";
 
 export default function BookDetailContent({ book }: { book: Book }) {
   const { t, ui } = useLanguage();
   const [sampleOpen, setSampleOpen] = useState(false);
+  const [activeTag, setActiveTag] = useState<LocalizedString | null>(null);
+  const [panelOpen, setPanelOpen] = useState(false);
+
+  const closePanel = useCallback(() => setPanelOpen(false), []);
+
+  function handleTagClick(tag: LocalizedString) {
+    setActiveTag(tag);
+    setPanelOpen(true);
+  }
 
   return (
     <div>
@@ -29,7 +40,12 @@ export default function BookDetailContent({ book }: { book: Book }) {
         </div>
 
         <div className="mt-4 rounded-3xl bg-card p-6 shadow-card sm:p-10">
-          <BookInfo book={book} showSampleButton onReadSample={() => setSampleOpen(true)} />
+          <BookInfo
+            book={book}
+            showSampleButton
+            onReadSample={() => setSampleOpen(true)}
+            onTagClick={handleTagClick}
+          />
         </div>
 
         <div className="mt-22">
@@ -42,6 +58,16 @@ export default function BookDetailContent({ book }: { book: Book }) {
       {sampleOpen && (
         <Reader book={book} onClose={() => setSampleOpen(false)} />
       )}
+
+      <TagPanel
+        open={panelOpen}
+        tag={activeTag ? t(activeTag) : null}
+        items={activeTag ? getTaggedItems(activeTag, t) : []}
+        onClose={closePanel}
+        heading={t(TAG_PANEL_LABELS.heading)}
+        emptyMessage={t(TAG_PANEL_LABELS.empty)}
+        closeLabel={t(TAG_PANEL_LABELS.close)}
+      />
     </div>
   );
 }
