@@ -1,18 +1,38 @@
 import type { LocalizedString } from "./i18n";
-import type { IconProps } from "./icons";
-import { BookIcon, CommunityIcon, FeatherIcon, GridIcon, ShieldIcon, PlayIcon, SpotifyIcon } from "./icons";
-import type { JSXElementConstructor, ReactElement } from "react";
 import type { ReactNode } from "react";
 
 export type TimelineEvent = {
   date: LocalizedString;
   title: LocalizedString;
   description: { "pt-br": ReactNode; en: ReactNode };
-  icon: (props: IconProps) => ReactElement;
   blogSlug?: string;
 };
 
 export const TIMELINE_EVENTS: TimelineEvent[] = [
+  {
+    date: { "pt-br": "Out-26-2026", en: "Oct-26-2026" },
+    title: {
+      "pt-br": "Os Apócrifos dos Ecos chegam ao site",
+      en: "The Apocrypha of the Echoes Arrive",
+    },
+    description: {
+      "pt-br": (
+        <>
+          Uma nova seção reúne fragmentos de histórias perdidas do universo de O Dominador de Almas.
+          Estreiam o detetive <strong>Stan Brings</strong>, capaz de reviver ecos de lembranças
+          esquecidas, e <strong>O Cervo de Forestfar</strong>, com sua Parte 1 já disponível.
+        </>
+      ),
+      en: (
+        <>
+          A new section gathers fragments of lost stories from the universe of The Dominator of
+          Souls. It debuts with the detective <strong>Stan Brings</strong>, who can relive echoes of
+          forgotten memories, and <strong>The Forestfar Deer</strong>, with Part 1 already
+          available.
+        </>
+      ),
+    },
+  },
   {
     date: { "pt-br": "Out-15-2026", en: "Oct-15-2026" },
     title: { "pt-br": "O Audiobook Chega ao Spotify", en: "The Audiobook Arrives on Spotify" },
@@ -30,7 +50,6 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
         </>
       ),
     },
-    icon: SpotifyIcon,
   },
   {
     date: { "pt-br": "Out-11-2026", en: "Oct-11-2026" },
@@ -51,7 +70,6 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
         </>
       ),
     },
-    icon: PlayIcon,
   },
   {
     date: { "pt-br": "Out-2026", en: "Oct-2026" },
@@ -72,7 +90,6 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
         </>
       ),
     },
-    icon: ShieldIcon,
   },
   {
     date: { "pt-br": "Out-2026", en: "Oct-2026" },
@@ -93,7 +110,6 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
         </>
       ),
     },
-    icon: GridIcon,
   },
   {
     date: { "pt-br": "Out-2026", en: "Oct-2026" },
@@ -102,7 +118,6 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
       "pt-br": "Wattpad, redes sociais e canal no WhatsApp se juntam para formar a base de leitores.",
       en: "Wattpad, social media, and a WhatsApp channel come together to form the reader base.",
     },
-    icon: CommunityIcon,
   },
   {
     date: { "pt-br": "Set-2026", en: "Sep-2026" },
@@ -123,7 +138,6 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
         </>
       ),
     },
-    icon: FeatherIcon,
   },
   {
     date: { "pt-br": "Set-2026", en: "Sep-2026" },
@@ -132,7 +146,6 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
       "pt-br": "thedominatorofsouls.com é lançado, trazendo a loja, a comunidade e o leitor de amostra.",
       en: "thedominatorofsouls.com launches, bringing the store, community, and sample reader to life.",
     },
-    icon: GridIcon,
   },
   {
     date: { "pt-br": "Set-2026", en: "Sep-2026" },
@@ -141,7 +154,6 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
       "pt-br": "O Volume 1 de As Memórias de Berdox chega à Amazon, marcando o início oficial da série.",
       en: "Volume 1 of The Memories of Berdox arrives on Amazon, marking the official start of the series.",
     },
-    icon: BookIcon,
   },
   {
     date: { "pt-br": "2019 — 2026", en: "2019 — 2026" },
@@ -160,7 +172,6 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
         </>
       ),
     },
-    icon: BriefcaseIcon,
     blogSlug: "forjando-e-dando-vida",
   },
   {
@@ -169,13 +180,7 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
     description: {
       "pt-br":
         "O universo de O Dominador de Almas começou a tomar forma muito antes de a primeira palavra ser escrita. Foram muitas noites em claro, movidas pela empolgação da criação — e, com grande dedicação, seus alicerces começaram a ser concebidos e desenvolvidos.",
-      en:
-        "The universe of The Dominator of Souls began to take shape long before the first word was written. There were many sleepless nights fueled by the excitement of creation, and through great dedication, its foundations began to be conceived and developed.",
+      en: "The universe of The Dominator of Souls began to take shape long before the first word was written. There were many sleepless nights fueled by the excitement of creation, and through great dedication, its foundations began to be conceived and developed.",
     },
-    icon: FeatherIcon,
   },
 ];
-
-function BriefcaseIcon(props: IconProps): ReactElement<unknown, string | JSXElementConstructor<any>> {
-  throw new Error("Function not implemented.");
-}
