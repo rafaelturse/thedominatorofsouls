@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { useLanguage, type Locale } from "@/lib/i18n";
+import { useHoverMenu } from "./useHoverMenu";
 
 const LANGUAGES: { code: Locale; label: string }[] = [
   { code: "en", label: "English" },
@@ -27,28 +27,15 @@ const GlobeIcon = () => (
 
 export default function LanguageSwitcher() {
   const { locale, setLocale } = useLanguage();
-  const [open, setOpen] = useState(false);
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const { open, close, containerProps, onTriggerClick } = useHoverMenu();
   const current = LANGUAGES.find((l) => l.code === locale) ?? LANGUAGES[0];
 
-  useEffect(() => {
-    if (!open) return;
-
-    function handleClickOutside(event: MouseEvent) {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
-        setOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [open]);
-
   return (
-    <div ref={wrapperRef} className="relative">
+    <div {...containerProps} className="relative">
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={onTriggerClick}
+        aria-expanded={open}
         className="flex items-center gap-1.5 font-body text-xs uppercase tracking-[0.15em] text-red-soft transition-colors hover:text-gold-soft"
       >
         <GlobeIcon />
@@ -69,20 +56,22 @@ export default function LanguageSwitcher() {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full z-10 mt-1 border border-line bg-header">
-          {LANGUAGES.map((lang) => (
-            <button
-              key={lang.code}
-              type="button"
-              onClick={() => {
-                setLocale(lang.code);
-                setOpen(false);
-              }}
-              className="block w-full whitespace-nowrap px-4 py-2 text-left font-body text-xs uppercase tracking-[0.15em] text-red-soft transition-colors hover:bg-surface hover:text-gold-soft"
-            >
-              {lang.label}
-            </button>
-          ))}
+        <div className="absolute right-0 top-full z-10 pt-1">
+          <div className="border border-line bg-header">
+            {LANGUAGES.map((lang) => (
+              <button
+                key={lang.code}
+                type="button"
+                onClick={() => {
+                  setLocale(lang.code);
+                  close();
+                }}
+                className="block w-full whitespace-nowrap px-4 py-2 text-left font-body text-xs uppercase tracking-[0.15em] text-red-soft transition-colors hover:bg-surface hover:text-gold-soft"
+              >
+                {lang.label}
+              </button>
+            ))}
+          </div>
         </div>
       )}
     </div>

@@ -3,22 +3,31 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Fragment, useState } from "react";
-import { NAV_ITEMS, SITE } from "@/lib/data";
+import { NAV_ITEMS } from "@/lib/data";
 import { useLanguage, type LocalizedString } from "@/lib/i18n";
 import { ROUTES } from "@/lib/routes";
 import { HomeIcon } from "@/lib/icons";
-import LanguageSwitcher from "../page/LanguageSwitcher";
+import LanguageSwitcher from "./LanguageSwitcher";
 import AboutMenu from "./AboutMenu";
 import UniverseMenu from "./UniverseMenu";
+import SocialMenu from "./SocialMenu";
 
 const ECHOES_LABEL: LocalizedString = { "pt-br": "Ecos", en: "Echoes" };
+const SOCIAL_LABEL: LocalizedString = { "pt-br": "Social", en: "Social" };
+const BLOG_LABEL: LocalizedString = { "pt-br": "Blog", en: "Blog" };
+const TIMELINE_LABEL: LocalizedString = { "pt-br": "Linha do Tempo", en: "Timeline" };
+
+const NESTED_HREFS: string[] = [ROUTES.blog, ROUTES.timeline];
 
 export default function Header() {
   const pathname = usePathname();
   const { t, ui } = useLanguage();
   const [open, setOpen] = useState(false);
 
-  const mobileNavItems = NAV_ITEMS.filter((item) => item.href !== ROUTES.home && item.href !== ROUTES.about);
+  const desktopNavItems = NAV_ITEMS.filter((item) => !NESTED_HREFS.includes(item.href));
+  const mobileNavItems = desktopNavItems.filter(
+    (item) => item.href !== ROUTES.home && item.href !== ROUTES.about,
+  );
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-header">
@@ -52,9 +61,11 @@ export default function Header() {
         </div>
 
         <nav className="hidden items-center gap-6 md:flex">
-          {NAV_ITEMS.map((item) =>
+          {desktopNavItems.map((item) =>
             item.href === ROUTES.about ? (
               <AboutMenu key={item.href} />
+            ) : item.href === ROUTES.community ? (
+              <SocialMenu key={item.href} />
             ) : item.href === ROUTES.universe && !item.comingSoon ? (
               <UniverseMenu key={item.href} />
             ) : item.comingSoon ? (
@@ -100,7 +111,7 @@ export default function Header() {
                   onClick={() => setOpen(false)}
                   className="border-b border-line py-3 font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors hover:text-gold-soft last:border-none"
                 >
-                  {t(item.label)}
+                  {item.href === ROUTES.community ? t(SOCIAL_LABEL) : t(item.label)}
                 </Link>
                 {item.href === ROUTES.universe && (
                   <Link
@@ -109,6 +120,15 @@ export default function Header() {
                     className="border-b border-line py-3 pl-4 font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors hover:text-gold-soft"
                   >
                     — {t(ECHOES_LABEL)}
+                  </Link>
+                )}
+                {item.href === ROUTES.community && (
+                  <Link
+                    href={ROUTES.blog}
+                    onClick={() => setOpen(false)}
+                    className="border-b border-line py-3 pl-4 font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors hover:text-gold-soft"
+                  >
+                    — {t(BLOG_LABEL)}
                   </Link>
                 )}
               </Fragment>
@@ -120,6 +140,13 @@ export default function Header() {
             className="border-b border-line py-3 font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors hover:text-gold-soft"
           >
             {t(ui.aboutLabel)}
+          </Link>
+          <Link
+            href={ROUTES.timeline}
+            onClick={() => setOpen(false)}
+            className="border-b border-line py-3 pl-4 font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors hover:text-gold-soft"
+          >
+            — {t(TIMELINE_LABEL)}
           </Link>
           <Link
             href={ROUTES.privacy}
