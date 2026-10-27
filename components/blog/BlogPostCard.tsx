@@ -1,10 +1,17 @@
+"use client";
+
 import Link from "next/link";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, type LocalizedString } from "@/lib/i18n";
 import { ROUTES } from "@/lib/routes";
 import { MoreIcon } from "@/lib/icons";
 import type { BlogPost } from "@/lib/blog";
 
-export default function BlogPostCard({ post }: { post: BlogPost }) {
+type BlogPostCardProps = {
+  post: BlogPost;
+  onTagClick?: (tag: LocalizedString) => void;
+};
+
+export default function BlogPostCard({ post, onTagClick }: BlogPostCardProps) {
   const { t, ui } = useLanguage();
 
   return (
@@ -35,12 +42,14 @@ export default function BlogPostCard({ post }: { post: BlogPost }) {
 
         <div className="mt-6 flex flex-wrap gap-2">
           {post.tags.map((tag, i) => (
-            <span
+            <button
               key={i}
-              className="rounded-full bg-red-soft px-2.5 py-0.5 font-body text-[10px] uppercase tracking-[0.1em] text-ink"
+              type="button"
+              onClick={() => onTagClick?.(tag)}
+              className="cursor-pointer rounded-full border border-red-soft bg-red-soft px-2.5 py-0.5 font-body text-[10px] uppercase tracking-[0.1em] text-ink transition-colors hover:bg-transparent hover:text-red-soft"
             >
               {t(tag)}
-            </span>
+            </button>
           ))}
         </div>
 
