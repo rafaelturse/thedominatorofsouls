@@ -1,5 +1,5 @@
-import { TAGS } from "../tags";
-import type { EchoWork } from "./types";
+import { TAGS } from "../../tags";
+import type { EchoWork } from "../types";
 
 const COVER = "/img/echoes/cover-stanbrings-baw.jpg";
 
