@@ -1,16 +1,28 @@
 "use client";
 
+import { useCallback, useState } from "react";
 import Hero from "@/components/page/Hero";
 import PageHeader from "@/components/page/PageHeader";
 import ExploreLinks from "@/components/link/ExploreLinks";
 import ShareIcons from "@/components/blog/ShareIcons";
-import { useLanguage } from "@/lib/i18n";
-import type { BlogPost } from "@/lib/blog";
 import RelatedPosts from "@/components/blog/RelatedPosts";
+import TagPanel from "@/components/tags/TagPanel";
+import { useLanguage, type LocalizedString } from "@/lib/i18n";
+import type { BlogPost } from "@/lib/blog";
+import { TAG_PANEL_LABELS, getTaggedItems } from "@/lib/tagged";
 
 export default function BlogPostContent({ post }: { post: BlogPost }) {
   const { t, ui } = useLanguage();
   const url = typeof window !== "undefined" ? window.location.href : "";
+  const [activeTag, setActiveTag] = useState<LocalizedString | null>(null);
+  const [panelOpen, setPanelOpen] = useState(false);
+
+  const closePanel = useCallback(() => setPanelOpen(false), []);
+
+  function handleTagClick(tag: LocalizedString) {
+    setActiveTag(tag);
+    setPanelOpen(true);
+  }
 
   return (
     <div>
@@ -45,12 +57,14 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
 
             <div className="mt-8 flex flex-wrap justify-end gap-2 pt-6">
               {post.tags.map((tag, i) => (
-                <span
+                <button
                   key={i}
-                  className="rounded-full bg-red-soft px-2.5 py-0.5 font-body text-[10px] uppercase tracking-[0.1em] text-ink"
+                  type="button"
+                  onClick={() => handleTagClick(tag)}
+                  className="cursor-pointer rounded-full bg-red-soft px-2.5 py-0.5 font-body text-[10px] uppercase tracking-[0.1em] text-ink transition-opacity hover:opacity-80"
                 >
                   {t(tag)}
-                </span>
+                </button>
               ))}
             </div>
 
@@ -67,6 +81,16 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
 
         <ExploreLinks count={3} />
       </div>
+
+      <TagPanel
+        open={panelOpen}
+        tag={activeTag ? t(activeTag) : null}
+        items={activeTag ? getTaggedItems(activeTag, t) : []}
+        onClose={closePanel}
+        heading={t(TAG_PANEL_LABELS.heading)}
+        emptyMessage={t(TAG_PANEL_LABELS.empty)}
+        closeLabel={t(TAG_PANEL_LABELS.close)}
+      />
     </div>
   );
 }

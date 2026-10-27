@@ -7,8 +7,8 @@ import { ROUTES } from "@/lib/routes";
 import { useHoverMenu } from "./useHoverMenu";
 
 const SOCIAL_LABEL: LocalizedString = { "pt-br": "Social", en: "Social" };
-const COMMUNITY_LABEL: LocalizedString = { "pt-br": "Comunidade", en: "Community" };
 const BLOG_LABEL: LocalizedString = { "pt-br": "Blog", en: "Blog" };
+const COMMUNITY_LABEL: LocalizedString = { "pt-br": "Comunidade", en: "Community" };
 
 export default function SocialMenu() {
   const pathname = usePathname();
@@ -34,18 +34,18 @@ export default function SocialMenu() {
         <div className="absolute left-1/2 top-full z-10 w-max min-w-40 -translate-x-1/2 pt-2">
           <div className="border border-line bg-header shadow-dropdown">
             <Link
-              href={ROUTES.community}
+              href={ROUTES.blog}
               onClick={close}
               className="block whitespace-nowrap border-b border-line px-4 py-2.5 text-left font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors hover:bg-surface hover:text-gold-soft"
             >
-              {t(COMMUNITY_LABEL)}
+              {t(BLOG_LABEL)}
             </Link>
             <Link
-              href={ROUTES.blog}
+              href={ROUTES.community}
               onClick={close}
               className="block whitespace-nowrap px-4 py-2.5 text-left font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors hover:bg-surface hover:text-gold-soft"
             >
-              {t(BLOG_LABEL)}
+              {t(COMMUNITY_LABEL)}
             </Link>
           </div>
         </div>

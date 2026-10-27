@@ -13,8 +13,9 @@ import UniverseMenu from "./UniverseMenu";
 import SocialMenu from "./SocialMenu";
 
 const ECHOES_LABEL: LocalizedString = { "pt-br": "Ecos", en: "Echoes" };
+const CONTENT_LABEL: LocalizedString = { "pt-br": "Conteúdo", en: "Content" };
 const SOCIAL_LABEL: LocalizedString = { "pt-br": "Social", en: "Social" };
-const BLOG_LABEL: LocalizedString = { "pt-br": "Blog", en: "Blog" };
+const COMMUNITY_LABEL: LocalizedString = { "pt-br": "Comunidade", en: "Community" };
 const TIMELINE_LABEL: LocalizedString = { "pt-br": "Linha do Tempo", en: "Timeline" };
 
 const NESTED_HREFS: string[] = [ROUTES.blog, ROUTES.timeline];
@@ -28,6 +29,16 @@ export default function Header() {
   const mobileNavItems = desktopNavItems.filter(
     (item) => item.href !== ROUTES.home && item.href !== ROUTES.about,
   );
+
+  function mobileLabel(href: string, fallback: LocalizedString) {
+    if (href === ROUTES.community) return t(SOCIAL_LABEL);
+    if (href === ROUTES.universe) return t(CONTENT_LABEL);
+    return t(fallback);
+  }
+
+  function mobileHref(href: string) {
+    return href === ROUTES.community ? ROUTES.blog : href;
+  }
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-header">
@@ -107,11 +118,11 @@ export default function Header() {
             ) : (
               <Fragment key={item.href}>
                 <Link
-                  href={item.href}
+                  href={mobileHref(item.href)}
                   onClick={() => setOpen(false)}
                   className="border-b border-line py-3 font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors hover:text-gold-soft last:border-none"
                 >
-                  {item.href === ROUTES.community ? t(SOCIAL_LABEL) : t(item.label)}
+                  {mobileLabel(item.href, item.label)}
                 </Link>
                 {item.href === ROUTES.universe && (
                   <Link
@@ -124,11 +135,11 @@ export default function Header() {
                 )}
                 {item.href === ROUTES.community && (
                   <Link
-                    href={ROUTES.blog}
+                    href={ROUTES.community}
                     onClick={() => setOpen(false)}
                     className="border-b border-line py-3 pl-4 font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors hover:text-gold-soft"
                   >
-                    — {t(BLOG_LABEL)}
+                    — {t(COMMUNITY_LABEL)}
                   </Link>
                 )}
               </Fragment>
@@ -142,18 +153,18 @@ export default function Header() {
             {t(ui.aboutLabel)}
           </Link>
           <Link
-            href={ROUTES.timeline}
+            href={ROUTES.privacy}
             onClick={() => setOpen(false)}
             className="border-b border-line py-3 pl-4 font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors hover:text-gold-soft"
           >
-            — {t(TIMELINE_LABEL)}
+            — {t(ui.privacyLabel)}
           </Link>
           <Link
-            href={ROUTES.privacy}
+            href={ROUTES.timeline}
             onClick={() => setOpen(false)}
-            className="py-3 pl-4 font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors last:border-none hover:text-gold-soft"
+            className="py-3 pl-4 font-body text-xs uppercase tracking-[0.15em] text-muted transition-colors hover:text-gold-soft"
           >
-            — {t(ui.privacyLabel)}
+            — {t(TIMELINE_LABEL)}
           </Link>
         </nav>
       )}
