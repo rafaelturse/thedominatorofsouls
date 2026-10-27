@@ -1,5 +1,5 @@
 import type { LocalizedString } from "../i18n";
-import { forestfarDeer } from "./forestfar-deer";
+import { forestfarDeer } from "./the-forestfar-deer/forestfar-deer";
 import { stanBrings } from "./stan-brings";
 import type { EchoCard, EchoEntry, EchoWork } from "./types";
 
