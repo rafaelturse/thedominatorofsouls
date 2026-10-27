@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { QuoteIcon } from "@/lib/icons";
 import TagPanelFooter from "./TagPanelFooter";
 
 export type TagPanelItem = {
@@ -111,44 +112,48 @@ export default function TagPanel({
                         </h2>
                     </div>
 
-                    <div className="mt-8 flex flex-col gap-5">
+                    <div className="mt-8 flex flex-col gap-8">
                         {items.length === 0 ? (
                             <p className="py-10 text-center font-body text-sm uppercase tracking-[0.15em] text-muted">
                                 {emptyMessage}
                             </p>
                         ) : (
                             items.map((item) => (
-                                <Link
-                                    key={item.id}
-                                    href={item.href}
-                                    onClick={onClose}
-                                    className="group flex flex-col overflow-hidden rounded-2xl border border-transparent bg-card/70 transition-colors duration-300 hover:border-red-soft"
-                                >
-                                    {item.cover && (
-                                        <img
-                                            src={item.cover}
-                                            alt={item.title}
-                                            className="aspect-[16/9] w-full object-cover opacity-90 transition-opacity duration-300 group-hover:opacity-100"
-                                        />
-                                    )}
-                                    <div className="p-5">
-                                        {(item.date || item.category) && (
-                                            <p className="font-body text-[10px] uppercase tracking-[0.25em]">
-                                                {item.date && <span className="text-gold-soft">{item.date}</span>}
-                                                {item.date && item.category && <span className="text-muted"> · </span>}
-                                                {item.category && <span className="text-red-soft">{item.category}</span>}
-                                            </p>
+                                <div key={item.id} className="flex flex-col gap-2">
+                                    <span className="text-gold-soft">
+                                        <QuoteIcon size={14} />
+                                    </span>
+                                    <Link
+                                        href={item.href}
+                                        onClick={onClose}
+                                        className="group flex flex-col overflow-hidden rounded-2xl border border-transparent bg-card/70 transition-colors duration-300 hover:border-red-soft"
+                                    >
+                                        {item.cover && (
+                                            <img
+                                                src={item.cover}
+                                                alt={item.title}
+                                                className="aspect-[16/9] w-full object-cover opacity-90 transition-opacity duration-300 group-hover:opacity-100"
+                                            />
                                         )}
-                                        <h3 className="mt-2 font-display text-xl text-ink transition-colors duration-300 group-hover:text-gold-soft">
-                                            {item.title}
-                                        </h3>
-                                        {item.excerpt && (
-                                            <p className="mt-2 line-clamp-3 font-body text-sm leading-relaxed text-muted">
-                                                {item.excerpt}
-                                            </p>
-                                        )}
-                                    </div>
-                                </Link>
+                                        <div className="p-5">
+                                            {(item.date || item.category) && (
+                                                <p className="font-body text-[10px] uppercase tracking-[0.25em]">
+                                                    {item.date && <span className="text-gold-soft">{item.date}</span>}
+                                                    {item.date && item.category && <span className="text-muted"> · </span>}
+                                                    {item.category && <span className="text-red-soft">{item.category}</span>}
+                                                </p>
+                                            )}
+                                            <h3 className="mt-2 font-display text-xl text-ink transition-colors duration-300 group-hover:text-gold-soft">
+                                                {item.title}
+                                            </h3>
+                                            {item.excerpt && (
+                                                <p className="mt-2 line-clamp-3 font-body text-sm leading-relaxed text-muted">
+                                                    {item.excerpt}
+                                                </p>
+                                            )}
+                                        </div>
+                                    </Link>
+                                </div>
                             ))
                         )}
                     </div>
