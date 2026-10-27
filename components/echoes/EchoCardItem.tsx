@@ -1,15 +1,19 @@
 "use client";
 
 import type { EchoCard } from "@/lib/echoes";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, type LocalizedString } from "@/lib/i18n";
 import { MoreIcon } from "@/lib/icons";
 
 type EchoCardItemProps = {
   card: EchoCard;
   onReadMore?: (entryId: string) => void;
+  onTagClick?: (tag: LocalizedString) => void;
 };
 
-export default function EchoCardItem({ card, onReadMore }: EchoCardItemProps) {
+const TAG_CLASS =
+  "rounded-full border border-red-soft bg-red-soft px-3 py-1 font-body text-[10px] uppercase tracking-[0.15em] text-ink";
+
+export default function EchoCardItem({ card, onReadMore, onTagClick }: EchoCardItemProps) {
   const { t, ui } = useLanguage();
 
   return (
@@ -28,14 +32,22 @@ export default function EchoCardItem({ card, onReadMore }: EchoCardItemProps) {
         <p className="mt-3 font-body text-base leading-relaxed text-muted">{t(card.excerpt)}</p>
 
         <div className="mt-4 flex flex-wrap gap-2">
-          {card.tags.map((tag, i) => (
-            <span
-              key={i}
-              className="rounded-full bg-red-soft px-3 py-1 font-body text-[10px] uppercase tracking-[0.15em] text-ink"
-            >
-              {t(tag)}
-            </span>
-          ))}
+          {card.tags.map((tag, i) =>
+            onTagClick ? (
+              <button
+                key={i}
+                type="button"
+                onClick={() => onTagClick(tag)}
+                className={`${TAG_CLASS} cursor-pointer transition-colors hover:bg-transparent hover:text-red-soft`}
+              >
+                {t(tag)}
+              </button>
+            ) : (
+              <span key={i} className={TAG_CLASS}>
+                {t(tag)}
+              </span>
+            ),
+          )}
         </div>
 
         <div className="mt-auto pt-6">

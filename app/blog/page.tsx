@@ -5,18 +5,10 @@ import Hero from "@/components/page/Hero";
 import PageHeader from "@/components/page/PageHeader";
 import BlogPostCard from "@/components/blog/BlogPostCard";
 import TagPanel from "@/components/tags/TagPanel";
-import type { TagPanelItem } from "@/components/tags/TagPanel";
 import ExploreLinks from "@/components/link/ExploreLinks";
 import { BLOG_POSTS } from "@/lib/blog";
 import { useLanguage, type LocalizedString } from "@/lib/i18n";
-import { ROUTES } from "@/lib/routes";
-
-const TAG_PANEL_HEADING: LocalizedString = { "pt-br": "Conteúdo com a tag", en: "Content tagged" };
-const TAG_PANEL_EMPTY: LocalizedString = {
-  "pt-br": "Nenhum conteúdo com esta tag.",
-  en: "No content with this tag.",
-};
-const TAG_PANEL_CLOSE: LocalizedString = { "pt-br": "Fechar", en: "Close" };
+import { TAG_PANEL_LABELS, getTaggedItems } from "@/lib/tagged";
 
 export default function BlogPage() {
   const { t, ui } = useLanguage();
@@ -29,18 +21,6 @@ export default function BlogPage() {
     setActiveTag(tag);
     setPanelOpen(true);
   }
-
-  const items: TagPanelItem[] = activeTag
-    ? BLOG_POSTS.filter((post) => post.tags.some((tag) => tag.en === activeTag.en)).map((post) => ({
-      id: post.slug,
-      href: ROUTES.blogPost(post.slug),
-      title: t(post.title),
-      excerpt: t(post.excerpt),
-      date: t(post.date),
-      cover: post.cover,
-      category: t(post.category),
-    }))
-    : [];
 
   return (
     <div>
@@ -64,11 +44,11 @@ export default function BlogPage() {
       <TagPanel
         open={panelOpen}
         tag={activeTag ? t(activeTag) : null}
-        items={items}
+        items={activeTag ? getTaggedItems(activeTag, t) : []}
         onClose={closePanel}
-        heading={t(TAG_PANEL_HEADING)}
-        emptyMessage={t(TAG_PANEL_EMPTY)}
-        closeLabel={t(TAG_PANEL_CLOSE)}
+        heading={t(TAG_PANEL_LABELS.heading)}
+        emptyMessage={t(TAG_PANEL_LABELS.empty)}
+        closeLabel={t(TAG_PANEL_LABELS.close)}
       />
     </div>
   );

@@ -1,3 +1,4 @@
+import { TAGS } from "../tags";
 import type { EchoWork } from "./types";
 
 const COVER = "/img/echoes/cover-stanbrings-baw.jpg";
@@ -13,17 +14,14 @@ export const stanBrings: EchoWork = {
         "As habilidades únicas de um raríssimo dominador tornam possível que ele recupere ecos de lembranças e sentimentos que, mesmo tendo sido gerados há muito tempo, ainda não se dissiparam completamente.",
       en: "The unique abilities of an exceedingly rare dominator make it possible for him to recover echoes of memories and feelings that, even though they were generated long ago, have not yet completely faded.",
     },
-    tags: [
-      { "pt-br": "detetive", en: "detective" },
-      { "pt-br": "ecos", en: "echoes" },
-      { "pt-br": "apócrifos", en: "apocryphal" },
-    ],
+    tags: [TAGS.detective, TAGS.echoes, TAGS.apocrypha],
     cover: COVER,
   },
   entry: {
     id: "stan-brings",
     title: { "pt-br": "Sr. Stan Brings", en: "Mr. Stan Brings" },
     cover: { "pt-br": COVER, en: COVER },
+    tags: [TAGS.apocrypha, TAGS.echoes, TAGS.detective, TAGS.stanBrings],
     parts: [
       {
         id: "stan-brings-part-1",

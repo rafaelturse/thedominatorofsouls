@@ -1,12 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, type LocalizedString } from "@/lib/i18n";
 import { CircleArrowUpIcon, MoreIcon } from "@/lib/icons";
 import { ROUTES } from "@/lib/routes";
 import type { TimelineEvent } from "@/lib/timeline";
 
-export default function Timeline({ events }: { events: TimelineEvent[] }) {
+type TimelineProps = {
+    events: TimelineEvent[];
+    onTagClick?: (tag: LocalizedString) => void;
+};
+
+const TAG_CLASS =
+    "rounded-full border border-red-soft bg-red-soft px-2.5 py-0.5 font-body text-[10px] uppercase tracking-[0.1em] text-ink";
+
+export default function Timeline({ events, onTagClick }: TimelineProps) {
     const { t, locale, ui } = useLanguage();
 
     function scrollToId(id: string) {
@@ -31,7 +39,7 @@ export default function Timeline({ events }: { events: TimelineEvent[] }) {
                         <div key={i}>
                             <div
                                 id={cardId}
-                                className={`relative flex items-start sm:items-center ${isLeft ? "sm:flex-row" : "sm:flex-row-reverse"
+                                className={`relative scroll-mt-32 flex items-start sm:items-center ${isLeft ? "sm:flex-row" : "sm:flex-row-reverse"
                                     }`}
                             >
                                 <div
@@ -52,15 +60,46 @@ export default function Timeline({ events }: { events: TimelineEvent[] }) {
                                             {event.description[locale]}
                                         </div>
 
-                                        {event.blogSlug && (
-                                            <div className={`mt-4 flex ${isLeft ? "sm:justify-start" : "sm:justify-end"} justify-center border-t border-line pt-4`}>
-                                                <Link
-                                                    href={ROUTES.blogPost(event.blogSlug)}
-                                                    className="flex items-center gap-2 border border-red-soft bg-red-soft px-4 py-2 font-body text-xs uppercase tracking-[0.2em] text-ink transition-colors hover:bg-transparent hover:text-red-soft"
-                                                >
-                                                    <MoreIcon size={14} />
-                                                    {t(ui.more)}
-                                                </Link>
+                                        {(event.tags.length > 0 || event.blogSlug) && (
+                                            <div className="mt-4 border-t border-line pt-4">
+                                                {event.tags.length > 0 && (
+                                                    <div
+                                                        className={`flex flex-wrap justify-center gap-2 ${isLeft ? "sm:justify-end" : "sm:justify-start"
+                                                            }`}
+                                                    >
+                                                        {event.tags.map((tag, j) =>
+                                                            onTagClick ? (
+                                                                <button
+                                                                    key={j}
+                                                                    type="button"
+                                                                    onClick={() => onTagClick(tag)}
+                                                                    className={`${TAG_CLASS} cursor-pointer transition-colors hover:bg-transparent hover:text-red-soft`}
+                                                                >
+                                                                    {t(tag)}
+                                                                </button>
+                                                            ) : (
+                                                                <span key={j} className={TAG_CLASS}>
+                                                                    {t(tag)}
+                                                                </span>
+                                                            ),
+                                                        )}
+                                                    </div>
+                                                )}
+
+                                                {event.blogSlug && (
+                                                    <div
+                                                        className={`flex justify-center ${isLeft ? "sm:justify-start" : "sm:justify-end"} ${event.tags.length > 0 ? "mt-4" : ""
+                                                            }`}
+                                                    >
+                                                        <Link
+                                                            href={ROUTES.blogPost(event.blogSlug)}
+                                                            className="flex items-center gap-2 border border-red-soft bg-red-soft px-4 py-2 font-body text-xs uppercase tracking-[0.2em] text-ink transition-colors hover:bg-transparent hover:text-red-soft"
+                                                        >
+                                                            <MoreIcon size={14} />
+                                                            {t(ui.more)}
+                                                        </Link>
+                                                    </div>
+                                                )}
                                             </div>
                                         )}
                                     </div>

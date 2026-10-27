@@ -1,3 +1,4 @@
+import { TAGS } from "../tags";
 import type { EchoWork } from "./types";
 
 export const forestfarDeer: EchoWork = {
@@ -8,6 +9,7 @@ export const forestfarDeer: EchoWork = {
       "pt-br": "/img/echoes/cover-the-forestfar-deer-br.jpg",
       en: "/img/echoes/cover-the-forestfar-deer-en.jpg",
     },
+    tags: [TAGS.apocrypha, TAGS.echoes, TAGS.forestfar, TAGS.hunt, TAGS.family],
     parts: [
       {
         id: "forestfar-deer-part-1",

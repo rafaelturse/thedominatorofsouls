@@ -1,10 +1,12 @@
 import type { LocalizedString } from "./i18n";
+import { TAGS } from "./tags";
 import type { ReactNode } from "react";
 
 export type TimelineEvent = {
   date: LocalizedString;
   title: LocalizedString;
   description: { "pt-br": ReactNode; en: ReactNode };
+  tags: LocalizedString[];
   blogSlug?: string;
 };
 
@@ -32,6 +34,7 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
         </>
       ),
     },
+    tags: [TAGS.apocrypha, TAGS.echoes, TAGS.detective, TAGS.stanBrings, TAGS.forestfar],
   },
   {
     date: { "pt-br": "Out-15-2026", en: "Oct-15-2026" },
@@ -50,6 +53,7 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
         </>
       ),
     },
+    tags: [TAGS.audiobook, TAGS.spotify, TAGS.berdox],
   },
   {
     date: { "pt-br": "Out-11-2026", en: "Oct-11-2026" },
@@ -70,6 +74,7 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
         </>
       ),
     },
+    tags: [TAGS.audiobook, TAGS.audioPlayer, TAGS.website],
   },
   {
     date: { "pt-br": "Out-2026", en: "Oct-2026" },
@@ -90,6 +95,7 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
         </>
       ),
     },
+    tags: [TAGS.volume2, TAGS.berdox, TAGS.writing, TAGS.comingSoon],
   },
   {
     date: { "pt-br": "Out-2026", en: "Oct-2026" },
@@ -110,6 +116,7 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
         </>
       ),
     },
+    tags: [TAGS.design, TAGS.covers, TAGS.berdox],
   },
   {
     date: { "pt-br": "Out-2026", en: "Oct-2026" },
@@ -118,6 +125,7 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
       "pt-br": "Wattpad, redes sociais e canal no WhatsApp se juntam para formar a base de leitores.",
       en: "Wattpad, social media, and a WhatsApp channel come together to form the reader base.",
     },
+    tags: [TAGS.community, TAGS.wattpad, TAGS.socialMedia, TAGS.whatsapp],
   },
   {
     date: { "pt-br": "Set-2026", en: "Sep-2026" },
@@ -138,6 +146,7 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
         </>
       ),
     },
+    tags: [TAGS.sample, TAGS.wattpad, TAGS.prologue, TAGS.fragmented],
   },
   {
     date: { "pt-br": "Set-2026", en: "Sep-2026" },
@@ -146,6 +155,7 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
       "pt-br": "thedominatorofsouls.com é lançado, trazendo a loja, a comunidade e o leitor de amostra.",
       en: "thedominatorofsouls.com launches, bringing the store, community, and sample reader to life.",
     },
+    tags: [TAGS.website, TAGS.store, TAGS.community, TAGS.release],
   },
   {
     date: { "pt-br": "Set-2026", en: "Sep-2026" },
@@ -154,6 +164,7 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
       "pt-br": "O Volume 1 de As Memórias de Berdox chega à Amazon, marcando o início oficial da série.",
       en: "Volume 1 of The Memories of Berdox arrives on Amazon, marking the official start of the series.",
     },
+    tags: [TAGS.release, TAGS.amazon, TAGS.fragmented, TAGS.berdox],
   },
   {
     date: { "pt-br": "2019 — 2026", en: "2019 — 2026" },
@@ -172,6 +183,7 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
         </>
       ),
     },
+    tags: [TAGS.worldbuilding, TAGS.creativeProcess, TAGS.behindTheScenes],
     blogSlug: "forjando-e-dando-vida",
   },
   {
@@ -182,5 +194,6 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
         "O universo de O Dominador de Almas começou a tomar forma muito antes de a primeira palavra ser escrita. Foram muitas noites em claro, movidas pela empolgação da criação — e, com grande dedicação, seus alicerces começaram a ser concebidos e desenvolvidos.",
       en: "The universe of The Dominator of Souls began to take shape long before the first word was written. There were many sleepless nights fueled by the excitement of creation, and through great dedication, its foundations began to be conceived and developed.",
     },
+    tags: [TAGS.worldbuilding, TAGS.origins, TAGS.dominatorOfSouls],
   },
 ];

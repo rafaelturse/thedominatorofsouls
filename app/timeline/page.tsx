@@ -1,14 +1,17 @@
 "use client";
 
+import { useCallback, useState } from "react";
 import Hero from "@/components/page/Hero";
 import PageHeader from "@/components/page/PageHeader";
 import Timeline from "@/components/sessions/Timeline";
+import TagPanel from "@/components/tags/TagPanel";
 import ExploreLinks from "@/components/link/ExploreLinks";
 import { TIMELINE_EVENTS } from "@/lib/timeline";
 import { useLanguage } from "@/lib/i18n";
 import { BalloonIcon, MoreIcon } from "@/lib/icons";
 import type { LocalizedString } from "@/lib/i18n";
 import { SITE } from "@/lib/data";
+import { TAG_PANEL_LABELS, getTaggedItems } from "@/lib/tagged";
 
 const TIMELINE_PAGE = {
   title: { "pt-br": "Timeline", en: "Timeline" } as LocalizedString,
@@ -46,6 +49,15 @@ const SHORTCUT_LABEL = { "pt-br": "Ir ao primeiro evento", en: "Go to the first 
 
 export default function TimelinePage() {
   const { locale, t, ui } = useLanguage();
+  const [activeTag, setActiveTag] = useState<LocalizedString | null>(null);
+  const [panelOpen, setPanelOpen] = useState(false);
+
+  const closePanel = useCallback(() => setPanelOpen(false), []);
+
+  function handleTagClick(tag: LocalizedString) {
+    setActiveTag(tag);
+    setPanelOpen(true);
+  }
 
   function scrollToFirstEvent() {
     const el = document.getElementById(`timeline-event-${TIMELINE_EVENTS.length - 1}`);
@@ -73,7 +85,10 @@ export default function TimelinePage() {
             <h1 className="font-display uppercase text-lg text-ink">{t(ui.welcomeTitle)}</h1>
           </div>
 
-          <div className="mt-6 rounded-3xl bg-card p-6 shadow-card sm:p-10">
+          <div
+            className="mt-6 rounded-3xl p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] sm:p-10"
+            style={{ backgroundColor: "#111" }}
+          >
             <div className="text-center font-body text-sm leading-relaxed text-muted sm:text-left sm:text-base">
               {INTRO[locale]}
             </div>
@@ -103,10 +118,20 @@ export default function TimelinePage() {
           </div>
         </div>
 
-        <Timeline events={TIMELINE_EVENTS} />
+        <Timeline events={TIMELINE_EVENTS} onTagClick={handleTagClick} />
 
         <ExploreLinks count={4} />
       </div>
+
+      <TagPanel
+        open={panelOpen}
+        tag={activeTag ? t(activeTag) : null}
+        items={activeTag ? getTaggedItems(activeTag, t) : []}
+        onClose={closePanel}
+        heading={t(TAG_PANEL_LABELS.heading)}
+        emptyMessage={t(TAG_PANEL_LABELS.empty)}
+        closeLabel={t(TAG_PANEL_LABELS.close)}
+      />
     </div>
   );
 }

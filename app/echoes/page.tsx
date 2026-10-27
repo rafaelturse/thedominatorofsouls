@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Hero from "@/components/page/Hero";
 import PageHeader from "@/components/page/PageHeader";
@@ -8,12 +8,17 @@ import ScrollableTabs from "@/components/page/ScrollableTabs";
 import ExploreLinks from "@/components/link/ExploreLinks";
 import EchoCardItem from "@/components/echoes/EchoCardItem";
 import EchoesStrip from "@/components/echoes/EchoesStrip";
+import TagPanel from "@/components/tags/TagPanel";
 import { ECHOES, type EchoEntry } from "@/lib/echoes";
 import { useLanguage, type LocalizedString } from "@/lib/i18n";
 import { QuoteIcon } from "@/lib/icons";
+import { TAG_PANEL_LABELS, getTaggedItems } from "@/lib/tagged";
 
 const CONTENT_TITLE: LocalizedString = { "pt-br": "Conteúdo", en: "Content" };
 const NO_ECHO_SELECTED: LocalizedString = { "pt-br": "Selecionar um eco", en: "Select an echo" };
+
+const TAG_CLASS =
+  "cursor-pointer rounded-full border border-red-soft bg-red-soft px-3 py-1 font-body text-[10px] uppercase tracking-[0.15em] text-ink transition-colors hover:bg-transparent hover:text-red-soft";
 
 function partLabel(index: number): LocalizedString {
   return { "pt-br": `Parte ${index + 1}`, en: `Part ${index + 1}` };
@@ -29,8 +34,17 @@ function EchoesContent() {
   const echoParam = searchParams.get("echo");
   const [selected, setSelected] = useState<EchoEntry | null>(null);
   const [activePartId, setActivePartId] = useState<string>("");
+  const [activeTag, setActiveTag] = useState<LocalizedString | null>(null);
+  const [panelOpen, setPanelOpen] = useState(false);
 
   const activePart = selected?.parts.find((p) => p.id === activePartId) ?? selected?.parts[0];
+
+  const closePanel = useCallback(() => setPanelOpen(false), []);
+
+  function handleTagClick(tag: LocalizedString) {
+    setActiveTag(tag);
+    setPanelOpen(true);
+  }
 
   function selectEntry(entry: EchoEntry) {
     setSelected(entry);
@@ -69,7 +83,12 @@ function EchoesContent() {
 
         <div className="mt-16 flex flex-col gap-6">
           {ECHOES.cards.map((card) => (
-            <EchoCardItem key={card.id} card={card} onReadMore={handleReadMore} />
+            <EchoCardItem
+              key={card.id}
+              card={card}
+              onReadMore={handleReadMore}
+              onTagClick={handleTagClick}
+            />
           ))}
         </div>
 
@@ -124,6 +143,19 @@ function EchoesContent() {
                 <p className="mt-12 text-center font-body text-xs uppercase tracking-[0.2em] text-red-soft">
                   {t(activePart.title)}
                 </p>
+
+                <div className="mt-8 flex flex-wrap justify-end gap-2 border-t border-line pt-6">
+                  {selected.tags.map((tag, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => handleTagClick(tag)}
+                      className={TAG_CLASS}
+                    >
+                      {t(tag)}
+                    </button>
+                  ))}
+                </div>
               </div>
             ) : (
               <div className="flex justify-center">
@@ -141,6 +173,16 @@ function EchoesContent() {
 
         <ExploreLinks count={4} />
       </div>
+
+      <TagPanel
+        open={panelOpen}
+        tag={activeTag ? t(activeTag) : null}
+        items={activeTag ? getTaggedItems(activeTag, t) : []}
+        onClose={closePanel}
+        heading={t(TAG_PANEL_LABELS.heading)}
+        emptyMessage={t(TAG_PANEL_LABELS.empty)}
+        closeLabel={t(TAG_PANEL_LABELS.close)}
+      />
     </div>
   );
 }

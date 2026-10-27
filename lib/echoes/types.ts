@@ -20,6 +20,7 @@ export type EchoEntry = {
   id: string;
   title: LocalizedString;
   parts: EchoPart[];
+  tags: LocalizedString[];
   cover?: LocalizedString;
   comingSoon?: boolean;
 };

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import TagPanelFooter from "./TagPanelFooter";
 
 export type TagPanelItem = {
     id: string;
@@ -151,6 +152,8 @@ export default function TagPanel({
                             ))
                         )}
                     </div>
+
+                    <TagPanelFooter />
                 </div>
             </aside>
         </div>
