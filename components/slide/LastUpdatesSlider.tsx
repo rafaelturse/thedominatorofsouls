@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import type { Book } from "@/lib/data";
+import { ECHOES } from "@/lib/echoes";
 import { useLanguage } from "@/lib/i18n";
 import { SettingsIcon, MoreIcon } from "@/lib/icons";
 import { ROUTES } from "@/lib/routes";
@@ -12,6 +13,7 @@ import { useAutoSlide } from "./useAutoSlide";
 import SlideProgressDot from "./SlideProgressDot";
 import BookSlide from "./slides/BookSlide";
 import PostSlide from "./slides/PostSlide";
+import EchoSlide from "./slides/EchoSlide";
 import CoverZoomModal from "./slides/CoverZoomModal";
 import { SLIDE_MIN_HEIGHT } from "./slides/slideLayout";
 import type { SlideItem } from "./slides/types";
@@ -19,6 +21,7 @@ import type { SlideItem } from "./slides/types";
 const SLIDE_INTERVAL_MS = 10000;
 const POST_SLUGS = ["o-prologo-chega-ao-publico", "novo-modelo-de-capas"];
 const BOOK_EVENT_TITLE_EN = "Volume 2: The Hunt";
+const ECHO_ENTRY_ID = "stan-brings";
 
 export default function LastUpdatesSlider({ book }: { book: Book }) {
   const { t, ui, locale } = useLanguage();
@@ -26,6 +29,19 @@ export default function LastUpdatesSlider({ book }: { book: Book }) {
 
   const bookEvent =
     TIMELINE_EVENTS.find((e) => e.title.en === BOOK_EVENT_TITLE_EN) ?? TIMELINE_EVENTS[0];
+
+  const echoCard = ECHOES.cards.find((c) => c.entryId === ECHO_ENTRY_ID) ?? ECHOES.cards[0];
+
+  const echoItems: SlideItem[] = echoCard
+    ? [
+      {
+        key: `echo-${echoCard.id}`,
+        href: `${ROUTES.echoes}?echo=${encodeURIComponent(echoCard.entryId)}#echoes-content`,
+        cta: t(ui.blogReadMore),
+        content: <EchoSlide card={echoCard} />,
+      },
+    ]
+    : [];
 
   const postItems: SlideItem[] = POST_SLUGS.flatMap((slug) => {
     const post = BLOG_POSTS.find((p) => p.slug === slug);
@@ -41,6 +57,7 @@ export default function LastUpdatesSlider({ book }: { book: Book }) {
   });
 
   const items: SlideItem[] = [
+    ...echoItems,
     {
       key: "book",
       cta: t(ui.blogReadMore),
