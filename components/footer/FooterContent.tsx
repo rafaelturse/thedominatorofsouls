@@ -6,6 +6,7 @@ import { useLanguage } from "@/lib/i18n";
 import type { LocalizedString } from "@/lib/i18n";
 import { ROUTES } from "@/lib/routes";
 import { BLOG_POSTS } from "@/lib/blog";
+import { ECHOES } from "@/lib/echoes";
 import { TIMELINE_EVENTS } from "@/lib/timeline";
 import { STORE_PLATFORMS } from "@/lib/platforms";
 import HorizontalScroller from "@/components/page/HorizontalScroller";
@@ -44,13 +45,23 @@ export default function FooterContent() {
     const { t, ui, locale } = useLanguage();
     const year = new Date().getFullYear();
 
-    const historyLinks: FooterLink[] = books
+    const bookLinks: FooterLink[] = books
         .filter((book) => book.status === "published")
         .map((book) => ({
             key: book.slug,
             label: t(book.title),
             href: ROUTES.bookDetail(book.slug),
         }));
+
+    const echoLinks: FooterLink[] = ECHOES.entries
+        .filter((entry) => !entry.comingSoon)
+        .map((entry) => ({
+            key: `echo-${entry.id}`,
+            label: t(entry.title),
+            href: `${ROUTES.echoes}?echo=${encodeURIComponent(entry.id)}#echoes-content`,
+        }));
+
+    const historyLinks: FooterLink[] = [...bookLinks, ...echoLinks];
 
     const socialLinks: FooterLink[] = contacts
         .filter((c) => !STORE_CONTACTS.includes(c.label))
