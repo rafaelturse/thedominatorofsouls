@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import type { Book } from "@/lib/data";
 import { ECHOES } from "@/lib/echoes";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, type LocalizedString } from "@/lib/i18n";
 import { SettingsIcon, MoreIcon } from "@/lib/icons";
 import { ROUTES } from "@/lib/routes";
 import { TIMELINE_EVENTS } from "@/lib/timeline";
@@ -21,7 +21,21 @@ import type { SlideItem } from "./slides/types";
 const SLIDE_INTERVAL_MS = 10000;
 const POST_SLUGS = ["o-prologo-chega-ao-publico", "novo-modelo-de-capas"];
 const BOOK_EVENT_TITLE_EN = "Volume 2: The Hunt";
-const ECHO_ENTRY_ID = "stan-brings";
+
+const STAN_ENTRY_ID = "stan-brings";
+const STAN_DATE: LocalizedString = { "pt-br": "OUT-26-2026", en: "OCT-26-2026" };
+
+const FORESTFAR_ENTRY_ID = "forestfar-deer";
+const FORESTFAR_DATE: LocalizedString = { "pt-br": "OUT-27-2026", en: "OCT-27-2026" };
+const FORESTFAR_CATEGORY: LocalizedString = {
+  "pt-br": "Uma caçada, dois irmãos",
+  en: "A hunt, two brothers",
+};
+const FORESTFAR_EXCERPT: LocalizedString = {
+  "pt-br":
+    "Em uma região remota e quase inexplorada, os irmãos Harlob e Jarlt seguem o rastro de um jovem cervo. Famintos, e com o caçula ainda a provar seu valor, eles se aproximam até que a flecha seja disparada e não haja mais volta.",
+  en: "In a remote, almost unexplored region, the brothers Harlob and Jarlt follow the trail of a young deer. Starving, and with the youngest still having to prove his worth, they draw closer until the arrow flies and there is no turning back.",
+};
 
 export default function LastUpdatesSlider({ book }: { book: Book }) {
   const { t, ui, locale } = useLanguage();
@@ -30,18 +44,51 @@ export default function LastUpdatesSlider({ book }: { book: Book }) {
   const bookEvent =
     TIMELINE_EVENTS.find((e) => e.title.en === BOOK_EVENT_TITLE_EN) ?? TIMELINE_EVENTS[0];
 
-  const echoCard = ECHOES.cards.find((c) => c.entryId === ECHO_ENTRY_ID) ?? ECHOES.cards[0];
+  const stanCard = ECHOES.cards.find((c) => c.entryId === STAN_ENTRY_ID) ?? ECHOES.cards[0];
+  const forestfarEntry = ECHOES.entries.find((e) => e.id === FORESTFAR_ENTRY_ID);
 
-  const echoItems: SlideItem[] = echoCard
+  const echoHref = (id: string) => `${ROUTES.echoes}?echo=${encodeURIComponent(id)}#echoes-content`;
+
+  const stanItems: SlideItem[] = stanCard
     ? [
       {
-        key: `echo-${echoCard.id}`,
-        href: `${ROUTES.echoes}?echo=${encodeURIComponent(echoCard.entryId)}#echoes-content`,
+        key: `echo-${stanCard.id}`,
+        href: echoHref(stanCard.entryId),
         cta: t(ui.blogReadMore),
-        content: <EchoSlide card={echoCard} />,
+        content: (
+          <EchoSlide
+            cover={stanCard.cover}
+            title={stanCard.title}
+            date={STAN_DATE}
+            category={stanCard.category}
+            excerpt={stanCard.excerpt}
+            tags={stanCard.tags}
+          />
+        ),
       },
     ]
     : [];
+
+  const forestfarItems: SlideItem[] =
+    forestfarEntry && forestfarEntry.cover
+      ? [
+        {
+          key: `echo-${forestfarEntry.id}`,
+          href: echoHref(forestfarEntry.id),
+          cta: t(ui.blogReadMore),
+          content: (
+            <EchoSlide
+              cover={t(forestfarEntry.cover)}
+              title={forestfarEntry.title}
+              date={FORESTFAR_DATE}
+              category={FORESTFAR_CATEGORY}
+              excerpt={FORESTFAR_EXCERPT}
+              tags={forestfarEntry.tags}
+            />
+          ),
+        },
+      ]
+      : [];
 
   const postItems: SlideItem[] = POST_SLUGS.flatMap((slug) => {
     const post = BLOG_POSTS.find((p) => p.slug === slug);
@@ -57,7 +104,8 @@ export default function LastUpdatesSlider({ book }: { book: Book }) {
   });
 
   const items: SlideItem[] = [
-    ...echoItems,
+    ...stanItems,
+    ...forestfarItems,
     {
       key: "book",
       cta: t(ui.blogReadMore),
