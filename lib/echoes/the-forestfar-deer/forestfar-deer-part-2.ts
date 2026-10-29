@@ -62,7 +62,7 @@ export const forestfarDeerPart2: EchoPart = {
     },
     {
       "pt-br": "Harlob escondia a preocupação: se Jarlt não acertasse o ponto vital do cervo, mesmo aleijado, ele ainda poderia fugir e, sem um vestígio de rastro, eles o perderiam.",
-      en: "Harlob hid his worry: if Jarlt didn't hit the deer's vital spot, even crippled it could still flee and, without a trace of a trail, they would lose it.",
+      en: "Harlob hid his worry: if Jarlt didn't hit the deer's vital spot, even crippled it could still flee and, without a tracking dog, they would lose it.",
     },
     {
       "pt-br": "Uma decisão foi tomada enfim. Dando o melhor de si, o pequeno abriu a mão; sua flecha disparou; não havia mais volta!",
