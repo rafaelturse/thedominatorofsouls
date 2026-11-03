@@ -12,7 +12,7 @@ import { useLanguage } from "@/lib/i18n";
 import type { LocalizedString } from "@/lib/i18n";
 import { BalloonIcon, MoreIcon } from "@/lib/icons";
 import { SITE } from "@/lib/data";
-import { TAG_PANEL_LABELS, getTaggedItems } from "@/lib/tagged";
+import { TAG_PANEL_LABELS, getTaggedItems } from "@/lib/tags/tagged";
 
 export default function TimelinePage() {
   const { locale, t, ui } = useLanguage();

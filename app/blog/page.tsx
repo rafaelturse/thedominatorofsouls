@@ -8,7 +8,7 @@ import TagPanel from "@/components/tags/TagPanel";
 import ExploreLinks from "@/components/link/ExploreLinks";
 import { BLOG_POSTS } from "@/lib/blog";
 import { useLanguage, type LocalizedString } from "@/lib/i18n";
-import { TAG_PANEL_LABELS, getTaggedItems } from "@/lib/tagged";
+import { TAG_PANEL_LABELS, getTaggedItems } from "@/lib/tags/tagged";
 
 export default function BlogPage() {
   const { t, ui } = useLanguage();

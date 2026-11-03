@@ -12,7 +12,7 @@ import TagPanel from "@/components/tags/TagPanel";
 import { ECHOES, type EchoEntry } from "@/lib/echoes";
 import { useLanguage, type LocalizedString } from "@/lib/i18n";
 import { QuoteIcon } from "@/lib/icons";
-import { TAG_PANEL_LABELS, getTaggedItems } from "@/lib/tagged";
+import { TAG_PANEL_LABELS, getTaggedItems } from "@/lib/tags/tagged";
 
 const CONTENT_TITLE: LocalizedString = { "pt-br": "Conteúdo", en: "Content" };
 const NO_ECHO_SELECTED: LocalizedString = { "pt-br": "Selecionar um eco", en: "Select an echo" };

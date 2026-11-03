@@ -9,7 +9,7 @@ import RelatedPosts from "@/components/blog/RelatedPosts";
 import TagPanel from "@/components/tags/TagPanel";
 import { useLanguage, type LocalizedString } from "@/lib/i18n";
 import type { BlogPost } from "@/lib/blog";
-import { TAG_PANEL_LABELS, getTaggedItems } from "@/lib/tagged";
+import { TAG_PANEL_LABELS, getTaggedItems } from "@/lib/tags/tagged";
 
 export default function BlogPostContent({ post }: { post: BlogPost }) {
   const { t, ui } = useLanguage();

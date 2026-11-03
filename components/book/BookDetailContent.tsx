@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 import type { Book } from "@/lib/data";
 import { useLanguage, type LocalizedString } from "@/lib/i18n";
 import { BookIcon } from "@/lib/icons";
-import { TAG_PANEL_LABELS, getTaggedItems } from "@/lib/tagged";
+import { TAG_PANEL_LABELS, getTaggedItems } from "@/lib/tags/tagged";
 import Hero from "@/components/page/Hero";
 import GenreStrip from "@/components/sessions/GenreStrip";
 import BookInfo from "@/components/book/BookInfo";
