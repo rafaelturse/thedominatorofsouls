@@ -1,5 +1,5 @@
 import type { LocalizedString } from "./i18n";
-import { TAGS } from "./tags";
+import { TAGS } from "./tags/tags";
 import type { ReactNode } from "react";
 
 export type TimelineEvent = {

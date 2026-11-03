@@ -1,4 +1,4 @@
-import type { LocalizedString } from "./i18n";
+import type { LocalizedString } from "../i18n";
 
 function tag(ptBr: string, en: string): LocalizedString {
   return { "pt-br": ptBr, en };

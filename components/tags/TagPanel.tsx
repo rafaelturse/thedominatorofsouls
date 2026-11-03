@@ -23,6 +23,7 @@ type TagPanelProps = {
     heading: string;
     emptyMessage: string;
     closeLabel: string;
+    prefix?: string;
 };
 
 const TRANSITION_MS = 300;
@@ -35,6 +36,7 @@ export default function TagPanel({
     heading,
     emptyMessage,
     closeLabel,
+    prefix = "#",
 }: TagPanelProps) {
     const [mounted, setMounted] = useState(false);
     const [shown, setShown] = useState(false);
@@ -107,7 +109,7 @@ export default function TagPanel({
                     <div className="pr-14">
                         <p className="font-body text-xs uppercase tracking-[0.3em] text-gold-soft">{heading}</p>
                         <h2 className="mt-2 font-display text-3xl text-ink">
-                            <span className="text-red-soft">#</span>
+                            {prefix && <span className="text-red-soft">{prefix}</span>}
                             {tag}
                         </h2>
                     </div>

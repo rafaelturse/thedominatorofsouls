@@ -1,4 +1,4 @@
-import { TAGS } from "../../tags";
+import { TAGS } from "../../tags/tags";
 import type { EchoWork } from "../types";
 import { forestfarDeerPart1 } from "./forestfar-deer-part-1";
 import { forestfarDeerPart2 } from "./forestfar-deer-part-2";

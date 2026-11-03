@@ -1,9 +1,9 @@
-import { BLOG_POSTS } from "./blog";
-import { books } from "./books";
-import { ECHOES } from "./echoes";
-import type { LocalizedString } from "./i18n";
-import { ROUTES } from "./routes";
-import { TIMELINE_EVENTS } from "./timeline";
+import { BLOG_POSTS } from "../blog";
+import { books } from "../books";
+import { ECHOES } from "../echoes";
+import type { LocalizedString } from "../i18n";
+import { ROUTES } from "../routes";
+import { TIMELINE_EVENTS } from "../timeline";
 
 export type TaggedItem = {
   id: string;
