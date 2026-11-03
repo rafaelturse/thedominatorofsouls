@@ -34,7 +34,7 @@ export default function LanguageSwitcher() {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full z-10 w-64 pt-3">
+        <div className="absolute right-0 top-full z-10 w-64 pt-6">
           <div className="relative rounded-2xl border border-line bg-header p-2 shadow-dropdown">
             <span
               aria-hidden="true"

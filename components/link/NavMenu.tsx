@@ -43,7 +43,7 @@ export default function NavMenu({ label, sections, isActive }: NavMenuProps) {
       </button>
 
       {open && (
-        <div className="absolute left-1/2 top-full z-10 w-72 -translate-x-1/2 pt-3">
+        <div className="absolute left-1/2 top-full z-10 w-72 -translate-x-1/2 pt-6">
           <div className="relative rounded-2xl border border-line bg-header p-2 shadow-dropdown">
             <span
               aria-hidden="true"
