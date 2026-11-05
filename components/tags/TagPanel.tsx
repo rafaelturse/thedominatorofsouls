@@ -21,6 +21,7 @@ type TagPanelProps = {
     tag: string | null;
     items: TagPanelItem[];
     onClose: () => void;
+    onNavigate?: () => void;
     heading: string;
     emptyMessage: string;
     closeLabel: string;
@@ -34,6 +35,7 @@ export default function TagPanel({
     tag,
     items,
     onClose,
+    onNavigate,
     heading,
     emptyMessage,
     closeLabel,
@@ -70,6 +72,11 @@ export default function TagPanel({
         window.addEventListener("keydown", onKeyDown);
         return () => window.removeEventListener("keydown", onKeyDown);
     }, [open, onClose]);
+
+    function handleItemClick() {
+        onClose();
+        onNavigate?.();
+    }
 
     if (!mounted) return null;
 
@@ -128,7 +135,7 @@ export default function TagPanel({
                                     </span>
                                     <Link
                                         href={item.href}
-                                        onClick={onClose}
+                                        onClick={handleItemClick}
                                         className="group flex flex-col overflow-hidden rounded-2xl border border-transparent bg-card/70 transition-colors duration-300 hover:border-red-soft"
                                     >
                                         {item.cover && (
