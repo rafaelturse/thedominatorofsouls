@@ -9,6 +9,7 @@ import SpotlightCarousel from "@/components/sessions/SpotlightCarousel";
 import Collection from "@/components/collection/Collection";
 import ExploreLinks from "@/components/link/ExploreLinks";
 import LastUpdatesSlider from "@/components/slide/LastUpdatesSlider";
+import SiteGuideSection from "@/components/sessions/SiteGuideSection";
 
 export default function HomePage() {
   const featured = books.find((b) => b.status === "published") ?? books[0];
@@ -22,6 +23,8 @@ export default function HomePage() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-5 pb-20 pt-16 sm:pb-28 sm:pt-20">
         {inTheWorks && <LastUpdatesSlider book={inTheWorks} />}
+
+        <SiteGuideSection />
 
         <div id="spotlight-top" className="scroll-mt-24">
           <SpotlightCarousel featured={featured} secondary={secondary} />
