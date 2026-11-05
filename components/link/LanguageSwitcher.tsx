@@ -35,10 +35,10 @@ export default function LanguageSwitcher() {
 
       {open && (
         <div className="absolute right-0 top-full z-10 w-64 pt-6">
-          <div className="relative rounded-2xl border border-line bg-header p-2 shadow-dropdown">
+          <div className="relative rounded-2xl border border-line bg-header/70 p-2 shadow-dropdown backdrop-blur-md">
             <span
               aria-hidden="true"
-              className="absolute -top-1.5 right-8 h-3 w-3 rotate-45 border-l border-t border-line bg-header"
+              className="absolute -top-1.5 right-8 h-3 w-3 rotate-45 border-l border-t border-line bg-header/70 [clip-path:polygon(0_0,100%_0,0_100%)]"
             />
 
             <p className="px-3 pb-1 pt-3 font-body text-[10px] uppercase tracking-[0.25em] text-muted">

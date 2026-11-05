@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { QuoteIcon } from "@/lib/icons";
 import TagPanelFooter from "./TagPanelFooter";
 
@@ -72,7 +73,7 @@ export default function TagPanel({
 
     if (!mounted) return null;
 
-    return (
+    return createPortal(
         <div className="fixed inset-0 z-[100] flex justify-end" role="dialog" aria-modal="true" aria-label={heading}>
             <div
                 className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${shown ? "opacity-100" : "opacity-0"
@@ -163,6 +164,7 @@ export default function TagPanel({
                     <TagPanelFooter />
                 </div>
             </aside>
-        </div>
+        </div>,
+        document.body,
     );
 }

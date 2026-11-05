@@ -9,6 +9,8 @@ import { SEARCH_PANEL_LABELS, searchContent } from "@/lib/search";
 const LABEL: LocalizedString = { "pt-br": "Buscar", en: "Search" };
 const CLEAR_LABEL: LocalizedString = { "pt-br": "Limpar busca", en: "Clear search" };
 
+const MIN_QUERY_LENGTH = 2;
+
 export default function HeaderSearch() {
   const { t } = useLanguage();
   const [value, setValue] = useState("");
@@ -23,6 +25,16 @@ export default function HeaderSearch() {
     [panelOpen, submitted, t],
   );
 
+  function runSearch() {
+    const query = value.trim();
+    if (query.length < MIN_QUERY_LENGTH) {
+      inputRef.current?.focus();
+      return;
+    }
+    setSubmitted(query);
+    setPanelOpen(true);
+  }
+
   function handleClear() {
     setValue("");
     inputRef.current?.focus();
@@ -30,10 +42,7 @@ export default function HeaderSearch() {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const query = value.trim();
-    if (query.length < 2) return;
-    setSubmitted(query);
-    setPanelOpen(true);
+    runSearch();
   }
 
   return (
@@ -45,7 +54,7 @@ export default function HeaderSearch() {
           value={value}
           onChange={(event) => setValue(event.target.value)}
           aria-label={t(LABEL)}
-          className="h-9 w-full appearance-none border-0 border-b border-line bg-transparent pl-1 pr-14 font-body text-xs tracking-[0.1em] text-ink transition-colors focus:border-gold-soft focus:outline-none [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none"
+          className="h-9 w-full appearance-none border-0 border-b border-transparent bg-transparent pl-1 pr-14 font-body text-xs tracking-[0.1em] text-ink transition-colors focus:border-gold-soft focus:outline-none [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none"
         />
 
         {value && (
@@ -60,7 +69,8 @@ export default function HeaderSearch() {
         )}
 
         <button
-          type="submit"
+          type="button"
+          onClick={runSearch}
           aria-label={t(LABEL)}
           className="absolute right-1 top-1/2 flex -translate-y-1/2 cursor-pointer items-center justify-center text-muted transition-colors hover:text-gold-soft"
         >

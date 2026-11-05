@@ -39,15 +39,15 @@ export default function NavMenu({ label, sections, isActive }: NavMenuProps) {
           }`}
       >
         {t(label)}
-        <span className={`transition-transform duration-200 ${open ? "rotate-90" : ""}`}>›</span>
+        <span className={`opacity-50 transition-transform duration-200 ${open ? "rotate-90" : ""}`}>›</span>
       </button>
 
       {open && (
         <div className="absolute left-1/2 top-full z-10 w-72 -translate-x-1/2 pt-6">
-          <div className="relative rounded-2xl border border-line bg-header p-2 shadow-dropdown">
+          <div className="relative rounded-2xl border border-line bg-header/70 p-2 shadow-dropdown backdrop-blur-md">
             <span
               aria-hidden="true"
-              className="absolute -top-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 border-l border-t border-line bg-header"
+              className="absolute -top-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 border-l border-t border-line bg-header/70 [clip-path:polygon(0_0,100%_0,0_100%)]"
             />
 
             {sections.map((section, sectionIndex) => (

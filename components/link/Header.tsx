@@ -61,7 +61,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-header lg:fixed lg:inset-x-0 lg:top-0 lg:border-b-0 lg:bg-transparent lg:px-5 lg:pt-4">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:justify-center lg:justify-start lg:gap-8 lg:rounded-2xl lg:border lg:border-line lg:bg-header lg:py-2 lg:shadow-card">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:justify-center lg:relative lg:justify-start lg:gap-8 lg:rounded-2xl lg:border lg:border-line lg:py-2 lg:shadow-card lg:before:absolute lg:before:inset-0 lg:before:-z-10 lg:before:rounded-[inherit] lg:before:bg-header/70 lg:before:backdrop-blur-md lg:before:content-['']">
         <div className="flex items-center gap-4 md:hidden">
           <Link
             href={ROUTES.home}
