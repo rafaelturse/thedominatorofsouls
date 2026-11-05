@@ -26,7 +26,7 @@ export default function Header() {
   const desktopNavItems = NAV_ITEMS.filter((item) => !NESTED_NAV_HREFS.includes(item.href));
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-header lg:fixed lg:inset-x-0 lg:top-0 lg:border-b-0 lg:bg-transparent lg:px-5 lg:pt-4">
+    <header className="sticky top-0 z-50 border-b border-line bg-header md:fixed md:inset-x-0 md:top-0 md:border-b-0 md:bg-transparent md:px-5 md:pt-4">
       <div className="grid grid-cols-[1fr_auto_1fr] items-center px-5 py-3 md:hidden">
         <button
           type="button"
@@ -44,12 +44,10 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="mx-auto hidden max-w-6xl items-center justify-center px-5 py-4 md:flex lg:relative lg:justify-start lg:gap-8 lg:rounded-2xl lg:border lg:border-line lg:py-2 lg:shadow-card lg:before:absolute lg:before:inset-0 lg:before:-z-10 lg:before:rounded-[inherit] lg:before:bg-header/70 lg:before:backdrop-blur-md lg:before:content-['']">
-        <div className="hidden lg:block">
-          <HeaderLogo />
-        </div>
+      <div className="mx-auto hidden max-w-6xl items-center px-5 py-4 md:relative md:flex md:justify-start md:gap-4 md:rounded-2xl md:border md:border-line md:px-3 md:py-2 md:shadow-card md:before:absolute md:before:inset-0 md:before:-z-10 md:before:rounded-[inherit] md:before:bg-header/70 md:before:backdrop-blur-md md:before:content-[''] lg:gap-8 lg:px-5">
+        <HeaderLogo />
 
-        <nav className="flex items-center gap-1 lg:flex-1">
+        <nav className="flex items-center gap-0.5 md:flex-1 lg:gap-1">
           {desktopNavItems.map((item) =>
             item.href === ROUTES.about ? (
               <AboutMenu key={item.href} />
@@ -75,9 +73,15 @@ export default function Header() {
               </Link>
             )
           )}
+
+          <div className="ml-auto lg:hidden">
+            <HeaderSearch variant="compact" />
+          </div>
+
           <div className="hidden lg:ml-4 lg:block lg:flex-1">
             <HeaderSearch />
           </div>
+
           <div className="ml-3">
             <LanguageSwitcher />
           </div>
